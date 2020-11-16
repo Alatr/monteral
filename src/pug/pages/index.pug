@@ -1,0 +1,38 @@
+
+extends ../layout/main
+block variable
+	-
+		var title_page = 'Home'
+		var id_page = 'home-page'
+		var class_page = 'home-page'
+
+	
+block meta
+	title= title_page
+	meta(name='description', content='')
+block head
+		link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+	script(defer src='./assets/scripts/index.js')
+	script(defer src='./assets/scripts/home.js')
+	script(defer src='./assets/scripts/vendors.bundle.js')
+	script(defer src='./assets/scripts/index.bundle.js')
+block content
+	.welcome-screen
+		<svg width="25" class="welcome-screen__logo" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M0 25H25V0H0V25ZM22.9037 22.8972H2.09627V2.18069H22.9037V22.8972Z" />
+			<path d="M13.7132 5V18.8719H11.3235V5H5V21H6.98529V7.12808H9.33824V21H15.6618V7.12808H18.0515V21H20V5H13.7132Z" />
+		</svg>
+		//- +svg('logo').welcome-screen__logo
+		h1.welcome-screen__title 
+			span Montreal
+			span House —
+		span.welcome-screen__subtitle welcome
+		span.welcome-screen__decor
+	video(width='100%'  height='100%' poster='./assets/images/home/0.jpg' muted id='home-video' class='video-view--cover home-page-video')
+		source( src='./assets/images/home/video/88.mp4' type="video/mp4")
+		| Your browser does not support the video tag.
+block footer
+	include ../includes/footer.pug
+
+block header
