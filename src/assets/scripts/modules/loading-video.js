@@ -12,16 +12,14 @@ export const startCheckingLoadingVideoEvery500ms = (video, state) => {
 	
 /*  */
 export const isVideoLoaded = (state) => {
-	return state.video.videoLoaded = true;
+	return state.page.video.videoLoaded = true;
 }
 /*  */
 export const setStateVideoIsLoad = (state) => {
-	console.log(state.video.videoLoaded,'|||||||||||||||||||||||||');
-	state.video.videoLoaded = true;
-	console.log(state.video.videoLoaded,'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+	state.page.video.videoLoaded = true;
 }
 export const setStateVideoIsntLoad = (state) => {
-	state.video.videoLoaded = false;
+	state.page.video.videoLoaded = false;
 }
 /*  */
 

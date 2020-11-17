@@ -1,6 +1,5 @@
 export const callFunctionWithInterval = (setting = {}) => {
 	const interval = setInterval(()=>{
-		console.log(setting.predicate());
 		if (setting.predicate()) {
 			clearInterval(interval);
 			setting.success();
