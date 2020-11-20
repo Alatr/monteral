@@ -8,12 +8,46 @@ export const initSlider = (state) => {
 };
 
 /*  */
-export const next = (delta) => {
+export const next = () => {
 	disableScroll();
 	setIndexToNext();
-	console.log('next', _STATE.slider.data);
+	console.log('next', _STATE.slider.data, _STATE);
+	// is load
+	// out
+	// in
+
+	// is load
+	// load
+	// out
+	// in
 }
-export const prev = (delta) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const prev = () => {
 	disableScroll();
 	setIndexToPrev();
 	console.log('prev', _STATE.slider.data);

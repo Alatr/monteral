@@ -2,7 +2,7 @@ import initView from './modules/view-home-sl'
 import {isFirstVisit, setCntTimeVisit, isHourPassedFromLastVisit} from './modules/time-visit'
 import {initAnimation} from './modules/animation/greating'
 import {initSlider, getDirection, next, prev, isBlockedScroll} from './modules/slider-control'
-import {startCheckingLoadingVideoEvery500ms} from './modules/loading-video'
+import {isLoad, initVideoControll} from './modules/video-control'
 
 
 
@@ -28,6 +28,7 @@ import {startCheckingLoadingVideoEvery500ms} from './modules/loading-video'
 function app() {
 	/*  */
 	const state = {
+
 		video: {
 			/* 
 				* videoPause
@@ -37,11 +38,12 @@ function app() {
 				* videoStartDownload
 				* videoEndDownload
 				*/
-			videoLoaded: false,
-			/* 
-				* startLoadingVideo
-				* videoReady
-			 */
+				/* 
+					* startLoadingVideo
+					* videoReady
+				 */
+			tempBlobURL: null,
+			isLoaded: false,
 			status: 'videoStartDownload'
 		},
 		animation: {
@@ -88,23 +90,27 @@ function app() {
 		source: document.querySelector('#source'),
 		body: document.querySelector('body'),
 		preLoader: document.querySelector('[data-preloader]'),
+		preLoaderVideo: document.querySelector('[data-video-preloader]'),
+		videoWrapper: document.querySelector('[data-video-block-wrapper]'),
 	}
 	/*  */
 	const watched = initView(state, elements);
 	/*  */
-	const animationGreating = initAnimation(watched);
+	const animationGreating = initAnimation(watched, elements);
 	const scrollControl = initSlider(watched);
+	const videoControl = initVideoControll(watched, elements);
 
 
 	
 
-	elements.video.onended = function() {
-		watched.page.status = 'videoEndPlay';
-	};
+	// elements.video.onended = function() {
+	// 	watched.page.status = 'videoEndPlay';
+	// };
 	/*  */
 	document.addEventListener("DOMContentLoaded", function(event) {
+
 		/*  */
-		startCheckingLoadingVideoEvery500ms(elements.video, watched);
+		// startCheckingLoadingVideoEvery500ms(elements.video, watched);
 		/*  */
 		if(isFirstVisit() || isHourPassedFromLastVisit()){
 			setCntTimeVisit();
@@ -123,6 +129,7 @@ function app() {
 			return
 		}
 		watched.page.status = 'contentStartAnimationFirstScreen';
+		watched.page.blockedScroll = false;
 	});
 	/*  */
 	document.addEventListener("wheel", function(event) {
@@ -133,14 +140,14 @@ function app() {
 		// console.log(event.wheelDeltaY, event, event.deltaY);
   });
 	/*  */
-	document.addEventListener("click", function(event) {
-		const source = elements.video.querySelector('source')
-		// elements.video.setAttribute('src', )
-		source.setAttribute('src', './assets/images/home/video/_1.mp4')
-		elements.video.load();
-		elements.video.play()
-		console.log();
-  });
+	// document.addEventListener("click", function(event) {
+	// 	const source = elements.video.querySelector('source')
+	// 	// elements.video.setAttribute('src', )
+	// 	source.setAttribute('src', './assets/images/home/video/_1.mp4')
+	// 	elements.video.load();
+	// 	elements.video.play()
+	// 	console.log();
+  // });
 	
 }
 
