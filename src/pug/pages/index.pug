@@ -28,11 +28,11 @@ block content
 			span House —
 		span.welcome-screen__subtitle welcome
 		span.welcome-screen__decor
-	.home-page-video-wrapper
-		<div class="loader-wrap-video loader--hidden" data-video-preloader >
+	.home-page-video-wrapper(data-video-block-wrapper)
+		<div class="loader-wrap-video loader-video--hidden" data-video-preloader >
 			<div class="loader"></div>
 		</div>
-	.home-page-video-wrappers(data-video-block-wrapper)
+		.home-video-wrap(data-video-wrapper)
 
 block footer
 	include ../includes/footer.pug

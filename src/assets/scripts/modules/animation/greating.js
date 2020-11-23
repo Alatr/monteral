@@ -58,12 +58,10 @@ function greating(setting = {}) {
 
 async function callbackGriatingAnimation(state) {
 	await loadVideo();
-	console.log(state.video.isLoaded, 'state.video.isLoaded');
 	if(state.video.isLoaded) {
-		state.video.status = 'videoReady';
+		state.video.status = 'firstVideoReady';
 		return
 	}
-	// state.page.status = 'startLoadingVideo';
 }
 
 /*  */
@@ -101,12 +99,12 @@ function animGreatingVideo() {
 
 	const obj = {
 		paused: true,
-		onComplete: () => { },
+		onComplete: () => {},
 	}
 	/*  */
 	video.onended = function() {
 		gsap.ticker.remove(update);
-		_STATE.page.status = 'videoEndPlay';
+		_STATE.video.status = 'videoEndPlay';
 		_STATE.page.blockedScroll = false;
 	};
 	/*  */
@@ -124,11 +122,9 @@ function animGreatingVideo() {
 
 	/*  */
 	const tl = gsap.timeline(obj);
-	console.log(_ELEMENTS.source, '}}}}');
-video.load()
-	tl.call(() => {video.play()})
-	tl.add(() => tl.pause(), '<')
-	tl.fromTo(videoWrapperBlock, 1, {width: '100%', height: '100%'}, {width: '50%', height: '90%'})
+	tl.call(() => {video.play()});
+	tl.add(() => tl.pause(), '<');
+	tl.fromTo(videoWrapperBlock, 1, {width: '100%', height: '100%'}, {width: '50%', height: '90%'});
 		
 	return tl;
 

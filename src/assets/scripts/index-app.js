@@ -1,28 +1,12 @@
 import initView from './modules/view-home-sl'
 import {isFirstVisit, setCntTimeVisit, isHourPassedFromLastVisit} from './modules/time-visit'
 import {initAnimation} from './modules/animation/greating'
+import {initMainTransition} from './modules/animation/main-transition'
 import {initSlider, getDirection, next, prev, isBlockedScroll} from './modules/slider-control'
 import {isLoad, initVideoControll} from './modules/video-control'
 
 
 
-
-
-	const ex = "expo.inOut";
-	const exI = "expo.in";
-	const exO = "expo.out";
-
-	const p4 = "power4.inOut";
-	const p4I = "power4.in";
-	const p4O = "power4.out";
-
-	const p2 = "power2.inOut";
-	const p2I = "power2.in";
-	const p2O = "power2.out";
-
-	const circ = "circ.inOut";
-	const circO = "circ.out";
-	const circI = "circ.in";
 
 
 function app() {
@@ -86,12 +70,13 @@ function app() {
 	}
 	/*  */
 	const elements = {
-		video: document.querySelector('#home-video'),
+		// video: document.querySelector('#home-video'),
 		source: document.querySelector('#source'),
 		body: document.querySelector('body'),
 		preLoader: document.querySelector('[data-preloader]'),
 		preLoaderVideo: document.querySelector('[data-video-preloader]'),
-		videoWrapper: document.querySelector('[data-video-block-wrapper]'),
+		videoWrapper: document.querySelector('[data-video-wrapper]'),
+		videoBlockWrapper: document.querySelector('[data-video-block-wrapper]'),
 	}
 	/*  */
 	const watched = initView(state, elements);
@@ -99,6 +84,7 @@ function app() {
 	const animationGreating = initAnimation(watched, elements);
 	const scrollControl = initSlider(watched);
 	const videoControl = initVideoControll(watched, elements);
+	const mainTransition = initMainTransition(watched, elements);
 
 
 	
@@ -120,7 +106,14 @@ function app() {
 		watched.page.status = 'contentPreparingFirstScreen';
 	});
 	/*  */
+	elements.preLoaderVideo.addEventListener('animationend', (e) => {
+		if(watched.video.isLoaded) {
+			watched.video.status = 'videoTransitionPlay';
+		}
+	});
+	/*  */
 	elements.preLoader.addEventListener('animationend', () => {
+		console.log('if(isFirstVisit() || isHourPassedFromLastVisit()){');
 		// if(isFirstVisit() || isHourPassedFromLastVisit()){
 			/* !!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>> */
 		if(isHourPassedFromLastVisit()){

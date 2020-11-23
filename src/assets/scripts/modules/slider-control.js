@@ -1,4 +1,5 @@
 let _STATE = null;
+import {isVideoLoaded, loadVideo} from './video-control';
 
 
 export const initSlider = (state) => {
@@ -8,9 +9,15 @@ export const initSlider = (state) => {
 };
 
 /*  */
-export const next = () => {
+export const next = async () => {
 	disableScroll();
 	setIndexToNext();
+	_STATE.video.isLoaded = false;
+	_STATE.video.status = 'removePrevVideo';
+	
+	await loadVideo();
+	_STATE.video.status = 'videoReady';
+	
 	console.log('next', _STATE.slider.data, _STATE);
 	// is load
 	// out

@@ -16,6 +16,11 @@
 	// animation: fadeOut 1s;
 	animation: fadeOut 1s ease-in-out 0.3s forwards;
 }
+.loader-video--hidden {
+
+	// animation: fadeOut 1s;
+	animation: fadeOutPreloaderVideo 1s ease-in-out 0.3s forwards;
+}
 .loader {
 	height: 40px;
 	width: 40px;
@@ -48,6 +53,21 @@
 	}
 }
 @-webkit-keyframes fadeOut {
+	0% {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+}
+@-webkit-keyframes fadeOutPreloaderVideo {
 	0% {
 		opacity: 1;
 		visibility: visible;

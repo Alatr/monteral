@@ -1,6 +1,7 @@
 import onChange from 'on-change';
 
 import {hideElements, animPreloadFirstVideo,  animPreloadFirstOutThenPlayVideo, hideGreatingBlock} from './animation/greating'
+import {mainTransition} from './animation/main-transition'
 import {setNewPathAttr, setNewPathAttrFromDataAttr, _PATHS} from './helpers/helpers'
 
 
@@ -10,11 +11,13 @@ function renderLoadingScreen(state, elements){
 		/*  */
 		case 'contentPreparingGreating':
 			hideElements();
+			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(cnt)})`;
+			
 			elements.preLoader.classList.add('loader--hidden');
 			
 			break;
 			/*  */
-			case 'contentPreparingFirstScreen':
+		case 'contentPreparingFirstScreen':
 			hideGreatingBlock();
 			elements.preLoader.classList.add('loader--hidden');
 			
@@ -31,19 +34,20 @@ function renderLoadingScreen(state, elements){
 			animPreloadFirstVideo().play();
 			break;
 			/*  */
-			case 'videoPlay':
-				break;
-				/*  */
-				case 'videoEndPlay':
-					break;
+		case 'videoPlay':
+			break;
+			/*  */
+
+		default:
+			throw new Error(`Uknown state loading screen(${state})`)
+	}
 					/*  */
-					default:
-						throw new Error(`Uknown state loading screen(${state})`)
-					}
-					/*  */
-				}
+}
+
+
 function renderVideoElements(state, elements){
 	const cnt = state.slider.data.current;
+	const next = state.slider.data.next;
 
 	switch (state.video.status) {
 		case 'readyToCheck':
@@ -53,16 +57,35 @@ function renderVideoElements(state, elements){
 		case 'setNewBlobURL':
 				const source = document.querySelector('#source');
 				source.setAttribute('src', state.video.tempBlobURL);
+				document.querySelector('#home-video').load();
 			break;
 		/*  */
-		case 'videoReady':
+		case 'firstVideoReady':
 			animPreloadFirstOutThenPlayVideo().play();
 			break;
 			/*  */
-			default:
-				throw new Error(`Uknown state loading screen(${state})`)
-				break;
-			}
+		case 'videoEndPlay':
+			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(next)})`;
+			break;
+		case 'removePrevVideo':
+			elements.preLoaderVideo.classList.remove('loader-video--hidden');
+			document.querySelector('#home-video').remove();
+
+			break;
+			/*  */
+		case 'videoReady':
+			elements.preLoaderVideo.classList.add('loader-video--hidden');
+
+			break;
+			/*  */
+		case 'videoTransitionPlay':
+			mainTransition().play();
+			break;
+			/*  */
+		default:
+			throw new Error(`Uknown state loading screen(${state})`)
+			break;
+	}
 			/*  */
 		}
 		
