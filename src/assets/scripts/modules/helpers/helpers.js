@@ -17,6 +17,7 @@ export function setNewPathAttrFromDataAttr(inx, attr, elem){
 
 export const _PATHS = {
 	getVideoURL: (inx) => `./assets/images/home/video/${inx}.mp4`,
+	getReverseVideoURL: (inx) => `./assets/images/home/video/${inx}-rev.mp4`,
 	getPosterURL: (inx) => `./assets/images/home/${inx}.jpg` ,
 }
 
@@ -33,4 +34,37 @@ export const eases = {
 	circ: "circ.inOut",
 	circO: "circ.out",
 	circI: "circ.in",
-}	
+}
+
+
+export const attach = function ( tag, data ) {
+
+}
+
+
+export const convertURL2Obj = () => {
+	if(window.location.search === '') return {}
+	let array = window.location.search.replace('?', '').split('&').map(el => el.split('='));
+	let obj = {};
+	array.forEach(el => obj[el[0]] = el[1]);
+	return obj;
+}
+
+export const convertObj2URLHomePage = (obj) => {
+	if(isEmpty(obj)) return '';
+	convertObj2URL(obj)
+}
+
+export const convertObj2URL = (obj) => {
+	if(isEmpty(obj)) return '';
+	
+	let accStr = '?'
+	for (var prop in obj) {
+		accStr += `${prop}=${obj[prop]}&`
+	}
+	return accStr.slice(0, -1);
+}
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}

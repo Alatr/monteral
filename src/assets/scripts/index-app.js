@@ -4,7 +4,9 @@ import {initAnimation} from './modules/animation/greating'
 import {initMainTransition} from './modules/animation/main-transition'
 import {initSlider, getDirection, next, prev, isBlockedScroll} from './modules/slider-control'
 import {isLoad, initVideoControll} from './modules/video-control'
-
+import {getInxLocation, isRedirect, setLocationName} from './modules/routing'
+import {setIndexToCnt} from './modules/slider-control'
+import {convertURL2Obj, convertObj2URL} from './modules/helpers/helpers'
 
 
 
@@ -60,10 +62,10 @@ function app() {
 		},
 		slider: {
 			data : {
-				prev: 6,
+				total: 7,
+				prev: 7,
 				current: 0,
 				next: 1,
-				total: 6,
 			}
 		},
 		errors: []
@@ -103,6 +105,12 @@ function app() {
 			watched.page.status = 'contentPreparingGreating';
 			return
 		}
+		if(isRedirect()){
+			setIndexToCnt(getInxLocation());
+			watched.page.status = 'contentPreparingRedirectScreen';
+			return;
+		}
+
 		watched.page.status = 'contentPreparingFirstScreen';
 	});
 	/*  */
@@ -113,7 +121,6 @@ function app() {
 	});
 	/*  */
 	elements.preLoader.addEventListener('animationend', () => {
-		console.log('if(isFirstVisit() || isHourPassedFromLastVisit()){');
 		// if(isFirstVisit() || isHourPassedFromLastVisit()){
 			/* !!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>> */
 		if(isHourPassedFromLastVisit()){
@@ -129,6 +136,7 @@ function app() {
 		if(isBlockedScroll()) return false
 		/*  */
 		const direction = getDirection(event.deltaY);
+		
 		(direction === 1) ? next() : prev();
 		// console.log(event.wheelDeltaY, event, event.deltaY);
   });

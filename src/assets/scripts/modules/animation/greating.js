@@ -6,7 +6,7 @@ gsap.registerPlugin(CSSRulePlugin, EaselPlugin);
 
 
 
-import {isVideoLoaded, loadVideo} from '../video-control';
+import {getForwardVideo} from '../video-control';
 // force all gsap animation
 // gsap.config({
 // 	force3D: true
@@ -34,9 +34,9 @@ function hideGreatingBlock() {
 	gsap.set([logo, title, subtitle, decor], {autoAlpha:0});
 	gsap.set(videoWrapperBlock, {width: '50%', height: '90%'});
 	/*  */
-	const source = video.querySelector('source');
+	// const source = video.querySelector('source');
 	
-	video.setAttribute('poster', `./assets/images/home/${_STATE.slider.data.next}.jpg`);
+	// video.setAttribute('poster', `./assets/images/home/${_STATE.slider.data.next}.jpg`);
 	// source.setAttribute('src', `./assets/images/home/video/_${_STATE.slider.data.next}.mp4`);
 	
 }
@@ -57,7 +57,7 @@ function greating(setting = {}) {
 };
 
 async function callbackGriatingAnimation(state) {
-	await loadVideo();
+	await getForwardVideo(_STATE.slider.data.current);
 	if(state.video.isLoaded) {
 		state.video.status = 'firstVideoReady';
 		return

@@ -14,7 +14,7 @@ block head
 		link(rel='stylesheet', href="./assets/styles/main.min.css")
 block scripts
 	script(defer src='./assets/scripts/index.js')
-	script(defer src='./assets/scripts/vendors.bundle.js')
+script(defer src='./assets/scripts/vendors.bundle.js')
 	script(defer src='./assets/scripts/index.bundle.js')
 block content
 	.welcome-screen
@@ -28,7 +28,7 @@ block content
 			span House —
 		span.welcome-screen__subtitle welcome
 		span.welcome-screen__decor
-	.home-page-video-wrapper(data-video-block-wrapper)
+	.home-page-video-wrapper(data-video-block-wrapper style="background-image: url('./assets/images/home/0.jpg'); height: 100%; width: 100%;")
 		<div class="loader-wrap-video loader-video--hidden" data-video-preloader >
 			<div class="loader"></div>
 		</div>

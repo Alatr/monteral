@@ -15,8 +15,6 @@ let _ELEMENTS= null;
 * main trs start
 */
 export const mainTransition = () => {
-	// gsap.set([], {autoAlpha:0});
-
 	const video = document.querySelector('#home-video');
 
 	const obj = {
@@ -36,19 +34,18 @@ export const mainTransition = () => {
 			tl.resume();
 		}
 	};
-
+	/*  */
 	video.onplay = function() {
-		// tl.pause();
 		gsap.ticker.add(update);
 	};
+	/*  */
 	
-	
-	console.log(_ELEMENTS.videoBlockWrapper);
 	const tl = gsap.timeline(obj);
 	tl.call(() => {video.play()});
 	tl.add(() => tl.pause(), '<');
 	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.5, {width: '50%', height: '90%'}, {width: '100%', height: '100%', ease: eases.ex});
-	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1,  {width: '100%', height: '100%'}, {width: '50%', height: '90%', ease: eases.ex});
+	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1,  {width: '100%', height: '100%'}, {width: '50%', height: '90%', immediateRender: false, ease: eases.ex});
+
 
 	return tl;
 };
@@ -59,7 +56,7 @@ export const mainTransition = () => {
 
 export const initMainTransition = (state, elements) => {
 	_STATE = state
-	_ELEMENTS= elements;
+	_ELEMENTS = elements;
 	return
 };
 

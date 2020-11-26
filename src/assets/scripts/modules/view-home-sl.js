@@ -7,6 +7,7 @@ import {setNewPathAttr, setNewPathAttrFromDataAttr, _PATHS} from './helpers/help
 
 function renderLoadingScreen(state, elements){
 	const cnt = state.slider.data.current;
+	const next = state.slider.data.next;
 	switch (state.page.status) {
 		/*  */
 		case 'contentPreparingGreating':
@@ -19,7 +20,18 @@ function renderLoadingScreen(state, elements){
 			/*  */
 		case 'contentPreparingFirstScreen':
 			hideGreatingBlock();
+			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(next)})`;
+
 			elements.preLoader.classList.add('loader--hidden');
+			
+			break;
+		/*  */
+		case 'contentPreparingRedirectScreen':
+				hideGreatingBlock();
+				console.log(cnt);
+				elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(next)})`;
+
+				elements.preLoader.classList.add('loader--hidden');
 			
 			break;
 		/*  */
@@ -35,6 +47,14 @@ function renderLoadingScreen(state, elements){
 			break;
 			/*  */
 		case 'videoPlay':
+			break;
+			/*  */
+		case 'showPartPageWithoutVideo':
+			console.log('render showPartPageWithoutVideo');
+			break;
+			/*  */
+		case 'showPartPageContact':
+			console.log('render showPartPageContact');
 			break;
 			/*  */
 
@@ -69,7 +89,9 @@ function renderVideoElements(state, elements){
 			break;
 		case 'removePrevVideo':
 			elements.preLoaderVideo.classList.remove('loader-video--hidden');
-			document.querySelector('#home-video').remove();
+			if(document.querySelector('#home-video') !== null){
+				document.querySelector('#home-video').remove();
+			}
 
 			break;
 			/*  */

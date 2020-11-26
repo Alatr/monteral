@@ -35,14 +35,22 @@ export const initVideoControll = (state, elements) => {
 
 
 
+export const loadForwardVideo = (result) => (result) ? true : false;
+
 export const isVideoLoaded = (result) => (result) ? true : false;
 
-export const loadVideo = async () => {
+export const getForwardVideo = async (inx) => await loadVideo(inx, 'forward');
+
+export const getReverseVideo = async (inx) => await loadVideo(inx, 'reverse');
+
+
+
+export const loadVideo = async (indx, type) => {
 	
 	let promise = new Promise(async function (resolve, reject) {
 		_STATE.video.status = 'readyToCheck';
 		
-		const newBlobURL = await loadingVideo(_STATE.slider.data.current);
+		const newBlobURL = await loadingVideo(indx, type);
 		_STATE.video.tempBlobURL = newBlobURL;
 		_STATE.video.status = 'setNewBlobURL';
 		_STATE.video.isLoaded = true;
@@ -53,11 +61,18 @@ export const loadVideo = async () => {
 }
 	
 	
-async function loadingVideo(inx){
+async function loadingVideo(inx, type){
 	let promise = new Promise(function (resolve, reject) {
-
+		let path;
+		if(type === 'forward'){
+			path = _PATHS.getVideoURL(inx);
+		}
+		if(type === 'reverse'){
+			path = _PATHS.getReverseVideoURL(inx);
+		}
+		
 		const req = new XMLHttpRequest();
-		req.open('GET', _PATHS.getVideoURL(inx), true);
+		req.open('GET', path, true);
 		req.responseType = 'blob';
 		req.onload = function() {
 			// Onload is triggered even on 404
