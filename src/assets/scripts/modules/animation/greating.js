@@ -32,7 +32,7 @@ function hideElements() {
 /*  */
 function hideGreatingBlock() {
 	gsap.set([logo, title, subtitle, decor], {autoAlpha:0});
-	gsap.set(videoWrapperBlock, {width: '50%', height: '90%'});
+	gsap.set(videoWrapperBlock, {'--w': 50, "--h": 100,});
 	/*  */
 	// const source = video.querySelector('source');
 	

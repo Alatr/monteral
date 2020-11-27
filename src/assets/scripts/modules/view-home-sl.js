@@ -28,7 +28,6 @@ function renderLoadingScreen(state, elements){
 		/*  */
 		case 'contentPreparingRedirectScreen':
 				hideGreatingBlock();
-				console.log(cnt);
 				elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(next)})`;
 
 				elements.preLoader.classList.add('loader--hidden');

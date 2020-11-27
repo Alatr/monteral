@@ -32,3 +32,30 @@ video{
 	width: 100%;
 	height: 100%;
 }
+
+.link{
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: lh(18, 20);
+	letter-spacing: -0.05em;
+
+	color: #FFFFFF;
+	&__ico{
+		width: 20px;
+		height: 18px;
+	}
+	&__text{
+		margin: 0 10px;
+	}
+}
+
+.fill--mc{
+	fill: $mc2;
+}
+
+.fill--wc{
+	fill: $wc;
+}
