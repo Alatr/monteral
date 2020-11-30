@@ -61,6 +61,7 @@ function app() {
 			
 		},
 		slider: {
+			ditection: 1,
 			data : {
 				total: 7,
 				prev: 7,
@@ -79,6 +80,7 @@ function app() {
 		preLoaderVideo: document.querySelector('[data-video-preloader]'),
 		videoWrapper: document.querySelector('[data-video-wrapper]'),
 		videoBlockWrapper: document.querySelector('[data-video-block-wrapper]'),
+		contentBlock: document.querySelectorAll('[data-content-home]'),
 	}
 	/*  */
 	const watched = initView(state, elements);

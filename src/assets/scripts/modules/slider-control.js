@@ -18,6 +18,7 @@ export const next = async () => {
 	_STATE.video.isLoaded = false;
 	_STATE.video.status = 'removePrevVideo';
 	/*  */
+	_STATE.slider.ditection = 1;
 	switch (_STATE.slider.data.current) {
 		case 6:
 			_STATE.page.status = 'showPartPageWithoutVideo';
@@ -70,13 +71,14 @@ export const next = async () => {
 
 
 export const prev = async () => {
-	console.log('ahaha');
 	if (_STATE.slider.data.current === 0) return;
 
 	disableScroll();
 	setIndexToPrev(_STATE.slider.data.current);
 	_STATE.video.isLoaded = false;
 	_STATE.video.status = 'removePrevVideo';
+	_STATE.slider.ditection = -1;
+
 	/*  */
 	switch (_STATE.slider.data.current) {
 		case 6:

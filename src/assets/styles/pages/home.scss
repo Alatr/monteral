@@ -18,6 +18,7 @@
 
 #home-page {
 	overflow: hidden;
+	overflow: hidden;
 }
 .home-page-video-wrapper{
 		position: absolute;
@@ -103,13 +104,13 @@
 .screen-wrap{
 	min-width: 100vw;
 	min-height: 100vh;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
 	display: flex;
 	--side-padding: 50px
 }
 
-.main-title-wrap{
-	position: absolute;
-}
 
 .home-content-wrap{
 	position: relative;
@@ -118,21 +119,94 @@
 	align-items: center;
 	justify-content: flex-end;
 	width: 50%;
-	padding: 50px 50px 30px 50px;
+	padding: var(--side-padding) var(--side-padding) 30px var(--side-padding);
 }
+
+	
 .home-content{
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	padding: var(--side-padding) var(--side-padding) var(--side-padding) var(--side-padding);
+	padding: var(--side-padding) var(--side-padding) 90px var(--side-padding);
 	display: flex;
 	width: 100%;
 	height: auto;
 	flex-direction: column;
 	align-items: center;
-	
+	pointer-events: none;
+	&__title{
+		position: relative;
+		margin-bottom: 20px;
+		font-weight: 400;
+		font-size: 30px;
+		line-height: lh(50, 30);
+		text-align: center;
+		letter-spacing: -0.05em;
+		color: #CFBE97;
+		&::after{
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			display: flex;
+			width: 40px;
+			height: 2px;
+			background-color: $mc;
+			transform: translate(-50%, 0%);
+			content: "";
+		}
+	}
+	&__text{
+		width: 65%;
+		margin-bottom: 45px;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: lh(20, 12);
+		text-align: center;
+		color: #E1DDD2;
+	}
+	&__link{
+
+	}
+}
+.home-content--active:not(#kk) {
+	pointer-events: auto;
 }
 
+/*  */
+/*  */
+.main-title-wrap {
+	position: absolute;
+	top: 140px;
+	left: 50%;
+	z-index: 5;
+	transform: translate(-50%, 0%);
+}
+
+.home-title-item{
+	display: flex;
+	flex-direction: column;
+	z-index: 5;
+	&__title{
+		margin-bottom: 15px;
+		font-weight: bold;
+		font-size: 96px;
+		line-height: lh(80, 96);
+
+		text-align: center;
+		letter-spacing: -0.05em;
+		white-space: nowrap;
+		color: #FFFFFF;
+	}
+	&__subtitle{
+		font-weight: 400;
+		font-size: 20px;
+		line-height: lh(20, 20);
+		text-align: center;
+		letter-spacing: -0.05em;
+
+		color: #E1DDD2;
+	}
+}
 /*
 * 1st screen end
 */

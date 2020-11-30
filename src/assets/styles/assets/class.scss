@@ -2,6 +2,9 @@
 .wow:not(#some){
 	opacity: 0;
 }
+.usn{
+	user-select: none;
+}
 
 .visually-hidden {
   position: absolute;

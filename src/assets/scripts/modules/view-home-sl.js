@@ -1,7 +1,7 @@
 import onChange from 'on-change';
 
 import {hideElements, animPreloadFirstVideo,  animPreloadFirstOutThenPlayVideo, hideGreatingBlock} from './animation/greating'
-import {mainTransition} from './animation/main-transition'
+import {mainTransition, hideMainContent, showCntContent} from './animation/main-transition'
 import {setNewPathAttr, setNewPathAttrFromDataAttr, _PATHS} from './helpers/helpers'
 
 
@@ -20,6 +20,7 @@ function renderLoadingScreen(state, elements){
 			/*  */
 		case 'contentPreparingFirstScreen':
 			hideGreatingBlock();
+			hideMainContent();
 			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(next)})`;
 
 			elements.preLoader.classList.add('loader--hidden');
@@ -29,7 +30,7 @@ function renderLoadingScreen(state, elements){
 		case 'contentPreparingRedirectScreen':
 				hideGreatingBlock();
 				elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(next)})`;
-
+				hideMainContent();
 				elements.preLoader.classList.add('loader--hidden');
 			
 			break;
@@ -38,7 +39,7 @@ function renderLoadingScreen(state, elements){
 			break;
 		/*  */
 		case 'contentStartAnimationFirstScreen':
-			
+			showCntContent(cnt).play()
 			break;
 		/*  */
 		case 'startLoadingVideo':
@@ -100,7 +101,8 @@ function renderVideoElements(state, elements){
 			break;
 			/*  */
 		case 'videoTransitionPlay':
-			mainTransition().play();
+			// hideMainContent();
+			mainTransition(state.slider.data).play();
 			break;
 			/*  */
 		default:
