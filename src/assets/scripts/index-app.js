@@ -81,6 +81,13 @@ function app() {
 		videoWrapper: document.querySelector('[data-video-wrapper]'),
 		videoBlockWrapper: document.querySelector('[data-video-block-wrapper]'),
 		contentBlock: document.querySelectorAll('[data-content-home]'),
+		
+		homeLinks: [...document.querySelectorAll('[data-animate-links]')],
+		homeAword: document.querySelector('[data-animate-award]'),
+		counterSl: document.querySelector('[data-sl-counter]'),
+		counterCnt: document.querySelector('[data-cnt]'),
+		counterTotal: document.querySelector('[data-total]'),
+		scrollIcon: document.querySelector('[data-icon-scroll]'),
 	}
 	/*  */
 	const watched = initView(state, elements);

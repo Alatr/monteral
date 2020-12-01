@@ -10,11 +10,14 @@ gsap.registerPlugin(CSSRulePlugin, EaselPlugin);
 
 let _STATE = null;
 let _ELEMENTS= null;
+/*  */
 const title = '[data-home-title]';
 const text = '[data-home-text]';
 const link = '[data-home-link]';
+/*  */
 const mainTitle = '[data-home-main-title]';
 const mainSubtitle = '[data-home-main-subtitle]';
+
 
 
 /*

@@ -2,10 +2,12 @@ $default-font: "montser",
 sans-serif;
 $default-font2: "montser",
 sans-serif;
-$mc2: rgba(0, 81, 83, 0.9);
+$mc2: #007275;
 $mc: #CFBE97;
 
-
+:root{
+	--in: cubic-bezier(0.13, 0.81, 0.23, 0.96);
+}
 
 
 
