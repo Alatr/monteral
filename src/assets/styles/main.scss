@@ -1,3 +1,12 @@
+/* 
+	* max(vh(14, 0.9), 14px);
+	* max(vh(190, 1.2), 190px)
+ */
+
+
+
+
+
 @import './assets/vars';  // переменные
 @import './assets/smart-grid';  // mixins smartgrid.js
 // libraries
@@ -111,4 +120,17 @@ video{
 
 .fill--wc{
 	fill: $wc;
+}
+
+a.border-btn{
+	text-decoration: none;
+}
+.border-btn{
+	display: flex;
+	width: 200px;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #CFBE97;
+	background-color: transparent;
 }

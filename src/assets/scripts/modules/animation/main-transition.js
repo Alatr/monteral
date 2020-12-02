@@ -35,6 +35,7 @@ export const showCntContent = (inx = 0) => {
 	const settings = { paused: true };
 	const tl = gsap.timeline(settings);
 	/*  */
+	
 	addActiveClassContent(inx);
 
 	tl.call(()=> { inContent(inx).play(); })
@@ -78,7 +79,13 @@ function outContent(inx) {
 	const textCnt = [...$(text)][inx];
 	const linkCnt = [...$(link)][inx];
 	
-	const settings = { paused: true }
+	const settings = { 
+		paused: true,
+		onComplete: ()=>{
+			_ELEMENTS.counterCnt.innerHTML = `0${_STATE.slider.data.current + 1}`
+			_ELEMENTS.counterTotal.innerHTML = `0${_STATE.slider.data.total + 1}`
+		}
+	}
 	const tl = gsap.timeline(settings);
 
 	tl.fromTo([titleCnt, textCnt, linkCnt], 1, {autoAlpha: 1, x: 0}, {autoAlpha: 0, x: -200, stagger: 0.1})

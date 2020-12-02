@@ -73,14 +73,14 @@ block content
 			.home-title-item
 				.home-title-item__title(data-home-main-title) Montreal House —
 				.home-title-item__subtitle(data-home-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
-		+img("award.png").screen__award(data-animate-award)
+		+img("award.svg").screen__award(data-animate-award)
 
 		a(href="#" data-animate-links).screen-icon-link
 			+svg('webcam')
 			span.screen-icon-link__text
 				span Веб
 				span камера
-		<svg class="mouse screen" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
+		<svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
 			<g fill="none" fill-rule="evenodd">
 				<rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="3" rx="36"/>
 				<circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
@@ -117,7 +117,8 @@ block content
 							+svg('arrow').link__ico.fill--mc
 						
 		.home-page-video-wrapper(data-video-block-wrapper style="background-image: url('./assets/images/home/0.jpg');")
-				<div class="loader-wrap-video loader-video--hidden" data-video-preloader >
+				.bg-overlay
+				<div class="loader-wrap-video  loader-video--hidden" data-video-preloader >
 					<div class="loader"></div>
 				</div>
 				.slider-counter(data-sl-counter)

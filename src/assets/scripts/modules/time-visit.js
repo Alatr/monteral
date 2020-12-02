@@ -13,7 +13,7 @@ function isHourPassedFromLastVisit() {
 	const HOUR = 60 * 60 * 1000;
 	const anHourAfter = getTimeLastVisit() + HOUR;
 
-	return !(Date.now() > anHourAfter);
+	return (Date.now() > anHourAfter);
 }
 
 export {isFirstVisit, setCntTimeVisit, isHourPassedFromLastVisit}

@@ -1,0 +1,60 @@
+.header{
+	--margin-el: 25px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 20;
+	display: flex;
+	width: 100%;
+	height: 110px;
+	padding: var(--side-padding) var(--side-padding) 0 var(--side-padding);
+	align-items: center;
+	&__logo{
+		flex-grow: 1;
+		margin-right: var(--margin-el);
+	}
+	&__call{
+		margin: 0 var(--margin-el);
+	}
+	&__tel{
+		margin: 0 var(--margin-el);
+		text-decoration: none;
+	}
+	&__menu{
+		margin: 0 0 0 var(--margin-el);
+		padding: 0;
+		display: flex;
+		align-items: center;
+		background-color: transparent;
+		border: none;
+		.header-menu__text{
+			position: relative;
+			width: 50px;
+			height: 50px;
+			span{
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translate(0, -50%);
+			}
+		}
+		.header-menu__burg{
+			margin-left: 20px;
+			display: flex;
+			width: 50px;
+			height: 50px;
+			align-items: center;
+			justify-content: center;
+			background: #CFBE97;
+		}
+	}
+}
+
+.header-nav-text{
+	font-size: 12px;
+	line-height: 18px;
+	display: flex;
+	font-weight: 500;
+	color: #E1DDD2;
+
+}

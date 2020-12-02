@@ -21,6 +21,7 @@ function renderLoadingScreen(state, elements){
 		case 'contentPreparingFirstScreen':
 			hideGreatingBlock();
 			hideMainContent();
+			
 			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(next)})`;
 
 			elements.preLoader.classList.add('loader--hidden');
@@ -29,6 +30,10 @@ function renderLoadingScreen(state, elements){
 		/*  */
 		case 'contentPreparingRedirectScreen':
 				hideGreatingBlock();
+				/*  */
+				elements.counterCnt.innerHTML = `0${cnt + 1}`
+				elements.counterTotal.innerHTML = `0${state.slider.data.total + 1}`
+				/*  */
 				elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(next)})`;
 				hideMainContent();
 				elements.preLoader.classList.add('loader--hidden');

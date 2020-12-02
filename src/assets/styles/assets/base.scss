@@ -126,6 +126,9 @@ body.focus-tab--enable *:focus {
   outline-width: 7px;
 }
 
+button, a{
+	font-family: $default-font;
+}
 button:hover,
 a:hover,
 select:hover {
