@@ -14,6 +14,7 @@ let _ELEMENTS= null;
 const title = '[data-home-title]';
 const text = '[data-home-text]';
 const link = '[data-home-link]';
+const awards = '[data-animate-award]';
 /*  */
 const mainTitle = '[data-home-main-title]';
 const mainSubtitle = '[data-home-main-subtitle]';
@@ -25,12 +26,12 @@ const mainSubtitle = '[data-home-main-subtitle]';
 */
 export const hideMainContent = () => {
 	gsap.set([title, text, link], {autoAlpha: 0, x: -200});
-	gsap.set([mainTitle, mainSubtitle], {autoAlpha: 0, y: -100});
+	gsap.set([mainTitle, mainSubtitle, awards], {autoAlpha: 0, y: -100});
 }
 /*  */
 export const showCntContent = (inx = 0) => {
 	gsap.set([title, text, link], {autoAlpha: 0, x: -200});
-	gsap.set([mainTitle, mainSubtitle], {autoAlpha: 0, y: -100});
+	gsap.set([mainTitle, mainSubtitle, awards], {autoAlpha: 0, y: -100});
 	/*  */
 	const settings = { paused: true };
 	const tl = gsap.timeline(settings);
@@ -56,6 +57,7 @@ function inContent(inx) {
 	const titleCnt = [...$(title)][inx];
 	const textCnt = [...$(text)][inx];
 	const linkCnt = [...$(link)][inx];
+	const awardsCnt = [...$(awards)][inx];
 	
 	const obj = { paused: true }
 	const tl = gsap.timeline(obj);
@@ -63,7 +65,7 @@ function inContent(inx) {
 
 
 	tl.fromTo([titleCnt, textCnt, linkCnt], 1, {autoAlpha: 0, x: -200}, {autoAlpha: 1, x: 0, stagger: 0.1})
-	tl.fromTo([mainTitle, mainSubtitle], 1, {autoAlpha: 0, y: -100}, {autoAlpha: 1, y: 0, stagger: 0.1}, '<')
+	tl.fromTo([mainTitle, mainSubtitle, awardsCnt], 1, {autoAlpha: 0, y: -100}, {autoAlpha: 1, y: 0, stagger: 0.1}, '<')
 
 
 	return tl;
@@ -78,6 +80,7 @@ function outContent(inx) {
 	const titleCnt = [...$(title)][inx];
 	const textCnt = [...$(text)][inx];
 	const linkCnt = [...$(link)][inx];
+	const awardsCnt = [...$(awards)][inx];
 	
 	const settings = { 
 		paused: true,
@@ -89,7 +92,7 @@ function outContent(inx) {
 	const tl = gsap.timeline(settings);
 
 	tl.fromTo([titleCnt, textCnt, linkCnt], 1, {autoAlpha: 1, x: 0}, {autoAlpha: 0, x: -200, stagger: 0.1})
-	tl.fromTo([mainTitle, mainSubtitle], 1, {autoAlpha: 1, y: 0}, {autoAlpha: 0, y: -100, stagger: 0.1}, '<')
+	tl.fromTo([mainTitle, mainSubtitle, awardsCnt], 1, {autoAlpha: 1, y: 0}, {autoAlpha: 0, y: -100, stagger: 0.1}, '<')
 
 
 

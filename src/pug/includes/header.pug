@@ -19,10 +19,10 @@
 button(type="button").border-btn.header__call.header-nav-text замовити дзвінок
 a(href="tel:+1234567890").header__tel.header-nav-text 123 456 78 90
 a(href="#").border-btn.header__call.header-nav-text обрати квартиру
-button(type="button").header__menu.header-menu
+button(type="button" data-parrent-node-menu data-menu-btn).header__menu.header-menu
 	span.header-menu__text
-		span.text__open.header-nav-text меню
-		span.text__close.header-nav-text закрыть
+		span(data-text-open).text__open.header-nav-text меню
+		span(data-text-close).text__close.header-nav-text закрыть
 	span.header-menu__burg
 		svg(width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg")
 			path(class='cross__1' fill-rule="evenodd" clip-rule="evenodd" d="M7.00037 6.99997L21.1425 21.1421L21.8496 20.435L7.70747 6.29286L7.00037 6.99997Z" fill="white")

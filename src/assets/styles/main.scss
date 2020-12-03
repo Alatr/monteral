@@ -23,6 +23,7 @@
 
 // sass dima
 @import './header';
+@import './menu';
 @import './footer';
 @import './404';
 @import './loader';
@@ -51,8 +52,10 @@
 		color: #E1DDD2;
 		transition: all 0.3s;
 		transition: transform .7s var(--in),
-				opacity .25s;
-
+		opacity .25s;
+		@include from(1441px){
+			font-size: max(vh(12, 0.9), 12px);
+		}
 
 		&:hover{
 			color: $wc;
@@ -102,7 +105,7 @@ video{
 	letter-spacing: -0.05em;
 	color: #FFFFFF;
 	@include from(1441px) {
-		font-size: min(vw(24), 24px);
+			font-size: max(vh(24, 0.9), 24px);
 	}
 	&__ico{
 		margin-left: -2px;
@@ -133,4 +136,9 @@ a.border-btn{
 	align-items: center;
 	border: 2px solid #CFBE97;
 	background-color: transparent;
+}
+
+
+#home-page:not(#er){
+	margin: 0;
 }

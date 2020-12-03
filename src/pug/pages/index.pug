@@ -73,7 +73,6 @@ block content
 			.home-title-item
 				.home-title-item__title(data-home-main-title) Montreal House —
 				.home-title-item__subtitle(data-home-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
-		+img("award.svg").screen__award(data-animate-award)
 
 		a(href="#" data-animate-links).screen-icon-link
 			+svg('webcam')
@@ -82,7 +81,7 @@ block content
 				span камера
 		<svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
 			<g fill="none" fill-rule="evenodd">
-				<rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="3" rx="36"/>
+				<rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="5" rx="36"/>
 				<circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
 			</g>
 		</svg>
@@ -109,10 +108,12 @@ block content
 			each val, i in content
 				.home-content(data-content-home)
 					h2( data-home-title ).home-content__title.usn= val.title
-					p( data-home-text ).home-content__text.usn !{val.text}
+					.text-wrap
+						+img("award.svg").screen__award(data-animate-award)
+						p( data-home-text ).home-content__text.usn !{val.text}
 					a( data-home-link href= val.link).home-content__link.link
 						span.link__text.usn Дізнатися більше
-						span.link-ico
+						span.link-ico.link-ico--margin
 							span.link-ico__stic
 							+svg('arrow').link__ico.fill--mc
 						

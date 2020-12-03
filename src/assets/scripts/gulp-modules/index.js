@@ -1,5 +1,217 @@
 // @@include('./libs.js');
 
+const eases = {
+	ex: "expo.inOut",
+	exI: "expo.in",
+	exO: "expo.out",
+	p4: "power4.inOut",
+	p4I: "power4.in",
+	p4O: "power4.out",
+	p2: "power2.inOut",
+	p2I: "power2.in",
+	p2O: "power2.out",
+	circ: "circ.inOut",
+	circO: "circ.out",
+	circI: "circ.in",
+}
+
+class showModal {
+	constructor(obj) {
+		this.$popup = obj.$popup;
+		this.$openBtn = obj.$openBtn;
+		this.$closeBtn = obj.$closeBtn;
+		this.attrParrentNode = obj.attrParrentNode;
+		this.status = false;
+		this.animationIn = obj.animationIn;
+		this.animationOut = obj.animationOut;
+		
+		this.$body = document.querySelector('body');
+
+
+		this.init()
+	}
+
+
+	get isOpen(){
+		return this.status;
+	}
+	open() {
+		this.status = true;
+		this.animationIn().play();
+	};
+	
+	close() {
+		this.status = false;
+		this.animationOut().play();
+	};
+	
+	toggle() {
+		if (this.status) {
+			this.$body.classList.remove('modal-active');
+			this.close();
+		} else {
+			this.$body.classList.add('modal-active');
+			this.open();
+		}
+	}
+	
+	listeners() {
+		const self = this;
+		this.$body.addEventListener('click', function ({target}) {
+			if(target.closest(self.attrParrentNode) != null) {
+				self.toggle();
+			}
+		});
+	}
+
+
+	init() {
+		this.listeners();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const menuBtnOpen = document.querySelector('[data-menu-btn]');
+const menuBtnClose = document.querySelector('[data-menu-close]');
+const menuBlock = document.querySelector('[data-menu-block]');
+
+
+const cross1 = document.querySelector('.cross__1');
+const cross2 = document.querySelector('.cross__2');
+const line0 = document.querySelector('.burg__0');
+const line1 = document.querySelector('.burg__1');
+const line2 = document.querySelector('.burg__2');
+const menuTextOpen = document.querySelector('[data-text-open]');
+const menuTextClose = document.querySelector('[data-text-close]');
+
+/**********************************/
+const ease_menuBtnHover1 = BezierEasing(.42, .8, .39, .97);
+const ease_menuBtnHover = BezierEasing(0.13, 0.81, 0.23, 0.96);
+
+const menu = new showModal({
+	$popup: menuBlock,
+	$closeBtn: menuBtnClose,
+	$openBtn: menuBtnOpen,
+	animationIn: animationModalIn,
+	animationOut: animationModalOut,
+	attrParrentNode: '[data-parrent-node-menu]'
+});
+
+/*
+*  start in
+*/
+function animationModalIn() {
+	// gsap.set([], {autoAlpha:0});
+	const obj = { paused: true, };
+	const tl = gsap.timeline(obj);
+	tl.fromTo(this.$popup, 1, {autoAlpha: 0}, {autoAlpha: 1, immediateRender: false})
+
+	tl.to([line0, line1, line2], 0.5, {autoAlpha: 1, x: 30, stagger: 0.1, ease: ease_menuBtnHover1}, '<')
+	tl.fromTo([cross1, cross2], 0.5, {autoAlpha: 0, x: -25}, {autoAlpha: 1, x: 0, ease: ease_menuBtnHover1}, '<')
+
+
+	return tl;
+};
+/*
+*  end in
+*/
+/*
+*  start Out
+*/
+function animationModalOut() {
+	// gsap.set([], {autoAlpha:0});
+	const obj = { paused: true, };
+	const tl = gsap.timeline(obj);
+	tl.fromTo(this.$popup, 1, {autoAlpha: 1}, {autoAlpha: 0, clearProps: "all", immediateRender: false})
+
+	return tl;
+};
+/*
+*  end Out
+*/
+/**********************************/
+
+/*
+* hover start
+*/
+gsap.set([cross1, cross2, menuTextClose], {autoAlpha: 0, x: -25})
+/*
+* hover end
+*/
+
+const menuBtnHover = (() => {
+	var tl = new TimelineLite({paused:true});
+	
+	tl.fromTo(menuTextOpen, 0.3, {x: 0}, {x: 8, ease: ease_menuBtnHover1});
+	tl.fromTo(line0, 0.3, {x: 0}, {x: 8, ease: ease_menuBtnHover1}, '-=0.20');
+
+	return tl;
+	
+})();
+
+	
+
+menuBtnOpen.addEventListener("mouseover", e => {
+	if(!menu.isOpen){
+		menuBtnHover.play();
+		return
+	}
+	
+});
+
+menuBtnOpen.addEventListener("mouseout", e => {
+	if(!menu.isOpen){
+		menuBtnHover.reverse();
+		return
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // // * GET PROMISE FUNC FOR AJAX REQUEST START
 // async function getPromise(data, url, parse) {
 // 	let promise = new Promise(function (resolve, reject) {
