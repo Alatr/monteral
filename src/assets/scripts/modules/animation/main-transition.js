@@ -127,15 +127,15 @@ export const mainTransition = (sliderData) => {
 		gsap.ticker.add(update);
 	};
 	/*  */
-	
+	const propPadding = gsap.getProperty(_ELEMENTS.videoBlockWrapper, "x");
+	/*  */
 	const tl = gsap.timeline(settings);
 	tl.call(() => {video.play()});
 	tl.add(() => tl.pause(), '<');
-
-	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.5, {'--w': 50, '--h': 90}, {'--w': 100, '--h': 100, ease: eases.ex});
+	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.5, {'--w': 50, '--h': 100}, {'--w': 110, '--h': 110, x: 0, ease: eases.ex});
 	// tl.call(()=> { console.log('234234'); })
 	tl.call(()=> { outContent(cnxOut).play(); }, null, '<')
-	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1,  {'--w': 100, '--h': 100,}, {'--w': 50, '--h': 90, immediateRender: false, ease: eases.ex});
+	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1,  {'--w': 110, '--h': 110,}, {'--w': 50, '--h': 100, x: propPadding, immediateRender: false, ease: eases.ex});
 	tl.call(()=> { inContent(sliderData.current).play(); }, null, '-=0.3')
 
 

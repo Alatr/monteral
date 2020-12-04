@@ -21,6 +21,8 @@
 
 html{
 	font-size: 14px;
+	    -webkit-font-smoothing: antialiased;
+	    -moz-osx-font-smoothing: grayscale;
 	@include to(768px){
 		font-size: 10px;
 	}

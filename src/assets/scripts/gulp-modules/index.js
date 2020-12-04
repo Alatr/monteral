@@ -35,14 +35,36 @@ class showModal {
 	get isOpen(){
 		return this.status;
 	}
+	/*  */
+	enableButton(btn){
+		console.log(btn);
+		btn.disabled = false;
+	}
+	disableButton(btn){
+		console.log(btn);
+		btn.disabled = true;
+	}
+	/*  */
 	open() {
-		this.status = true;
-		this.animationIn().play();
+		const onComplete = () => {
+			this.enableButton(this.$openBtn);
+			this.status = true;
+		}
+		const onStart = () => this.disableButton(this.$openBtn);
+
+		this.animationIn({onComplete, onStart}).play();
 	};
 	
 	close() {
-		this.status = false;
-		this.animationOut().play();
+		
+		const onComplete = () => {
+			this.enableButton(this.$openBtn);
+
+			this.status = false;
+		}
+		const onStart = () => this.disableButton(this.$openBtn);
+		
+		this.animationOut({onComplete, onStart}).play();
 	};
 	
 	toggle() {
@@ -58,7 +80,7 @@ class showModal {
 	listeners() {
 		const self = this;
 		this.$body.addEventListener('click', function ({target}) {
-			if(target.closest(self.attrParrentNode) != null) {
+			if(target.closest(self.attrParrentNode) != null && !self.$openBtn.disabled) {
 				self.toggle();
 			}
 		});
@@ -73,7 +95,76 @@ class showModal {
 
 
 
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+const popupBlockBtnOpen = document.querySelector('[data-menu-btn]');
+const popupBlockBtnClose = document.querySelector('[data-menu-close]');
+const popupBlock = document.querySelector('[data-call-popup-block]');
 
+
+
+
+const callPopap = new showModal({
+	$popup: popupBlock,
+	$openBtn: popupBlockBtnOpen,
+	$closeBtn: popupBlockBtnClose,
+	animationIn: animationPopapIn,
+	animationOut: animationPopapOut,
+	attrParrentNode: '[data-parrent-node-popup]'
+});
+
+
+/*
+*  start in
+*/
+function animationPopapIn(settings) {
+	// gsap.set([], {autoAlpha:0});
+	const obj = {...settings, paused: true};
+	const tl = gsap.timeline(obj);
+	tl.fromTo(this.$popup, 1, {autoAlpha: 0}, {autoAlpha: 1, immediateRender: false})
+
+
+
+	return tl;
+};
+/*
+*  end in
+*/
+/*
+*  start Out
+*/
+function animationPopapOut(settings) {
+	// gsap.set([], {autoAlpha:0});
+	const obj = {...settings, paused: true, };
+	const tl = gsap.timeline(obj);
+	tl.fromTo(this.$popup, 1, {autoAlpha: 1}, {autoAlpha: 0, clearProps: "all", immediateRender: false})
+	/*  */
+
+
+	return tl;
+};
+/*
+*  end Out
+*/
+/**********************************/
+
+
+
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
 
 
 
@@ -103,28 +194,38 @@ const menuTextClose = document.querySelector('[data-text-close]');
 
 /**********************************/
 const ease_menuBtnHover1 = BezierEasing(.42, .8, .39, .97);
-const ease_menuBtnHover = BezierEasing(0.13, 0.81, 0.23, 0.96);
+const ease_menuBtnCross = BezierEasing(.85,1.34,.14,1.26);
+const ease_menuBtnText = BezierEasing(.03,.94,.43,1.07);
+
+gsap.set([cross1, cross2], {autoAlpha: 0, scale: 0, transformOrigin: 'center'});
+gsap.set([menuTextClose], {autoAlpha: 0, x: -25});
+
+
 
 const menu = new showModal({
 	$popup: menuBlock,
 	$closeBtn: menuBtnClose,
 	$openBtn: menuBtnOpen,
-	animationIn: animationModalIn,
-	animationOut: animationModalOut,
+	animationIn: animationMenuIn,
+	animationOut: animationMenuOut,
 	attrParrentNode: '[data-parrent-node-menu]'
 });
 
 /*
 *  start in
 */
-function animationModalIn() {
+function animationMenuIn(settings) {
 	// gsap.set([], {autoAlpha:0});
-	const obj = { paused: true, };
+	const obj = {...settings, paused: true};
 	const tl = gsap.timeline(obj);
 	tl.fromTo(this.$popup, 1, {autoAlpha: 0}, {autoAlpha: 1, immediateRender: false})
 
 	tl.to([line0, line1, line2], 0.5, {autoAlpha: 1, x: 30, stagger: 0.1, ease: ease_menuBtnHover1}, '<')
-	tl.fromTo([cross1, cross2], 0.5, {autoAlpha: 0, x: -25}, {autoAlpha: 1, x: 0, ease: ease_menuBtnHover1}, '<')
+	/*  */
+	tl.to(menuTextOpen, 0.3, {autoAlpha: 0, x: 20, ease: ease_menuBtnText}, '<')
+	tl.to(menuTextClose, 0.3, {autoAlpha: 1, x: 0, ease: ease_menuBtnText}, '<')
+	/*  */
+	tl.fromTo([cross1, cross2], 0.6, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, stagger: 0.1, scale: 1, ease: ease_menuBtnCross}, '<')
 
 
 	return tl;
@@ -135,11 +236,18 @@ function animationModalIn() {
 /*
 *  start Out
 */
-function animationModalOut() {
+function animationMenuOut(settings) {
 	// gsap.set([], {autoAlpha:0});
-	const obj = { paused: true, };
+	const obj = {...settings, paused: true, };
 	const tl = gsap.timeline(obj);
 	tl.fromTo(this.$popup, 1, {autoAlpha: 1}, {autoAlpha: 0, clearProps: "all", immediateRender: false})
+	/*  */
+	tl.to(menuTextClose, 0.3, {autoAlpha: 0, x: -20, ease: ease_menuBtnText}, '<')
+	tl.to(menuTextOpen, 0.3, {autoAlpha: 1, x: 0, ease: ease_menuBtnText}, '<')
+	/*  */
+	tl.to([line0, line1, line2], 0.5, {autoAlpha: 1, x: 0, stagger: 0.1, ease: ease_menuBtnHover1}, '<')
+	tl.fromTo([cross1, cross2], 0.6, {autoAlpha: 0, scale: 1}, {autoAlpha: 1, stagger: 0.1, scale: 0, ease: ease_menuBtnCross}, '<')
+
 
 	return tl;
 };
@@ -151,7 +259,6 @@ function animationModalOut() {
 /*
 * hover start
 */
-gsap.set([cross1, cross2, menuTextClose], {autoAlpha: 0, x: -25})
 /*
 * hover end
 */
@@ -192,10 +299,65 @@ menuBtnOpen.addEventListener("mouseout", e => {
 
 
 
+class sexyInput {
+	constructor(setting) {
+		this.selected = false;
+		this.attrParrentNode = setting.attrParrentNode;
+		this.$input = setting.$input;
+		this.$field = setting.$field;
+		
+		this.$body = document.querySelector('body');
+
+
+		this.init()
+	}
 
 
 
+	/*  */
+	open() {
 
+		this.$field.classList.add('selected')
+	};
+	
+	close() {
+	};
+	
+	toggle() {
+		if (this.selected) {
+			this.close();
+		} else {
+			this.open();
+		}
+	}
+	
+	listeners() {
+		const self = this;
+		this.$body.addEventListener('click', function ({target}) {
+			console.log(this.$input);
+			if(self.$input.value === '') {
+				self.toggle(this);
+
+			}
+		});
+	}
+
+
+	init() {
+		this.listeners();
+	}
+}
+
+
+const inp = [...document.querySelectorAll('.form-field')];
+inp.forEach((el)=>{
+	console.log(el.querySelector('input').value);
+	new sexyInput({
+		$field: el,
+		$input: el.querySelector('input'),
+		attrParrentNode: '[data-field-input]'
+	})
+})
 
 
 
