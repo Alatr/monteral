@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "gsap": "^3.5.1",
-    "on-change": "^2.2.0"
+    "on-change": "^2.2.0",
+    "yup": "^0.32.1"
   }
 }

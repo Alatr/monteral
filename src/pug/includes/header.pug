@@ -1,8 +1,13 @@
 form(data-home-contact)
-	each val in ['field--inactive', 'field--active', 'field--error', 'field--success']
-		.form-field.form-field-input(class= val data-field-input)
-			input(type='text').form-field__input
-			.input-message Ім’я:*
+	//- each val in ['field--inactive', 'field--active', 'field--error', 'field--success']
+	//- each val in ['field--inactive', 'field--inactive', 'field--inactive', 'field--inactive']
+	.form-field.form-field-input(data-field-input data-field-name data-status="field--inactive")
+		input(type='text' name="name").form-field__input
+		.input-message(data-input-message) Ім’я:*
+	.form-field.form-field-input(data-field-input data-field-phone data-status="field--inactive")
+		input(type='text' name="phone").form-field__input
+		.input-message(data-input-message) Телефон:*
+	button otpr
 
 .header__logo
 	<svg width="186" height="38" viewBox="0 0 186 38" fill="none" xmlns="http://www.w3.org/2000/svg">

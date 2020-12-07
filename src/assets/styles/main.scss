@@ -156,7 +156,7 @@ form{
 	--input-padding: 30px;
 
 }
-.form-field{
+.form-field:not(#t){
 	position: relative;
 	margin: 10px 0 10px 0;
 	border: 2px solid rgba(207, 190, 151, 1);
@@ -204,25 +204,25 @@ form{
 }
 
 
-.field--inactive:not(#r){
+[data-field-input][data-status="field--inactive"]:not(#r){
 	border-color: $mc;
 	.input-message{
 		color: #6AB6B8;
 	}
 }
-.field--active:not(#r){
+[data-field-input][data-status="field--active"]:not(#r){
 	border-color: $mc;
 	.input-message{
 		color: $mc;
 	}
 }
-.field--error:not(#r){
+[data-field-input][data-status="field--error"]:not(#r){
 	border-color: rgb(232, 142, 142);
 	.input-message{
 		color: rgb(232, 142, 142);
 	}
 }
-.field--success:not(#r){
+[data-field-input][data-status="field--success"]:not(#r){
 	border-color: #96C480;
 	.input-message{
 		color: #96C480;

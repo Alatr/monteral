@@ -4,7 +4,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const config = {
 	mode: 'none',
     entry: {
-        index: "./src/assets/scripts/index-app.js"
+        index: "./src/assets/scripts/index-app.js",
+        form: "./src/assets/scripts/form.js"
     },
     output: {
         filename: "[name].bundle.js"
