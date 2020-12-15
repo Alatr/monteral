@@ -128,11 +128,20 @@ body.focus-tab--enable *:focus {
   outline-width: 7px;
 }
 
+input[disabled="true"],
+button[disabled="true"],
+a[disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  & > * {
+    pointer-events: none;
+  }
+}
 button, a{
 	font-family: $default-font;
 }
-button:hover,
-a:hover,
+button:not([disabled="true"]):hover,
+a:not([disabled="true"]):hover,
 select:hover {
   cursor: pointer;
 }

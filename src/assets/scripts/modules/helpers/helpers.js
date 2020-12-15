@@ -37,9 +37,16 @@ export const eases = {
 }
 
 
-export const attach = function ( tag, data ) {
 
-}
+export const langDetect = function () {
+  if (window.location.pathname.match(/ru/)) {
+    return 'ru';
+  } else if (window.location.pathname.match(/en/)) {
+    return 'en';
+  } else {
+    return 'uk';
+  }
+};
 
 
 export const convertURL2Obj = () => {

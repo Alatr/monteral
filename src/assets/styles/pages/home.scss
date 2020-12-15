@@ -211,7 +211,7 @@
 			width: 55%;
 		}
 	}
-	&__link{
+	&__link:not([disabled="true"]) {
 		/* ** */
 		&:hover {
 		@include from(1025px) {
@@ -233,26 +233,7 @@
 	pointer-events: auto;
 }
 
-.link-ico--margin{
-	margin-top: 3px;
 
-}
-.link-ico{
-	position: relative;
-	display: flex;
-	height: 18px;
-	align-items: center;
-	justify-content: center;
-	&__stic{
-		display: flex;
-		flex-grow: 1;
-		height: 2px;
-		width: 10px;
-		background-color: $mc;
-		transition: width 0.7s var(--in) 0s;
-
-	}
-}
 
 /*  */
 /*  */

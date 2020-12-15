@@ -60,7 +60,7 @@ block content
 		//- 	<path d="M0 25H25V0H0V25ZM22.9037 22.8972H2.09627V2.18069H22.9037V22.8972Z" />
 		//- 	<path d="M13.7132 5V18.8719H11.3235V5H5V21H6.98529V7.12808H9.33824V21H15.6618V7.12808H18.0515V21H20V5H13.7132Z" />
 		//- </svg>
-		+svg('logo').welcome-screen__logo controls='true'
+		+svg('logo').welcome-screen__logo
 		h1.welcome-screen__title 
 			span Montreal
 			span House —
@@ -115,7 +115,7 @@ block content
 					a( data-home-link href= val.link).home-content__link.link
 						span.link__text.usn Дізнатися більше
 						span.link-ico.link-ico--margin
-							span.link-ico__stic
+							span.link-ico__stic.bgc--mc
 							+svg('arrow').link__ico.fill--mc
 						
 		.home-page-video-wrapper(data-video-block-wrapper style="background-image: url('./assets/images/home/0.jpg');")
