@@ -26,6 +26,7 @@
         margin-right: var(--delimiter-width);
         position: relative;
         padding-top: 45px;
+        padding-bottom: 45px;
         padding-left: 100px;
         padding-right: var(--delimiter-width);
         border-top: var(--decor-border-width) solid $color-gold;
@@ -71,6 +72,16 @@
         bottom: 0;
         background-repeat: no-repeat;
     }
+    &__img-wrap img {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        object-fit: cover;
+        max-width: none;
+        width: calc(100% + 160px);
+        height: calc(100% + 50px);
+        z-index: 2;
+    }
     &__outer-links {
         width: 50%;
     }
@@ -85,9 +96,19 @@
         /* White */
         color: #FFFFFF;
         transition: color .3s ease-out;
+        display: flex;
+        align-items: center;
+    }
+    &__outer-link.has-child {
+        color: $color-gold;
+    }
+    &__outer-link.has-child:after {
+        content: '+';
+        margin-left: 1ch;
     }
     &__inner-links {
         position: absolute;
+        padding-top: 45px;
         left: calc(50% + 1px);
         height: 100%;
         width: 50%;
@@ -97,7 +118,7 @@
         padding-left: 10%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
     }
     &__inner-links:empty {
         display: none;
@@ -113,6 +134,13 @@
     }
     a {
         text-decoration: none;
+    }
+    @include to(1240px) {
+        padding-left: 140px;
+        padding-right: 50px;
+        &__text-wrap {
+            padding-left: 45px;
+        }
     }
     @include to(950px) {
         &__img-wrap {
@@ -138,6 +166,31 @@
         &__outer-link:hover,
         &__inner-link:hover {
             color: $color-gold;
+        }
+        &__outer-link.has-child:hover:after {
+            content: '-';
+        }
+    }
+    @include from(1680px) {
+        &__text-wrap {
+            padding-top: 100px;
+            padding-bottom: 100px;
+            display: flex;
+            align-items: center;
+        }
+        &__outer-link {
+            font-size: 36px;
+        }
+        &__inner-links {
+            justify-content: center;
+        }
+        &__inner-link {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        &__img-wrap img {
+            left: 45px;
+            top: 45px;
         }
     }
 }
