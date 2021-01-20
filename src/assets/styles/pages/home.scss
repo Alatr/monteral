@@ -331,8 +331,10 @@
     top: 50%;
     left: var(--side-padding);
     transform: translate(0, -50%);
-    &.lang {
-        z-index: 30;
+    @include from(576px) {
+        &.lang {
+            z-index: 30;
+        }
     }
 }
 
@@ -340,8 +342,10 @@
     position: absolute;
     bottom: var(--side-padding);
     left: var(--side-padding);
-    &.social {
-        z-index: 30;
+    @include from(576px) {
+        &.social {
+            z-index: 30;
+        }
     }
 }
 
@@ -353,7 +357,9 @@
     height: 50px;
     transform: translate(-50%, -8%) rotate(45deg);
     border: 2px solid $mc;
-    z-index: 30;
+    @include from(576px) {
+        z-index: 30;
+    }
 }
 
 .screen-icon-link {

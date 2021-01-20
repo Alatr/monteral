@@ -73,6 +73,12 @@
         background-repeat: no-repeat;
     }
     &__img-wrap img {
+        width: 100%;
+        height: 100%;
+        transform: scale(1.1);
+        opacity: 0;
+    }
+    &__img-wrap-for-animation {
         position: absolute;
         left: 30px;
         top: 30px;
@@ -81,6 +87,7 @@
         width: calc(100% + 160px);
         height: calc(100% + 50px);
         z-index: 2;
+        overflow: hidden;
     }
     &__outer-links {
         width: 50%;
@@ -154,7 +161,42 @@
             display: none;
         }
     }
-    @include from(769px) {
+    @include to(575px) {
+        padding-left: 20px;
+        padding-right: 20px;
+        &__text-wrap {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+        &__outer-links {
+            width: 100%;
+        }
+        &__outer-link {
+            font-size: 18px;
+        }
+        &__inner-links {
+            position: static;
+            width: 100%;
+            padding-top: 0;
+            height: 0;
+            overflow: hidden;
+        }
+        &__inner-link {
+            margin-bottom: 1em;
+        }
+        &__text-wrap>ul>li:hover>&__inner-links {
+            // background-color: red;
+            opacity: 1;
+            pointer-events: all;
+            height: auto;
+        }
+        &__outer-link.has-child:hover:after {
+            content: '-';
+        }
+    }
+    @include from(576px) {
         &__text-wrap>ul>li {
             // border: 1px solid black;
         }
@@ -176,13 +218,13 @@
             padding-top: 100px;
             padding-bottom: 100px;
             display: flex;
-            align-items: center;
+            // align-items: center;
         }
         &__outer-link {
             font-size: 36px;
         }
         &__inner-links {
-            justify-content: center;
+            padding-top: 100px;
         }
         &__inner-link {
             font-size: 18px;
@@ -192,5 +234,38 @@
             left: 45px;
             top: 45px;
         }
+    }
+}
+
+@keyframes img-in {
+    0% {
+        filter: grayscale(100%);
+        opacity: 0;
+        transform: scale(1);
+    }
+    50% {
+        filter: grayscale(100%);
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        filter: grayscale(0);
+        transform: scale(1.1);
+    }
+}
+
+@keyframes img-out {
+    0% {
+        filter: grayscale(0);
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    30% {
+        filter: grayscale(100%);
+    }
+    100% {
+        filter: grayscale(100%);
+        opacity: 0;
+        transform: scale(1);
     }
 }

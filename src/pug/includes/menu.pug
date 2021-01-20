@@ -1,15 +1,17 @@
 .menu(data-menu-block style="background: linear-gradient(180deg, rgba(0, 114, 117, 0) 0%, #007275 100%), url('./assets/images/menu/menu-bg.jpg');")
 	.menu__text-wrap 
 		ul.menu__outer-links
-			- var headMenu = [{item: ['Головна','index.html'],childs:[]},{item: ['Про проєкт:','about.html'],childs:[			['На даху','on-the-foor.html'],	['Місця загального користування','general-places.html'],	['Хід будівництва','build-progress.html'],	['Девелопер','developer.html'],	['Для детей','for-kids.html'],	['Архітектура та характеристики	','architeture-and-characteristics.html'],	['Розташування та оточення','location.html'],	['Паркинг',	'parking.html'],	['Сервис',	'service.html'],	],},{item: ['Квартири:','3d.html'],childs:[		['Вибiр на 3D Моделi','3d.html'	],	['Фiльтрацiя по параметрам','filter.html'],	['1-Кімнатні','1-room.html'],	['Коменрційна нерухомість','commercial.html'],	['2-Кімнатні','2-room.html'],	['3-Кімнатні','3-room.html'	],	['4-Кімнатні','4-room.html',],]},{item: ['Новини','news.html'],childs:[]},{item: ['Контакти','contacts.html'],childs:[]},{item: ['Умови придбання','buy-conditions.html'],childs:[]},]
 				each bigPoint in headMenu
 					li
 						a.menu__outer-link(href=bigPoint.item[1]) #{bigPoint.item[0]}
 						ul.menu__inner-links(data-has-child-class="has-child")
 							each smallPoint,index in bigPoint.childs
-								li 
-									a.menu__inner-link(href=smallPoint[1] data-blur=index data-image="./assets/images/menu/points/default.jpg") #{smallPoint[0]}
-	.menu__img-wrap 
-		+img('menu/points/default.jpg').js-menu-img
-	//- button(type="button"  data-menu-close) закрыть
-	<script>window.addEventListener('load',()=>{document.querySelector('.header-menu').click()})</script>
+								if smallPoint[2]
+									li 
+										a.menu__inner-link(href=smallPoint[1] data-blur=index data-image=smallPoint[2]) #{smallPoint[0]}
+								else 
+									li 
+										a.menu__inner-link(href=smallPoint[1] data-blur=index data-image="./assets/images/menu/points/default.jpg") #{smallPoint[0]}
+	.menu__img-wrap
+		.menu__img-wrap-for-animation
+			+img('menu/points/default.jpg').js-menu-img

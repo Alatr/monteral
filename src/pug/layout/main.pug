@@ -13,6 +13,32 @@ include ../includes/mixins.pug
 			contacts: './contacts.html',
 		},
 	];
+	var headMenu = [
+	{item: ['Головна','index.html'],childs:[]},
+	{item: ['Про проєкт:','#'],childs:[			
+		['На даху','on-the-foor.html','./assets/images/menu/points/terrace.jpg'],	
+		['Місця загального користування','general-places.html','./assets/images/menu/points/hall.jpg'],	
+		['Хід будівництва','build-progress.html'],	
+		['Девелопер','developer.html'],	
+		['Для детей','for-kids.html','./assets/images/menu/points/for-kids.jpg'],	
+		['Архітектура та характеристики	','architeture-and-characteristics.html','./assets/images/menu/points/archi.jpg'],	
+		['Розташування та оточення','location.html','./assets/images/menu/points/location.jpg'],	
+		['Паркинг',	'parking.html','./assets/images/menu/points/parking.jpg'],	
+		['Сервис',	'service.html'],	
+	],},
+	{item: ['Квартири:','#'],childs:[		
+		['Вибiр на 3D Моделi','3d.html'	],	
+		['Фiльтрацiя по параметрам','filter.html'],	
+		['1-Кімнатні','1-room.html'],	
+		['2-Кімнатні','2-room.html'],	
+		['3-Кімнатні','3-room.html'	],	
+		['4-Кімнатні','4-room.html',],
+		['Коменрційна нерухомість','commercial.html'],	
+		]},
+	{item: ['Новини','news.html'],childs:[]},
+	{item: ['Контакти','contacts.html'],childs:[]},
+	{item: ['Умови придбання','buy-conditions.html'],childs:[]},
+	]
 block variable
 doctype html
 html(lang="uk")
