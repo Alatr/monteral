@@ -1,11 +1,143 @@
-.menu{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #007275;
-	opacity: 0;
-	visibility: hidden;
-	z-index: 21;
+.menu {
+    --self-padding-top: 35px;
+    --delimiter-width: 30px;
+    --decor-border-width: 2px;
+    --decor-logo-size: 31px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 114, 117, 0) 0%, #007275 100%);
+    opacity: 0;
+    visibility: hidden;
+    padding-top: calc(var(--self-padding-top) + var(--header-height));
+    padding-left: 160px;
+    padding-right: 160px;
+    padding-bottom: 60px;
+    z-index: 21;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    &__text-wrap {
+        flex-basis: 65%;
+        flex-shrink: 0;
+        height: 100%;
+        margin-right: var(--delimiter-width);
+        position: relative;
+        padding-top: 45px;
+        padding-left: 100px;
+        padding-right: var(--delimiter-width);
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+    }
+    &__text-wrap:after {
+        content: '';
+        position: absolute;
+        right: calc(var(--decor-border-width) * -1);
+        transform: translateX(100%);
+        bottom: 0;
+        height: var(--decor-border-width);
+        width: var(--delimiter-width);
+        background-color: $color-gold;
+    }
+    &__img-wrap {
+        flex-shrink: 1;
+        position: relative;
+        height: 100%;
+        flex-basis: calc(35% - var(--delimiter-width));
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        // border-right: var(--decor-border-width) solid $color-gold;
+    }
+    &__img-wrap:before {
+        position: absolute;
+        content: '';
+        height: calc(100% - (var(--decor-logo-size) * 2));
+        right: 0;
+        width: var(--decor-border-width);
+        top: 0;
+        background-color: $color-gold;
+    }
+    &__img-wrap:after {
+        position: absolute;
+        content: '';
+        display: inline-block;
+        width: var(--decor-logo-size);
+        height: var(--decor-logo-size);
+        right: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='31' height='31' viewBox='0 0 31 31' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 1V30H1V1H30Z' stroke='%23CFBE97' stroke-width='2'/%3E%3Cpath d='M7 25V7H12.6667V24H18.3333V7H24V25' stroke='%23CFBE97' stroke-width='2'/%3E%3C/svg%3E%0A");
+        bottom: 0;
+        background-repeat: no-repeat;
+    }
+    &__outer-links {
+        width: 50%;
+    }
+    &__outer-link {
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 1em;
+        margin-bottom: 1em;
+        display: inline-block;
+        /* identical to box height, or 100% */
+        letter-spacing: -0.05em;
+        /* White */
+        color: #FFFFFF;
+        transition: color .3s ease-out;
+    }
+    &__inner-links {
+        position: absolute;
+        left: calc(50% + 1px);
+        height: 100%;
+        width: 50%;
+        top: 0;
+        opacity: 0;
+        pointer-events: none;
+        padding-left: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &__inner-links:empty {
+        display: none;
+    }
+    &__inner-link {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 24px;
+        color: $color-text-gold;
+        transition: color .3s ease-out;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+    a {
+        text-decoration: none;
+    }
+    @include to(950px) {
+        &__img-wrap {
+            display: none;
+        }
+        &__text-wrap {
+            flex-basis: 100%;
+            margin-right: 0;
+        }
+        &__text-wrap:after {
+            display: none;
+        }
+    }
+    @include from(769px) {
+        &__text-wrap>ul>li {
+            // border: 1px solid black;
+        }
+        &__text-wrap>ul>li:hover>&__inner-links {
+            // background-color: red;
+            opacity: 1;
+            pointer-events: all;
+        }
+        &__outer-link:hover,
+        &__inner-link:hover {
+            color: $color-gold;
+        }
+    }
 }
