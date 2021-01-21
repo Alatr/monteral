@@ -6,7 +6,7 @@
   </svg>
   .decor-type-vertical
     .decor-type-vertical__top
-      .legend Замовити дзвіно
+      .legend Замовити дзвінок
       .sublegend Якщо у вас виникли запитання, наші менеджери з радістю дадуть відповідь на все, що вас цікавить
     .decor-type-vertical__bottom
       form(data-home-contact autocomplete="off").form-standart
@@ -16,9 +16,20 @@
         .form-field.disabled.form-field-input(data-field-input data-field-phone data-status="field--inactive")
           input(type='text' name="phone").form-field__input
           .input-message(data-input-message) Телефон:*
-        textarea(placeholder="Добрый день")
+        textarea(placeholder="Повідомлення")
         button( type="submit" data-btn-submit).home-content__link.link
           span(data-btn-submit-text).link__text.usn Надіслати
+          span.link-ico.link-ico--margin
+            span.link-ico__stic.bgc--wc
+            +svg('arrow').link__ico.fill--wc
+  .form-succes-send-block.decor-type-vertical
+    .decor-type-vertical__top
+      .legend Повідомлення надіслано
+    .decor-type-vertical__bottom
+      .form-succes-send-block__text Дякуємо за звернення! Очікуйте на дзвінок з відділу продажів Montreal House.
+      .form-succes-send-block__title-large Бажаемо приємного дня та гарного настрою =)
+      button(  ).home-content__link.link
+          span().link__text.usn Зрозуміло
           span.link-ico.link-ico--margin
             span.link-ico__stic.bgc--wc
             +svg('arrow').link__ico.fill--wc
