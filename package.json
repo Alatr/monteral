@@ -7,7 +7,7 @@
         "grunt": "grunt",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack --mode development",
-        "push": "git add . && git commit -m %npm_package_config_mes% && git push origin %npm_package_config_branch%",
+        "git": "git add . && git commit -m",
         "testme": "echo %npm_config_msg% %npm_config_br%"
     },
     "browserslist": [
