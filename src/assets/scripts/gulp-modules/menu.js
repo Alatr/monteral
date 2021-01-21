@@ -42,5 +42,3 @@ $pointsWithChild.forEach(el => {
         el.classList.add(classForHoverLink);
     });
 })
-
-document.querySelector('.header__call').click();
