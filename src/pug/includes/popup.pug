@@ -1,18 +1,28 @@
 .call-popup(data-call-popup-block)
-  h1 звонок
-  button(type="button" data-parrent-node-popup ) закрыть
-  form(data-home-contact autocomplete="off")
-    .form-field.form-field-input(data-field-input data-field-name data-status="field--inactive")
-      input(type='text' name="name").form-field__input
-      .input-message(data-input-message) Ім’я:*
-    .form-field.disabled.form-field-input(data-field-input data-field-phone data-status="field--inactive")
-      input(type='text' name="phone").form-field__input
-      .input-message(data-input-message) Телефон:*
-    button( type="submit" data-btn-submit).home-content__link.link
-      span(data-btn-submit-text).link__text.usn Надіслати
-      span.link-ico.link-ico--margin
-        span.link-ico__stic.bgc--wc
-        +svg('arrow').link__ico.fill--wc
-
+  //- h1 звонок
+  //- button(type="button" data-parrent-node-popup ) 
+  <svg class="call-popup__close" data-parrent-node-popup width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M17 17L1 1M1 17L17 1L1 17Z" stroke="#CFBE97" stroke-width="2"/>
+  </svg>
+  .decor-type-vertical
+    .decor-type-vertical__top
+      .legend Замовити дзвінок
+      .sublegend Якщо у вас виникли запитання, наші менеджери з радістю дадуть відповідь на все, що вас цікавить
+    .decor-type-vertical__bottom
+      form(data-home-contact autocomplete="off").form-standart
+        .form-field.form-field-input(data-field-input data-field-name data-status="field--inactive")
+          input(type='text' name="name").form-field__input
+          .input-message(data-input-message) Ім’я:*
+        .form-field.disabled.form-field-input(data-field-input data-field-phone data-status="field--inactive")
+          input(type='text' name="phone").form-field__input
+          .input-message(data-input-message) Телефон:*
+        textarea(placeholder="Добрый день")
+        button( type="submit" data-btn-submit).home-content__link.link
+          span(data-btn-submit-text).link__text.usn Надіслати
+          span.link-ico.link-ico--margin
+            span.link-ico__stic.bgc--wc
+            +svg('arrow').link__ico.fill--wc
 .toast-wrapper(data-toast-wrapper)
+  <script>
   
+  </script>
