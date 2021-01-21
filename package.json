@@ -6,8 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack --mode development",
-        "push": "git add . && git commit -m %npm_config_m% && git push origin %npm_config_b%",
-        "testme": "echo %npm_config_first% %npm_config_second%"
+        "push": "git add . && git commit -m %npm_config_mes% && git push origin %npm_config_branch%",
+        "testme": "echo %npm_config_first% %npm_config%"
     },
     "browserslist": [
         "last 3 version"
