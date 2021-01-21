@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "grunt": "grunt",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack --mode development",
         "push": "git add . && git commit -m %npm_config_mes% && git push origin %npm_config_branch%",
