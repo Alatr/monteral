@@ -66,10 +66,10 @@
         pointer-events: none;
     }
     @include to(575px) {
-        --self-padding: 35px;
-        padding: calc(var(--self-padding) * 2) var(--self-padding);
+        --self-padding: 15px;
+        padding: calc(var(--self-padding) * 3) var(--self-padding) calc(var(--self-padding) * 2) var(--self-padding);
         &__close {
-            transform: translateX(50%) translateY(-50%);
+            transform: translate(-50%, 50%);
         }
         .decor-type-vertical__top {
             padding-top: 20px;
