@@ -8,7 +8,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack --mode development",
         "push": "git add . && npm run push2",
-        "push2": "git commit -m %npm_config_m% && git push origin %npm_config_b%"
+        "push2": "git commit -m %npm_config_m% && git push origin %npm_config_br%"
     },
     "browserslist": [
         "last 3 version"
