@@ -35,7 +35,7 @@ export const setLocationName = (inxPartPage) => {
 	const paramLocation = (_.isEmpty(convertURL2Obj())) ? {} : convertURL2Obj();
 	const [newPartName, newPartInx] = _.toPairs(dataRoute).filter(([, inx]) => inx === inxPartPage)[0];
 
-	console.log(paramLocation);
+	// console.log(paramLocation);
 	paramLocation.partHomePage = newPartName;
 	const newSearchParam = convertObj2URL(paramLocation);
 

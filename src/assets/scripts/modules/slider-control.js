@@ -11,9 +11,10 @@ export const initSlider = (state) => {
 
 /*  */
 export const next = async () => {
-	if (_STATE.slider.data.total === 0) return;
+  console.log('next', _STATE.slider.data.current);
+	if (_STATE.slider.data.current === _STATE.slider.data.total) return;
 
-	disableScroll();
+	// disableScroll();
 	setIndexToNext();
 	_STATE.video.isLoaded = false;
 	_STATE.video.status = 'removePrevVideo';
@@ -21,10 +22,14 @@ export const next = async () => {
 	_STATE.slider.ditection = 1;
 	switch (_STATE.slider.data.current) {
 		case 6:
-			_STATE.page.status = 'showPartPageWithoutVideo';
+      _STATE.page.status = 'showPartPageWithoutVideo';
+			_STATE.video.status = 'videoReady';
+
 			break;
 		case 7:
-			_STATE.page.status = 'showPartPageContact';
+      _STATE.page.status = 'showPartPageContact';
+			_STATE.video.status = 'videoReady';
+
 			break;
 		default:
 			await getForwardVideo(_STATE.slider.data.current);
@@ -81,11 +86,15 @@ export const prev = async () => {
 
 	/*  */
 	switch (_STATE.slider.data.current) {
-		case 6:
-			_STATE.page.status = 'showPartPageWithoutVideo';
+		case 5:
+      _STATE.page.status = 'hidePartPageWithoutVideo';
+			_STATE.video.status = 'videoReady';
+      
 			break;
-		case 7:
-			_STATE.page.status = 'showPartPageContact';
+		case 6:
+      _STATE.page.status = 'hidePartPageContact';
+			_STATE.video.status = 'videoReady';
+      
 			break;
 		default:
 			await getForwardVideo(_STATE.slider.data.current);

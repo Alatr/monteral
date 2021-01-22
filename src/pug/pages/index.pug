@@ -1,137 +1,149 @@
 
 extends ../layout/main
 block variable
-	-
-		var title_page = 'Home'
-		var id_page = 'home-page'
-		var class_page = 'home-page'
-		var content = [
-			{
-				title: 'Про проєкт',
-				text: 'ЖК Montreal House – <b>зразковий стандарт сучасного житла</b> в діловому та культурному центрі Києва. <b>Преміальне житло бізнес-класу,</b> унікальна локація, авторські планування, тераси на верхніх рівнях, підземний паркінг, дитячі ігрові зони, особливе оточення відкривають нові важливості життя <b>у серці столиці.</b>',
-				link: pagesLink[0].about
-			},
-			{
-				title: 'Архітектура',
-				text: 'ЖК Montreal House – <b>це різноманітність геометричних форм,</b> великі панорамні вікна, лаконічність конструктивних елементів. <b>Кожна деталь виняткова</b> – від унікального під’їзду готельного типу до видових терас на верхніх рівнях. Камінь, метал та скло в оздобленні фасаду підкреслюють особливий статус комплексу та втілюють <b>стрімкість міського середовища.</b>',
-				link: pagesLink[0].architecture
-			},
-			{
-				title: 'Тераси',
-				text: 'Ексклюзивність комплексу – <b>відкриті тераси на даху,</b> з яких відкриваються приголомшливі види на центр столиці. Зелений парк, бігові доріжки, різноманітні зони – відпочивайте, розважайтеся, займайтеся спортом <b>на фоні панорам улюбленого Києва.</b>',
-				link: pagesLink[0].balcony
-			},
-			{
-				title: 'Локація',
-				text: '<b>Поруч із комплексом – виняткове оточення:</b> костел Святого Миколая, НСК «Олімпійський», Національний палац «Україна», Національний театр оперети, кращі навчальні та медичні установи, сучасні бізнес-центри, вишукані гастрономічні заклади.',
-				link: pagesLink[0].location
-			},
-			{
-				title: 'Дітям',
-				text: '<b>Безпосередньо в будівлі</b> передбачені дитячі ігрові локації – простір можна використовувати для проведення свят, майстер-класів, ігор з друзями, розвиваючих занять. Відокремлена територія, шумоізоляція, окремий вхід – створено <b>абсолютно безпечне та комфортне середовище для вашої дитини.</b>',
-				link: pagesLink[0].children
-			},
-			{
-				title: 'Будинок',
-				text: "<b>З дев'ятиметрового лобі здіймаються в небо 4 різновисотні вежі</b> – від 11 до 20 поверхів. У двох секціях розташовано 328 квартир, на поверсі розташовано 4-6 квартир. На кожну секцію передбачено 2 ліфти, один із яких буде спускатися в 2-рівневий підземний паркінг.",
-				link: pagesLink[0].house
-			},
-			{
-				title: 'Забудовник',
-				text: 'Компанія «Сітіконсалт Кепіталс Компани» працює у сфері <b>реалізації нерухомості в Києві та Київській області.</b> Ми підберемо та запропонуємо житло, яке буде відповідати <b>усім вашим вимогам в самому серці міста</b>',
-				link: pagesLink[0].developer
-			},
-		]
+  -
+    var title_page = 'Home'
+    var id_page = 'home-page'
+    var class_page = 'home-page'
+    var content = [
+      {
+        title: 'Про проєкт',
+        text: 'ЖК Montreal House – <b>зразковий стандарт сучасного житла</b> в діловому та культурному центрі Києва. <b>Преміальне житло бізнес-класу,</b> унікальна локація, авторські планування, тераси на верхніх рівнях, підземний паркінг, дитячі ігрові зони, особливе оточення відкривають нові важливості життя <b>у серці столиці.</b>',
+        link: pagesLink[0].about
+      },
+      {
+        title: 'Архітектура',
+        text: 'ЖК Montreal House – <b>це різноманітність геометричних форм,</b> великі панорамні вікна, лаконічність конструктивних елементів. <b>Кожна деталь виняткова</b> – від унікального під’їзду готельного типу до видових терас на верхніх рівнях. Камінь, метал та скло в оздобленні фасаду підкреслюють особливий статус комплексу та втілюють <b>стрімкість міського середовища.</b>',
+        link: pagesLink[0].architecture
+      },
+      {
+        title: 'Тераси',
+        text: 'Ексклюзивність комплексу – <b>відкриті тераси на даху,</b> з яких відкриваються приголомшливі види на центр столиці. Зелений парк, бігові доріжки, різноманітні зони – відпочивайте, розважайтеся, займайтеся спортом <b>на фоні панорам улюбленого Києва.</b>',
+        link: pagesLink[0].balcony
+      },
+      {
+        title: 'Локація',
+        text: '<b>Поруч із комплексом – виняткове оточення:</b> костел Святого Миколая, НСК «Олімпійський», Національний палац «Україна», Національний театр оперети, кращі навчальні та медичні установи, сучасні бізнес-центри, вишукані гастрономічні заклади.',
+        link: pagesLink[0].location
+      },
+      {
+        title: 'Дітям',
+        text: '<b>Безпосередньо в будівлі</b> передбачені дитячі ігрові локації – простір можна використовувати для проведення свят, майстер-класів, ігор з друзями, розвиваючих занять. Відокремлена територія, шумоізоляція, окремий вхід – створено <b>абсолютно безпечне та комфортне середовище для вашої дитини.</b>',
+        link: pagesLink[0].children
+      },
+      {
+        title: 'Будинок',
+        text: "<b>З дев'ятиметрового лобі здіймаються в небо 4 різновисотні вежі</b> – від 11 до 20 поверхів. У двох секціях розташовано 328 квартир, на поверсі розташовано 4-6 квартир. На кожну секцію передбачено 2 ліфти, один із яких буде спускатися в 2-рівневий підземний паркінг.",
+        link: pagesLink[0].house
+      },
+      {
+        title: 'Забудовник',
+        text: 'Компанія «Сітіконсалт Кепіталс Компани» працює у сфері <b>реалізації нерухомості в Києві та Київській області.</b> Ми підберемо та запропонуємо житло, яке буде відповідати <b>усім вашим вимогам в самому серці міста</b>',
+        link: pagesLink[0].developer
+      },
+      // {
+      //   title: 'kontact',
+      //   text: 'Компанія «Сітіконсалт Кепіталс Компани» працює у сфері <b>реалізації нерухомості в Києві та Київській області.</b> Ми підберемо та запропонуємо житло, яке буде відповідати <b>усім вашим вимогам в самому серці міста</b>',
+      //   link: pagesLink[0].developer
+      // },
+    ]
 
-	
+  
 block meta
-	title= title_page
-	meta(name='description', content='')
+  title= title_page
+  meta(name='description', content='')
 block head
-		link(rel='stylesheet', href="./assets/styles/main.min.css")
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
 block scripts
-	script(defer src='./assets/scripts/index.js')
-	script(defer src='./assets/scripts/vendors.bundle.js')
-	script(defer src='./assets/scripts/index.bundle.js')
-	script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/form.bundle.js')
 block content
-	.welcome-screen
-		//- <svg width="25" class="welcome-screen__logo" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-		//- 	<path d="M0 25H25V0H0V25ZM22.9037 22.8972H2.09627V2.18069H22.9037V22.8972Z" />
-		//- 	<path d="M13.7132 5V18.8719H11.3235V5H5V21H6.98529V7.12808H9.33824V21H15.6618V7.12808H18.0515V21H20V5H13.7132Z" />
-		//- </svg>
-		+svg('logo').welcome-screen__logo
-		h1.welcome-screen__title 
-			span Montreal
-			span House —
-		span.welcome-screen__subtitle welcome
-		span.welcome-screen__decor
+  .welcome-screen
+    //- <svg width="25" class="welcome-screen__logo" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //- 	<path d="M0 25H25V0H0V25ZM22.9037 22.8972H2.09627V2.18069H22.9037V22.8972Z" />
+    //- 	<path d="M13.7132 5V18.8719H11.3235V5H5V21H6.98529V7.12808H9.33824V21H15.6618V7.12808H18.0515V21H20V5H13.7132Z" />
+    //- </svg>
+    +svg('logo').welcome-screen__logo
+    h1.welcome-screen__title 
+      span Montreal
+      span House —
+    span.welcome-screen__subtitle welcome
+    span.welcome-screen__decor
 
-		
-		
-	.screen-wrap
-		.main-title-wrap
-			.home-title-item
-				.home-title-item__title(data-home-main-title) Montreal House —
-				.home-title-item__subtitle(data-home-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
+    
+    
+  .screen-wrap
+    .main-title-wrap
+      .home-title-item
+        .home-title-item__title(data-home-main-title) Montreal House —
+        .home-title-item__subtitle(data-home-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
 
-		a(href="#" data-animate-links).screen-icon-link
-			+svg('webcam')
-			span.screen-icon-link__text
-				span Веб
-				span камера
-		<svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
-			<g fill="none" fill-rule="evenodd">
-				<rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="5" rx="36"/>
-				<circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
-			</g>
-		</svg>
-		ul.lang.screen__lang
-			li(data-animate-links).lang__item.lang__item--active
-				a(href="#") uk
-			li(data-animate-links).lang__item
-				a(href="#") ru
-			li(data-animate-links).lang__item
-				a(href="#") en
-		
+    a(href="#" data-animate-links).screen-icon-link
+      +svg('webcam')
+      span.screen-icon-link__text
+        span Веб
+        span камера
+    <svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
+      <g fill="none" fill-rule="evenodd">
+        <rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="5" rx="36"/>
+        <circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
+      </g>
+    </svg>
+    ul.lang.screen__lang
+      li(data-animate-links).lang__item.lang__item--active
+        a(href="#") uk
+      li(data-animate-links).lang__item
+        a(href="#") ru
+      li(data-animate-links).lang__item
+        a(href="#") en
+    
 
-		.decor-social(data-animate-links)
-		ul.social.screen__social
-			li(data-animate-links).social__item
-				a(href="#" rel="nofollow" target="_blank") facebook
-			li(data-animate-links).social__item
-				a(href="#" rel="nofollow" target="_blank") instagram
-			li(data-animate-links).social__item
-				a(href="#" rel="nofollow" target="_blank") telegram
+    .decor-social(data-animate-links)
+    ul.social.screen__social
+      li(data-animate-links).social__item
+        a(href="#" rel="nofollow" target="_blank") facebook
+      li(data-animate-links).social__item
+        a(href="#" rel="nofollow" target="_blank") instagram
+      li(data-animate-links).social__item
+        a(href="#" rel="nofollow" target="_blank") telegram
 
 
-		.home-content-wrap
-			each val, i in content
-				.home-content(data-content-home)
-					h2( data-home-title ).home-content__title.usn= val.title
-					.text-wrap
-						+img("award.svg").screen__award(data-animate-award)
-						p( data-home-text ).home-content__text.usn !{val.text}
-					a( data-home-link href= val.link).home-content__link.link
-						span.link__text.usn Дізнатися більше
-						span.link-ico.link-ico--margin
-							span.link-ico__stic.bgc--mc
-							+svg('arrow').link__ico.fill--mc
-						
-		.home-page-video-wrapper(data-video-block-wrapper style="background-image: url('./assets/images/home/0.jpg');")
-				.bg-overlay
-				<div class="loader-wrap-video  loader-video--hidden" data-video-preloader >
-					<div class="loader"></div>
-				</div>
-				.slider-counter(data-sl-counter)
-					.slider-counter-inner-wrap
-						span.slider-counter__cnt(data-cnt) 01
-						span.slider-counter__separator /
-						span.slider-counter__total(data-total) 08
+    .home-content-wrap
+      each val, i in content
+        .home-content(data-content-home)
+          h2( data-home-title ).home-content__title.usn= val.title
+          .text-wrap
+            +img("award.svg").screen__award(data-animate-award)
+            p( data-home-text ).home-content__text.usn !{val.text}
+          a( data-home-link href= val.link).home-content__link.link
+            span.link__text.usn Дізнатися більше
+            span.link-ico.link-ico--margin
+              span.link-ico__stic.bgc--mc
+              +svg('arrow').link__ico.fill--mc
+    .home-content(data-content-home)
+      .contact__l
+        h2(data-contact-main-title) Контакти
+      .contact__r
+        h5(data-contact-form-item) Зворотній зв`язок
+      
+            
+    .home-page-video-wrapper(data-video-block-wrapper style="background-image: url('./assets/images/home/0.jpg');")
+        .bg-overlay
+        div(data-gsap-overlay-developer).data-overlay-developer-sl
+        <div class="loader-wrap-video  loader-video--hidden" data-video-preloader >
+          <div class="loader"></div>
+        </div>
+        .slider-counter(data-sl-counter)
+          .slider-counter-inner-wrap
+            span.slider-counter__cnt(data-cnt) 01
+            span.slider-counter__separator /
+            span.slider-counter__total(data-total) 08
 
-				.home-video-wrap(data-video-wrapper)
+        .home-video-wrap(data-video-wrapper)
 
 block footer
-	include ../includes/footer.pug
+  include ../includes/footer.pug
 
 block header
