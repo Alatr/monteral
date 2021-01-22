@@ -127,39 +127,42 @@ block content
         h2(data-contact-main-title) Контакти
         .contact-items-wrap
           .contact-item
-            h6.contact-item__title Відділ продажів:
-            p.contact-item__adress м. Київ, вул. Антоновича, 81(на першому поверсі)
+            h6.contact-item__title.subtitle-with-decor.subtitle-with-decor--white Відділ продажів:
+            p.contact-item__adress.text.text--gold м. Київ, вул. Антоновича, 81(на першому поверсі)
             ul.contact-item__time
-              li Пн-пт: 09:00-19:00
-              li СБ: 09:00-17:00
-            a(href="#").contact-item__link.button-second
+              li.text--gold пн-пт: 09:00-19:00
+              li.text--gold сб-нд: 10:00-17:00
+            a(href="#").contact-item__link.button-second.button-second--color-white
               .button-second__icon
-                +svg('map-path')
-              span.button-second__text показати 
-                span на мапі
+                +svg('map-path').button-second--map-size
+              span.button-second__text
+                span показати 
+                b на мапі
               span.button-second__logo
                 +svg('logo-m')
           .contact-item
-            h6.contact-item__title Адреса комплексу:
-            p.contact-item__adress вул. Велика Васильківська, 102 (літера «У») / вул. Антоновича, 83 у Голосіївському районі м. Києва
-            a(href="#").contact-item__link
+            h6.contact-item__title.subtitle-with-decor.subtitle-with-decor--white Адреса комплексу:
+            p.contact-item__adress.text.text--gold вул. Велика Васильківська, 102 (літера «У») / вул. Антоновича, 83 у Голосіївському районі м. Києва
+            a(href="#").contact-item__link.button-second.button-second--color-white
               .button-second__icon
                 +svg('eye')
-              span.button-second__text записатися 
-                span на перегляд
+              span.button-second__text
+                span записатися 
+                b на перегляд
               span.button-second__logo
                 +svg('logo-m')
       .contact__r
-        h5(data-contact-form-item) Зворотній зв`язок
-        p(data-contact-form-item) Якщо у вас виникли запитання, ми з радістю дамо відповідь на них
+        h5(data-contact-form-item-1).subtitle-with-decor.subtitle-with-decor--white Зворотній зв'язок
+        p(data-contact-form-item-1).text.text--gold Якщо у вас виникли запитання, ми з радістю дамо відповідь на них
         form(data-home-contact autocomplete="off")
-          .form-field.form-field-input(data-field-input data-field-name data-status="field--inactive")
+          .form-field.form-field-input( data-contact-form-item-1 data-field-input data-field-name data-status="field--inactive")
             input(type='text' name="name").form-field__input
             .input-message(data-input-message) Ім’я:*
-          .form-field.disabled.form-field-input(data-field-input data-field-phone data-status="field--inactive")
+          .form-field.disabled.form-field-input( data-contact-form-item-1 data-field-input data-field-phone data-status="field--inactive")
             input(type='text' name="phone").form-field__input
             .input-message(data-input-message) Телефон:*
-          button( type="submit" data-btn-submit).home-content__link.link
+          textarea(placeholder="Повідомлення" data-contact-form-item-1 ).textarea-prime
+          button( type="submit" data-btn-submit data-contact-form-item-1 ).home-content__link.link
             span(data-btn-submit-text).link__text.usn Надіслати
             span.link-ico.link-ico--margin
               span.link-ico__stic.bgc--wc

@@ -136,6 +136,20 @@
     }
 }
 
+.textarea-prime {
+    resize: none;
+    border-color: $color-gold;
+    border-width: 2px;
+    padding-left: 30px;
+    padding-bottom: 18px;
+    padding-top: 18px;
+    width: 100%;
+    color: $color-white;
+    background-color: transparent;
+}
+.textarea-prime::placeholder {
+    color: #6AB6B8;
+}
 .form-standart {
     padding-top: 0;
     margin: 0;
