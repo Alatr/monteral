@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 let $menu = document.querySelector('.menu');
 let $menuImage = document.querySelector('.js-menu-img');
 let $menuTextBlock = document.querySelector('.menu__text-wrap');
@@ -19,16 +20,25 @@ function switchMenuImage(evt) {
     let linkWithImage = evt.target;
 
     if ($menuImage.dataset.image === linkWithImage.dataset.image) return;
-    $menuImage.style.animation = `img-out .5s ease-out`;
-    setTimeout(() => {
+
+    let tl = gsap.timeline();
+    console.log(tl);
+    tl.to($menuImage, { opacity: 0.1, scale: 0.9, duration: 0.75, });
+    tl.add(() => {
         $menuImage.dataset.image = linkWithImage.dataset.image;
         $menuImage.src = linkWithImage.dataset.image;
-    }, 500);
+    })
+    tl.to($menuImage, { opacity: 1, duration: 0.35, ease: Power4.easeOut, scale: 1 })
+        // $menuImage.style.animation = `img-out .5s ease-out`;
+        // setTimeout(() => {
+        //     $menuImage.dataset.image = linkWithImage.dataset.image;
+        //     $menuImage.src = linkWithImage.dataset.image;
+        // }, 500);
 }
-$menuImage.addEventListener('load', function(evt) {
-    $menuImage.style.opacity = 1;
-    $menuImage.style.animation = `img-in 1s ease-out`;
-});
+// $menuImage.addEventListener('load', function(evt) {
+//     $menuImage.style.opacity = 1;
+//     $menuImage.style.animation = `img-in 1s ease-out`;
+// });
 
 
 /** */
