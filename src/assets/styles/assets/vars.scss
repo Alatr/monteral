@@ -4,13 +4,25 @@ $default-font2: "montser",
 sans-serif;
 $mc2: #007275;
 $mc: #CFBE97;
-
-:root{
-	--in: cubic-bezier(0.13, 0.81, 0.23, 0.96);
+:root {
+    --in: cubic-bezier(0.13, 0.81, 0.23, 0.96);
+    --header-height: 110px;
+    --color-green: rgba(0, 114, 117, 1);
+    --color-green-black: rgba(0, 97, 100, 1);
+    --color-light: rgba(247, 227, 225, 1);
+    --color-white: rgba(255, 255, 255, 1);
+    --color-red: rgba(186, 80, 62, 1);
+    --color-gray: rgba(234, 234, 234, 1);
+    --color-brown: rgba(57, 36, 37, 1);
+    --color-light-brown: rgba(150, 134, 135, 1);
+    --color-text: rgba(188, 177, 176, 1);
+    --color-text-2: rgba(119, 119, 119, 1);
+    --color-gold: rgba(207, 190, 151, 1);
+    --color-text-gold: rgba(225, 221, 210, 1);
+    --color-silver: rgba(187, 205, 215, 1);
+    --color-text-silver: rgba(238, 238, 238, 1);
+    --color-bg-geen-black: rgba(0, 97, 100, 1);
 }
-
-
-
 
 $mc3: #E5DF06;
 $mc4: #4F90B6;
@@ -19,12 +31,25 @@ $text: #22223E;
 $wc: #fff;
 $bc: #000;
 $bc2: #000;
-
-
-.bgc--mc2{
-	background-color: $mc2;
+$color-green: rgba(0, 114, 117, 1);
+$color-green-black: rgba(0, 97, 100, 1);
+$color-light: rgba(247, 227, 225, 1);
+$color-white: rgba(255, 255, 255, 1);
+$color-red: rgba(186, 80, 62, 1);
+$color-gray: rgba(234, 234, 234, 1);
+$color-brown: rgba(57, 36, 37, 1);
+$color-light-brown: rgba(150, 134, 135, 1);
+$color-text: rgba(188, 177, 176, 1);
+$color-text-2: rgba(119, 119, 119, 1);
+$color-gold: rgba(207, 190, 151, 1);
+$color-text-gold: rgba(225, 221, 210, 1);
+$color-silver: rgba(187, 205, 215, 1);
+$color-text-silver: rgba(238, 238, 238, 1);
+$color-bg-geen-black: rgba(0, 97, 100, 1);
+.bgc--mc2 {
+    background-color: $mc2;
 }
 
-.color--wc{
-	color: $wc;
+.color--wc {
+    color: $wc;
 }

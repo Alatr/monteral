@@ -1,4 +1,17 @@
-.menu(data-menu-block)
-	h1 menu
-	//- button(type="button"  data-menu-close) закрыть
-	
+.menu(data-menu-block style="")
+	.menu__text-wrap 
+		ul.menu__outer-links
+				each bigPoint in headMenu
+					li
+						a.menu__outer-link(href=bigPoint.item[1]) #{bigPoint.item[0]}
+						ul.menu__inner-links(data-has-child-class="has-child")
+							each smallPoint,index in bigPoint.childs
+								if smallPoint[2]
+									li 
+										a.menu__inner-link(href=smallPoint[1] data-blur=index data-image=smallPoint[2]) #{smallPoint[0]}
+								else 
+									li 
+										a.menu__inner-link(href=smallPoint[1] data-blur=index data-image="./assets/images/menu/points/default.jpg") #{smallPoint[0]}
+	.menu__img-wrap
+		.menu__img-wrap-for-animation
+			+img('menu/points/default.jpg').js-menu-img
