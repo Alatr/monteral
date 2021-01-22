@@ -1,0 +1,162 @@
+.footer-wrap {
+    background: linear-gradient(180deg, rgba(0, 114, 117, 1) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 113, 116, 1) 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+    background-size: 100vw, cover;
+    padding-top: 160px;
+    padding-bottom: 320px;
+    position: relative;
+    .footer-logo-large {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.footer-inner-pages {
+    --self-padding-top: 35px;
+    --delimiter-width: 30px;
+    --decor-border-width: 2px;
+    --block-start-left-padding: 60px;
+    display: flex;
+    font-size: 10px;
+    line-height: 1em;
+    color: $color-text-gold;
+    @include size(10);
+    @include shift(1);
+    a {
+        text-decoration: none;
+        display: inline-block;
+    }
+    &>* {
+        padding-top: var(--self-padding-top);
+    }
+    &__left {
+        position: relative;
+        flex-basis: 65%;
+        flex-shrink: 0;
+        padding-left: var(--block-start-left-padding);
+        margin-right: var(--delimiter-width);
+        padding-right: var(--delimiter-width);
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+    }
+    &__left:after {
+        content: '';
+        position: absolute;
+        right: calc(var(--decor-border-width) * -1);
+        transform: translateX(100%);
+        bottom: 0;
+        height: var(--decor-border-width);
+        width: var(--delimiter-width);
+        background-color: $color-gold;
+    }
+    &__right {
+        flex-shrink: 1;
+        position: relative;
+        height: auto;
+        padding-left: var(--block-start-left-padding);
+        padding-right: var(--block-start-left-padding);
+        flex-basis: calc(35% - var(--delimiter-width));
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+    }
+    &__left {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__left>li {
+        width: 33%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .footer-title-l {
+        color: #ffffff;
+        font-size: 20px;
+        line-height: 1em;
+    }
+    .footer-head-title {
+        font-size: 12px;
+        line-height: 1em;
+        text-transform: uppercase;
+        color: $color-text-gold;
+        font-weight: bold;
+        &.gold {
+            color: $color-gold;
+        }
+    }
+    .footer-link-s {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 1em;
+        color: #84B2B4;
+    }
+    .footer-page-link {
+        margin-bottom: 20px;
+    }
+    .footer-page-sublink {
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    .footer-sublinks-title {
+        margin-bottom: 30px;
+    }
+    .footer-info-block {
+        .footer-head-title {
+            margin-bottom: 30px;
+        }
+        .link-with-icon {
+            margin-top: 20px;
+        }
+    }
+    .footer-info-block:not(:first-child) {
+        margin-top: 30px;
+    }
+    .footer-info-block-part {
+        max-width: 25ch;
+        margin-bottom: 20px;
+        line-height: 1.4em;
+    }
+}
+
+.footer-copyright {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 14px;
+    display: flex;
+    justify-content: space-between;
+    color: $color-text-gold;
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.link-with-icon {
+    display: flex;
+    align-items: center;
+    &__text {
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 12px;
+        line-height: 1.25em;
+        text-transform: uppercase;
+        margin-right: 10px;
+    }
+    &__svg {}
+    .icon--footer-arrow {
+        width: 18px;
+        height: 16px;
+    }
+}
+
+.footer-logo-large {
+    width: 100vw;
+    height: calc(100vw * 0.11);
+}
+
+.page__footer-wrapper {
+    // background: url(../images/footer/bg.jpg) center no-repeat;
+}

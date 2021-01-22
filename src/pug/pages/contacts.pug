@@ -1,0 +1,16 @@
+extends ../layout/main
+block footer
+  include ../includes/footer-inner-pages.pug
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/form.bundle.js')
+block header
+
+block content
+    h1 1

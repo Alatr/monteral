@@ -1,95 +1,95 @@
 // @@include('./libs.js');
 
 const eases = {
-	ex: "expo.inOut",
-	exI: "expo.in",
-	exO: "expo.out",
-	p4: "power4.inOut",
-	p4I: "power4.in",
-	p4O: "power4.out",
-	p2: "power2.inOut",
-	p2I: "power2.in",
-	p2O: "power2.out",
-	circ: "circ.inOut",
-	circO: "circ.out",
-	circI: "circ.in",
+    ex: "expo.inOut",
+    exI: "expo.in",
+    exO: "expo.out",
+    p4: "power4.inOut",
+    p4I: "power4.in",
+    p4O: "power4.out",
+    p2: "power2.inOut",
+    p2I: "power2.in",
+    p2O: "power2.out",
+    circ: "circ.inOut",
+    circO: "circ.out",
+    circI: "circ.in",
 }
 
 class showModal {
-	constructor(obj) {
-		this.$popup = obj.$popup;
-		this.$openBtn = obj.$openBtn;
-		this.$closeBtn = obj.$closeBtn;
-		this.attrParrentNode = obj.attrParrentNode;
-		this.status = false;
-		this.animationIn = obj.animationIn;
-		this.animationOut = obj.animationOut;
-		
-		this.$body = document.querySelector('body');
+    constructor(obj) {
+        this.$popup = obj.$popup;
+        this.$openBtn = obj.$openBtn;
+        this.$closeBtn = obj.$closeBtn;
+        this.attrParrentNode = obj.attrParrentNode;
+        this.status = false;
+        this.animationIn = obj.animationIn;
+        this.animationOut = obj.animationOut;
+
+        this.$body = document.querySelector('body');
 
 
-		this.init()
-	}
+        this.init()
+    }
 
 
-	get isOpen(){
-		return this.status;
-	}
-	/*  */
-	enableButton(btn){
-		console.log(btn);
-		btn.disabled = false;
-	}
-	disableButton(btn){
-		console.log(btn);
-		btn.disabled = true;
-	}
-	/*  */
-	open() {
-		const onComplete = () => {
-			this.enableButton(this.$openBtn);
-			this.status = true;
-		}
-		const onStart = () => this.disableButton(this.$openBtn);
+    get isOpen() {
+            return this.status;
+        }
+        /*  */
+    enableButton(btn) {
+        console.log(btn);
+        btn.disabled = false;
+    }
+    disableButton(btn) {
+            console.log(btn);
+            btn.disabled = true;
+        }
+        /*  */
+    open() {
+        const onComplete = () => {
+            this.enableButton(this.$openBtn);
+            this.status = true;
+        }
+        const onStart = () => this.disableButton(this.$openBtn);
 
-		this.animationIn({onComplete, onStart}).play();
-	};
-	
-	close() {
-		
-		const onComplete = () => {
-			this.enableButton(this.$openBtn);
+        this.animationIn({ onComplete, onStart }).play();
+    };
 
-			this.status = false;
-		}
-		const onStart = () => this.disableButton(this.$openBtn);
-		
-		this.animationOut({onComplete, onStart}).play();
-	};
-	
-	toggle() {
-		if (this.status) {
-			this.$body.classList.remove('modal-active');
-			this.close();
-		} else {
-			this.$body.classList.add('modal-active');
-			this.open();
-		}
-	}
-	
-	listeners() {
-		const self = this;
-		this.$body.addEventListener('click', function ({target}) {
-			if(target.closest(self.attrParrentNode) != null && !self.$openBtn.disabled) {
-				self.toggle();
-			}
-		});
-	}
+    close() {
+
+        const onComplete = () => {
+            this.enableButton(this.$openBtn);
+
+            this.status = false;
+        }
+        const onStart = () => this.disableButton(this.$openBtn);
+
+        this.animationOut({ onComplete, onStart }).play();
+    };
+
+    toggle() {
+        if (this.status) {
+            this.$body.classList.remove('modal-active');
+            this.close();
+        } else {
+            this.$body.classList.add('modal-active');
+            this.open();
+        }
+    }
+
+    listeners() {
+        const self = this;
+        this.$body.addEventListener('click', function({ target }) {
+            if (target.closest(self.attrParrentNode) != null && !self.$openBtn.disabled) {
+                self.toggle();
+            }
+        });
+    }
 
 
-	init() {
-		this.listeners();
-	}
+    init() {
+        this.listeners();
+    }
 }
 
 
@@ -110,47 +110,47 @@ const popupBlock = document.querySelector('[data-call-popup-block]');
 
 
 const callPopap = new showModal({
-	$popup: popupBlock,
-	$openBtn: popupBlockBtnOpen,
-	$closeBtn: popupBlockBtnClose,
-	animationIn: animationPopapIn,
-	animationOut: animationPopapOut,
-	attrParrentNode: '[data-parrent-node-popup]'
+    $popup: popupBlock,
+    $openBtn: popupBlockBtnOpen,
+    $closeBtn: popupBlockBtnClose,
+    animationIn: animationPopapIn,
+    animationOut: animationPopapOut,
+    attrParrentNode: '[data-parrent-node-popup]'
 });
 
 
 /*
-*  start in
-*/
+ *  start in
+ */
 function animationPopapIn(settings) {
-	// gsap.set([], {autoAlpha:0});
-	const obj = {...settings, paused: true};
-	const tl = gsap.timeline(obj);
-	tl.fromTo(this.$popup, 1, {autoAlpha: 0}, {autoAlpha: 1, immediateRender: false})
+    // gsap.set([], {autoAlpha:0});
+    const obj = {...settings, paused: true };
+    const tl = gsap.timeline(obj);
+    tl.fromTo(this.$popup, 1, { autoAlpha: 0 }, { autoAlpha: 1, immediateRender: false })
 
 
 
-	return tl;
+    return tl;
 };
 /*
-*  end in
-*/
+ *  end in
+ */
 /*
-*  start Out
-*/
+ *  start Out
+ */
 function animationPopapOut(settings) {
-	// gsap.set([], {autoAlpha:0});
-	const obj = {...settings, paused: true, };
-	const tl = gsap.timeline(obj);
-	tl.fromTo(this.$popup, 1, {autoAlpha: 1}, {autoAlpha: 0, clearProps: "all", immediateRender: false})
-	/*  */
+    // gsap.set([], {autoAlpha:0});
+    const obj = {...settings, paused: true, };
+    const tl = gsap.timeline(obj);
+    tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, clearProps: "all", immediateRender: false })
+        /*  */
 
 
-	return tl;
+    return tl;
 };
 /*
-*  end Out
-*/
+ *  end Out
+ */
 /**********************************/
 
 
@@ -194,103 +194,108 @@ const menuTextClose = document.querySelector('[data-text-close]');
 
 /**********************************/
 const ease_menuBtnHover1 = BezierEasing(.42, .8, .39, .97);
-const ease_menuBtnCross = BezierEasing(.85,1.34,.14,1.26);
-const ease_menuBtnText = BezierEasing(.03,.94,.43,1.07);
+const ease_menuBtnCross = BezierEasing(.85, 1.34, .14, 1.26);
+const ease_menuBtnText = BezierEasing(.03, .94, .43, 1.07);
 
-gsap.set([cross1, cross2], {autoAlpha: 0, scale: 0, transformOrigin: 'center'});
-gsap.set([menuTextClose], {autoAlpha: 0, x: -25});
+gsap.set([cross1, cross2], { autoAlpha: 0, scale: 0, transformOrigin: 'center' });
+gsap.set([menuTextClose], { autoAlpha: 0, x: -25 });
 
 
 
 const menu = new showModal({
-	$popup: menuBlock,
-	$closeBtn: menuBtnClose,
-	$openBtn: menuBtnOpen,
-	animationIn: animationMenuIn,
-	animationOut: animationMenuOut,
-	attrParrentNode: '[data-parrent-node-menu]'
+    $popup: menuBlock,
+    $closeBtn: menuBtnClose,
+    $openBtn: menuBtnOpen,
+    animationIn: animationMenuIn,
+    animationOut: animationMenuOut,
+    attrParrentNode: '[data-parrent-node-menu]'
 });
 
 /*
-*  start in
-*/
+ *  start in
+ */
 function animationMenuIn(settings) {
-	// gsap.set([], {autoAlpha:0});
-	const obj = {...settings, paused: true};
-	const tl = gsap.timeline(obj);
-	tl.fromTo(this.$popup, 1, {autoAlpha: 0}, {autoAlpha: 1, immediateRender: false})
+    // gsap.set([], {autoAlpha:0});
+    const obj = {...settings, paused: true };
+    const tl = gsap.timeline(obj);
+    tl.fromTo(this.$popup, 1, { autoAlpha: 0 }, { autoAlpha: 1, immediateRender: false })
 
-	tl.to([line0, line1, line2], 0.5, {autoAlpha: 1, x: 30, stagger: 0.1, ease: ease_menuBtnHover1}, '<')
-	/*  */
-	tl.to(menuTextOpen, 0.3, {autoAlpha: 0, x: 20, ease: ease_menuBtnText}, '<')
-	tl.to(menuTextClose, 0.3, {autoAlpha: 1, x: 0, ease: ease_menuBtnText}, '<')
-	/*  */
-	tl.fromTo([cross1, cross2], 0.6, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, stagger: 0.1, scale: 1, ease: ease_menuBtnCross}, '<')
+    tl.to([line0, line1, line2], 0.5, { autoAlpha: 1, x: 30, stagger: 0.1, ease: ease_menuBtnHover1 }, '<')
+        /*  */
+    tl.to(menuTextOpen, 0.3, { autoAlpha: 0, x: 20, ease: ease_menuBtnText }, '<')
+    tl.to(menuTextClose, 0.3, { autoAlpha: 1, x: 0, ease: ease_menuBtnText }, '<')
+        /*  */
+    tl.fromTo([cross1, cross2], 0.6, { autoAlpha: 0, scale: 0 }, { autoAlpha: 1, stagger: 0.1, scale: 1, ease: ease_menuBtnCross }, '<')
 
 
-	return tl;
+    return tl;
 };
 /*
-*  end in
-*/
+ *  end in
+ */
 /*
-*  start Out
-*/
+ *  start Out
+ */
 function animationMenuOut(settings) {
-	// gsap.set([], {autoAlpha:0});
-	const obj = {...settings, paused: true, };
-	const tl = gsap.timeline(obj);
-	tl.fromTo(this.$popup, 1, {autoAlpha: 1}, {autoAlpha: 0, clearProps: "all", immediateRender: false})
-	/*  */
-	tl.to(menuTextClose, 0.3, {autoAlpha: 0, x: -20, ease: ease_menuBtnText}, '<')
-	tl.to(menuTextOpen, 0.3, {autoAlpha: 1, x: 0, ease: ease_menuBtnText}, '<')
-	/*  */
-	tl.to([line0, line1, line2], 0.5, {autoAlpha: 1, x: 0, stagger: 0.1, ease: ease_menuBtnHover1}, '<')
-	tl.fromTo([cross1, cross2], 0.6, {autoAlpha: 0, scale: 1}, {autoAlpha: 1, stagger: 0.1, scale: 0, ease: ease_menuBtnCross}, '<')
+    // gsap.set([], {autoAlpha:0});
+    const obj = {...settings, paused: true, };
+    const tl = gsap.timeline(obj);
+    tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, clearProps: "all", immediateRender: false })
+        /*  */
+    tl.to(menuTextClose, 0.3, { autoAlpha: 0, x: -20, ease: ease_menuBtnText }, '<')
+    tl.to(menuTextOpen, 0.3, { autoAlpha: 1, x: 0, ease: ease_menuBtnText }, '<')
+        /*  */
+    tl.to([line0, line1, line2], 0.5, { autoAlpha: 1, x: 0, stagger: 0.1, ease: ease_menuBtnHover1 }, '<')
+    tl.fromTo([cross1, cross2], 0.6, { autoAlpha: 0, scale: 1 }, { autoAlpha: 1, stagger: 0.1, scale: 0, ease: ease_menuBtnCross }, '<')
 
 
-	return tl;
+    return tl;
 };
 /*
-*  end Out
-*/
+ *  end Out
+ */
 /**********************************/
 
 /*
-* hover start
-*/
+ * hover start
+ */
 /*
-* hover end
-*/
+ * hover end
+ */
 
 const menuBtnHover = (() => {
-	var tl = new TimelineLite({paused:true});
-	
-	tl.fromTo(menuTextOpen, 0.3, {x: 0}, {x: 8, ease: ease_menuBtnHover1});
-	tl.fromTo(line0, 0.3, {x: 0}, {x: 8, ease: ease_menuBtnHover1}, '-=0.20');
+    var tl = new TimelineLite({ paused: true });
 
-	return tl;
-	
+    tl.fromTo(menuTextOpen, 0.3, { x: 0 }, { x: 8, ease: ease_menuBtnHover1 });
+    tl.fromTo(line0, 0.3, { x: 0 }, { x: 8, ease: ease_menuBtnHover1 }, '-=0.20');
+
+    return tl;
+
 })();
 
-	
+
 
 menuBtnOpen.addEventListener("mouseover", e => {
-	if(!menu.isOpen){
-		menuBtnHover.play();
-		return
-	}
-	
+    if (!menu.isOpen) {
+        menuBtnHover.play();
+        return
+    }
+
 });
 
 menuBtnOpen.addEventListener("mouseout", e => {
-	if(!menu.isOpen){
-		menuBtnHover.reverse();
-		return
-	}
+    if (!menu.isOpen) {
+        menuBtnHover.reverse();
+        return
+    }
 });
 
 
+
+window.addEventListener('load', function(evt) {
+    gsap.to('[data-preloader]', 1, { autoAlpha: 0 });
+    gsap.to('[data-preloader]', { display: 'none' });
+});
 
 
 
@@ -306,7 +311,7 @@ menuBtnOpen.addEventListener("mouseout", e => {
 // 		this.$input = setting.$input;
 // 		this.$field = setting.$field;
 // 		this.$message = setting.$message;
-		
+
 // 		this.$body = document.querySelector('body');
 
 // 		this.init()
@@ -322,7 +327,7 @@ menuBtnOpen.addEventListener("mouseout", e => {
 // 	selectOut(self){
 // 		return ({target}) => {
 // 			if(target.value !== "") return;
-			
+
 // 			self.showDefaultStyle();
 // 			self.removeSelectedStyle();
 // 		}
@@ -358,23 +363,23 @@ menuBtnOpen.addEventListener("mouseout", e => {
 // 			case 'default':
 // 				fieldBlock.classList.remove('selected');
 // 				fieldBlock.setAttribute('data-status', 'field--inactive');
-				
+
 // 				break;
 // 			case 'success':
 // 				fieldBlock.setAttribute('data-status', 'field--success');
-				
+
 // 				break;
 // 			case 'error':
 // 				fieldBlock.setAttribute('data-status', 'field--error');
 
-				
+
 // 				break;
 // 			case 'selected':
 // 				fieldBlock.classList.add('selected');
 // 				fieldBlock.setAttribute('data-status', 'field--active');
-				
+
 // 				break;
-		
+
 // 			default:
 // 				throw new Error(`Unknown change status ${status}`);
 // 				break;
@@ -385,7 +390,7 @@ menuBtnOpen.addEventListener("mouseout", e => {
 
 // 	/*  */
 
-	
+
 // 	listeners(input) {
 // 		const self = this;
 // 		input.addEventListener('focus', self.selectIn(self));
