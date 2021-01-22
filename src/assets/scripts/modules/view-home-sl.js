@@ -1,7 +1,7 @@
 import onChange from 'on-change';
 
 import {hideElements, animPreloadFirstVideo,  animPreloadFirstOutThenPlayVideo, hideGreatingBlock} from './animation/greating'
-import {mainTransition, hideMainContent, showCntContent} from './animation/main-transition'
+import {transitionHidePartPageContact, transitionHidePartPageWithoutVideo, mainTransition, transitionshowPartPageContact, transitionPartPageWithoutVideo,  hideMainContent, showCntContent} from './animation/main-transition'
 import {setNewPathAttr, setNewPathAttrFromDataAttr, _PATHS} from './helpers/helpers'
 
 
@@ -55,11 +55,20 @@ function renderLoadingScreen(state, elements){
 			break;
 			/*  */
 		case 'showPartPageWithoutVideo':
-			console.log('render showPartPageWithoutVideo');
+			transitionPartPageWithoutVideo(state.slider.data).play();
+      
 			break;
 			/*  */
-		case 'showPartPageContact':
-			console.log('render showPartPageContact');
+    case 'showPartPageContact':
+      transitionshowPartPageContact(state.slider.data).play();
+			break;
+			/*  */
+    case 'hidePartPageContact':
+      transitionHidePartPageContact(state.slider.data).play();
+			break;
+			/*  */
+    case 'hidePartPageWithoutVideo':
+      transitionHidePartPageWithoutVideo(state.slider.data).play();
 			break;
 			/*  */
 

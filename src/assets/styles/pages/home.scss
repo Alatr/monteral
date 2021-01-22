@@ -35,8 +35,10 @@
 		right: 0;
 		transform-origin: right;
 		transform: translateY(-50%);
-		background-size: cover;
-		background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+		background-position-x: center;
+		background-position-y: center;
 		.home-video-wrap{
 			position: absolute;
 			top: 0;
@@ -443,3 +445,15 @@
 * 1st screen end
 */
 /**********************************/
+
+.data-overlay-developer-sl{
+  position: absolute;
+  top: -2%;
+  left: -2%;
+  height: 105%;
+  width: 105%;
+  background: #007275;
+  z-index: 101;
+  transform-origin: left;
+  transform: scaleX(0);
+}
