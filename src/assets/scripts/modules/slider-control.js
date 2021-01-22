@@ -14,7 +14,7 @@ export const next = async () => {
   console.log('next', _STATE.slider.data.current);
 	if (_STATE.slider.data.current === _STATE.slider.data.total) return;
 
-	// disableScroll();
+	disableScroll();
 	setIndexToNext();
 	_STATE.video.isLoaded = false;
 	_STATE.video.status = 'removePrevVideo';

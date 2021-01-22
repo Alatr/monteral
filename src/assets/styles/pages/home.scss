@@ -457,3 +457,26 @@
   transform-origin: left;
   transform: scaleX(0);
 }
+
+.home-content-contact{
+  height: 100%;
+  flex-direction: row;;
+  .contact__l,
+  .contact__r{
+    width: 50%;;
+  }
+}
+
+.contact-items-wrap{
+  display: flex;
+}
+
+.contact-item{
+  display: flex;
+  flex-direction: column;
+  &__title{}
+  &__address{}
+  &__link{
+    margin: auto 0 0 0;
+  }
+}

@@ -40,16 +40,16 @@ export const hideMainContent = () => {
 export const showCntContent = (inx = 0) => {
 	gsap.set([title, text, link], {autoAlpha: 0, x: -200});
 	gsap.set([mainTitle, mainSubtitle, awards], {autoAlpha: 0, y: -100});
-  gsap.set(_ELEMENTS.videoBlockWrapper, {autoAlpha: 0});
 	/*  */
 	const settings = { paused: true };
 	const tl = gsap.timeline(settings);
 	/*  */
 	
 	addActiveClassContent(inx);
-
+  
 	tl.call(()=> { 
     if (inx === _STATE.slider.data.total) {
+      gsap.set(_ELEMENTS.videoBlockWrapper, {autoAlpha: 0});
       return inContentContact(inx).play();
       
     }
