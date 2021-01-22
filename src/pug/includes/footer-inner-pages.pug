@@ -2,22 +2,22 @@
     .footer-inner-pages
         ul.footer-inner-pages__left
             li
-                a.footer-head-title.footer-page-link #{headMenu[0].item[0]} 
-                a.footer-head-title.footer-page-link #{headMenu[3].item[0]} 
-                a.footer-head-title.footer-page-link #{headMenu[4].item[0]} 
-                a.footer-head-title.footer-page-link #{headMenu[5].item[0]} 
+                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[0].item[0]} 
+                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[3].item[0]} 
+                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[4].item[0]} 
+                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[5].item[0]} 
             li
                 .footer-head-title.gold.footer-sublinks-title #{headMenu[1].item[0]} 
                 ul
                     each link in headMenu[1].childs
                         li
-                            a.footer-link-s.footer-page-sublink #{link[0]}
+                            a.footer-link-s.footer-page-sublink(href=link[1]) #{link[0]}
             li
                 .footer-head-title.gold.footer-sublinks-title #{headMenu[2].item[0]} 
                 ul
                     each link in headMenu[2].childs
                         li
-                            a.footer-link-s.footer-page-sublink #{link[0]}
+                            a.footer-link-s.footer-page-sublink(href=link[1]) #{link[0]}
         .footer-inner-pages__right
             .footer-info-block
                 .footer-head-title.gold Відділ продажів
