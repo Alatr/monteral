@@ -40,8 +40,28 @@
         --block-start-left-padding: 0px;
         padding-top: 100px;
         padding-bottom: 280px;
+        background: linear-gradient(180deg, #007275 80%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background-size: 200vw, cover;
         .footer-copyright>*:nth-child(2) {
             text-align: right;
+        }
+    }
+    @include to(575px) {
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 40px;
+        .footer-copyright {
+            flex-wrap: wrap;
+            text-align: left;
+        }
+        .footer-copyright>*:first-child {
+            width: 100%;
+        }
+        .footer-copyright>*:nth-child(2) {
+            width: 100%;
+            margin-top: 1.6em;
+            text-align: left;
+            padding-left: 0;
         }
     }
 }
@@ -190,12 +210,30 @@
     }
     @include from(951px) {
         .footer-info-block:not(:first-child) {
-            margin-top: 0px;
+            margin-top: 30px;
         }
     }
     @include from(769px) {
         a:hover {
             color: #ffffff;
+        }
+    }
+    @include to(575px) {
+        --self-padding-top: 20px;
+        &__left>li {
+            width: 100%;
+        }
+        .footer-info-block {
+            width: 100%;
+        }
+        .footer-info-block:not(:first-child) {
+            margin-top: 30px;
+        }
+        &__left li ul li:last-child a {
+            margin-bottom: 0;
+        }
+        &__left>li:not(:first-child) {
+            margin-top: 40px;
         }
     }
 }
@@ -238,7 +276,7 @@
 
 .footer-logo-large {
     width: 100vw;
-    height: calc(100vw * 0.11);
+    height: calc(100vw * 0.115);
 }
 
 .page__footer-wrapper {
