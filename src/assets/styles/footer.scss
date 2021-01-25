@@ -26,6 +26,9 @@
         width: 36%;
         padding-left: calc((var(--delimiter-width) * 2) + var(--block-start-left-padding));
     }
+    @include from(1680px) {
+        @include shift-padding(2);
+    }
     @include to(1400px) {
         background: linear-gradient(180deg, #007275 50%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
         background-size: 100vw, cover;
