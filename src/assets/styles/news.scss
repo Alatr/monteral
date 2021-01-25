@@ -1,0 +1,7 @@
+#news {
+    @include from(769px) {
+        .header {
+            --header-height: 80px;
+        }
+    }
+}

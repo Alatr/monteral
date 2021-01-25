@@ -23,6 +23,7 @@ block scripts
   script(defer src='./assets/scripts/index.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/news.js')
 block header
 
 block content
@@ -33,10 +34,10 @@ block content
         include ../includes/breadcrumbs.pug
         .page-first-block__text-wrap 
             <svg class="page-logo" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 37H37V0H0V37ZM33.8975 33.8878H3.10248V3.22742H33.8975V33.8878Z" />
-            <path d="M20.294 7.40039V27.9308H16.7573V7.40039H7.39844V31.0804H10.3367V10.5499H13.819V31.0804H23.1778V10.5499H26.7146V31.0804H29.5984V7.40039H20.294Z" />
+            <path data-path-draw-effect d="M0 37H37V0H0V37ZM33.8975 33.8878H3.10248V3.22742H33.8975V33.8878Z" />
+            <path data-path-draw-effect d="M20.294 7.40039V27.9308H16.7573V7.40039H7.39844V31.0804H10.3367V10.5499H13.819V31.0804H23.1778V10.5499H26.7146V31.0804H29.5984V7.40039H20.294Z" />
             </svg>
-            h1.page-title Новини
+            h1.page-title(data-gsap-anim-enter) Новини
             .page-subtitle.with-line останні події житлового комплексу
         <svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
             <g fill="none" fill-rule="evenodd">
@@ -51,3 +52,19 @@ block content
                 a(href="#") ru
             li(data-animate-links).lang__item
                 a(href="#") en
+        .decor-social(data-animate-links)
+        ul.social.screen__social
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") facebook
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") instagram
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") telegram
+    section
+        .news-link
+            .news-link__left 
+                .news-link__date 01.08.2020
+                .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
+            .news-link__delimiter
+            .news-link__right
+                img(src="#").news-link__img

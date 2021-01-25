@@ -88,6 +88,14 @@
     .screen-icon-scroll {
         bottom: calc(var(--self-padding-top) / 2);
     }
+    .screen__social,
+    .decor-social {
+        bottom: 50px;
+        left: 0;
+    }
+    .decor-social {
+        transform: translate(-150%, -8%) rotate(45deg);
+    }
 }
 
 .page-logo {
