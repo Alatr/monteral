@@ -60,11 +60,31 @@ block content
                 a(href="#" rel="nofollow" target="_blank") instagram
             li(data-animate-links).social__item
                 a(href="#" rel="nofollow" target="_blank") telegram
-    section
+    section.news-content
         .news-link
             .news-link__left 
                 .news-link__date 01.08.2020
                 .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
             .news-link__delimiter
             .news-link__right
-                img(src="#").news-link__img
+                img(src="./assets/images/news/test.jpg").news-link__img
+                .news-link__arrow
+                    +svg('news-link-arrow')
+        .news-link.reverse
+            .news-link__left 
+                .news-link__date 01.08.2020
+                .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
+            .news-link__delimiter
+            .news-link__right
+                img(src="./assets/images/news/test.jpg").news-link__img
+                .news-link__arrow
+                    +svg('news-link-arrow')
+        .news-pagination
+            +svg('pagination-double-arrow').news-pagination__to-start(data-repaint-on-hover)
+            +svg('pagination-arrow').news-pagination__back(data-repaint-on-hover)
+            .news-pagination__item 1
+            .news-pagination__item 2
+            .news-pagination__item 3
+            .news-pagination__item 4
+            +svg('pagination-arrow').news-pagination__forward(data-repaint-on-hover)
+            +svg('pagination-double-arrow').news-pagination__to-end(data-repaint-on-hover)

@@ -5,3 +5,172 @@
         }
     }
 }
+
+.news-content {
+    @include shift-padding(2);
+    .news-link {
+        margin-top: 60px;
+    }
+    .news-pagination {
+        margin-top: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+}
+
+.news-link {
+    --delimiter-width: 30px;
+    --decor-border-width: 2px;
+    --block-start-left-padding: 40px;
+    --self-padding-top: 35px;
+    --image-padding: 20px;
+    background-color: #006164;
+    display: flex;
+    &__left {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: 45%;
+        flex-shrink: 0;
+        padding-left: var(--block-start-left-padding);
+        margin-right: var(--delimiter-width);
+        padding-right: var(--delimiter-width);
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+    }
+    &__left:after {
+        content: '';
+        position: absolute;
+        right: calc(var(--decor-border-width) * -1);
+        transform: translateX(100%);
+        bottom: 0;
+        height: var(--decor-border-width);
+        width: var(--delimiter-width);
+        background-color: $color-gold;
+    }
+    &.reverse &__left {
+        order: 2;
+        margin-left: var(--delimiter-width);
+        margin-right: 0;
+    }
+    &.reverse &__left:after {
+        left: calc(var(--decor-border-width) * -1);
+        transform: translateX(-100%);
+        right: auto;
+    }
+    &.reverse &__right {
+        order: 1;
+    }
+    &__right {
+        flex-shrink: 1;
+        position: relative;
+        height: auto;
+        padding: var(--image-padding);
+        flex-basis: calc(55% - var(--delimiter-width));
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+    }
+    &__date {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 1em;
+        text-transform: uppercase;
+        color: #5FA2A4;
+        margin-bottom: 10px;
+    }
+    &__text {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 1.5em;
+        letter-spacing: -0.05em;
+        color: #FFFFFF;
+    }
+    &__arrow {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        right: calc( var(--image-padding) * 2);
+        bottom: calc( var(--image-padding) * 2);
+        background-color: #007275;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    &.reverse &__arrow {
+        right: auto;
+        left: calc( var(--image-padding) * 2);
+        bottom: calc( var(--image-padding) * 2);
+    }
+    @include from(769px) {
+        &__text {
+            max-width: 75%;
+        }
+    }
+    @include to(950px) {
+        --image-padding: 15px;
+        &__arrow {
+            display: none;
+        }
+    }
+}
+
+.news-pagination {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    &>* {
+        cursor: pointer;
+    }
+    &>*:nth-child(n+2) {
+        margin-left: 40px;
+    }
+    &__forward {
+        transform: rotate(180deg);
+    }
+    &__to-end {
+        transform: rotate(180deg);
+    }
+    &__item {
+        transition: .3s ease-out;
+        position: relative;
+    }
+    &__item:after {
+        content: '';
+        opacity: 0;
+        transition: opacity .3s ease-out;
+    }
+    .icon--pagination-double-arrow {
+        width: 25px;
+        height: 18px;
+    }
+    .icon--pagination-arrow {
+        width: 20px;
+        height: 18px;
+    }
+    @include from(769px) {
+        &__item:hover {
+            color: $color-gold;
+        }
+        &__item:hover:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            opacity: 1;
+            width: 5px;
+            height: 2px;
+            background-color: $color-gold;
+        }
+    }
+}
+
+.icon--news-link-arrow {
+    width: 19px;
+    height: 18px;
+}
