@@ -3,6 +3,16 @@
     padding-top: var(--header-height);
     padding-left: var(--self-side-padding);
     padding-right: var(--self-side-padding);
+    @include to(575px) {
+        --self-side-padding: 14px;
+    }
+}
+
+.screen__lang.lang,
+.screen__social.social {
+    @include to(575px) {
+        z-index: -2;
+    }
 }
 
 .breadcrumbs {
@@ -30,6 +40,9 @@
         &__current--color {
             color: $color-gold;
         }
+    }
+    @include from(1680px) {
+        font-size: 14px;
     }
 }
 
@@ -81,8 +94,8 @@
         height: 100%;
         flex-direction: column;
         .page-title {
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
+            margin-top: Min(0.5em, 30px);
+            margin-bottom: Min(0.5em, 30px);
         }
     }
     .screen-icon-scroll {
@@ -96,6 +109,21 @@
     .decor-social {
         transform: translate(-150%, -8%) rotate(45deg);
     }
+    @include from(1680px) {
+        &__text-wrap {}
+    }
+    @include to(575px) {
+        --self-padding-top: 0px;
+        &__text-wrap {
+            .page-title {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+        }
+        .screen-icon-scroll {
+            bottom: 50px
+        }
+    }
 }
 
 .page-logo {
@@ -103,6 +131,12 @@
     width: var(--self-size);
     height: var(--self-size);
     fill: $color-gold;
+    @include from(1680px) {
+        --self-size: 50px;
+    }
+    @include to(575px) {
+        --self-size: 26px;
+    }
 }
 
 .page-title {
@@ -115,6 +149,12 @@
     text-transform: uppercase;
     /* Text silver */
     color: $color-text-silver;
+    @include from(1680px) {
+        font-size: 96px;
+    }
+    @include to(575px) {
+        font-size: 24px;
+    }
 }
 
 .page-subtitle {
@@ -135,5 +175,31 @@
         height: 2px;
         background-color: $color-gold;
         transform: translate(-50%, -50%);
+    }
+    @include from(1680px) {
+        font-size: 18px;
+    }
+    @include to(575px) {
+        color: $color-text-gold;
+        font-size: 12px;
+        &.with-line:before {
+            bottom: 0.5em;
+        }
+    }
+}
+
+.page-first-block {
+    @include to(575px) {
+        .screen-icon-scroll {
+            width: 18px;
+            height: 30px;
+        }
+        .screen-icon-scroll circle {
+            fill: #E1DDD2;
+            r: 7;
+        }
+        .screen-icon-scroll rect {
+            stroke-width: 8;
+        }
     }
 }

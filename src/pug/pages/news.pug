@@ -39,7 +39,7 @@ block content
             </svg>
             h1.page-title(data-gsap-anim-enter) Новини
             .page-subtitle.with-line останні події житлового комплексу
-        <svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
+        <svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 76 130" preserveAspectRatio="xMidYMid meet">
             <g fill="none" fill-rule="evenodd">
                 <rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="5" rx="36"/>
                 <circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
@@ -61,7 +61,7 @@ block content
             li(data-animate-links).social__item
                 a(href="#" rel="nofollow" target="_blank") telegram
     section.news-content
-        .news-link
+        a(href="news-single.html").news-link
             .news-link__left 
                 .news-link__date 01.08.2020
                 .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
@@ -70,7 +70,7 @@ block content
                 img(src="./assets/images/news/test.jpg").news-link__img
                 .news-link__arrow
                     +svg('news-link-arrow')
-        .news-link.reverse
+        a(href="news-single.html").news-link.reverse
             .news-link__left 
                 .news-link__date 01.08.2020
                 .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
