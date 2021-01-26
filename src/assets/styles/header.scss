@@ -132,7 +132,7 @@
         height: calc(var(--header-height) + var(--side-padding));
         &__logo {
             svg {
-                width: 130px;
+                width: 120px;
             }
         }
         &__call_icon-on-mobile.border-btn,
@@ -158,9 +158,9 @@
             }
         }
         &__menu {
-            .header-menu__text {
-                width: 40px;
-            }
+            // .header-menu__text {
+            //     width: 40px;
+            // }
         }
     }
     @include to(360px) {

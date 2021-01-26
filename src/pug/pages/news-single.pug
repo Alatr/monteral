@@ -1,0 +1,66 @@
+extends ../layout/main
+block variable
+    -
+        var title_page = 'Оцініть переваги купівлі в розстрочку у ЖК Montreal House'
+        var id_page = 'news-single'
+        var class_page = 'news-single'
+        var breadcrumbsSubitem = [
+            {
+                label: headMenu[0].item[0],
+                link: headMenu[0].item[1]
+            },
+            {
+                label: headMenu[3].item[0],
+                link: headMenu[3].item[1]
+            },
+
+        ]
+    
+block footer
+  include ../includes/footer-inner-pages.pug
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/news.js')
+block header
+
+block content
+    section
+        .news-item
+            .left
+            .top
+            .right
+            .gap-top
+            .gap-bottom
+            .left-line-1st
+            .left-line-2nd
+            h1 #{title_page}
+            img(src="#")
+            b Обирайте квартиру, робіть перший внесок від 30% та сплачуйте розстрочку від забудовника до введення будинку в експлуатацію та + 12 місяців після. Пропозиція дійсна тільки до кінця осені.
+            p Персональний менеджер допоможе підібрати найбільш відповідний варіант планування, виходячи з ваших побажань, запропонує особистий графік платежів та найбільш прийнятну суму виплат.
+            p Придбання квартири в розстрочку дозволяє не тільки своєчасно здійснити вигідну покупку, а й зробити вдалу інвестицію, адже житло у центрі Києва завжди в ціні.
+        include ../includes/breadcrumbs.pug
+        a(href="news-single.html").news-link
+            .news-link__left 
+                .news-link__date 01.08.2020
+                .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
+            .news-link__delimiter
+            .news-link__right
+                img(src="./assets/images/news/test.jpg").news-link__img
+                .news-link__arrow
+                    +svg('news-link-arrow')
+        a(href="news-single.html").news-link.reverse
+            .news-link__left 
+                .news-link__date 01.08.2020
+                .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
+            .news-link__delimiter
+            .news-link__right
+                img(src="./assets/images/news/test.jpg").news-link__img
+                .news-link__arrow
+                    +svg('news-link-arrow')

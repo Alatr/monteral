@@ -112,6 +112,14 @@
     @include from(1680px) {
         &__text-wrap {}
     }
+    @include to(950px) {
+        &__text-wrap {
+            .page-title {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+        }
+    }
     @include to(575px) {
         --self-padding-top: 0px;
         &__text-wrap {
@@ -152,6 +160,9 @@
     @include from(1680px) {
         font-size: 96px;
     }
+    @include to(950px) {
+        font-size: 48px;
+    }
     @include to(575px) {
         font-size: 24px;
     }
@@ -179,8 +190,10 @@
     @include from(1680px) {
         font-size: 18px;
     }
-    @include to(575px) {
+    @include to(950px) {
         color: $color-text-gold;
+    }
+    @include to(575px) {
         font-size: 12px;
         &.with-line:before {
             bottom: 0.5em;
