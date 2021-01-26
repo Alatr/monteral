@@ -2,11 +2,15 @@
     --delimiter-width: 30px;
     --decor-border-width: 2px;
     --block-start-left-padding: 60px;
-    background: linear-gradient(180deg, rgba(0, 114, 117, 1) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 113, 116, 1) 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+    // background: linear-gradient(180deg, rgba(0, 114, 117, 1) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 113, 116, 1) 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+    background: linear-gradient(180deg, #006164 34.65%, rgba(0, 97, 100, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
     background-size: 100vw, cover;
     padding-top: 160px;
     padding-bottom: 320px;
     position: relative;
+    &.lighter {
+        background: linear-gradient(180deg, #007275 34.65%, rgba(0, 114, 117, 0) 75%);
+    }
     @include shift-padding(1);
     .footer-logo-large {
         position: absolute;
@@ -30,7 +34,7 @@
         @include shift-padding(2);
     }
     @include to(1400px) {
-        background: linear-gradient(180deg, #007275 50%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        // background: linear-gradient(180deg, #007275 50%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
         background-size: 100vw, cover;
     }
     @include to(1240px) {
@@ -43,7 +47,7 @@
         --block-start-left-padding: 0px;
         padding-top: 100px;
         padding-bottom: 280px;
-        background: linear-gradient(180deg, #007275 80%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        // background: linear-gradient(180deg, #007275 80%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
         background-size: 200vw, cover;
         .footer-copyright>*:nth-child(2) {
             text-align: right;

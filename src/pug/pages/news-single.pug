@@ -32,6 +32,7 @@ block header
 
 block content
     section
+        include ../includes/breadcrumbs.pug
         .news-item
             .left
             .top
@@ -40,12 +41,14 @@ block content
             .gap-bottom
             .left-line-1st
             .left-line-2nd
+            .news-item__date 01.03.2020
             h1 #{title_page}
-            img(src="#")
+            img(src="./assets/images/news-single/test.jpg")
             b Обирайте квартиру, робіть перший внесок від 30% та сплачуйте розстрочку від забудовника до введення будинку в експлуатацію та + 12 місяців після. Пропозиція дійсна тільки до кінця осені.
             p Персональний менеджер допоможе підібрати найбільш відповідний варіант планування, виходячи з ваших побажань, запропонує особистий графік платежів та найбільш прийнятну суму виплат.
             p Придбання квартири в розстрочку дозволяє не тільки своєчасно здійснити вигідну покупку, а й зробити вдалу інвестицію, адже житло у центрі Києва завжди в ціні.
-        include ../includes/breadcrumbs.pug
+    section.last-news-section.dark-green
+        .subtitle Останні новини
         a(href="news-single.html").news-link
             .news-link__left 
                 .news-link__date 01.08.2020
