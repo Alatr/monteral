@@ -2,14 +2,20 @@
     --delimiter-width: 30px;
     --decor-border-width: 2px;
     --block-start-left-padding: 60px;
+    --gradient-color: #006164;
+    &.lighter {
+        --gradient-color: #007275;
+    }
     // background: linear-gradient(180deg, rgba(0, 114, 117, 1) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 113, 116, 1) 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-    background: linear-gradient(180deg, #006164 34.65%, rgba(0, 97, 100, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-    background-size: 100vw, cover;
+    background: linear-gradient(180deg, var(--gradient-color) 34.65%, rgba(0, 97, 100, 0) 75%),
+    url(../images/footer/bg-complex.jpg) bottom no-repeat;
+    background-size: 100vw,
+    cover;
     padding-top: 160px;
     padding-bottom: 320px;
     position: relative;
     &.lighter {
-        background: linear-gradient(180deg, #007275 34.65%, rgba(0, 114, 117, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background: linear-gradient(180deg, var(--gradient-color) 34.65%, rgba(0, 114, 117, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
     }
     @include shift-padding(1);
     .footer-logo-large {
@@ -48,16 +54,24 @@
         padding-top: 100px;
         padding-bottom: 280px;
         // background: linear-gradient(180deg, #007275 80%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-        background: linear-gradient(180deg, #006164 34.65%, rgba(0, 97, 100, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-        background-size: 200vw, cover;
+        background: linear-gradient(180deg, var(--gradient-color) 63.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background-size: 200vw, 100vw auto;
         .footer-copyright>*:nth-child(2) {
             text-align: right;
         }
     }
+    @include to(768px) {
+        background: linear-gradient(180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background-size: 200vw, 100vw auto;
+    }
     @include to(575px) {
+        background: linear-gradient( 180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background-size: 200vw, auto 50vh;
         padding-left: 14px;
         padding-right: 14px;
         padding-top: 40px;
+        background: linear-gradient( 180deg, var(--gradient-color) 85.65%, rgba(0, 97, 100, 0) 96%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background-size: 200vw, auto 50vh;
         .footer-copyright {
             flex-wrap: wrap;
             text-align: left;

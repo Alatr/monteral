@@ -12,18 +12,46 @@
         justify-content: center;
         flex-wrap: wrap;
         margin-bottom: 160px;
+        position: relative;
+        .news-back-link {
+            position: absolute;
+            top: 140px;
+            left: 0;
+        }
     }
     .breadcrumbs {
         width: 100%;
     }
+    .decor-social {
+        top: calc(100vh - var(--header-height));
+    }
+    .screen__social {
+        top: calc(100vh - var(--header-height));
+    }
+    .screen__lang {
+        top: 50vh;
+    }
     @include to(950px) {
         section:first-child {
             margin-bottom: 100px;
+            .news-back-link {
+                position: absolute;
+                top: 130px;
+                left: 0;
+            }
+        }
+        .decor-social,
+        .screen__social,
+        .screen__lang {
+            display: none;
         }
     }
     @include to(575px) {
         section:first-child {
             margin-bottom: 40px;
+            .news-back-link {
+                top: 50px;
+            }
         }
         .breadcrumbs {
             margin-top: 15px;
@@ -149,6 +177,10 @@
         padding-left: calc((100% / 8));
         padding-right: calc((100% / 8));
     }
+    @include to(1024px) {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
     @include to(950px) {
         padding-left: calc(100% / 12);
         padding-right: calc(100% / 12);
@@ -226,6 +258,7 @@
         .subtitle {
             font-size: 18px;
             margin-bottom: 20px;
+            font-size: max(6vw, 18px);
         }
         .news-link__text {
             max-width: 85%;
@@ -235,4 +268,26 @@
 
 section.dark-green {
     background-color: $color-green-black;
+}
+
+.news-back-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1em;
+    span {
+        margin-left: 10px;
+    }
+    @include to(950px) {
+        svg {
+            max-width: 20px;
+        }
+        span {
+            display: none;
+        }
+    }
 }
