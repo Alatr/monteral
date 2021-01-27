@@ -2,7 +2,20 @@
     .double-part-block {
         @include size(10);
         @include shift(1);
-        margin-top: 150px;
-        margin-bottom: 150px;
+        // margin-top: 150px;
+        // margin-bottom: 150px;
+    }
+    @include to(1024px) {
+        .double-part-block {
+            @include size(12);
+            @include shift(0);
+        }
+    }
+    @include to(575px) {
+        .double-part-block {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 }
