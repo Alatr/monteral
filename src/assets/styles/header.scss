@@ -16,7 +16,9 @@
     display: flex;
     width: 100%;
     height: var(--header-height);
-    background-color: rgba(0, 97, 100, 0.9);
+    .not-on-top {
+        background-color: rgba(0, 97, 100, 0.9);
+    }
     // padding: var(--side-padding) var(--side-padding) 0 var(--side-padding);
     padding: 0 var(--side-padding) 0 var(--side-padding);
     align-items: center;
