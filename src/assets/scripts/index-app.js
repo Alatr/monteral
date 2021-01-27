@@ -144,7 +144,7 @@ function app() {
     console.log(isFirstVisit() , isHourPassedFromLastVisit());
 		// if(!isFirstVisit() || isHourPassedFromLastVisit()){
 			/* !!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>> */
-		if(!isHourPassedFromLastVisit()){
+		if(isHourPassedFromLastVisit()){
 			watched.page.status = 'contentStartAnimationGreating';
 			animationGreating.play();
 			return
@@ -154,6 +154,7 @@ function app() {
 	});
 	/*  */
 	document.addEventListener("wheel", function(event) {
+    console.log(2);
 		if(isBlockedScroll()) return false
 		/*  */
 		const direction = getDirection(event.deltaY);

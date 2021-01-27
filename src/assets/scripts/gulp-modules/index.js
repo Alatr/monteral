@@ -291,12 +291,12 @@ menuBtnOpen.addEventListener("mouseout", e => {
 });
 
 
-
+/* 
 window.addEventListener('load', function(evt) {
     gsap.to('[data-preloader]', 1, { autoAlpha: 0 });
     gsap.to('[data-preloader]', { display: 'none' });
 });
-
+ */
 
 
 
