@@ -128,8 +128,8 @@
     @include to(575px) {
         --margin-el: 10px;
         --side-padding: 14px;
-        --header-height: 70px;
-        height: calc(var(--header-height) + var(--side-padding));
+        // --header-height: 70px;
+        height: calc(var(--header-height));
         &__logo {
             svg {
                 width: 120px;

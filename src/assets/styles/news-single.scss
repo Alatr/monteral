@@ -16,6 +16,32 @@
     .breadcrumbs {
         width: 100%;
     }
+    @include to(950px) {
+        section:first-child {
+            margin-bottom: 100px;
+        }
+    }
+    @include to(575px) {
+        section:first-child {
+            margin-bottom: 40px;
+        }
+        .breadcrumbs {
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        .page__content {
+            background-size: auto 100vh;
+        }
+        b {
+            font-size: 14px;
+        }
+        b,
+        p {
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
 }
 
 .news-item {
@@ -120,8 +146,49 @@
     }
     b,
     p {
-        padding-left: calc((100% / 8 * 1.5) + var(--self-side-padding));
-        padding-right: calc((100% / 8 * 1.5) + var(--self-side-padding));
+        padding-left: calc((100% / 8));
+        padding-right: calc((100% / 8));
+    }
+    @include to(950px) {
+        padding-left: calc(100% / 12);
+        padding-right: calc(100% / 12);
+        @include size(10.5);
+        h1 {
+            font-size: 36px;
+            line-height: 1.3em;
+        }
+        b {
+            font-size: 20px;
+            line-height: 1.5em;
+        }
+    }
+    @include to(768px) {
+        @include size(11);
+        @include shift-left(1);
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    @include to(575px) {
+        .left,
+        .top,
+        .right,
+        .gap-top,
+        .gap-bottom,
+        .left-line-1st,
+        .left-line-2nd {
+            display: none;
+        }
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 40px;
+        @include size(11.5);
+        @include shift-left(0.5);
+        // margin-left: 0;
+        h1 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
     }
 }
 
@@ -134,6 +201,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(0deg, #006164 0%, #00585A 100%);
     .subtitle {
         font-size: 48px;
         line-height: 1em;
@@ -142,6 +210,26 @@
     }
     &>*:not(:last-child) {
         margin-bottom: 60px;
+    }
+    @include to(950px) {
+        padding: 100px calc(100% / 12 - var(--self-side-padding));
+        .subtitle {
+            font-size: 36px;
+        }
+        &>*:not(:last-child) {
+            margin-bottom: 40px;
+        }
+    }
+    @include to(575px) {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        .subtitle {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .news-link__text {
+            max-width: 85%;
+        }
     }
 }
 

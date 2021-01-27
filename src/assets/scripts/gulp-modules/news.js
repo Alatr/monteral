@@ -26,7 +26,7 @@ function simulatePathDrawing(path, strokeWidth = '3') {
         path.style.strokeWidth = 0;
     }, 1500);
 }
-window.addEventListener('load', function(evt) {
+window.addEventListener('load', function() {
     document.querySelectorAll('[data-path-draw-effect]').forEach((el, i) => {
         setTimeout(() => {
             simulatePathDrawing(el, 1);

@@ -9,7 +9,7 @@
     padding-bottom: 320px;
     position: relative;
     &.lighter {
-        background: linear-gradient(180deg, #007275 34.65%, rgba(0, 114, 117, 0) 75%);
+        background: linear-gradient(180deg, #007275 34.65%, rgba(0, 114, 117, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
     }
     @include shift-padding(1);
     .footer-logo-large {
@@ -48,6 +48,7 @@
         padding-top: 100px;
         padding-bottom: 280px;
         // background: linear-gradient(180deg, #007275 80%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background: linear-gradient(180deg, #006164 34.65%, rgba(0, 97, 100, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
         background-size: 200vw, cover;
         .footer-copyright>*:nth-child(2) {
             text-align: right;

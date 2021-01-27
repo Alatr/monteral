@@ -22,6 +22,12 @@ $mc: #CFBE97;
     --color-silver: rgba(187, 205, 215, 1);
     --color-text-silver: rgba(238, 238, 238, 1);
     --color-bg-geen-black: rgba(0, 97, 100, 1);
+    @media screen and (max-width: 950px) {
+        --header-height: 80px;
+    }
+    @media screen and (max-width: 575px) {
+        --header-height: 70px;
+    }
 }
 
 $mc3: #E5DF06;

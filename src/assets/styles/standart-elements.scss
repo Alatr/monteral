@@ -3,6 +3,9 @@
     padding-top: var(--header-height);
     padding-left: var(--self-side-padding);
     padding-right: var(--self-side-padding);
+    @include to(950px) {
+        --self-side-padding: 22px;
+    }
     @include to(575px) {
         --self-side-padding: 14px;
     }
@@ -43,6 +46,13 @@
     }
     @include from(1680px) {
         font-size: 14px;
+    }
+    @include to(768px) {
+        white-space: nowrap;
+        &-item:last-child {
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
     }
 }
 
@@ -122,6 +132,10 @@
     }
     @include to(575px) {
         --self-padding-top: 0px;
+        .breadcrumbs {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
         &__text-wrap {
             .page-title {
                 margin-top: 20px;
