@@ -5,13 +5,14 @@ import { eases } from '../helpers/helpers'
 import { inContentContact, hideContentContact } from './contact-transition.js'
 
 
+global.gsap = gsap;
 gsap.registerPlugin(CSSRulePlugin, EaselPlugin);
 
 
 
 
 let _STATE = null;
-let _ELEMENTS= null;
+let _ELEMENTS = null;
 /*  */
 const title = '[data-home-title]';
 const text = '[data-home-text]';
@@ -62,19 +63,27 @@ export const showCntContent = (inx = 0) => {
     return inContent(inx).play();
   });
 
-	return tl;
-}
-/*  */
+        addActiveClassContent(inx);
+
+        tl.call(() => {
+            if (inx === _STATE.slider.data.total) {
+                return inContentContact(inx).play();
+
+            }
+            return inContent(inx).play();
+        })
+
+        return tl;
+    }
+    /*  */
 
 export const addActiveClassContent = (inx) => {
 	[..._ELEMENTS.contentBlock].forEach((el) => el.classList.remove('home-content--active'));
 	_ELEMENTS.contentBlock[inx].classList.add('home-content--active');
 }
 /*
-* in start
-*/
-
-// createAnimationTool(inContentContact)
+ * in start
+ */
 
 
 /*  */
@@ -91,16 +100,20 @@ export const  inContent = (inx) => {
 	const obj = { paused: true }
 	const tl = gsap.timeline(obj);
 
+    const obj = { paused: true }
+    const tl = gsap.timeline(obj);
+    addActiveClassContent(inx);
 
-	tl.fromTo([titleCnt, textCnt, linkCnt], 1, {autoAlpha: 0, x: -200}, {autoAlpha: 1, x: 0, stagger: 0.1})
-	tl.fromTo([mainTitle, mainSubtitle, awardsCnt], 1, {autoAlpha: 0, y: -100}, {autoAlpha: 1, y: 0, stagger: 0.1}, '<')
+
+    tl.fromTo([titleCnt, textCnt, linkCnt], 1, { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, stagger: 0.1 })
+    tl.fromTo([mainTitle, mainSubtitle, awardsCnt], 1, { autoAlpha: 0, y: -100 }, { autoAlpha: 1, y: 0, stagger: 0.1 }, '<')
 
 
-	return tl;
+    return tl;
 };
 /*
-* in end
-*/
+ * in end
+ */
 /*
 * out start
 */
@@ -151,8 +164,8 @@ export const  outContent = (inx)=> {
 	return tl;
 };
 /*
-* out end
-*/
+ * out end
+ */
 
 
 
@@ -206,20 +219,21 @@ export const mainTransition = (sliderData) => {
 	return tl;
 };
 /*
-* main trs end
-*/
+ * main trs end
+ */
 
 
 export const transitionPartPageWithoutVideo = (sliderData) => {
-	const overlay = document.querySelector('[data-gsap-overlay-developer]');
+    const overlay = document.querySelector('[data-gsap-overlay-developer]');
 
-	const cnxOut = (_STATE.slider.ditection === 1) ? sliderData.prev : sliderData.next;
-	const settings = {
-    paused: true,
-    onComplete: () => {
-		  _STATE.page.blockedScroll = false;
+    const cnxOut = (_STATE.slider.ditection === 1) ? sliderData.prev : sliderData.next;
+    const settings = {
+        paused: true,
+        onComplete: () => {
+            _STATE.page.blockedScroll = false;
+        }
     }
-  }
+  
 
 	/*  */
 	const propPadding = gsap.getProperty(_ELEMENTS.videoBlockWrapper, "x");
@@ -245,15 +259,16 @@ export const transitionPartPageWithoutVideo = (sliderData) => {
 };
 /*  */
 export const transitionHidePartPageWithoutVideo = (sliderData) => {
-	const overlay = document.querySelector('[data-gsap-overlay-developer]');
+    const overlay = document.querySelector('[data-gsap-overlay-developer]');
 
-	const cnxOut = (_STATE.slider.ditection === 1) ? sliderData.prev : sliderData.next;
-	const settings = {
-    paused: true,
-    onComplete: () => {
-		  _STATE.page.blockedScroll = false;
+    const cnxOut = (_STATE.slider.ditection === 1) ? sliderData.prev : sliderData.next;
+    const settings = {
+        paused: true,
+        onComplete: () => {
+            _STATE.page.blockedScroll = false;
+        }
     }
-  }
+  
 
 	/*  */
 	const propPadding = gsap.getProperty(_ELEMENTS.videoBlockWrapper, "x");
@@ -287,8 +302,7 @@ export const transitionHidePartPageWithoutVideo = (sliderData) => {
 
 
 export const initMainTransition = (state, elements) => {
-	_STATE = state
-	_ELEMENTS = elements;
-	return
+    _STATE = state
+    _ELEMENTS = elements;
+    return
 };
-

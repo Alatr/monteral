@@ -1,0 +1,90 @@
+extends ../layout/main
+block variable
+    -
+        var title_page = 'Оцініть переваги купівлі в розстрочку у ЖК Montreal House'
+        var id_page = 'news-single'
+        var class_page = 'news-single'
+        var breadcrumbsSubitem = [
+            {
+                label: headMenu[0].item[0],
+                link: headMenu[0].item[1]
+            },
+            {
+                label: headMenu[3].item[0],
+                link: headMenu[3].item[1]
+            },
+
+        ]
+    
+block footer
+  include ../includes/footer-inner-pages.pug
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/news.js')
+block header
+
+block content
+    section
+        include ../includes/breadcrumbs.pug
+        a(href=headMenu[3].item[1]).news-back-link
+            <svg width="42" height="14" viewBox="0 0 42 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M42 7H2M2 7L8 1M2 7L8 13" stroke="#CFBE97" stroke-width="2"/>
+            </svg>
+            span назад
+        .news-item
+            .left
+            .top
+            .right
+            .gap-top
+            .gap-bottom
+            .left-line-1st
+            .left-line-2nd
+            .news-item__date 01.03.2020
+            h1 #{title_page}
+            img(src="./assets/images/news-single/test.jpg")
+            b Обирайте квартиру, робіть перший внесок від 30% та сплачуйте розстрочку від забудовника до введення будинку в експлуатацію та + 12 місяців після. Пропозиція дійсна тільки до кінця осені.
+            p Персональний менеджер допоможе підібрати найбільш відповідний варіант планування, виходячи з ваших побажань, запропонує особистий графік платежів та найбільш прийнятну суму виплат.
+            p Придбання квартири в розстрочку дозволяє не тільки своєчасно здійснити вигідну покупку, а й зробити вдалу інвестицію, адже житло у центрі Києва завжди в ціні.
+    //some
+    ul.lang.screen__lang
+        li(data-animate-links).lang__item.lang__item--active
+            a(href="#") uk
+        li(data-animate-links).lang__item
+            a(href="#") ru
+        li(data-animate-links).lang__item
+            a(href="#") en
+    .decor-social(data-animate-links)
+    ul.social.screen__social
+        li(data-animate-links).social__item
+            a(href="#" rel="nofollow" target="_blank") facebook
+        li(data-animate-links).social__item
+            a(href="#" rel="nofollow" target="_blank") instagram
+        li(data-animate-links).social__item
+            a(href="#" rel="nofollow" target="_blank") telegram
+    section.last-news-section.dark-green
+        .subtitle Останні новини
+        a(href="news-single.html").news-link
+            .news-link__left 
+                .news-link__date 01.08.2020
+                .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
+            .news-link__delimiter
+            .news-link__right
+                img(src="./assets/images/news/test.jpg").news-link__img
+                .news-link__arrow
+                    +svg('news-link-arrow')
+        a(href="news-single.html").news-link.reverse
+            .news-link__left 
+                .news-link__date 01.08.2020
+                .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
+            .news-link__delimiter
+            .news-link__right
+                img(src="./assets/images/news/test.jpg").news-link__img
+                .news-link__arrow
+                    +svg('news-link-arrow')

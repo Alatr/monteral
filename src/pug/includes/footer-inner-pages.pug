@@ -1,0 +1,82 @@
+.footer-wrap
+    .footer-inner-pages
+        ul.footer-inner-pages__left
+            li
+                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[0].item[0]} 
+                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[3].item[0]} 
+                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[4].item[0]} 
+                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[5].item[0]} 
+            li
+                .footer-head-title.gold.footer-sublinks-title #{headMenu[1].item[0]} 
+                ul
+                    each link in headMenu[1].childs
+                        li
+                            a.footer-link-s.footer-page-sublink(href=link[1]) #{link[0]}
+            li
+                .footer-head-title.gold.footer-sublinks-title #{headMenu[2].item[0]} 
+                ul
+                    each link in headMenu[2].childs
+                        li
+                            a.footer-link-s.footer-page-sublink(href=link[1]) #{link[0]}
+        .footer-inner-pages__right
+            .footer-info-block
+                .footer-head-title.gold Відділ продажів
+                a(href=salesTel[0] target='_blank').footer-title-l.footer-info-block-part #{salesTel[1]}
+                .footer-info-block-part #{salesAdress}
+                .footer-info-block-part #{salesScheldule}
+                .link-with-icon(data-parrent-node-popup)
+                    .link-with-icon__text Зворотній зв'язок
+                    +svg('footer-arrow').link-with-icon__icon
+            .footer-info-block
+                .footer-head-title.gold Адреса комлексу
+                .footer-info-block-part #{complexAdress}
+                .link-with-icon 
+                    .link-with-icon__text Обрати квартиру
+                    +svg('footer-arrow').link-with-icon__icon
+    .footer-copyright
+        .footer-copyright__left © Montreal house усі права захищено
+        a(href="https://smarto.agency" target='_blank').footer-copyright__right develop by <u>smart orange</u>
+    <svg class="footer-logo-large" width="1326" height="158" viewBox="0 0 1326 158" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M76.9592 67.2081L116.896 3.70898H151.225V153.494H120.062V55.2918V51.9623L118.228 54.7409L75.8421 118.938L33.9991 55.2846L32.1634 52.4922V55.8339V153.494H1V3.70898H35.869L75.263 67.2029L76.1069 68.5632L76.9592 67.2081Z" stroke="url(#paint0_linear)" stroke-width="2"/>
+        <path d="M191.297 78.6032C191.297 36.3374 225.093 1 271.302 1C317.512 1 350.764 35.2533 350.764 78.6032C350.764 120.867 316.972 156.203 270.765 156.206C224.543 155.668 191.297 121.403 191.297 78.6032ZM317.426 78.6032C317.426 52.0895 298.008 29.8992 270.215 29.8992C242.966 29.8992 223.548 51.5479 223.548 78.6032C223.548 105.117 242.966 127.307 270.759 127.307C298.559 127.307 317.426 105.65 317.426 78.6032Z" stroke="url(#paint1_linear)" stroke-width="2"/>
+        <path d="M492.477 95.9477V3.70801H523.64V153.493H496.864L423.226 57.3931L421.432 55.0522V58.0013V153.493H390.812V3.70801H419.763L490.682 96.5547L492.477 98.9043V95.9477Z" stroke="url(#paint2_linear)" stroke-width="2"/>
+        <path d="M605.563 33.6072V32.6072H604.563H559.352V3.70801H683.481V32.6072H638.27H637.27V33.6072V153.493H605.563V33.6072Z" stroke="url(#paint3_linear)" stroke-width="2"/>
+        <path d="M811.419 100.848L847.321 153.493H811.14L778.275 105.681L777.977 105.247H777.45H751.355H750.355V106.247V153.493H719.191V3.70801H787.78C807.171 3.70801 821.564 9.07585 831.11 18.5947C839.582 27.0417 843.864 38.6912 843.864 53.1225C843.864 65.1326 840.656 74.8127 835.087 82.4142C829.514 90.0222 821.53 95.6112 811.883 99.352L810.709 99.8073L811.419 100.848ZM751.898 32.0651H750.898V33.0651V76.4324V77.4324H751.898H785.605C793.93 77.4324 800.576 75.2181 805.155 71.2229C809.749 67.2146 812.158 61.5044 812.158 54.7487C812.158 47.4511 809.612 41.7252 804.858 37.8467C800.134 33.993 793.355 32.0651 785.062 32.0651H751.898Z" stroke="url(#paint4_linear)" stroke-width="2"/>
+        <path d="M916.624 125.678H997.717V153.493H884.461V3.70801H996.63V31.523H916.624H915.624V32.523V63.4222V64.4222H916.624H986.844V91.6951H916.624H915.624V92.6951V124.678V125.678H916.624Z" stroke="url(#paint5_linear)" stroke-width="2"/>
+        <path d="M1103.27 45.1597L1059.48 153.495H1041.13H1025.24L1057.27 78.4524L1089.63 2.625H1104.19H1119.3L1151.66 78.4524L1183.68 153.495H1167.26H1148.36L1105.12 45.1637L1104.2 42.8514L1103.27 45.1597Z" stroke="url(#paint6_linear)" stroke-width="2"/>
+        <path d="M1249.89 125.136H1325V153.493H1217.72V3.70801H1248.89V124.136V125.136H1249.89Z" stroke="url(#paint7_linear)" stroke-width="2"/>
+        <defs>
+        <linearGradient id="paint0_linear" x1="76.1127" y1="2.70898" x2="76.1127" y2="154.494" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CFBE97"/>
+        <stop offset="1" stop-color="#CFBE97" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="paint1_linear" x1="271.031" y1="0" x2="271.031" y2="157.206" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CFBE97"/>
+        <stop offset="1" stop-color="#CFBE97" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="paint2_linear" x1="457.226" y1="2.70801" x2="457.226" y2="154.493" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CFBE97"/>
+        <stop offset="1" stop-color="#CFBE97" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="paint3_linear" x1="621.416" y1="2.70801" x2="621.416" y2="154.493" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CFBE97"/>
+        <stop offset="1" stop-color="#CFBE97" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="paint4_linear" x1="783.703" y1="2.70801" x2="783.703" y2="154.493" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CFBE97"/>
+        <stop offset="1" stop-color="#CFBE97" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="paint5_linear" x1="941.089" y1="2.70801" x2="941.089" y2="154.493" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CFBE97"/>
+        <stop offset="1" stop-color="#CFBE97" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="paint6_linear" x1="1104.46" y1="1.625" x2="1104.46" y2="154.495" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CFBE97"/>
+        <stop offset="1" stop-color="#CFBE97" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="paint7_linear" x1="1271.36" y1="2.70801" x2="1271.36" y2="154.493" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CFBE97"/>
+        <stop offset="1" stop-color="#CFBE97" stop-opacity="0.1"/>
+        </linearGradient>
+        </defs>
+        </svg>
