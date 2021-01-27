@@ -2,6 +2,7 @@ import initView from './modules/view-home-sl'
 import {isFirstVisit, setCntTimeVisit, isHourPassedFromLastVisit} from './modules/time-visit'
 import {initAnimation} from './modules/animation/greating'
 import {initMainTransition} from './modules/animation/main-transition'
+import {initContactTransition} from './modules/animation/contact-transition'
 import {initSlider, getDirection, next, prev, isBlockedScroll} from './modules/slider-control'
 import {isLoad, initVideoControll} from './modules/video-control'
 import {getInxLocation, isRedirect, setLocationName} from './modules/routing'
@@ -84,10 +85,20 @@ function app() {
 		
 		homeLinks: [...document.querySelectorAll('[data-animate-links]')],
 		homeAword: document.querySelector('[data-animate-award]'),
+    counterSlInner: document.querySelector('[data-sl-counter-inner]').children,
 		counterSl: document.querySelector('[data-sl-counter]'),
 		counterCnt: document.querySelector('[data-cnt]'),
 		counterTotal: document.querySelector('[data-total]'),
-		scrollIcon: document.querySelector('[data-icon-scroll]'),
+    scrollIcon: document.querySelector('[data-icon-scroll]'),
+    /* contact dom page */
+    itemContactContact_1: document.querySelectorAll('[data-gsap-contact-item]')[0].children,
+    itemContactContact_2: document.querySelectorAll('[data-gsap-contact-item]')[1].children,
+    itemContactForm: [...document.querySelector('[data-gsap-form-elem]').children, '[data-gsap-form-title]', '[data-gsap-form-subtitle]'],
+    contactTitle: '[data-contact-main-title]',
+    contactBlocks: ['[data-gsap-contact-r]', '[data-gsap-contact-l]'],
+    contactBlocksAfter: '.contact__l .contact-l--after',
+    overlayDeveloper: document.querySelector('[data-gsap-overlay-developer]')
+    /*  */
 	}
 	/*  */
 	const watched = initView(state, elements);
@@ -96,6 +107,7 @@ function app() {
 	const scrollControl = initSlider(watched);
 	const videoControl = initVideoControll(watched, elements);
 	const mainTransition = initMainTransition(watched, elements);
+	const contactTransition = initContactTransition(watched, elements);
 
 
 	
@@ -107,7 +119,6 @@ function app() {
 	document.addEventListener("DOMContentLoaded", function(event) {
 
 		/*  */
-		// startCheckingLoadingVideoEvery500ms(elements.video, watched);
 		/*  */
 		if(isFirstVisit() || isHourPassedFromLastVisit()){
 			setCntTimeVisit();
@@ -130,9 +141,10 @@ function app() {
 	});
 	/*  */
 	elements.preLoader.addEventListener('animationend', () => {
-		// if(isFirstVisit() || isHourPassedFromLastVisit()){
+    console.log(isFirstVisit() , isHourPassedFromLastVisit());
+		// if(!isFirstVisit() || isHourPassedFromLastVisit()){
 			/* !!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>> */
-		if(isHourPassedFromLastVisit()){
+		if(!isHourPassedFromLastVisit()){
 			watched.page.status = 'contentStartAnimationGreating';
 			animationGreating.play();
 			return

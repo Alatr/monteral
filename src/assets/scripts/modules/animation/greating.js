@@ -34,10 +34,6 @@ function hideGreatingBlock() {
 	gsap.set([logo, title, subtitle, decor], {autoAlpha:0});
 	gsap.set(videoWrapperBlock, {'--w': 50, "--h": 100,});
 	/*  */
-	// const source = video.querySelector('source');
-	
-	// video.setAttribute('poster', `./assets/images/home/${_STATE.slider.data.next}.jpg`);
-	// source.setAttribute('src', `./assets/images/home/video/_${_STATE.slider.data.next}.mp4`);
 	
 }
 /*  */

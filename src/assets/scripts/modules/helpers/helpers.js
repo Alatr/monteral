@@ -1,3 +1,5 @@
+import bezierEasing from "bezier-easing";
+
 export function setNewPathAttr(inx, attr, elem){
 	const src = elem.getAttribute(attr);
 	const reg = /(.+)\/(.+)\.(.+)$/gm;
@@ -21,6 +23,10 @@ export const _PATHS = {
 	getPosterURL: (inx) => `./assets/images/home/${inx}.jpg` ,
 }
 
+
+const smooth_1 = bezierEasing(.46,.79,.63,.93);
+const smooth_2 = bezierEasing(.29,.94,.47,.92);
+
 export const eases = {
 	ex: "expo.inOut",
 	exI: "expo.in",
@@ -33,7 +39,9 @@ export const eases = {
 	p2O: "power2.out",
 	circ: "circ.inOut",
 	circO: "circ.out",
-	circI: "circ.in",
+  circI: "circ.in",
+  smooth_1,
+  smooth_2,
 }
 
 

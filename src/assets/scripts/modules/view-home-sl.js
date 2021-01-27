@@ -1,8 +1,9 @@
 import onChange from 'on-change';
 
 import {hideElements, animPreloadFirstVideo,  animPreloadFirstOutThenPlayVideo, hideGreatingBlock} from './animation/greating'
-import {transitionHidePartPageContact, transitionHidePartPageWithoutVideo, mainTransition, transitionshowPartPageContact, transitionPartPageWithoutVideo,  hideMainContent, showCntContent} from './animation/main-transition'
+import {transitionHidePartPageWithoutVideo, mainTransition, transitionPartPageWithoutVideo,  hideMainContent, showCntContent} from './animation/main-transition'
 import {setNewPathAttr, setNewPathAttrFromDataAttr, _PATHS} from './helpers/helpers'
+import { transitionshowPartPageContact, transitionHidePartPageContact } from './animation/contact-transition.js'
 
 
 function renderLoadingScreen(state, elements){
@@ -12,6 +13,7 @@ function renderLoadingScreen(state, elements){
 		/*  */
 		case 'contentPreparingGreating':
 			hideElements();
+			hideMainContent();
 			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(cnt)})`;
 			
 			elements.preLoader.classList.add('loader--hidden');
@@ -134,7 +136,7 @@ const createVideoTag = (inx) => {
 	video.setAttribute('id', 'home-video')
 	video.muted = true;
 	video.setAttribute('poster', _PATHS.getPosterURL(inx))
-	video.setAttribute('preload', 'none')
+	video.setAttribute('preload', 'auto')
 	/*  */
 	let source = document.createElement('source');
 	source.setAttribute('id', 'source')

@@ -123,10 +123,11 @@ block content
               span.link-ico__stic.bgc--mc
               +svg('arrow').link__ico.fill--mc
     .home-content.home-content-contact(data-content-home)
-      .contact__l
-        h2(data-contact-main-title) Контакти
+      .contact__l(data-gsap-contact-l)
+        .contact-l--after
+        h2(data-contact-main-title).contact-title Контакти
         .contact-items-wrap
-          .contact-item
+          .contact-item(data-gsap-contact-item)
             h6.contact-item__title.subtitle-with-decor.subtitle-with-decor--white Відділ продажів:
             p.contact-item__adress.text.text--gold м. Київ, вул. Антоновича, 81(на першому поверсі)
             ul.contact-item__time
@@ -140,7 +141,7 @@ block content
                 b на мапі
               span.button-second__logo
                 +svg('logo-m')
-          .contact-item
+          .contact-item(data-gsap-contact-item)
             h6.contact-item__title.subtitle-with-decor.subtitle-with-decor--white Адреса комплексу:
             p.contact-item__adress.text.text--gold вул. Велика Васильківська, 102 (літера «У») / вул. Антоновича, 83 у Голосіївському районі м. Києва
             a(href="#").contact-item__link.button-second.button-second--color-white
@@ -151,18 +152,18 @@ block content
                 b на перегляд
               span.button-second__logo
                 +svg('logo-m')
-      .contact__r
-        h5(data-contact-form-item-1).subtitle-with-decor.subtitle-with-decor--white Зворотній зв'язок
-        p(data-contact-form-item-1).text.text--gold Якщо у вас виникли запитання, ми з радістю дамо відповідь на них
-        form(data-home-contact autocomplete="off")
-          .form-field.form-field-input( data-contact-form-item-1 data-field-input data-field-name data-status="field--inactive")
+      .contact__r(data-gsap-contact-r)
+        h5(data-gsap-form-title).subtitle-with-decor.subtitle-with-decor--white Зворотній зв'язок
+        p(data-gsap-form-subtitle).text.text--gold.home-contact-form__text Якщо у вас виникли запитання, ми з радістю дамо відповідь на них
+        form(data-home-contact-page data-gsap-form-elem autocomplete="off").home-contact-form
+          .form-field.form-field-input(  data-field-input data-field-name data-status="field--inactive")
             input(type='text' name="name").form-field__input
             .input-message(data-input-message) Ім’я:*
-          .form-field.disabled.form-field-input( data-contact-form-item-1 data-field-input data-field-phone data-status="field--inactive")
+          .form-field.disabled.form-field-input(  data-field-input data-field-phone data-status="field--inactive")
             input(type='text' name="phone").form-field__input
             .input-message(data-input-message) Телефон:*
-          textarea(placeholder="Повідомлення" data-contact-form-item-1 ).textarea-prime
-          button( type="submit" data-btn-submit data-contact-form-item-1 ).home-content__link.link
+          textarea(placeholder="Повідомлення"  ).textarea-prime
+          button( type="submit" data-btn-submit  ).home-content__link.link.home-contact-form__btn
             span(data-btn-submit-text).link__text.usn Надіслати
             span.link-ico.link-ico--margin
               span.link-ico__stic.bgc--wc
@@ -176,7 +177,7 @@ block content
           <div class="loader"></div>
         </div>
         .slider-counter(data-sl-counter)
-          .slider-counter-inner-wrap
+          .slider-counter-inner-wrap(data-sl-counter-inner)
             span.slider-counter__cnt(data-cnt) 01
             span.slider-counter__separator /
             span.slider-counter__total(data-total) 08
