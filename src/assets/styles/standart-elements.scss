@@ -230,3 +230,99 @@
         }
     }
 }
+
+.double-part-block {
+    --img-left-padding: 100px;
+    --img-vert-padding: 65px;
+    --square-size: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    &.reverse {
+        flex-direction: row-reverse;
+    }
+    &__img-decor-square {
+        position: absolute;
+        right: 0;
+        top: var(--img-vert-padding);
+        transform: translate(50%, -50%);
+        width: var(--square-size);
+        height: var(--square-size);
+        border: 2px solid #CFBE97;
+        box-sizing: border-box;
+    }
+    &.reverse &__img-decor-square {
+        right: auto;
+        left: 0;
+        transform: translate(-50%, -50%);
+    }
+    &__img-decor-bg {
+        width: 55%;
+        position: absolute;
+        left: 0%;
+        top: 0%;
+        height: 100%;
+        z-index: 0;
+    }
+    &.reverse &__img-decor-bg {
+        width: 55%;
+        position: absolute;
+        left: auto;
+        right: 0;
+        top: 0%;
+        height: 100%;
+        z-index: 0;
+    }
+    &__img-main {
+        position: relative;
+        height: 100%;
+        z-index: 1;
+    }
+    &__img {
+        display: flex;
+        position: relative;
+        width: 58%;
+        padding-left: var(--img-left-padding);
+        padding-top: var(--img-vert-padding);
+        padding-bottom: var(--img-vert-padding);
+        margin-right: var(--square-size);
+    }
+    &.reverse &__img {
+        padding-left: 0;
+        padding-right: var(--img-left-padding);
+        margin-right: 0;
+        margin-left: var(--square-size);
+    }
+    &__text {
+        width: calc(35%);
+        display: flex;
+        flex-direction: column;
+        color: $color-text-gold;
+    }
+    &__title {
+        font-size: 30px;
+        line-height: 1.2em;
+        /* or 120% */
+        letter-spacing: -0.05em;
+        /* Text silver */
+        color: $color-text-silver;
+        position: relative;
+        padding-bottom: 22px;
+        margin-bottom: 2em;
+    }
+    &__title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: $color-gold;
+        height: 2px;
+        width: 40px;
+    }
+    &__text>*:nth-last-child(-n+2) {
+        width: 80%;
+        margin-left: auto;
+    }
+    p:not(:last-child) {
+        margin-bottom: 1em;
+    }
+}

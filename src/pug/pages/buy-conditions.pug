@@ -1,0 +1,93 @@
+extends ../layout/main
+block variable
+    -
+        var title_page = headMenu[5].item[0]
+        var id_page = 'buy-conditions'
+        var class_page = 'buy-conditions'
+        var breadcrumbsSubitem = [
+            {
+                label: headMenu[0].item[0],
+                link: headMenu[0].item[1]
+            },
+
+        ]
+    
+block footer
+  include ../includes/footer-inner-pages.pug
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/news.js')
+block header
+
+block content
+    section.page-first-block
+        picture.page-first-block__bg
+            source(srcset="./assets/images/buy-conditions/first-bg.jpg")
+            img(src="./assets/images/buy-conditions/first-bg.jpg")
+        include ../includes/breadcrumbs.pug
+        .page-first-block__text-wrap 
+            <svg class="page-logo" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path data-path-draw-effect d="M0 37H37V0H0V37ZM33.8975 33.8878H3.10248V3.22742H33.8975V33.8878Z" />
+            <path data-path-draw-effect d="M20.294 7.40039V27.9308H16.7573V7.40039H7.39844V31.0804H10.3367V10.5499H13.819V31.0804H23.1778V10.5499H26.7146V31.0804H29.5984V7.40039H20.294Z" />
+            </svg>
+            h1.page-title(data-gsap-anim-enter) #{title_page}
+            .page-subtitle.with-line Montreal House
+        <svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 76 130" preserveAspectRatio="xMidYMid meet">
+            <g fill="none" fill-rule="evenodd">
+                <rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="5" rx="36"/>
+                <circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
+            </g>
+            </svg>
+        ul.lang.screen__lang
+            li(data-animate-links).lang__item.lang__item--active
+                a(href="#") uk
+            li(data-animate-links).lang__item
+                a(href="#") ru
+            li(data-animate-links).lang__item
+                a(href="#") en
+        .decor-social(data-animate-links)
+        ul.social.screen__social
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") facebook
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") instagram
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") telegram
+    section
+        .double-part-block.reverse
+            .double-part-block__img
+                img(src="./assets/images/buy-conditions/block1-bg.jpg").double-part-block__img-decor-bg
+                img(src="./assets/images/buy-conditions/block3.jpg").double-part-block__img-main
+                .double-part-block__img-decor-square
+            .double-part-block__text
+                .double-part-block__title Короткий заголовок на декілька рядків
+                p ЖК Montreal House – <b>зразковий стандарт сучасного житла</b> в діловому та культурному центрі Києва. <b>Преміальне житло бізнес-класу,</b> унікальна локація.
+                p <b> Авторські планування,</b> тераси на верхніх рівнях, підземний паркінг, дитячі ігрові зони, особливе оточення відкривають нові важливості життя <b>у серці столиці.</b>
+                a(hreg="#").border-btn Обрати квартиру
+        .double-part-block
+            .double-part-block__img
+                img(src="./assets/images/buy-conditions/block1-bg.jpg").double-part-block__img-decor-bg
+                img(src="./assets/images/buy-conditions/block1.jpg").double-part-block__img-main
+                .double-part-block__img-decor-square
+            .double-part-block__text
+                .double-part-block__title Короткий заголовок на декілька рядків
+                p ЖК Montreal House – <b>зразковий стандарт сучасного житла</b> в діловому та культурному центрі Києва. <b>Преміальне житло бізнес-класу,</b> унікальна локація.
+                p <b> Авторські планування,</b> тераси на верхніх рівнях, підземний паркінг, дитячі ігрові зони, особливе оточення відкривають нові важливості життя <b>у серці столиці.</b>
+                a(hreg="#").border-btn Обрати квартиру
+        .double-part-block.reverse
+            .double-part-block__img
+                img(src="./assets/images/buy-conditions/block1-bg.jpg").double-part-block__img-decor-bg
+                img(src="./assets/images/buy-conditions/block1.jpg").double-part-block__img-main
+                .double-part-block__img-decor-square
+            .double-part-block__text
+                .double-part-block__title Короткий заголовок на декілька рядків
+                p ЖК Montreal House – <b>зразковий стандарт сучасного житла</b> в діловому та культурному центрі Києва. <b>Преміальне житло бізнес-класу,</b> унікальна локація.
+                p <b> Авторські планування,</b> тераси на верхніх рівнях, підземний паркінг, дитячі ігрові зони, особливе оточення відкривають нові важливості життя <b>у серці столиці.</b>
+                a(hreg="#").border-btn Обрати квартиру
