@@ -26,6 +26,7 @@
 @import './news.scss';
 @import './news-single.scss';
 @import './buy-conditions.scss';
+@import './build-progress.scss';
 .lang,
 .social {
     z-index: 6;
@@ -170,7 +171,6 @@ a.border-btn {
 * input start
 */
 
-
 .form-field:not(#t) {
     position: relative;
     margin: 0px 0 20px 0;
@@ -192,7 +192,8 @@ a.border-btn {
     display: flex;
     font-weight: 500;
     font-size: 14px;
-    transform: translate(0%, -50%);;
+    transform: translate(0%, -50%);
+    ;
     user-select: none;
     pointer-events: none;
     background-color: transparent;
@@ -391,115 +392,115 @@ a.border-btn {
 	* max(vh(190, 1.2), 190px)
  */
 
-
-.button-second{
-  display: flex;
-  height: 50px;
-  width: 100%;
-  text-decoration: none;
-  overflow: hidden;
-  &__icon{
-    width: 50px;
-    height: 50px;
+.button-second {
     display: flex;
-    justify-content: center;
-    align-items: center;;
-    flex-shrink: 0;
-    svg{
-      width: 23px;
-      height: 15px;
-    }
-  }
-  &__logo {
-    width: 50px;
     height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    transform: translateX(-1px);
-
-    svg{
-      width: 100%;
-      height: 100%;
-    }
-  }
-  &__text{
     width: 100%;
-    padding: 0 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;
+    text-decoration: none;
+    overflow: hidden;
+    &__icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        ;
+        flex-shrink: 0;
+        svg {
+            width: 23px;
+            height: 15px;
+        }
+    }
+    &__logo {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        transform: translateX(-1px);
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__text {
+        width: 100%;
+        padding: 0 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.2em;
+    }
+}
+
+.button-second--map-size:not(#h) {
+    width: 23px;
+    height: 23px;
+}
+
+.button-second--color-white {
+    .button-second__text {
+        background-color: #fff;
+        color: #392425;
+        b {
+            color: #007275;
+        }
+    }
+    .button-second__logo {
+        svg {
+            fill: rgba(255, 255, 255, 1);
+            stroke: #fff;
+        }
+    }
+    .button-second__icon {
+        background-color: $color-gold;
+        svg {
+            fill: rgba(255, 255, 255, 1);
+        }
+    }
+}
+
+.subtitle-with-decor--white {
+    color: #FFFFFF;
+    &::after {
+        background: #CFBE97;
+        ;
+    }
+}
+
+.text--gold {
+    color: #E1DDD2;
+}
+
+.text {
+    margin-bottom: 10px;
     font-weight: 500;
     font-size: 12px;
-    line-height: 1.2em;
-  }
+    line-height: lh(18, 12);
 }
 
-.button-second--map-size:not(#h){
-  width: 23px;
-  height: 23px;
-}
-
-.button-second--color-white{
-  .button-second__text{
-    background-color: #fff;
-    color: #392425;
-    b{
-      color: #007275;
+.subtitle-with-decor {
+    margin-bottom: 20px;
+    padding: 8px 0;
+    position: relative;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1em;
+    text-align: center;
+    letter-spacing: -0.05em;
+    &::after {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 20px;
+        height: 2px;
+        display: flex;
+        content: "";
+        transform: translateY(100%);
     }
-  }
-  .button-second__logo{
-    svg {
-      fill: rgba(255, 255, 255, 1);
-      stroke: #fff;
-    }
-  }
-  .button-second__icon{
-    background-color: $color-gold;
-    svg {
-      fill: rgba(255, 255, 255, 1);
-    }
-  }
-
-}
-
-.subtitle-with-decor--white{
-  color: #FFFFFF;
-  &::after{
-    background: #CFBE97;;
-  }
-}
-.text--gold{
-  color: #E1DDD2;
-}
-
-.text{
-  margin-bottom: 10px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: lh(18, 12);
-}
-
-.subtitle-with-decor{
-  margin-bottom: 20px;
-  padding: 8px 0;
-  position: relative;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1em;
-  text-align: center;
-  letter-spacing: -0.05em;
-  &::after{
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 20px;
-    height: 2px;
-    display: flex;
-    content: "";
-    transform: translateY(100%);
-  }
 }

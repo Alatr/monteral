@@ -93,56 +93,6 @@
     }
 }
 
-.decor-type-vertical {
-    --line-width: 2px;
-    --line-color: #{$color-green};
-    --logo-width: 31px;
-    --delimiter-length: 15px;
-    &__top {
-        position: relative;
-        border-bottom: var(--line-width) solid var(--line-color);
-        border-right: var(--line-width) solid var(--line-color);
-    }
-    &__top:before {
-        content: '';
-        /*Для смены лого - https://yoksel.github.io/url-encoder/*/
-        background-image: url("data:image/svg+xml,%3Csvg width='31' height='31' viewBox='0 0 31 31' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 1V30H1V1H30Z' stroke='%23CFBE97' stroke-width='2'/%3E%3Cpath d='M7 25V7H12.6667V24H18.3333V7H24V25' stroke='%23CFBE97' stroke-width='2'/%3E%3C/svg%3E%0A");
-        width: var(--logo-width);
-        height: var(--logo-width);
-        background-repeat: no-repeat;
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-    &__top:after {
-        content: '';
-        width: calc(100% - (var(--logo-width) * 2));
-        height: var(--line-width);
-        background: var(--line-color);
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    &__bottom {
-        position: relative;
-        margin-top: var(--delimiter-length);
-        border-right: var(--line-width) solid var(--line-color);
-        border-top: var(--line-width) solid var(--line-color);
-        border-bottom: var(--line-width) solid var(--line-color);
-    }
-    &__bottom:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: calc(var(--line-width) / 2 * -2);
-        height: var(--delimiter-length);
-        width: var(--line-width);
-        background-color: var(--line-color);
-        transform: translateY(-100%);
-    }
-}
-
 .textarea-prime {
     resize: none;
     border-color: $color-gold;
@@ -154,9 +104,11 @@
     color: $color-white;
     background-color: transparent;
 }
+
 .textarea-prime::placeholder {
     color: #6AB6B8;
 }
+
 .form-standart {
     padding-top: 0;
     margin: 0;
