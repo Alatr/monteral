@@ -110,25 +110,20 @@ function app() {
 	const contactTransition = initContactTransition(watched, elements);
 
 
-	
 
-	// elements.video.onended = function() {
-	// 	watched.page.status = 'videoEndPlay';
-	// };
 	/*  */
 	document.addEventListener("DOMContentLoaded", function(event) {
 
+    if(isRedirect()){
+      setIndexToCnt(getInxLocation());
+      watched.page.status = 'contentPreparingRedirectScreen';
+      return;
+    }
 		/*  */
 		/*  */
 		if(isFirstVisit() || isHourPassedFromLastVisit()){
-			setCntTimeVisit();
 			watched.page.status = 'contentPreparingGreating';
 			return
-		}
-		if(isRedirect()){
-			setIndexToCnt(getInxLocation());
-			watched.page.status = 'contentPreparingRedirectScreen';
-			return;
 		}
 
 		watched.page.status = 'contentPreparingFirstScreen';
@@ -139,39 +134,29 @@ function app() {
 			watched.video.status = 'videoTransitionPlay';
 		}
 	});
-	/*  */
+
 	elements.preLoader.addEventListener('animationend', () => {
-    console.log(isFirstVisit() , isHourPassedFromLastVisit());
-		// if(!isFirstVisit() || isHourPassedFromLastVisit()){
-			/* !!!!!!!!!!!!!!!!>>>>>>>>>>>>>>>>>>>> */
-		if(isHourPassedFromLastVisit()){
-			watched.page.status = 'contentStartAnimationGreating';
-			animationGreating.play();
-			return
-		}
+    if(isRedirect()){
+      watched.page.status = 'contentStartAnimationFirstScreen';
+		  watched.page.blockedScroll = false;
+      return;
+    }
+    if(isFirstVisit() || isHourPassedFromLastVisit()){
+      setCntTimeVisit();
+      watched.page.status = 'contentStartAnimationGreating';
+      return
+    }
 		watched.page.status = 'contentStartAnimationFirstScreen';
 		watched.page.blockedScroll = false;
 	});
-	/*  */
+
 	document.addEventListener("wheel", function(event) {
-    console.log(2);
 		if(isBlockedScroll()) return false
-		/*  */
+
 		const direction = getDirection(event.deltaY);
-		
+
 		(direction === 1) ? next() : prev();
-		// console.log(event.wheelDeltaY, event, event.deltaY);
   });
-	/*  */
-	// document.addEventListener("click", function(event) {
-	// 	const source = elements.video.querySelector('source')
-	// 	// elements.video.setAttribute('src', )
-	// 	source.setAttribute('src', './assets/images/home/video/_1.mp4')
-	// 	elements.video.load();
-	// 	elements.video.play()
-	// 	console.log();
-  // });
-	
 }
 
 app()

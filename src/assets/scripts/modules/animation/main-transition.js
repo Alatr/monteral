@@ -170,11 +170,16 @@ export const mainTransition = (sliderData) => {
 	};
 	/*  */
   let isResume = true;
+  let isResumeBeforeEnd = true;
 	function update(){
     const progress = Math.round((video.currentTime/video.duration) * 100)
     console.log(progress);
 		if(progress > 10 && isResume){
       isResume = false;
+      tl.resume();
+		}
+		if(progress > 80 && isResumeBeforeEnd){
+      isResumeBeforeEnd = false;
       tl.resume();
 		}
 	};
@@ -188,8 +193,12 @@ export const mainTransition = (sliderData) => {
 	const tl = gsap.timeline(settings);
 	tl.call(() => {video.play()});
   tl.add(() => tl.pause(), '<');
+
   console.log(_ELEMENTS.videoBlockWrapper);
-	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.5, {'--w': 50, '--h': 100}, {'--w': 110, '--h': 110, x: 0, ease: eases.ex});
+	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.5, {'--w': 50, '--h': 100}, {'--w': 110, '--h': 110, x: 0, ease: eases.ex, onComplete: ()=>{
+    tl.pause();
+
+  }});
 	tl.call(()=> { 
     outContent(cnxOut).play();
   }, null, '<')
@@ -265,8 +274,8 @@ export const transitionHidePartPageWithoutVideo = (sliderData) => {
 
   }});
   tl.call(()=> { 
-    outContent(cnxOut).play(); 
-    
+    outContent(cnxOut).play();
+
   }, null, '<')
 	tl.fromTo(overlay, 1,  {scaleX: 1, transformOrigin: 'left'}, {scaleX: 0, immediateRender: false, ease: eases.ex});
 	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.5,  {x: 250}, { x: propPadding, immediateRender: false, ease: eases.ex}, '<-0.1');

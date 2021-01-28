@@ -1,9 +1,15 @@
 import onChange from 'on-change';
+import { gsap } from "gsap";
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
+import { EaselPlugin } from "gsap/EaselPlugin";
 
-import {hideElements, animPreloadFirstVideo,  animPreloadFirstOutThenPlayVideo, hideGreatingBlock} from './animation/greating'
+import {hideElements, animPreloadFirstVideoIn,   hideGreatingBlock, animGreatingVideo} from './animation/greating'
 import {transitionHidePartPageWithoutVideo, mainTransition, transitionPartPageWithoutVideo,  hideMainContent, showCntContent} from './animation/main-transition'
 import {setNewPathAttr, setNewPathAttrFromDataAttr, _PATHS} from './helpers/helpers'
 import { transitionshowPartPageContact, transitionHidePartPageContact } from './animation/contact-transition.js'
+
+gsap.registerPlugin(CSSRulePlugin, EaselPlugin);
+
 
 
 function renderLoadingScreen(state, elements){
@@ -14,10 +20,10 @@ function renderLoadingScreen(state, elements){
 		case 'contentPreparingGreating':
 			hideElements();
 			hideMainContent();
+	    gsap.set(elements.videoBlockWrapper, {'--w': 102, '--h': 107, x: 0, yPercent: -50});
+	    gsap.set( '[data-gsap-greating]', {autoAlpha: 0});
 			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(cnt)})`;
-			
 			elements.preLoader.classList.add('loader--hidden');
-			
 			break;
 			/*  */
 		case 'contentPreparingFirstScreen':
@@ -43,17 +49,15 @@ function renderLoadingScreen(state, elements){
 			break;
 		/*  */
 		case 'contentStartAnimationGreating':
+			animPreloadFirstVideoIn().play();
 			break;
 		/*  */
 		case 'contentStartAnimationFirstScreen':
 			showCntContent(cnt).play()
 			break;
 		/*  */
-		case 'startLoadingVideo':
-			animPreloadFirstVideo().play();
-			break;
-			/*  */
-		case 'videoPlay':
+    case 'playGreatingVideo':
+			animGreatingVideo(state.slider.data).play();
 			break;
 			/*  */
 		case 'showPartPageWithoutVideo':
@@ -73,11 +77,9 @@ function renderLoadingScreen(state, elements){
       transitionHidePartPageWithoutVideo(state.slider.data).play();
 			break;
 			/*  */
-
 		default:
 			throw new Error(`Uknown state loading screen(${state})`)
 	}
-					/*  */
 }
 
 
@@ -97,7 +99,7 @@ function renderVideoElements(state, elements){
 			break;
 		/*  */
 		case 'firstVideoReady':
-			animPreloadFirstOutThenPlayVideo().play();
+			// animPreloadFirstOutThenPlayVideo().play();
 			break;
 			/*  */
 		case 'videoEndPlay':
@@ -124,11 +126,8 @@ function renderVideoElements(state, elements){
 		default:
 			throw new Error(`Uknown state loading screen(${state})`)
 			break;
-	}
-			/*  */
-		}
-		
-		
+  }
+}
 
 const createVideoTag = (inx) => {
 	let video = document.createElement('video');
