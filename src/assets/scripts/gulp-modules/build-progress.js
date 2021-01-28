@@ -43,3 +43,14 @@ function changeCurrentValue(selector) {
 
 changeCurrentValue(selectors[0])
 changeCurrentValue(selectors[1])
+
+
+
+const buildPopup = new showModal({
+    $popup: document.querySelector('.page-first-block'),
+    $openBtn: document.querySelector('.page-part'),
+    $closeBtn: document.querySelector('[data-build-popup-close]'),
+    animationIn: animationPopapIn,
+    animationOut: animationPopapOut,
+    attrParrentNode: '[data-parrent-node-build]'
+});
