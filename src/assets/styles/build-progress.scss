@@ -1,4 +1,18 @@
-#build-progress {
+#build-progress .page__content {
+    .page-part {
+        padding-top: 160px;
+        padding-bottom: 160px;
+        @include shift-padding(1.5);
+        align-items: flex-start;
+        .build-progress-filter-wrap {
+            width: calc(100% / 8 * 3 - 35px);
+            margin: 0 auto;
+        }
+        .progress-galleries {
+            width: calc(100% / 8 * 5 - 35px);
+            margin: 0 auto;
+        }
+    }
     .decor-type-vertical {
         --line-color: #CFBE97;
         &>* {
@@ -34,6 +48,21 @@
         margin-top: 40px;
         position: relative;
     }
+    .progress-galleries>*:nth-last-child(n+2) {
+        margin-bottom: 40px;
+    }
+    @include to(1024px) {
+        .page-part {
+            @include shift-padding(1);
+        }
+    }
+    @include to(950px) {
+        .page-part {
+            @include shift-padding(0);
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+    }
 }
 
 .build-statuses-wrap {
@@ -58,6 +87,40 @@
     }
     &>*:nth-child(3) {
         margin-left: 40px;
+    }
+    @include to(950px) {
+        &>*:nth-child(2) {
+            margin-right: 20px;
+        }
+        &>*:nth-child(3) {
+            margin-left: 20px;
+        }
+        &>*:nth-last-child(n+2) {
+            margin-right: 7.5px;
+        }
+    }
+    @include to(768px) {
+        &>*:nth-child(2) {
+            margin-right: initial;
+        }
+        &>*:nth-child(3) {
+            margin-left: initial;
+        }
+        &>*:nth-last-child(n+2) {
+            margin-right: initial;
+        }
+        &>*:nth-last-child(n+3) {
+            margin-bottom: 10px;
+        }
+        &>*:nth-child(even) {
+            margin-left: 20px;
+        }
+        &>*:nth-child(odd) {
+            margin-right: 20px;
+        }
+        &>* {
+            width: calc(50% - (35px));
+        }
     }
 }
 
@@ -111,9 +174,26 @@
         height: 100%;
         background-color: #ffffff;
     }
+    @include to(1024px) {
+        &__value {
+            font-size: 36px;
+        }
+    }
+    @include to(950px) {
+        &__title {
+            font-size: 10px;
+            width: calc(100% - 15ch);
+        }
+    }
 }
 
-.build-progress-filter-wrap {}
+.build-progress-filter-wrap {
+    .subtitle-with-decor {
+        font-size: 30px;
+        line-height: 1.2em;
+        color: #ffffff;
+    }
+}
 
 .custom-select {
     --self-color: var(--white);
@@ -224,5 +304,144 @@
     }
     @include to(375px) {
         width: 95px;
+    }
+}
+
+.progress-gallery-link {
+    --self-padding-top: 20px;
+    --delimiter-width: 20px;
+    --decor-border-width: 2px;
+    --block-start-left-padding: 20px;
+    background-color: #006164;
+    display: flex;
+    font-size: 10px;
+    line-height: 1em;
+    color: $color-text-gold;
+    text-align: center;
+    min-height: 250px;
+    &>* {
+        padding-top: var(--self-padding-top);
+        padding-bottom: var(--self-padding-top);
+    }
+    &__left {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        flex-basis: 50%;
+        flex-shrink: 0;
+        padding-left: var(--block-start-left-padding);
+        margin-right: var(--delimiter-width);
+        padding-right: var(--delimiter-width);
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+    }
+    &__left:after {
+        content: '';
+        position: absolute;
+        right: calc(var(--decor-border-width) * -1);
+        transform: translateX(100%);
+        bottom: 0;
+        height: var(--decor-border-width);
+        width: var(--delimiter-width);
+        background-color: $color-gold;
+    }
+    &__right {
+        flex-shrink: 1;
+        position: relative;
+        height: auto;
+        padding: calc(var(--self-padding-top) * 2) var(--block-start-left-padding);
+        flex-basis: calc(50% - var(--delimiter-width));
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+        display: flex;
+        flex-direction: column;
+    }
+    /*Буква М справа снизу*/
+    &__right:after {
+        content: '';
+        display: inline-block;
+        background-repeat: no-repeat;
+        /*Для изменения https://yoksel.github.io/url-encoder/*/
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='98' viewBox='0 0 100 98' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M58.0882 0V84.9655H42.1569V0H0V98H13.2353V13.0345H28.9216V98H71.0784V13.0345H87.0098V98H100V0H58.0882Z' fill='%23005557'/%3E%3C/svg%3E%0A");
+        width: 33%;
+        background-size: contain;
+        background-position: bottom right;
+        height: 32%;
+        position: absolute;
+        right: var(--decor-border-width);
+        bottom: 0;
+        z-index: 0;
+    }
+    &__right>* {
+        z-index: 1;
+    }
+    &__right>*:last-child {
+        margin-top: auto;
+    }
+    .subtitle-with-decor {
+        font-size: 30px;
+        line-height: 1.25em;
+        margin-top: 10px;
+    }
+    .plus-element {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        color: #392425;
+        font-size: 9px;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+        transition: background-color .3s ease-out;
+    }
+    @include to(950px) {
+        flex-wrap: wrap;
+        --self-padding-top: 50px;
+        &__left {
+            flex-basis: 100%;
+            border-top: var(--decor-border-width) solid $color-gold;
+            border-bottom: var(--decor-border-width) solid $color-gold;
+            border-left: none;
+            margin-bottom: var(--delimiter-width);
+            border-right: var(--decor-border-width) solid $color-gold;
+            padding-bottom: var(--self-padding-top);
+            padding: var(--self-padding-top);
+        }
+        &__left:after {
+            content: '';
+            position: absolute;
+            right: auto;
+            left: calc(var(--decor-border-width) * -1);
+            // transform: translateX(100%);
+            top: calc(100% + var(--decor-border-width));
+            width: var(--decor-border-width);
+            height: var(--delimiter-width);
+            background-color: $color-gold;
+        }
+        &__right {
+            flex-basis: 100%;
+            border-top: var(--decor-border-width) solid $color-gold;
+            border-bottom: var(--decor-border-width) solid $color-gold;
+            border-left: none;
+            margin-bottom: 0;
+            border-right: var(--decor-border-width) solid $color-gold;
+            padding-bottom: var(--self-padding-top);
+            padding: var(--self-padding-top);
+        }
+    }
+    @include to(575px) {
+        --self-padding-top: 20px;
+    }
+    @include from(769px) {
+        .plus-element:hover {
+            background-color: $color-gold;
+        }
     }
 }

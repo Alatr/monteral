@@ -501,6 +501,6 @@ a.border-btn {
         height: 2px;
         display: flex;
         content: "";
-        transform: translateY(100%);
+        transform: translateY(100%) translateX(-50%);
     }
 }

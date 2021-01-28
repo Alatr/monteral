@@ -69,9 +69,9 @@ block content
             li(data-animate-links).social__item
                 a(href="#" rel="nofollow" target="_blank") telegram
     section.page-part
-        .decor-type-vertical
+        .decor-type-vertical.build-progress-filter-wrap
             .decor-type-vertical__top
-                .subtitle-with-decor.subtitle-with-decor--white Фільтр
+                .subtitle-with-decor Фільтр
                 .to-bottom.custom-select(data-name="month")
                     <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <line x1="4.5" x2="4.5" y2="9" stroke="white"/>
@@ -101,7 +101,7 @@ block content
                         .custom-select__item(data-value="2021") 2021
                         .custom-select__item(data-value="2020") 2020
             .decor-type-vertical__bottom
-                a(href='3d.html').contact-item__link.button-second.button-second--color-white
+                a(href='web-camera.html').contact-item__link.button-second.button-second--color-white
                     .button-second__icon
                         +svg('web-camera')
                     span.button-second__text
@@ -109,3 +109,17 @@ block content
                         b камера
                     span.button-second__logo
                         +svg('logo-m')
+        .progress-galleries
+            - var n = 0;
+                while n < 12
+                    .progress-gallery-link(data-month=n data-year=2020)
+                        .progress-gallery-link__left 
+                            img(src="./assets/images/build-progress/test.jpg")
+                            .plus-element +
+                        .progress-gallery-link__right 
+                            div 2020
+                            .subtitle-with-decor.subtitle-with-decor--white Вересень
+                            .uppercased Дивитися 14 фото
+                            -n++
+
+
