@@ -1,8 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* beautify preserve:start */
+@@include('../libs/headroom/headroom.js')
+/* beautify preserve:end */
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 let $menu = document.querySelector('.menu');
 let $menuImage = document.querySelector('.js-menu-img');
 let $menuTextBlock = document.querySelector('.menu__text-wrap');
 let $menuInnerLinks = document.querySelectorAll('.menu__inner-links');
+
 $menuInnerLinks.forEach(link => {
     link.querySelector('*') ? link.previousElementSibling.classList.add(link.dataset.hasChildClass) : null;
 })
@@ -51,4 +55,28 @@ $pointsWithChild.forEach(el => {
         $menu.querySelector(`.${classForHoverLink}`).classList.remove(classForHoverLink);
         el.classList.add(classForHoverLink);
     });
-})
+});
+
+
+window.addEventListener('load', function(evt) {
+    let pageId = document.body.getAttribute('id');
+    if (!pageId.match(/(home-page)/)) {
+        gsap.to('[data-preloader]', 1, { autoAlpha: 0 });
+        gsap.to('[data-preloader]', { display: 'none' });
+    }
+});
+/**Скрытие Хедера при скролле вниз */
+let headroom = new Headroom(document.querySelector('header'), {
+    offset: 100,
+    onPin: function(e) {
+        console.log(headroom);
+        document.body.classList.add(headroom.classes.pinned);
+        document.body.classList.remove(headroom.classes.unpinned);
+    },
+    // callback when unpinned, `this` is headroom object
+    onUnpin: function(e) {
+        console.log(headroom);
+        document.body.classList.add(headroom.classes.unpinned);
+        document.body.classList.remove(headroom.classes.pinned);
+    },
+}).init();

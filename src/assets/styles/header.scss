@@ -16,8 +16,11 @@
     display: flex;
     width: 100%;
     height: var(--header-height);
-    .not-on-top {
+    transition: background-color .3s ease-out, height .3s ease-out;
+    &.not-on-top,
+    &.headroom--not-top {
         background-color: rgba(0, 97, 100, 0.9);
+        --header-height: 80px !important;
     }
     // padding: var(--side-padding) var(--side-padding) 0 var(--side-padding);
     padding: 0 var(--side-padding) 0 var(--side-padding);
