@@ -3,8 +3,8 @@
 var selectors = document.querySelectorAll('.custom-select');
 let event = new Event('change');
 var buildProgressConfig = {
-    action: 'construct',
-
+    year: 'null',
+    month: 'null'
 };
 
 selectors.forEach(el => {
@@ -33,7 +33,7 @@ function changeCurrentValue(selector) {
         })
     });
     selector.addEventListener('change', function(evt) {
-        buildProgressConfig[evt.target.dataset.name] = evt.target.currentValue;
+        // buildProgressConfig[evt.target.dataset.name] = evt.target.currentValue;
     });
 }
 
@@ -42,6 +42,7 @@ changeCurrentValue(selectors[1])
 
 /*  */
 const galleries = document.querySelectorAll('[data-progress-gallery]');
+
 const popupSliderConfig = {
     navImages: dqs('[data-swiper-slider]'),
     bigImage: dqs('[data-swiper-big-image]'),
@@ -50,6 +51,28 @@ const popupSliderConfig = {
     swiper: undefined,
     currentPopup: undefined,
 }
+
+document.querySelectorAll('[data-build-filter-name]').forEach(el => {
+    el.addEventListener('change', () => {
+        buildProgressConfig[el.dataset.buildFilterName] = el.currentValue;
+
+        galleries.forEach(link => {
+            if ((
+                    link.dataset.month == buildProgressConfig.month &&
+                    link.dataset.year == buildProgressConfig.year
+                ) ||
+                buildProgressConfig.month === 'null' ||
+                buildProgressConfig.year === 'null'
+            ) {
+                link.style.display = 'flex';
+            } else {
+
+                link.style.display = 'none';
+            }
+        })
+
+    })
+})
 
 initPopupSlider(galleries[0]);
 galleries.forEach((galleryWithData, index) => {

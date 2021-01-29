@@ -129,26 +129,26 @@ block content
         .decor-type-vertical.build-progress-filter-wrap
             .decor-type-vertical__top
                 .subtitle-with-decor Фільтр
-                .to-bottom.custom-select(data-name="month")
+                .to-bottom.custom-select(data-build-filter-name="month")
                     <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <line x1="4.5" x2="4.5" y2="9" stroke="white"/>
                         <line x1="0.0011118" y1="4.5" x2="9.00109" y2="4.52001" stroke="white"/>
                         </svg>
                     .custom-select__items-wrapper
                         .custom-select__item.custom-select__item-current(data-value="null") Усі місяці
-                        .custom-select__item(data-value="2020") Январь
-                        .custom-select__item(data-value="2019") Февраль
-                        .custom-select__item(data-value="2021") Март
-                        .custom-select__item(data-value="2021") Апрель
-                        .custom-select__item(data-value="2021") Май
-                        .custom-select__item(data-value="2021") Июнь
-                        .custom-select__item(data-value="2021") Июль
-                        .custom-select__item(data-value="2021") Август
-                        .custom-select__item(data-value="2021") Сентябрь
-                        .custom-select__item(data-value="2021") Октябрь
-                        .custom-select__item(data-value="2021") Ноябрь
-                        .custom-select__item(data-value="2021") Декабрь
-                .to-bottom.custom-select(data-name="year")
+                        .custom-select__item(data-value="1") Январь
+                        .custom-select__item(data-value="2") Февраль
+                        .custom-select__item(data-value="3") Март
+                        .custom-select__item(data-value="4") Апрель
+                        .custom-select__item(data-value="5") Май
+                        .custom-select__item(data-value="6") Июнь
+                        .custom-select__item(data-value="7") Июль
+                        .custom-select__item(data-value="8") Август
+                        .custom-select__item(data-value="9") Сентябрь
+                        .custom-select__item(data-value="10") Октябрь
+                        .custom-select__item(data-value="11") Ноябрь
+                        .custom-select__item(data-value="12") Декабрь
+                .to-bottom.custom-select(data-build-filter-name="year")
                     <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <line x1="4.5" x2="4.5" y2="9" stroke="white"/>
                         <line x1="0.0011118" y1="4.5" x2="9.00109" y2="4.52001" stroke="white"/>
@@ -175,7 +175,7 @@ block content
                             .plus-element +
                         .progress-gallery-link__right 
                             div 2020
-                            .subtitle-with-decor.subtitle-with-decor--white Вересень
+                            .subtitle-with-decor.subtitle-with-decor--white Вересень #{n}
                             .uppercased Дивитися 14 фото
                             -n++
 
