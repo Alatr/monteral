@@ -16,6 +16,9 @@
     display: flex;
     width: 100%;
     height: var(--header-height);
+    @include from(1921px){
+      --side-padding: 90px;
+    }
     .not-on-top {
         background-color: rgba(0, 97, 100, 0.9);
     }

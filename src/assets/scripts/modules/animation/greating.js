@@ -73,10 +73,8 @@ function animPreloadFirstVideoOut() {
 
 
 const animGreatingVideo = (sliderData) => {
-  console.log('animPreloadFirstVideoIn().play();');
 
   const video = document.querySelector('#home-video');
-	// const cnxOut = (_STATE.slider.ditection === 1) ? sliderData.prev : sliderData.next;
 	const settings = { paused: true }
 	/*  */
 	video.onended = function() {
@@ -123,56 +121,10 @@ const animGreatingVideo = (sliderData) => {
 	return tl;
 };
 
-// function animGreatingVideo() {
-// 	const video = document.querySelector('#home-video');
-
-// 	const obj = {
-// 		paused: true,
-// 		onComplete: () => {},
-// 	}
-// 	/*  */
-// 	video.onended = function() {
-// 		gsap.ticker.remove(update);
-// 		_STATE.video.status = 'videoEndPlay';
-// 		_STATE.page.blockedScroll = false;
-// 	};
-// 	/*  */
-// 	function update(){
-// 		const progress = Math.round((video.currentTime/video.duration) * 100)
-// 		if(progress === 60){
-// 			tl.resume();
-// 		}
-// 	};
-
-// 	video.onplay = function() {
-// 		// tl.pause();
-// 		gsap.ticker.add(update);
-// 	};
-
-// 	/*  */
-// 	const tl = gsap.timeline(obj);
-// 	tl.call(() => {video.play()});
-// 	tl.add(() => tl.pause(), '<');
-// 	tl.fromTo(videoWrapperBlock, 1, {width: '100%', height: '100%'}, {width: '50%', height: '90%'});
-		
-// 	return tl;
-
-// }
-
-
-
-
-/*
-* greating end
-*/
 
 const initAnimation = (state, elements) => {
 	_STATE = state
 	_ELEMENTS= elements;
-
-	// return greating({
-	// 	onComplete: () => callbackGriatingAnimation(state),
-	// });
 
 };
 

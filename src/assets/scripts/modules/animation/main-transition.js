@@ -27,7 +27,8 @@ const mainSubtitle = '[data-home-main-subtitle]';
 /*  */
 export const hideMainContent = () => {
 	gsap.set([title, text, link], {autoAlpha: 0, x: -200});
-  gsap.set([mainTitle, mainSubtitle, awards], {autoAlpha: 0, y: -100});
+  gsap.set([mainTitle, mainSubtitle], {autoAlpha: 0, y: -100});
+  gsap.set(awards, {autoAlpha: 0});
   if (_STATE.slider.data.current === _STATE.slider.data.total) {
     hideContentContact();
 
@@ -45,7 +46,8 @@ export const hideMainContent = () => {
 /*  */
 export const showCntContent = (inx = 0) => {
 	gsap.set([title, text, link], {autoAlpha: 0, x: -200});
-	gsap.set([mainTitle, mainSubtitle, awards], {autoAlpha: 0, y: -100});
+	gsap.set([mainTitle, mainSubtitle], {autoAlpha: 0, y: -100});
+	gsap.set(awards, {autoAlpha: 0});
   /*  */
 	/*  */
 	const settings = { paused: true };
@@ -93,7 +95,8 @@ export const  inContent = (inx) => {
 
 
 	tl.fromTo([titleCnt, textCnt, linkCnt], 1, {autoAlpha: 0, x: -200}, {autoAlpha: 1, x: 0, stagger: 0.1})
-	tl.fromTo([mainTitle, mainSubtitle, awardsCnt], 1, {autoAlpha: 0, y: -100}, {autoAlpha: 1, y: 0, stagger: 0.1}, '<')
+	tl.fromTo([mainTitle, mainSubtitle], 1, {autoAlpha: 0, y: -100}, {autoAlpha: 1, y: -50, stagger: 0.1}, '<')
+	tl.fromTo(awardsCnt, 1, {autoAlpha: 0}, {autoAlpha: 1}, '<')
 
 
 	return tl;
@@ -144,7 +147,8 @@ export const  outContent = (inx)=> {
 	const tl = gsap.timeline(settings);
 
 	tl.fromTo([titleCnt, textCnt, linkCnt], 1, {autoAlpha: 1, x: 0}, {autoAlpha: 0, x: -200, stagger: 0.1})
-  tl.fromTo([mainTitle, mainSubtitle, awardsCnt], 1, {autoAlpha: 1, y: 0}, {autoAlpha: 0, y: -100, stagger: 0.1}, '<')
+  tl.fromTo([mainTitle, mainSubtitle], 1, {autoAlpha: 1, y: -50}, {autoAlpha: 0, y: -100, stagger: 0.1}, '<')
+	tl.fromTo(awardsCnt, 1, {autoAlpha: 1}, {autoAlpha: 0}, '<')
 
 
 
@@ -178,7 +182,7 @@ export const mainTransition = (sliderData) => {
       isResume = false;
       tl.resume();
 		}
-		if(progress > 80 && isResumeBeforeEnd){
+		if(progress > 65 && isResumeBeforeEnd){
       isResumeBeforeEnd = false;
       tl.resume();
 		}
@@ -192,20 +196,20 @@ export const mainTransition = (sliderData) => {
 	/*  */
 	const tl = gsap.timeline(settings);
 	tl.call(() => {video.play()});
-  tl.add(() => tl.pause(), '<');
+  // tl.add(() => tl.pause(), '<');
 
   console.log(_ELEMENTS.videoBlockWrapper);
-	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.5, {'--w': 50, '--h': 100}, {'--w': 110, '--h': 110, x: 0, ease: eases.ex, onComplete: ()=>{
+	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.2, {'--w': 50, '--h': 100}, {'--w': 110, '--h': 110, x: 0, ease: eases.ex, onComplete: ()=>{
     tl.pause();
 
   }});
 	tl.call(()=> { 
-    outContent(cnxOut).play();
+    outContent(cnxOut).timeScale(2).play();
   }, null, '<')
 	tl.call(()=> { 
     counterOut().play();
   }, null, '<0.2')
-	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1,  {'--w': 110, '--h': 110,}, {'--w': 50, '--h': 100, x: propPadding, immediateRender: false, ease: eases.ex});
+	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.2,  {'--w': 110, '--h': 110,}, {'--w': 50, '--h': 100, x: propPadding, immediateRender: false, ease: eases.ex});
 	tl.call(()=> { 
     counterIn().play();
   }, null, '<0.15')

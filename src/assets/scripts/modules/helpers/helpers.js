@@ -26,6 +26,8 @@ export const _PATHS = {
 
 const smooth_1 = bezierEasing(.46,.79,.63,.93);
 const smooth_2 = bezierEasing(.29,.94,.47,.92);
+const smooth_3 = bezierEasing(.62,.27,.94,1.06);
+const smooth_4 = bezierEasing(.99,.01,.48,.94);
 
 export const eases = {
 	ex: "expo.inOut",

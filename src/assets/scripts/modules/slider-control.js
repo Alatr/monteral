@@ -11,7 +11,6 @@ export const initSlider = (state) => {
 
 /*  */
 export const next = async () => {
-  console.log('next', _STATE.slider.data.current);
 	if (_STATE.slider.data.current === _STATE.slider.data.total) return;
 
 	disableScroll();
