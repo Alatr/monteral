@@ -54,3 +54,46 @@ const buildPopup = new showModal({
     animationOut: animationPopapOut,
     attrParrentNode: '[data-parrent-node-build]'
 });
+
+
+const swiper = new Swiper(dqs('[data-swiper-slider]'), {
+    // Optional parameters
+
+    slidesPerView: 'auto',
+    freeMode: true,
+    // init: false,
+    spaceBetween: 30,
+    centeredSlides: true,
+    slideToClickedSlide: true,
+    navigation: {
+        nextEl: dqs('.arrow-next'),
+        prevEl: dqs('.arrow-prev'),
+    },
+    on: {
+        init: function(self) {
+            self.bigView = dqs('[data-swiper-current-img-view]');
+        },
+    }
+
+});
+
+function dqs(selector) {
+    return document.querySelector(selector);
+}
+swiper.on('init', () => {
+    console.log('INIT');
+})
+swiper.on('slideChange', (evt) => {
+    console.log(evt);
+    console.log('-----------');
+    console.log(swiper);
+
+    let tl = gsap.timeline();
+
+    tl.to(evt.bigView, { autoAlpha: 0, duration: 0.5 });
+    tl.add(() => { evt.bigView.src = evt.slides[evt.activeIndex].getAttribute('src'); })
+    tl.to(evt.bigView, { autoAlpha: 1, duration: 0.5 });
+
+
+
+})

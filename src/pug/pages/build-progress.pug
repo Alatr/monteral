@@ -93,18 +93,30 @@ block content
                     <path d="M0 50H50V0H0V50Z" fill="#CFBE97"/>
                     <path d="M30 30L20 20M20 30L30 20L20 30Z" stroke="white"/>
                     </svg>
-
-            .build-gallery-popup__title Місяц
-            .build-gallery-popup__text 2020
+            .build-gallery-popup__wrap-title
+                .build-gallery-popup__title Місяц
+                .build-gallery-popup__text 2020
             .build-gallery-popup__img-view
-                img(src="./assets/images/build-progress/test/test1.jpg")
+                .loader
+                img(src="./assets/images/build-progress/test/test1.jpg" data-swiper-current-img-view)
+            .prev-gallery
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 9L2 9M2 9L9.66667 17M2 9L9.66667 1" stroke="white" stroke-width="2"/>
+                    </svg>
+                span Попередній звіт
+            .next-gallery
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 9L2 9M2 9L9.66667 17M2 9L9.66667 1" stroke="white" stroke-width="2"/>
+                    </svg>
+                span Наступний звіт
             <svg class="arrow-prev" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 9.00195L0.999999 9.00195M0.999999 9.00195L8.66667 17.002M0.999999 9.00195L8.66667 1.00195" stroke="#CFBE97"/>
                 </svg>
-            .build-gallery-popup__img-slider
-                - var imgs = ['Rectangle 3340.jpg','Rectangle 3341.jpg','Rectangle 3342.jpg','Rectangle 3343.jpg','Rectangle 3344.jpg','Rectangle 3345.jpg','Rectangle 3346.jpg','Rectangle 3347.jpg',]
-                    each img in imgs 
-                        img(src='./assets/images/build-progress/test/'+img)
+            .build-gallery-popup__img-slider( data-swiper-slider)
+                .swiper-wrapper
+                    - var imgs = ['Rectangle 3340.jpg','Rectangle 3341.jpg','Rectangle 3342.jpg','Rectangle 3343.jpg','Rectangle 3344.jpg','Rectangle 3345.jpg','Rectangle 3346.jpg','Rectangle 3347.jpg',]
+                        each img in imgs 
+                            img(src='./assets/images/build-progress/test/'+img).swiper-slide
             <svg class="arrow-next" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.99382e-07 9.00195L18 9.00195M18 9.00195L10.3333 17.002M18 9.00195L10.3333 1.00195" stroke="#CFBE97"/>
                 </svg>

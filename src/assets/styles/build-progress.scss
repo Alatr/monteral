@@ -450,7 +450,7 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    overflow: scroll;
+    // overflow: scroll;
     left: 0;
     top: 0;
     background-color: lavenderblush;
@@ -462,6 +462,20 @@
         top: 0;
         width: 100%;
         height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+        .loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
         z-index: -1;
     }
     &__img-view:after {
@@ -484,6 +498,7 @@
         letter-spacing: -0.05em;
         /* White */
         color: #FFFFFF;
+        margin-bottom: 10px;
     }
     &__text {
         font-weight: 500;
@@ -495,6 +510,64 @@
         color: #CFBE97;
     }
     &__img-slider {
+        height: 100px;
+        @include size(10);
         display: flex;
+        position: absolute;
+        overflow: hidden;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: var(--self-side-padding);
+        img {
+            transition: .3s ease-out;
+            border: 2px solid transparent;
+            width: 100px;
+        }
+    }
+    &-close {
+        position: absolute;
+        right: var(--self-side-padding);
+        top: var(--self-side-padding);
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1em;
+        text-transform: lowercase;
+        /* identical to box height, or 14px */
+        text-align: right;
+        /* Text gold */
+        color: #E1DDD2;
+        span {
+            margin-right: 10px;
+        }
+    }
+    &__wrap-title {
+        position: absolute;
+        left: 50%;
+        top: var(--self-side-padding);
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .arrow-next {
+        position: absolute;
+        right: calc(8% - 20px);
+        transform: translateY(50%);
+        bottom: calc(var(--self-side-padding) + 50px);
+    }
+    .arrow-prev {
+        position: absolute;
+        transform: translateY(50%);
+        left: calc(8% - 20px);
+        bottom: calc(var(--self-side-padding) + 50px);
+    }
+    @include from(769px) {
+        &__img-slider img:hover {
+            cursor: pointer;
+            border-color: $color-gold;
+        }
     }
 }
