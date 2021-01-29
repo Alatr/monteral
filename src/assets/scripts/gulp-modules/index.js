@@ -24,7 +24,8 @@ class showModal {
         this.status = false;
         this.animationIn = obj.animationIn;
         this.animationOut = obj.animationOut;
-
+        this.onOpenCompleteCallback = obj.onOpenCompleteCallback || function() {};
+        this.onCloseCompleteCallback = obj.onCloseCompleteCallback || function() {};
         this.$body = document.querySelector('body');
 
 
@@ -46,6 +47,7 @@ class showModal {
         }
         /*  */
     open() {
+        this.onOpenCompleteCallback();
         const onComplete = () => {
             this.enableButton(this.$openBtn);
             this.status = true;
@@ -53,10 +55,11 @@ class showModal {
         const onStart = () => this.disableButton(this.$openBtn);
 
         this.animationIn({ onComplete, onStart }).play();
+
     };
 
     close() {
-
+        this.onCloseCompleteCallback();
         const onComplete = () => {
             this.enableButton(this.$openBtn);
 
@@ -79,9 +82,11 @@ class showModal {
 
     listeners() {
         const self = this;
-        this.$body.addEventListener('click', function({ target }) {
-            if (target.closest(self.attrParrentNode) != null && !self.$openBtn.disabled) {
+        this.$body.addEventListener('click', function(evt) {
+            if (evt.target.closest(self.attrParrentNode) != null && !self.$openBtn.disabled) {
+                evt.stopImmediatePropagation();
                 self.toggle();
+                console.log(this);
             }
         });
     }

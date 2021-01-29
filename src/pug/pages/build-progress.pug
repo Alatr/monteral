@@ -68,7 +68,7 @@ block content
                 a(href="#" rel="nofollow" target="_blank") instagram
             li(data-animate-links).social__item
                 a(href="#" rel="nofollow" target="_blank") telegram
-    .build-gallery-popup
+    .build-gallery-popup(data-build-gallery-popup)
             <svg width="186" height="38" viewBox="0 0 186 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M44.8232 21.2797H48.3512V27.6233H57.6628V21.2797H61.1908V37.3116H57.6628V30.8527H48.3512V37.3116H44.8232V21.2797Z" fill="white"/>
                 <path d="M64.8916 29.2957C64.8916 24.7399 68.4774 20.9914 73.4513 20.9914C78.4252 20.9914 81.9532 24.6822 81.9532 29.2957C81.9532 33.8515 78.3674 37.6 73.3935 37.6C68.4774 37.6 64.8916 33.9092 64.8916 29.2957ZM78.2517 29.2957C78.2517 26.5276 76.2274 24.2785 73.3935 24.2785C70.5595 24.2785 68.5931 26.5276 68.5931 29.2957C68.5931 32.0638 70.6174 34.3129 73.4513 34.3129C76.2853 34.3129 78.2517 32.0638 78.2517 29.2957Z" fill="white"/>
@@ -86,41 +86,46 @@ block content
                 <path d="M0 37.3116H37.2463V0.28833H0V37.3116ZM34.1231 34.1975H3.12314V3.51778H34.1231V34.1975Z" fill="white"/>
                 <path d="M20.5313 7.15094V27.4503H16.772V7.15094H6.82422V30.5644H9.94735V10.265H13.6488V30.5644H23.5966V10.265H27.3559V30.5644H30.4212V7.15094H20.5313Z" fill="white"/>
                 </svg>
+            <svg data-moving-mouse width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="50" height="50" fill="white"/>
+                    <path d="M16 25L34 25M34 25L26.3333 33M34 25L26.3333 17" stroke="#007275"/>
+                </svg>
 
-            .build-gallery-popup-close(data-build-popup-close) 
+            .build-gallery-popup-close(data-build-popup-close data-build-popup) 
                 span Закрити
                 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 50H50V0H0V50Z" fill="#CFBE97"/>
                     <path d="M30 30L20 20M20 30L30 20L20 30Z" stroke="white"/>
                     </svg>
             .build-gallery-popup__wrap-title
-                .build-gallery-popup__title Місяц
-                .build-gallery-popup__text 2020
-            .build-gallery-popup__img-view
+                .build-gallery-popup__title(data-popup-title) Місяц
+                .build-gallery-popup__text(data-popup-subtitle) 2020
+            .build-gallery-popup__img-view(data-swiper-big-image)
                 .loader
                 img(src="./assets/images/build-progress/test/test1.jpg" data-swiper-current-img-view)
-            .prev-gallery
+            .prev-gallery(data-popup-prev-gallery)
                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 9L2 9M2 9L9.66667 17M2 9L9.66667 1" stroke="white" stroke-width="2"/>
                     </svg>
                 span Попередній звіт
-            .next-gallery
+            .next-gallery(data-popup-next-gallery)
                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 9L2 9M2 9L9.66667 17M2 9L9.66667 1" stroke="white" stroke-width="2"/>
                     </svg>
                 span Наступний звіт
-            <svg class="arrow-prev" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 9.00195L0.999999 9.00195M0.999999 9.00195L8.66667 17.002M0.999999 9.00195L8.66667 1.00195" stroke="#CFBE97"/>
-                </svg>
-            .build-gallery-popup__img-slider( data-swiper-slider)
-                .swiper-wrapper
-                    - var imgs = ['Rectangle 3340.jpg','Rectangle 3341.jpg','Rectangle 3342.jpg','Rectangle 3343.jpg','Rectangle 3344.jpg','Rectangle 3345.jpg','Rectangle 3346.jpg','Rectangle 3347.jpg',]
-                        each img in imgs 
-                            img(src='./assets/images/build-progress/test/'+img).swiper-slide
-            <svg class="arrow-next" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.99382e-07 9.00195L18 9.00195M18 9.00195L10.3333 17.002M18 9.00195L10.3333 1.00195" stroke="#CFBE97"/>
-                </svg>
-    section.page-part(data-parrent-node-build)
+            .build-gallery-popup__wrap-nav
+                <svg class="arrow-prev" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 9.00195L0.999999 9.00195M0.999999 9.00195L8.66667 17.002M0.999999 9.00195L8.66667 1.00195" stroke="#CFBE97"/>
+                    </svg>
+                .build-gallery-popup__img-slider( data-swiper-slider)
+                    .swiper-wrapper
+                        - var imgs = ['Rectangle 3340.jpg','Rectangle 3341.jpg','Rectangle 3342.jpg','Rectangle 3343.jpg','Rectangle 3344.jpg','Rectangle 3345.jpg','Rectangle 3346.jpg','Rectangle 3347.jpg',]
+                            each img in imgs 
+                                img(src='./assets/images/build-progress/test/'+img).swiper-slide
+                <svg class="arrow-next" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.99382e-07 9.00195L18 9.00195M18 9.00195L10.3333 17.002M18 9.00195L10.3333 1.00195" stroke="#CFBE97"/>
+                    </svg>
+    section.page-part
         .decor-type-vertical.build-progress-filter-wrap
             .decor-type-vertical__top
                 .subtitle-with-decor Фільтр
@@ -164,7 +169,7 @@ block content
         .progress-galleries
             - var n = 0;
                 while n < 12
-                    .progress-gallery-link(data-month=n data-year=2020)
+                    .progress-gallery-link(data-progress-gallery data-month=n  data-build-popup=n data-year=2020  data-images="https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/10_lesnaya-skazka2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/3_klubniy2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/12_lesnaya-skazka1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/13_britanika_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/14_irpenskie-lipki_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/15_parkoviy_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/1_Riverside_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/5_naykraschiy1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/6_proreznaya-2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/7_proreznaya-1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/8_Royal-Park_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/naykraschiy2.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/Poltavskaya64.jpg")
                         .progress-gallery-link__left 
                             img(src="./assets/images/build-progress/test.jpg")
                             .plus-element +
