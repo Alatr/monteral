@@ -31,16 +31,11 @@ export const isRedirect = () => {
 }
 
 export const setLocationName = (inxPartPage) => {
-	// if(_.isEmpty(convertURL2Obj())) return
 	const paramLocation = (_.isEmpty(convertURL2Obj())) ? {} : convertURL2Obj();
 	const [newPartName, newPartInx] = _.toPairs(dataRoute).filter(([, inx]) => inx === inxPartPage)[0];
 
-	// console.log(paramLocation);
 	paramLocation.partHomePage = newPartName;
 	const newSearchParam = convertObj2URL(paramLocation);
 
 	history.pushState('', '', `${newSearchParam}`);
 }
-
-// console.log(convertUTL2Obj());
-

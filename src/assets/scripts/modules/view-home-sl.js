@@ -67,6 +67,7 @@ function renderLoadingScreen(state, elements){
 			/*  */
     case 'showPartPageContact':
       transitionshowPartPageContact(state.slider.data).play();
+			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(state.slider.data.current)})`;
 			break;
 			/*  */
     case 'hidePartPageContact':

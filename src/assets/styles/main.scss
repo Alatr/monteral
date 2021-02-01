@@ -213,6 +213,9 @@ a.border-btn {
     width: 296px;
     height: 50px;
     background: transparent;
+    @include from(1441px){
+      height: 60px;
+    }
 }
 
 .form-field__input {
@@ -398,6 +401,21 @@ a.border-btn {
   width: 100%;
   text-decoration: none;
   overflow: hidden;
+  @include from(1025px){
+    &:hover{
+      .button-second__icon{
+        background-color: #006164;
+        transition: background-color 0.5s var(--in) 0.15s, opacity 1.5s;
+      }
+      .button-second__text span{
+        color: #006164;
+        transition: font-weight 0.7s var(--in) 0.15s, color 1.5s;
+      }
+      .button-second__logo{
+        transition: transform 0.7s var(--in) 0.15s, opacity 1.5s;
+      }
+    }
+  }
   &__icon{
     width: 50px;
     height: 50px;
@@ -405,7 +423,10 @@ a.border-btn {
     justify-content: center;
     align-items: center;;
     flex-shrink: 0;
+    transition: background-color 0.4s var(--in) 0.15s, opacity 1.5s;
+
     svg{
+      transition: transform 0.7s var(--in) 0.1s;
       width: 23px;
       height: 15px;
     }
@@ -417,7 +438,9 @@ a.border-btn {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    transform: translateX(-1px);
+    transform-origin: left;
+    transform: translateX(-1px) scaleX(1);
+      transition: transform 0.7s var(--in) 0.1s;
 
     svg{
       width: 100%;
@@ -435,6 +458,9 @@ a.border-btn {
     font-weight: 500;
     font-size: 12px;
     line-height: 1.2em;
+    span, b{
+      transition: transform 0.7s var(--in) 0.1s;
+    }
   }
 }
 
@@ -449,6 +475,7 @@ a.border-btn {
     color: #392425;
     b{
       color: #007275;
+      white-space: nowrap;
     }
   }
   .button-second__logo{
@@ -481,6 +508,11 @@ a.border-btn {
   font-weight: 500;
   font-size: 12px;
   line-height: lh(18, 12);
+  @include from(1441px){
+    margin-bottom: 20px;
+    font-size: max(vh(14), 14px);;
+
+  }
 }
 
 .subtitle-with-decor{
@@ -492,6 +524,10 @@ a.border-btn {
   line-height: 1em;
   text-align: center;
   letter-spacing: -0.05em;
+  @include from(1441px){
+    margin-bottom: 40px;
+    font-size: max(vh(30), 30px);;
+  }
   &::after{
     position: absolute;
     left: 50%;
@@ -501,5 +537,8 @@ a.border-btn {
     display: flex;
     content: "";
     transform: translateY(100%);
+    @include from(1441px){
+      bottom: -10px;
+    }
   }
 }

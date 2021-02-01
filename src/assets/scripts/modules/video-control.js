@@ -1,28 +1,5 @@
 import {_PATHS} from './helpers/helpers'
 
-// export const startCheckingLoadingVideoEvery500ms = (video, state) => {
-// 		callFunctionWithInterval({
-// 			predicate: () => video.readyState >= 3,
-// 			success: () => setStateVideoIsLoad(state),
-// 			unSuccess: () => setStateVideoIsntLoad(state),
-// 			time: 500,
-// 		});
-// 	}
-	
-	
-// /*  */
-// export const isVideoLoaded = (state) => {
-// 	return state.page.video.videoLoaded = true;
-// }
-// /*  */
-// export const setStateVideoIsLoad = (state) => {
-// 	state.page.video.videoLoaded = true;
-// }
-// export const setStateVideoIsntLoad = (state) => {
-// 	state.page.video.videoLoaded = false;
-// }
-// /*  */
-
 let _STATE = null;
 let _ELEMENTS = null;
 
@@ -96,29 +73,3 @@ async function loadingVideo(inx, type){
 	});
 	return await promise;
 }
-
-
-// async function getPromise(data, url, parse) {
-// 	let promise = new Promise(function (resolve, reject) {
-// 		$.ajax({
-// 			url: url,
-// 			data: data,
-// 			type: 'POST',
-// 			global: false,
-// 			async: true,
-// 			success: function (res) {
-// 				let data = (!parse) ? JSON.parse(res) : res
-// 				resolve(data);
-// 			},
-// 			error: function (jqXHR, status, errorThrown) {
-// 				reject(jqXHR);
-// 			},
-// 			beforeSend: function () {},
-// 		});
-// 	});
-
-// 	return await promise;
-// }
-
-
-
