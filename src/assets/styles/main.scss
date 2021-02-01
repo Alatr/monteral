@@ -27,6 +27,7 @@
 @import './news-single.scss';
 @import './buy-conditions.scss';
 @import './build-progress.scss';
+@import './developer.scss';
 .lang,
 .social {
     z-index: 6;
@@ -503,4 +504,13 @@ a.border-btn {
         content: "";
         transform: translateY(100%) translateX(-50%);
     }
+}
+
+.subtitle-with-decor--l {
+    font-size: 30px;
+}
+
+.subtitle-with-decor--left-line::after {
+    left: 0;
+    transform: translateY(100%) translateX(0);
 }

@@ -33,11 +33,14 @@ section {
     &.double-green {
         position: relative;
         background-color: $color-green;
+        background-color: #006164;
+        margin-left: calc(var(--self-side-padding) * -1);
+        padding-left: var(--self-side-padding);
     }
     &.double-green:after {
         position: absolute;
         right: calc(var(--self-side-padding) * -1);
-        background-color: $color-green-black;
+        background-color: #00585A;
         top: 0;
         content: '';
         height: 100%;
@@ -294,6 +297,12 @@ section {
         height: var(--square-size);
         border: 2px solid #CFBE97;
         box-sizing: border-box;
+        z-index: -1;
+        &_bottom {
+            right: auto;
+            left: 0;
+            bottom: 0;
+        }
     }
     &.reverse &__img-decor-square {
         right: auto;
@@ -318,6 +327,20 @@ section {
         height: 100%;
         z-index: 1;
     }
+    &__img-decor-square_bottom.reverse &__img-decor-square {
+        right: 0;
+        top: auto;
+        left: auto;
+        bottom: 0;
+        transform: translate(50%, 50%);
+    }
+    &__img-decor-square_bottom:not(.reverse) &__img-decor-square {
+        right: auto;
+        top: auto;
+        left: 0;
+        bottom: 0;
+        transform: translate(-50%, 50%);
+    }
     &__img-main {
         position: relative;
         height: 100%;
@@ -332,6 +355,19 @@ section {
         padding-top: var(--img-vert-padding);
         padding-bottom: var(--img-vert-padding);
         margin-right: var(--square-size);
+    }
+    &__img-title {
+        position: absolute;
+        text-decoration: none;
+        left: calc(50% - (var(--img-left-padding) / 2));
+        z-index: 2;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        .link {
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
     &.reverse &__img {
         padding-left: 0;
@@ -366,8 +402,11 @@ section {
         height: 2px;
         width: 40px;
     }
+    p {
+        line-height: 1.67em;
+    }
     p:not(:last-of-type) {
-        margin-bottom: 1em;
+        margin-bottom: 1.67em;
     }
     .button-second {
         max-width: 240px;
