@@ -100,6 +100,8 @@ export const transitionshowPartPageContact = (sliderData) => {
 	tl.call(()=> { 
     outContent(cnxOut).play();
     gsap.set(_ELEMENTS.contactBlocks, {autoAlpha: 1});
+    gsap.set(_ELEMENTS.scrollIcon, {autoAlpha: 0});
+
   }, null, '<')
   // tl.call(()=> { 
   //   counterOut().play();
@@ -124,9 +126,9 @@ export const transitionHidePartPageContact = (sliderData) => {
   const tl = gsap.timeline(settings);
   
   tl.call(()=> { outContentContact().play(); }, null, '<')
-  // tl.call(()=> { 
-  //   counterOut().play();
-  // }, null, '<0.2')
+  tl.call(()=> { 
+    counterOut().play();
+  }, null, '<0.2')
 	// tl.call(()=> { gsap.set(_ELEMENTS.videoBlockWrapper, {autoAlpha: 1}); }, null, '+=0')
   tl.fromTo(_ELEMENTS.overlayDeveloper, 1,  {scaleX: 1}, {scaleX: 0,transformOrigin: 'left', immediateRender: false, ease: eases.ex});
 	tl.fromTo(_ELEMENTS.videoBlockWrapper, 0.5,  {'--w': 0, '--h': 100,}, {'--w': 50, '--h': 100});

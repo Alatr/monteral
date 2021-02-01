@@ -65,7 +65,8 @@ block content
     //- 	<path d="M0 25H25V0H0V25ZM22.9037 22.8972H2.09627V2.18069H22.9037V22.8972Z" />
     //- 	<path d="M13.7132 5V18.8719H11.3235V5H5V21H6.98529V7.12808H9.33824V21H15.6618V7.12808H18.0515V21H20V5H13.7132Z" />
     //- </svg>
-    +svg('logo').welcome-screen__logo
+    .welcome-screen__logo
+      +svg('logo')
     h1.welcome-screen__title 
       span Montreal
       span House —
@@ -80,18 +81,18 @@ block content
         .home-title-item__title(data-home-main-title) Montreal House —
         .home-title-item__subtitle(data-home-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
 
-    a(href="#" data-animate-links).screen-icon-link
+    a(href="#" data-gsap-greating data-animate-links).screen-icon-link
       +svg('webcam')
       span.screen-icon-link__text
         span Веб
         span камера
-    <svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
+    <svg class="mouse screen screen-icon-scroll" data-gsap-greating data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
       <g fill="none" fill-rule="evenodd">
         <rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="5" rx="36"/>
         <circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
       </g>
     </svg>
-    ul.lang.screen__lang
+    ul(data-gsap-greating).lang.screen__lang
       li(data-animate-links).lang__item.lang__item--active
         a(href="#") uk
       li(data-animate-links).lang__item
@@ -100,8 +101,8 @@ block content
         a(href="#") en
     
 
-    .decor-social(data-animate-links)
-    ul.social.screen__social
+    .decor-social(data-animate-links data-gsap-greating)
+    ul(data-gsap-greating).social.screen__social
       li(data-animate-links).social__item
         a(href="#" rel="nofollow" target="_blank") facebook
       li(data-animate-links).social__item
@@ -176,7 +177,7 @@ block content
         <div class="loader-wrap-video  loader-video--hidden" data-video-preloader >
           <div class="loader"></div>
         </div>
-        .slider-counter(data-sl-counter)
+        .slider-counter(data-sl-counter data-gsap-greating)
           .slider-counter-inner-wrap(data-sl-counter-inner)
             span.slider-counter__cnt(data-cnt) 01
             span.slider-counter__separator /
