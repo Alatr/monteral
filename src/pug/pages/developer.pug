@@ -93,6 +93,29 @@ block content
         -var developerValues = [['Досвід','<b>Багаторічний досвід</b> у сфері нерухомості',],['Проекти','<b>Великий вибір</b> якісної та перевіреної нерухомості',],['Команда','<b>Понад 50 професійних</b> співробітників у штаті',],['Умови купівлі','<b>Вигідні умови</b> купівлі',],['Сервіс','<b>Індивідуальний підбір</b> нерухомості для кожного',],['Надійність','<b>Повний пакет</b> дозвільних документів і висока якість будівництва',],]
         each el in developerValues
             .developer-value
-                img(src="./assets/images/developer/dev-value1.jpg")
+                img(src="./assets/images/developer/dev-value1.jpg").developer-value__img
                 .subtitle-with-decor.subtitle-with-decor--l.subtitle-with-decor--white.subtitle-with-decor--left-line #{el[0]}
                 .text !{el[1]}
+        div.running-text.top-padding Нові важливості / <span class="golden-run">Нові важливості / </span>Нові важливості / Нові важливості / Нові важливості / Нові важливості / Нові важливості /
+        div.running-text.backward Montreal House / Montreal House / <span class="golden-run">Montreal House /</span>  / Montreal House / Montreal House / Montreal House / Montreal House / 
+    section.page-part.double-green.self-size.developer-last-section
+        .subtitle-with-decor.subtitle-with-decor--white.subtitle-with-decor--l Інші проекти забудовника
+        .slider(data-swiper-projects)
+            <svg class="arrow-next" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.99382e-07 9L18 9M18 9L10.3333 17M18 9L10.3333 1" stroke="#E1DDD2"/>
+                </svg>
+            <svg class="arrow-prev" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.99382e-07 9L18 9M18 9L10.3333 17M18 9L10.3333 1" stroke="#E1DDD2"/>
+                </svg>
+            .swiper-wrapper
+                -var proj = ['./assets/images/developer/projects/forest-quartal.png','./assets/images/developer/projects/forest-quartal.png','./assets/images/developer/projects/illinsky-house.png','./assets/images/developer/projects/krona-park.png','./assets/images/developer/projects/lavandoviy.png',]
+                each el in proj
+                    img(src=el).swiper-slide
+        a(href="#").contact-item__link.button-second.button-second--color-white
+            .button-second__icon
+                +svg('chair').button-second--map-size
+            span.button-second__text
+                span обрати
+                b квартиру
+            span.button-second__logo
+                +svg('logo-m')

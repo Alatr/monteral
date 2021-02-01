@@ -47,6 +47,9 @@ section {
         width: 30%;
         z-index: 0;
     }
+    &.self-size {
+        min-height: auto;
+    }
     &>* {
         position: relative;
         z-index: 1;

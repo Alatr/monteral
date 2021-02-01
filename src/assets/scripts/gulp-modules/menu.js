@@ -26,24 +26,22 @@ function switchMenuImage(evt) {
     if ($menuImage.dataset.image === linkWithImage.dataset.image) return;
 
     let tl = gsap.timeline();
-    console.log(tl);
-    tl.to($menuImage, { opacity: 0.1, scale: 0.9, duration: 0.75, });
+    tl.to($menuImage, {
+        clipPath: `polygon(0 0, 0% 0, 0% 100%, 0 100%)`,
+        ease: Expo.easeOut,
+        duration: 1,
+    })
     tl.add(() => {
         $menuImage.dataset.image = linkWithImage.dataset.image;
         $menuImage.src = linkWithImage.dataset.image;
     })
-    tl.to($menuImage, { opacity: 1, duration: 0.35, ease: Power4.easeOut, scale: 1 })
-        // $menuImage.style.animation = `img-out .5s ease-out`;
-        // setTimeout(() => {
-        //     $menuImage.dataset.image = linkWithImage.dataset.image;
-        //     $menuImage.src = linkWithImage.dataset.image;
-        // }, 500);
-}
-// $menuImage.addEventListener('load', function(evt) {
-//     $menuImage.style.opacity = 1;
-//     $menuImage.style.animation = `img-in 1s ease-out`;
-// });
+    tl.to($menuImage, {
+        clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`,
+        ease: Expo.easeOut,
+        duration: 1,
+    })
 
+}
 
 /** */
 const classForHoverLink = 'hover';
