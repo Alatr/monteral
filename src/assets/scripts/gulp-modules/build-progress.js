@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 /**Кастомные селекты */
 var selectors = document.querySelectorAll('.custom-select');
-let event = new Event('change');
+let event1 = new Event('change');
 var buildProgressConfig = {
-    year: 'null',
+    year: document.querySelector('[data-build-filter-name="year"] .custom-select__item-current').dataset.value,
     month: 'null'
 };
 
@@ -14,6 +14,7 @@ selectors.forEach(el => {
     el.addEventListener('mouseleave', function(evt) {
         el.style.zIndex = '';
     });
+
 })
 
 function changeCurrentValue(selector) {
@@ -24,15 +25,20 @@ function changeCurrentValue(selector) {
         select.addEventListener('click', () => {
             selector.querySelectorAll('.custom-select__item').forEach(el => el.classList.remove('custom-select__item-current'))
             select.classList.add('custom-select__item-current');
+            console.log('CHANGE');
             if (selector.currentValue !== select.dataset.value) {
                 selector.currentValue = select.dataset.value;
-                selector.dispatchEvent(event);
+                selector.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    selector.style.pointerEvents = 'all';
+                }, 1000);
+                selector.dispatchEvent(event1);
 
             }
             // console.log(selector.currentValue);
         })
     });
-    selector.addEventListener('change', function(evt) {
+    selector.addEventListener('change', function() {
         // buildProgressConfig[evt.target.dataset.name] = evt.target.currentValue;
     });
 }
@@ -65,9 +71,13 @@ document.querySelectorAll('[data-build-filter-name]').forEach(el => {
                 buildProgressConfig.year === 'null'
             ) {
                 link.style.display = 'flex';
-            } else {
+                gsap.to(link, { autoAlpha: 1, x: 0 });
 
-                link.style.display = 'none';
+            } else {
+                gsap.to(link, { autoAlpha: 0, x: 50 });
+                setTimeout(() => {
+                    link.style.display = 'none';
+                }, 1000);
             }
         })
 
@@ -75,8 +85,10 @@ document.querySelectorAll('[data-build-filter-name]').forEach(el => {
 })
 
 initPopupSlider(galleries[0]);
+
 galleries.forEach((galleryWithData, index) => {
-    const buildPopup = new showModal({
+    /*const buildPopup = */
+    new showModal({
         $popup: document.querySelector('[data-build-gallery-popup]'),
         $openBtn: galleryWithData,
         $closeBtn: document.querySelector('[data-build-popup-close]'),
@@ -94,7 +106,7 @@ galleries.forEach((galleryWithData, index) => {
 })
 
 
-dqs('[data-popup-prev-gallery]').addEventListener('click', function(evt) {
+dqs('[data-popup-prev-gallery]').addEventListener('click', function() {
     let prevGallery = popupSliderConfig.currentPopup.previousElementSibling;
     if (prevGallery === null) return;
     initPopupSlider(prevGallery);
@@ -102,7 +114,7 @@ dqs('[data-popup-prev-gallery]').addEventListener('click', function(evt) {
     popupSliderConfig.currentPopup = prevGallery;
     document.querySelector('[data-build-gallery-popup] [data-build-popup-close]').setAttribute('data-build-popup', prevGallery.dataset.buildPopup);
 });
-dqs('[data-popup-next-gallery]').addEventListener('click', function(evt) {
+dqs('[data-popup-next-gallery]').addEventListener('click', function() {
     let prevGallery = popupSliderConfig.currentPopup.nextElementSibling;
     if (prevGallery === null) return;
     initPopupSlider(prevGallery);
@@ -196,7 +208,7 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
     arrow.style.zIndex = 10;
 
     arrow.__proto__.hide = function() {
-        this.style.opacity = "0";
+        this.style.opacity = '0';
         container.style.cursor = 'auto';
         this.style.pointerEvents = 'none';
     };
@@ -228,9 +240,9 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
 
 
     function desktopNavButtonHandler(evt) {
-        arrow.style.position = "fixed";
-        arrow.style.left = evt.clientX - 18 + "px";
-        arrow.style.top = evt.clientY - 18 + "px";
+        arrow.style.position = 'fixed';
+        arrow.style.left = evt.clientX - 18 + 'px';
+        arrow.style.top = evt.clientY - 18 + 'px';
         getCursorSide(evt.clientX);
         handleArrowVisibility(evt);
     }
@@ -250,11 +262,11 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
             arrow.classList.add('left-side');
             arrow.dataset.side = 'leftSide';
         } else {
-            arrow.classList.remove("left-side");
-            arrow.dataset.side = "rightSide";
+            arrow.classList.remove('left-side');
+            arrow.dataset.side = 'rightSide';
         }
     }
-    arrow.addEventListener("click", function(evt) {
+    arrow.addEventListener('click', function() {
         switchGallerySlide(arrow.dataset.side);
     });
 
