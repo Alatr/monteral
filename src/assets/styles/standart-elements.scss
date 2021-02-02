@@ -158,6 +158,10 @@ section {
         flex-grow: 1;
         height: 100%;
         flex-direction: column;
+        pointer-events: none;
+        &>* {
+            pointer-events: all;
+        }
         .page-title {
             margin-top: Min(0.5em, 30px);
             margin-bottom: Min(0.5em, 30px);
