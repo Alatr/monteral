@@ -36,8 +36,10 @@ section {
         background-color: #006164;
         margin-left: calc(var(--self-side-padding) * -1);
         margin-right: calc(var(--self-side-padding) * -1);
-        padding-left: calc(var(--self-side-padding) * 2);
-        padding-right: calc(var(--self-side-padding) * 2);
+        // padding-left: calc(var(--self-side-padding) * 2);
+        // padding-right: calc(var(--self-side-padding) * 2);
+        padding-left: calc(var(--self-side-padding));
+        padding-right: calc(var(--self-side-padding));
     }
     &.double-green:after {
         position: absolute;

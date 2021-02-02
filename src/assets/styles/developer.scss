@@ -11,6 +11,10 @@
         padding-bottom: 160px;
         align-content: center;
     }
+    .page-part.double-green {
+        padding-left: calc(8.33333% + 10px + var(--self-side-padding));
+        padding-right: calc(8.33333% + 10px + var(--self-side-padding));
+    }
     .page-part .developer-value {
         @include size(3);
         @include shift-right(1);
