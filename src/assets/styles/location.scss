@@ -3,6 +3,7 @@
         @include shift-padding(1);
         padding-top: 160px;
         padding-bottom: 160px;
+        justify-content: space-between;
     }
     .block-with-decor2 {
         @include size(5);
@@ -58,6 +59,11 @@
         }
         .page-block-title {
             padding-right: 0;
+            margin-bottom: 20px;
+        }
+        .block-with-logo-decor {
+            margin-left: 0;
+            margin-right: 0;
         }
         .block-with-decor2 {
             width: 100%;
@@ -82,7 +88,7 @@
         color: $color-gold;
     }
     @include to(575px) {
-        font-size: 32px;
+        font-size: 24px;
     }
 }
 
@@ -208,10 +214,14 @@
         }
     }
     @include to(575px) {
-        --self-padding-top: 20px;
+        --self-padding-top: 14px;
+        --block-start-left-padding: 14px;
         &__text {
             font-size: 14px;
             min-height: 3em;
+            min-height: auto;
+            margin-bottom: 20px;
+            margin-top: 20px;
         }
         &__count {
             font-size: 24px;
@@ -225,7 +235,6 @@
     --decor-border-width: 2px;
     --decor-logo-size: 31px;
     position: relative;
-    z-index: 21;
     display: flex;
     flex-wrap: wrap;
     align-items: strench;
@@ -337,6 +346,7 @@
     &__img-wrap:after {
         position: absolute;
         content: '';
+        background-size: contain;
         display: inline-block;
         width: var(--decor-logo-size);
         height: var(--decor-logo-size);
@@ -375,28 +385,24 @@
         }
     }
     @include to(575px) {
+        --self-padding-top: 14px;
+        --delimiter-width: 15px;
+        --decor-logo-size: 22px;
         &__text-wrap {
             // overflow-x: hidden;
             // overflow-y: scroll;
-            padding-left: 20px;
-            padding-top: 20px;
-            border-right: none;
+            padding-left: 14px;
+            padding-top: 14px;
+            // border-right: none;
         }
-        &__text-wrap:after {
-            bottom: auto;
-            top: calc(var(--decor-border-width) * -1);
-            width: calc(var(--delimiter-width) + var(--decor-border-width));
-            right: calc(var(--decor-border-width) * -1 + var(--decor-border-width));
-        }
-        &__img-wrap {
-            flex-basis: var(--decor-logo-size);
-            border-left: none;
-        }
-        &__text-wrap {
-            flex-basis: calc(100% - var(--decor-logo-size) - var(--delimiter-width));
-        }
-        &__text-wrap img {
-            width: calc(100% + var(--delimiter-width));
+        &__img-wrap:before {
+            position: absolute;
+            content: '';
+            height: calc(100% - (var(--decor-logo-size) + 10px));
+            right: 0;
+            width: var(--decor-border-width);
+            top: 0;
+            background-color: $color-gold;
         }
         &__count {
             font-size: 24px;
@@ -406,6 +412,7 @@
         }
         &__content {
             font-size: 18px;
+            padding-left: 14px;
         }
     }
     @include from(576px) {

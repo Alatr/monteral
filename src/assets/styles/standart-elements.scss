@@ -60,7 +60,8 @@ section {
     }
     @include to(575px) {
         &.double-green:after {
-            width: calc(100% + (var(--self-side-padding) * 2));
+            // width: calc(100% + (var(--self-side-padding) * 2));
+            width: 30%;
         }
     }
 }
