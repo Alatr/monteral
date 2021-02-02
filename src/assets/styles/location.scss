@@ -1,0 +1,142 @@
+#location {
+    .page-part {
+        @include shift-padding(1);
+    }
+    .block-with-decor2 {
+        @include size(5);
+        @include shift(0.5);
+    }
+}
+
+.page-block-title {
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1em;
+    /* or 100% */
+    letter-spacing: -0.05em;
+    // color: $;
+    color: $color-white;
+    .gold {
+        color: $color-gold;
+    }
+}
+
+.block-with-decor2 {
+    --self-padding-top: 20px;
+    --decor-border-width: 2px;
+    --delimiter-width: 30px;
+    --block-start-left-padding: 20px;
+    --gradient-color: #006164;
+    display: flex;
+    font-size: 10px;
+    line-height: 1em;
+    color: $color-text-gold;
+    a {
+        text-decoration: none;
+        display: inline-block;
+        transition: color .3s ease-out;
+    }
+    &>* {
+        padding-top: var(--self-padding-top);
+    }
+    &__top {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+        padding-left: var(--block-start-left-padding);
+        margin-right: var(--delimiter-width);
+        padding-right: var(--delimiter-width);
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__top:after {
+        content: '';
+        position: absolute;
+        right: calc(var(--decor-border-width) * -1);
+        transform: translateX(100%);
+        bottom: 0;
+        height: var(--decor-border-width);
+        width: var(--delimiter-width);
+        background-color: $color-gold;
+    }
+    &__bottom {
+        flex-shrink: 1;
+        position: relative;
+        height: auto;
+        padding-left: var(--block-start-left-padding);
+        padding-right: var(--block-start-left-padding);
+        border-top: var(--decor-border-width) solid $color-gold;
+        border-left: var(--decor-border-width) solid $color-gold;
+        border-right: var(--decor-border-width) solid $color-gold;
+    }
+    &__count {
+        font-size: 48px;
+        line-height: 1em;
+        color: $color-gold;
+        /* identical to box height, or 100% */
+        letter-spacing: -0.05em;
+        position: relative;
+        padding-bottom: 13px;
+    }
+    &__count:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        width: 40px;
+        height: 1px;
+        background-color: $color-gold;
+    }
+    &__text {
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 1em;
+        /* or 100% */
+        letter-spacing: -0.05em;
+        color: $color-text-silver;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        max-width: Max(85%, 320px);
+    }
+    @include to(3000px) {
+        flex-wrap: wrap;
+        --self-padding-top: 20px;
+        &__top {
+            flex-basis: 100%;
+            border-top: var(--decor-border-width) solid $color-gold;
+            border-bottom: var(--decor-border-width) solid $color-gold;
+            border-left: var(--decor-border-width) solid $color-gold;
+            margin-bottom: var(--delimiter-width);
+            border-right: none;
+            padding-bottom: var(--self-padding-top);
+        }
+        &__top:after {
+            content: '';
+            position: absolute;
+            left: auto;
+            right: calc(var(--decor-border-width));
+            // transform: translateX(100%);
+            top: calc(100% + var(--decor-border-width));
+            width: var(--decor-border-width);
+            height: var(--delimiter-width);
+            background-color: $color-gold;
+        }
+        &__bottom {
+            flex-basis: 100%;
+            border-top: var(--decor-border-width) solid $color-gold;
+            border-bottom: var(--decor-border-width) solid $color-gold;
+            border-left: var(--decor-border-width) solid $color-gold;
+            margin-bottom: 0;
+            border-right: none;
+            padding-bottom: var(--self-padding-top);
+        }
+    }
+    @include to(575px) {
+        --self-padding-top: 20px;
+    }
+}

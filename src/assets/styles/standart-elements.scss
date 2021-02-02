@@ -158,6 +158,8 @@ section {
         .page-title {
             margin-top: Min(0.5em, 30px);
             margin-bottom: Min(0.5em, 30px);
+            max-width: 22ch;
+            line-height: 1em;
         }
     }
     .screen-icon-scroll {
