@@ -12,6 +12,20 @@ new Swiper(document.querySelector('[data-swiper-projects]'), {
         nextEl: '.arrow-next',
         prevEl: '.arrow-prev',
     },
+    breakpoints: {
+
+        // when window width is >= 480px
+        320: {
+            slidesPerView: 1,
+        },
+        // when window width is >= 640px
+        767: {
+            slidesPerView: 3,
+        },
+        950: {
+            slidesPerView: 4,
+        }
+    }
     // on: {
     //     init: function(self) {
     //         self.bigView = dqs('[data-swiper-current-img-view]');

@@ -28,7 +28,7 @@ function switchMenuImage(evt) {
     let tl = gsap.timeline();
     tl.to($menuImage, {
         clipPath: `polygon(0 0, 0% 0, 0% 100%, 0 100%)`,
-        ease: Expo.easeOut,
+        ease: Power4.easeIn,
         duration: 1,
     })
     tl.add(() => {
@@ -37,7 +37,7 @@ function switchMenuImage(evt) {
     })
     tl.to($menuImage, {
         clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`,
-        ease: Expo.easeOut,
+        ease: Power4.easeOut,
         duration: 1,
     })
 

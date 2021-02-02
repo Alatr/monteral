@@ -35,7 +35,9 @@ section {
         background-color: $color-green;
         background-color: #006164;
         margin-left: calc(var(--self-side-padding) * -1);
-        padding-left: var(--self-side-padding);
+        margin-right: calc(var(--self-side-padding) * -1);
+        padding-left: calc(var(--self-side-padding) * 2);
+        padding-right: calc(var(--self-side-padding) * 2);
     }
     &.double-green:after {
         position: absolute;
@@ -344,6 +346,9 @@ section {
         bottom: 0;
         transform: translate(-50%, 50%);
     }
+    &__img-decor-square_bottom.reverse &__img {
+        margin-left: 0;
+    }
     &__img-main {
         position: relative;
         height: 100%;
@@ -529,4 +534,10 @@ section {
 
 .uppercased {
     text-transform: uppercase;
+}
+
+.subtitle-with-decor.subtitle-with-decor--l {
+    @include to(575px) {
+        font-size: 18px;
+    }
 }
