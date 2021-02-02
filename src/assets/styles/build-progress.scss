@@ -713,6 +713,11 @@
             transform: rotate(0.5turn);
         }
     }
+    @include to(768px) {
+        &__wrap-nav>* {
+            transform: translateX(-50%) !important;
+        }
+    }
     @include to(575px) {
         &>svg {
             width: 100px;
@@ -730,9 +735,6 @@
         }
         &__wrap-nav {
             height: calc(50px+var(--self-side-padding))
-        }
-        &__wrap-nav>* {
-            transform: translateX(-50%) !important;
         }
         &__img-slider {
             height: 50px;

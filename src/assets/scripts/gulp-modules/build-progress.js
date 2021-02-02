@@ -220,7 +220,19 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
     arrow.dataset.side = 'leftSide';
 
 
+    container.addEventListener('touchstart', function(evt) {
+        popupSliderConfig.x = evt.changedTouches[0].clientX
+    });
+    container.addEventListener('touchend', function(evt) {
 
+        if (evt.changedTouches[0].clientX < popupSliderConfig.x) {
+            document.querySelector('.build-gallery-popup__wrap-nav .arrow-next').dispatchEvent(new Event('click'));
+        } else if ((evt.changedTouches[0].clientX > popupSliderConfig.x)) {
+
+            document.querySelector('.build-gallery-popup__wrap-nav .arrow-prev').dispatchEvent(new Event('click'));
+        }
+        console.log(popupSliderConfig.x);
+    });
     container.addEventListener('mouseenter', function() {
         arrow.show();
         container.addEventListener('mousemove', desktopNavButtonHandler);
