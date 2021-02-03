@@ -3,8 +3,8 @@ extends ../layout/main
 block variable
   -
     var title_page = 'Home'
-    var id_page = 'home-page-mobile'
-    var class_page = 'home-page'
+    var id_page = 'home-page-desctop'
+    var class_page = 'home-page-desctop'
     var content = [
       {
         title: 'Про проєкт',
@@ -56,52 +56,74 @@ block head
     link(rel='stylesheet', href="./assets/styles/main.min.css")
 block scripts
   script(defer src='./assets/scripts/index.js')
-  script(defer src='./assets/scripts/index-mobile.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/index.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
 block content
-    
-    
-  //- .screen-wrap
-  //-   .main-title-wrap
-  //-     .home-title-item
-  //-       .home-title-item__title(data-mobile-slide-main-title) Montreal House —
-  //-       .home-title-item__subtitle(data-mobile-slide-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
-  .mobile-slider-wrap
-    .mobile-slider-main-title
-      .mobile-slider-main-title__title(data-mobile-slide-main-title) Montreal House —
-      .mobile-slider-main-title__subtitle(data-mobile-slide-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
-    button(type="button" data-mobile-slider-btn--prev).btn--res.mobile-slider-btn.mobile-slider-btn--prev
-      +svg('prev')
-      span архітектура
-    button(type="button" data-mobile-slider-btn--next).btn--res.mobile-slider-btn.mobile-slider-btn--next
-      +svg('next')
-      span архітектура
-    +img("award.svg").mobile-slider-item__award(data-animate-award)
-    .slider-mobile-counter(data-sl-counter)
-      span.slider-mobile-counter__cnt(data-cnt) 01
-      span.slider-mobile-counter__separator /
-      span.slider-mobile-counter__total(data-total) 07
-    .mobile-slider.swiper-container(data-mobile-slider )
-      .swiper-wrapper
-        each val, i in content
-          .swiper-slide.mobile-slider-item(data-swiper-slide data-title= val.title style=" background: url(./assets/images/home/mob/"+i+".jpg) center no-repeat; background-size: cover;")
-            .bg-overlay
-            .mobile-slider-item-content
-              h2( data-mobile-slide-title ).mobile-slider-item__title.usn= val.title
-              p( data-mobile-slide-text ).mobile-slider-item__text.usn !{val.text}
-              a( data-mobile-slide-link href= val.link).mobile-slider-item__link.link.link-mobile--negative-margin
-                span.link__text.usn Дізнатися більше
-                span.link-ico.link-ico--margin
-                  span.link-ico__stic.bgc--mc
-                  +svg('arrow').link__ico.fill--mc
-  .mobile-home-content-contact(data-content-home)
-    .contact__l(data-gsap-contact-l)
-        .contact-l--after
-        .mobile-contact-items-wrap
-          h2(data-contact-main-title).contact-title.contact-title--mobile-visible Контакти
+  .welcome-screen
+    .welcome-screen__logo
+      +svg('logo')
+    h1.welcome-screen__title 
+      span Montreal
+      span House —
+    span.welcome-screen__subtitle welcome
+    span.welcome-screen__decor
 
+    
+    
+  .screen-wrap
+    .main-title-wrap
+      .home-title-item
+        .home-title-item__title(data-home-main-title) Montreal House —
+        .home-title-item__subtitle(data-home-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
+
+    a(href="#" data-gsap-greating data-animate-links).screen-icon-link
+      +svg('webcam')
+      span.screen-icon-link__text
+        span Веб
+        span камера
+    <svg class="mouse screen screen-icon-scroll" data-gsap-greating data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130" preserveAspectRatio="xMidYMid meet">
+      <g fill="none" fill-rule="evenodd">
+        <rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="5" rx="36"/>
+        <circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
+      </g>
+    </svg>
+    ul(data-gsap-greating).lang.screen__lang
+      li(data-animate-links).lang__item.lang__item--active
+        a(href="#") uk
+      li(data-animate-links).lang__item
+        a(href="#") ru
+      li(data-animate-links).lang__item
+        a(href="#") en
+    
+
+    .decor-social(data-animate-links data-gsap-greating)
+    ul(data-gsap-greating).social.screen__social
+      li(data-animate-links).social__item
+        a(href="#" rel="nofollow" target="_blank") facebook
+      li(data-animate-links).social__item
+        a(href="#" rel="nofollow" target="_blank") instagram
+      li(data-animate-links).social__item
+        a(href="#" rel="nofollow" target="_blank") telegram
+
+
+    .home-content-wrap
+      each val, i in content
+        .home-content(data-content-home)
+          h2( data-home-title ).home-content__title.usn= val.title
+          .text-wrap
+            +img("award.svg").screen__award(data-animate-award)
+            p( data-home-text ).home-content__text.usn !{val.text}
+          a( data-home-link href= val.link).home-content__link.link
+            span.link__text.usn Дізнатися більше
+            span.link-ico.link-ico--margin
+              span.link-ico__stic.bgc--mc
+              +svg('arrow').link__ico.fill--mc
+    .home-content.home-content-contact(data-content-home)
+      .contact__l(data-gsap-contact-l)
+        .contact-l--after
+        h2(data-contact-main-title).contact-title Контакти
+        .contact-items-wrap
           .contact-item(data-gsap-contact-item)
             h6.contact-item__title.subtitle-with-decor.subtitle-with-decor--white Відділ продажів:
             p.contact-item__adress.text.text--gold м. Київ, вул. Антоновича, 81(на першому поверсі)
@@ -119,7 +141,7 @@ block content
           .contact-item(data-gsap-contact-item)
             h6.contact-item__title.subtitle-with-decor.subtitle-with-decor--white Адреса комплексу:
             p.contact-item__adress.text.text--gold вул. Велика Васильківська, 102 (літера «У») / вул. Антоновича, 83 у Голосіївському районі м. Києва
-            a(href="#").contact-item__link.button-second.button-second--color-white.mt--top
+            a(href="#").contact-item__link.button-second.button-second--color-white
               .button-second__icon
                 +svg('eye')
               span.button-second__text
@@ -127,11 +149,10 @@ block content
                 b на перегляд
               span.button-second__logo
                 +svg('logo-m')
-    .contact__r(data-gsap-contact-r)
-        h2(data-contact-main-title).contact-title.contact-title--mobile-hide Контакти
+      .contact__r(data-gsap-contact-r)
         h5(data-gsap-form-title).subtitle-with-decor.subtitle-with-decor--white Зворотній зв'язок
         p(data-gsap-form-subtitle).text.text--gold.home-contact-form__text Якщо у вас виникли запитання, ми з радістю дамо відповідь на них
-        form(data-mobile-home-contact-page data-gsap-form-elem autocomplete="off").home-contact-form
+        form(data-home-contact-page data-gsap-form-elem autocomplete="off").home-contact-form
           .form-field.form-field-input(  data-field-input data-field-name data-status="field--inactive")
             input(type='text' name="name").form-field__input
             .input-message(data-input-message) Ім’я:*
@@ -145,6 +166,21 @@ block content
               span.link-ico__stic.bgc--wc
               +svg('arrow').link__ico.fill--wc
       
+            
+    .home-page-video-wrapper(data-video-block-wrapper style="background-image: url('./assets/images/home/0.jpg');")
+        .bg-overlay
+        div(data-gsap-overlay-developer).data-overlay-developer-sl
+        <div class="loader-wrap-video  loader-video--hidden" data-video-preloader >
+          <div class="loader"></div>
+        </div>
+        .slider-counter(data-sl-counter data-gsap-greating)
+          .slider-counter-inner-wrap(data-sl-counter-inner)
+            span.slider-counter__cnt(data-cnt) 01
+            span.slider-counter__separator /
+            span.slider-counter__total(data-total) 08
+
+        .home-video-wrap(data-video-wrapper)
+
 block footer
   include ../includes/footer.pug
 

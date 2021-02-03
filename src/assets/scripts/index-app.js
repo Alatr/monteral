@@ -159,7 +159,13 @@ function app() {
   });
 }
 
-app()
+if (document.querySelector('body').classList.contains('home-page-desctop')) {
+  app();
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  document.querySelector('[data-preloader]').classList.add('loader-video--hidden');
+});
 
 
 

@@ -1045,6 +1045,13 @@
   @include from(1441px){
     font-size: max(vh(96), 96px);
   }
+  @include to(768px){
+    font-size: 48px;
+  }
+  @include to(730px){
+    font-size: 40px;
+    text-align: center;
+  }
 }
 .contact-items-wrap{
   display: flex;
@@ -1055,13 +1062,16 @@
 }
 
 .contact-item{
-  margin: 0 15px;
+  margin: 0 15px 0;
   max-width: 236px;
   display: flex;
   flex-direction: column;
   align-items: center;
   @include from(1441px){
     max-width: max(vh(290), 290px);;
+  }
+  @include to(720px){
+    margin: 0 15px 20px;
 
   }
   &__title{
@@ -1101,6 +1111,10 @@
   margin: 0 auto 48px;
   @include from(1921px){
     max-width: max(vh(268), 268px);;
+  }
+  @include to(720px){
+    margin: 0 auto 20px;
+
   }
 
 }
