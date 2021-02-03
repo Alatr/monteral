@@ -159,6 +159,7 @@ section {
         height: 100%;
         flex-direction: column;
         pointer-events: none;
+        text-align: center;
         &>* {
             pointer-events: all;
         }
