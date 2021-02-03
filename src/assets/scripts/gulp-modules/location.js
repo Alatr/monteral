@@ -163,7 +163,7 @@
 
         let randomize = rnd();
         let randomizeH = rnd();
-        console.log(randomize);
+        // console.log(randomize);
 
 
         for (var e = 0; e < parseInt(randomize * 20); e++) {
