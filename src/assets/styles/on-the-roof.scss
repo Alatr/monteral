@@ -1,0 +1,6 @@
+#on-the-roof {
+    .page-part>* {
+        @include size(10);
+        @include shift(1);
+    }
+}

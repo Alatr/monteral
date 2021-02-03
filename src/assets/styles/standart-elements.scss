@@ -59,6 +59,11 @@ section {
         z-index: 1;
     }
     @include to(575px) {
+        &.page-part {
+            min-height: auto;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
         &.double-green:after {
             // width: calc(100% + (var(--self-side-padding) * 2));
             width: 30%;
@@ -398,6 +403,8 @@ section {
         display: flex;
         max-width: 380px;
         flex-direction: column;
+        margin-right: auto;
+        margin-left: auto;
         color: $color-text-gold;
     }
     &__title {
@@ -436,6 +443,11 @@ section {
         &__text>*:not(.button-second):nth-last-child(-n+2) {
             width: 80%;
             margin-left: auto;
+        }
+    }
+    @include from(1680px) {
+        &__text {
+            justify-content: center;
         }
     }
     @include to(950px) {

@@ -17,6 +17,11 @@
         padding-right: 30%;
         @include shift(0.5);
     }
+    @include from(1680px) {
+        .page-block-title {
+            padding-right: 40%;
+        }
+    }
     @include to(1024px) {
         .page-part {
             padding-left: 0;
@@ -175,6 +180,12 @@
         margin-bottom: 30px;
         max-width: Max(85%, 320px);
     }
+    @include from(1680px) {
+        &__top {
+            padding-top: 45px;
+            padding-bottom: 45px;
+        }
+    }
     @include to(3000px) {
         flex-wrap: wrap;
         --self-padding-top: 20px;
@@ -328,7 +339,7 @@
     &__content {
         font-weight: 500;
         font-size: 30px;
-        line-height: 1em;
+        line-height: 1.2em;
         /* or 100% */
         letter-spacing: -0.05em;
         /* Text silver */
@@ -404,6 +415,12 @@
     }
     a {
         text-decoration: none;
+    }
+    @include from(1680px) {
+        &__content {
+            font-size: 36px;
+            max-width: 500px;
+        }
     }
     @include to(768px) {
         &__text-wrap {

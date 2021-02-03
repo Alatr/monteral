@@ -1,0 +1,14 @@
+#general-places {
+    .page-part>* {
+        @include size(10);
+        @include shift(1);
+    }
+    @include to(950px) {
+        .page-part>* {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+    @include to(575px) {}
+}
