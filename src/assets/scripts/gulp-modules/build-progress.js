@@ -1,54 +1,15 @@
 /* eslint-disable no-undef */
+
 /**Кастомные селекты */
-var selectors = document.querySelectorAll('.custom-select');
+const selectors = document.querySelectorAll('.custom-select');
 let event1 = new Event('change');
 var buildProgressConfig = {
     year: document.querySelector('[data-build-filter-name="year"] .custom-select__item-current').dataset.value,
     month: 'null'
 };
-
-selectors.forEach(el => {
-    el.addEventListener('mouseenter', function(evt) {
-        el.style.zIndex = 100;
-    });
-    el.addEventListener('mouseleave', function(evt) {
-        el.style.zIndex = '';
-    });
-
-})
-
-function changeCurrentValue(selector) {
-    selector.currentValue = selector.querySelectorAll('.custom-select__item')[0].dataset.value;
-
-    selector.querySelectorAll('.custom-select__item').forEach(select => {
-
-        select.addEventListener('click', () => {
-            selector.querySelectorAll('.custom-select__item').forEach(el => el.classList.remove('custom-select__item-current'))
-            select.classList.add('custom-select__item-current');
-            console.log('CHANGE');
-            if (selector.currentValue !== select.dataset.value) {
-                selector.currentValue = select.dataset.value;
-                selector.style.pointerEvents = 'none';
-                setTimeout(() => {
-                    selector.style.pointerEvents = 'all';
-                }, 1000);
-                selector.dispatchEvent(event1);
-
-            }
-            // console.log(selector.currentValue);
-        })
-    });
-    selector.addEventListener('change', function() {
-        // buildProgressConfig[evt.target.dataset.name] = evt.target.currentValue;
-    });
-}
-
-changeCurrentValue(selectors[0])
-changeCurrentValue(selectors[1])
-
 /*  */
 const galleries = document.querySelectorAll('[data-progress-gallery]');
-
+galleries.forEach(el => el.validCount = 0);
 const popupSliderConfig = {
     navImages: dqs('[data-swiper-slider]'),
     bigImage: dqs('[data-swiper-big-image]'),
@@ -56,31 +17,73 @@ const popupSliderConfig = {
     subtitle: ('[data-popup-subtitle]'),
     swiper: undefined,
     currentPopup: undefined,
+    filteredPopups: Array.from(galleries),
+
 }
+selectors.forEach(handleCustomSelect);
+
+function handleCustomSelect(selector) {
+    const listItems = selector.querySelectorAll('.custom-select__item');
+    selector.currentValue = selector.querySelectorAll('.custom-select__item')[0].dataset.value;
+
+    listItems.forEach(select => {
+        select.addEventListener('click', () => {
+            listItems.forEach(el => el.classList.remove('custom-select__item-current'))
+            select.classList.add('custom-select__item-current');
+            if (selector.currentValue !== select.dataset.value) {
+                selector.currentValue = select.dataset.value;
+                selector.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    selector.style.pointerEvents = 'all';
+                }, 1000);
+                selector.dispatchEvent(event1);
+            }
+        })
+    });
+    selector.addEventListener('mouseenter', function(evt) {
+        selector.style.zIndex = 100;
+    });
+    selector.addEventListener('mouseleave', function(evt) {
+        selector.style.zIndex = '';
+    });
+    selector.addEventListener('change', function() {
+        // buildProgressConfig[evt.target.dataset.name] = evt.target.currentValue;
+    });
+}
+
+
+
+
+
 
 document.querySelectorAll('[data-build-filter-name]').forEach(el => {
     el.addEventListener('change', () => {
         buildProgressConfig[el.dataset.buildFilterName] = el.currentValue;
-
-        galleries.forEach(link => {
-            if ((
-                    link.dataset.month == buildProgressConfig.month &&
-                    link.dataset.year == buildProgressConfig.year
-                ) ||
-                buildProgressConfig.month === 'null' ||
-                buildProgressConfig.year === 'null'
-            ) {
-                link.style.display = 'flex';
-                gsap.to(link, { autoAlpha: 1, x: 0 });
-
+        /**Проверка совпадения по полям */
+        Object.keys(buildProgressConfig).forEach(filterValue => {
+                galleries.forEach(sngGal => {
+                    if (buildProgressConfig[filterValue] == 'null' ||
+                        sngGal.dataset[filterValue] == buildProgressConfig[filterValue]
+                    ) {
+                        sngGal.validCount += 1;
+                    }
+                })
+            })
+            /**Отрисовка после оопределения параметров */
+        galleries.forEach(el => {
+            if (el.validCount === Object.keys(buildProgressConfig).length) {
+                el.style.display = 'flex';
+                gsap.to(el, { autoAlpha: 1, x: 0 });
             } else {
-                gsap.to(link, { autoAlpha: 0, x: 50 });
+                gsap.to(el, { autoAlpha: 0, x: 50 });
                 setTimeout(() => {
-                    link.style.display = 'none';
+                    el.style.display = 'none';
                 }, 1000);
             }
+            el.validCount = 0;
         })
-
+        popupSliderConfig.filteredPopups = [];
+        popupSliderConfig.filteredPopups = Array.from(dqsA('[data-progress-gallery][style*="flex"'));
     })
 })
 
@@ -101,14 +104,13 @@ galleries.forEach((galleryWithData, index) => {
             popupSliderConfig.currentPopup = galleries[index];
             document.querySelector('[data-build-gallery-popup] [data-build-popup-close]').setAttribute('data-build-popup', galleryWithData.dataset.buildPopup);
         },
-
     });
 })
 
 
 dqs('[data-popup-prev-gallery]').addEventListener('click', function() {
     let prevGallery = popupSliderConfig.currentPopup.previousElementSibling;
-    if (prevGallery === null) return;
+    if (prevGallery === null || prevGallery === undefined) return;
     initPopupSlider(prevGallery);
     changeTextOnPopup(prevGallery);
     popupSliderConfig.currentPopup = prevGallery;
@@ -194,6 +196,10 @@ function dqs(selector) {
     return document.querySelector(selector);
 }
 
+function dqsA(selector) {
+    return document.querySelectorAll(selector);
+}
+
 
 /**СТрелка переключатель в зависимости от положения на єкране */
 
@@ -223,20 +229,21 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
     container.addEventListener('touchstart', function(evt) {
         popupSliderConfig.x = evt.changedTouches[0].clientX
     });
+
     container.addEventListener('touchend', function(evt) {
 
         if (evt.changedTouches[0].clientX < popupSliderConfig.x) {
             document.querySelector('.build-gallery-popup__wrap-nav .arrow-next').dispatchEvent(new Event('click'));
         } else if ((evt.changedTouches[0].clientX > popupSliderConfig.x)) {
-
             document.querySelector('.build-gallery-popup__wrap-nav .arrow-prev').dispatchEvent(new Event('click'));
         }
-        console.log(popupSliderConfig.x);
     });
+
     container.addEventListener('mouseenter', function() {
         arrow.show();
         container.addEventListener('mousemove', desktopNavButtonHandler);
     });
+
     container.addEventListener('mouseleave', function() {
         arrow.hide();
         container.removeEventListener('mousemove', desktopNavButtonHandler);
@@ -287,8 +294,6 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
             document.querySelector('.build-gallery-popup__wrap-nav .arrow-prev').dispatchEvent(new Event('click'));
         },
         'rightSide': () => {
-
-            console.log(document.querySelector('.build-gallery-popup__wrap-nav .arrow-prev'));
             document.querySelector('.build-gallery-popup__wrap-nav .arrow-next').dispatchEvent(new Event('click'));
         },
     };
