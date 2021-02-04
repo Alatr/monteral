@@ -1,10 +1,15 @@
 #web-camera {
     .page-part {
-        @include shift-padding(1.5);
+        // @include shift-padding(1.5);
         padding-top: 160px;
         padding-bottom: 160px;
         flex-direction: column;
         align-items: center;
+    }
+    .page-part>* {
+        @include size(10);
+        @include shift(1);
+        text-align: center;
     }
     .web-camera-block {
         margin-bottom: 30px;
@@ -15,7 +20,14 @@
     }
     @include to(1024px) {
         .page-part {
-            @include shift-padding(1);
+            // @include shift-padding(1);
+        }
+    }
+    @include to(950px) {
+        .page-part>* {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
     @include to(768px) {

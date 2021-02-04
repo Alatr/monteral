@@ -141,40 +141,78 @@
             }
         }
     }
-    window.interactive = true;
-    document.querySelector('.page-first-block').onmousemove = function( /* Event */ evt) {
-        // disturb(evt.offsetX || evt.layerX, evt.offsetY || evt.layerY);
-        if (window.interactive) {
 
-            disturb(evt.clientX || evt.layerX, evt.clientY || evt.layerY);
-        }
-    };
-    document.querySelector('.page-first-block').addEventListener('click', function(evt) {
-        disturb(evt.clientX || evt.layerX, evt.clientY || evt.layerY);
-    });
-    document.body.addEventListener('click', function(evt) {
-        window.interactive = !window.interactive;
-    });
+
     setInterval(run, delay);
 
     // generate random ripples
     var rnd = Math.random;
     let some = setInterval(function() {
-
         let randomize = rnd();
         let randomizeH = rnd();
-        // console.log(randomize);
+        let randDx = randomize * width;
+        let randDy = randomizeH * height;
 
-
-        for (var e = 0; e < parseInt(randomize * 20); e++) {
-
-            disturb((randomize + e * 20) * width, randomizeH * height, randomize * 50);
+        for (var e = randDx; e < randDx + 100; e += 10) {
+            disturb(e * (3 * Math.cos(e)), e);
         }
+    }, 250);
 
+    const stopIcon = `
+        <svg 
+            data-effect-stop
+            style="
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                right: 0;
+                top: calc(100vh - 50px);
+                z-index: 1000;
+                transform: translate(-50%,-50%);
+                "     
+            version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 286.054 286.054" style="enable-background:new 0 0 286.054 286.054;" xml:space="preserve">
+            <g>
+                <path style="fill:rgba(207, 190, 151, 1);" d="M143.027,0.004C64.04,0.004,0,64.036,0,143.022c0,78.996,64.04,143.027,143.027,143.027
+                s143.027-64.031,143.027-143.027C286.054,64.045,222.014,0.004,143.027,0.004z M143.027,259.232
+                c-64.183,0-116.209-52.026-116.209-116.209s52.026-116.21,116.209-116.21s116.209,52.026,116.209,116.209
+                S207.21,259.232,143.027,259.232z M169.844,98.327h-53.635c-9.869,0-17.878,8.01-17.878,17.878v53.635
+                c0,9.869,8.01,17.878,17.878,17.878h53.635c9.869,0,17.878-8.01,17.878-17.878v-53.635
+                C187.723,106.336,179.713,98.327,169.844,98.327z"/>
+            </g>
+        </svg>
 
-    }, 50);
-    document.body.onclick = () => {
+    
+    `;
+    document.body.insertAdjacentHTML('beforeend', stopIcon);
+    /**градинент для канвас */
+    canvas.insertAdjacentHTML('afterend', `
+        <div style="
+        content: '';
+            position: absolute;
+            top: calc(var(--header-height) * -1);
+            left: calc(var(--self-side-padding) * -1);
+            width: calc(100% + (var(--self-side-padding) * 2));
+            height: calc(100% + var(--header-height));
+            background: linear-gradient(
+        180deg
+        , rgba(0, 97, 100, 0) 60%, rgba(0, 97, 100, 0.9) 100%), rgba(0, 0, 0, 0.2);"></div>
+    `);
+    /**Остановка ефекта */
+    document.querySelector('[data-effect-stop]').addEventListener('click', (evt) => {
         clearInterval(some);
-    }
+        evt.target.remove();
+    });
+    // document.body.onclick = () => {
+    //     let randomize = rnd();
+    //     let randomizeH = rnd();
+    //     console.log(randomize);
+    //     // let randDx = randomize * width;
+    //     let randDx = 300;
+    //     let randDy = randomizeH * height;
+    //     for (var e = randDx; e < randDx + 100; e += 5) {
+    //         disturb(e * (3 * Math.cos(e)), e);
+    //     }
+    // }
 
 })();
