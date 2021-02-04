@@ -1,11 +1,11 @@
 import * as yup from 'yup';
-import { setLocale } from 'yup';
-
+import axios from 'axios';
 import i18next from 'i18next';
 import initView from './form-view/view.js';
 import {langDetect} from './modules/helpers/helpers.js';
 import sexyInput from './modules/helpers/sexy-input';
 
+window.sexyInput = sexyInput;
 /*  */
 const lang = langDetect();
 const runApp = (async () => {
@@ -13,8 +13,10 @@ const runApp = (async () => {
     lng: lang, // Текущий язык
     debug: true,
     resources: {
-      ru: { // Тексты конкретного языка
-        translation: { // Так называемый namespace по умолчанию
+      ru: {
+        // Тексты конкретного языка
+        translation: {
+          // Так называемый namespace по умолчанию
           name: 'Имя:*',
           phone: 'Телефон:*',
           send: 'Отправить',
@@ -27,13 +29,19 @@ const runApp = (async () => {
           sendingSuccessText: 'Ждите ответа наших менеджеров',
           sendingErrorText: 'Ждите ответа наших менеджеров',
           sendingErrorTitle: 'Ошибка',
-          sendingErrorText_0: 'Сообщение не было отправлено за неизвестной ошибки сервера [faill]',
-          sendingErrorText_1: 'Сообщение не было отправлено за неизвестной ошибки сервера [0]',
-          sendingErrorText_2: 'Сообщение не было отправлено за неизвестной ошибки сервера [null]',
+          send_fail: 'Сообщение не было отправлено за неизвестной ошибки сервера. Код: [send_fail]',
+          invalid_form:
+            'Сообщение не было отправлено за неизвестной ошибки сервера. Код: [invalid_form]',
+          front_error:
+            'Сообщение не было отправлено за неизвестной ошибки сервера. Код: [front_error]',
+          invalid_upload_file: 'Ошибка загрузки файла. Код: [invalid_upload_file]',
+          invalid_recaptcha: 'Заполните капчу и попробуйте еще раз снова. Код: [invalid_recaptcha]',
         },
       },
-      uk: { // Тексты конкретного языка
-        translation: { // Так называемый namespace по умолчанию
+      uk: {
+        // Тексты конкретного языка
+        translation: {
+          // Так называемый namespace по умолчанию
           name: 'Ім’я:*',
           phone: 'Телефон:*',
           send: 'Надіслати',
@@ -45,14 +53,22 @@ const runApp = (async () => {
           sendingSuccessTitle: 'Повідомлення надіслано',
           sendingSuccessText: 'Чекайте відповіді наших менеджерів',
           sendingErrorText: 'Чекайте відповіді наших менеджерів',
+
           sendingErrorTitle: 'Сталася помилка',
-          sendingErrorText_0: 'Повідомлення не було надіслано через невідому помилку серверу [faill]',
-          sendingErrorText_1: 'Повідомлення не було надіслано через невідому помилку серверу [0]',
-          sendingErrorText_2: 'Повідомлення не було надіслано через невідому помилку серверу [null]',
+          send_fail:
+            'Повідомлення не було відправлено через невідому помилку сервера. Код: [send_fail] ',
+          invalid_form:
+            'Повідомлення не було відправлено через невідому помилку сервера. Код: [invalid_form] ',
+          front_error:
+            'Повідомлення не було відправлено через невідому помилку сервера. Код: [front_error] ',
+          invalid_upload_file: 'Помилка завантаження файлу. Код: [invalid_upload_file]',
+          invalid_recaptcha: 'Заповніть капчу і спробуйте ще раз знову. Код: [invalid_recaptcha]',
         },
       },
-      en: { // Тексты конкретного языка
-        translation: { // Так называемый namespace по умолчанию
+      en: {
+        // Тексты конкретного языка
+        translation: {
+          // Так называемый namespace по умолчанию
           name: 'Name:*',
           phone: 'Phone:*',
           send: 'Sand',
@@ -65,9 +81,12 @@ const runApp = (async () => {
           sendingSuccessText: 'Wait for the answers of our managers',
           sendingErrorText: 'Wait for the answers of our managers',
           sendingErrorTitle: 'An error has occurred',
-          sendingErrorText_0: 'The message was not sent due to an unknown server error [faill]',
-          sendingErrorText_1: 'The message was not sent due to an unknown server error [0]',
-          sendingErrorText_2: 'The message was not sent due to an unknown server error [null]',
+          send_fail: 'The message was not sent due to an unknown server error. Code: [send_fail] ',
+          invalid_form:
+            'The message was not sent for an unknown server error. Code: [invalid_form] ',
+          front_error: 'The message was not sent for an unknown server error. Code: [front_error] ',
+          invalid_upload_file: 'Error uploading file. Code: [invalid_upload_file] ',
+          invalid_recaptcha: 'Please fill in the captcha and try again. Code: [invalid_recaptcha] ',
         },
       },
     },
@@ -98,7 +117,12 @@ function app() {
   };
 }
 
-class FormMonster {
+const sendForm = async (data) => {
+  const response = await axios.post('/wp-admin/admin-ajax.php', data);
+  return response.data;
+};
+
+window.FormMonster = class FormMonster {
 	constructor(setting) {
 		this.elements = setting.elements;
 		this.$body = document.querySelector('body');
@@ -137,150 +161,131 @@ class FormMonster {
 		}
 	};
 
-	changeInput(state){
-		return (e) => {
-			/*  */
-			e.preventDefault();
-			this.watchedState.status = 'filling'
-			/*  */
-			const formData = new FormData(this.elements.$form);
-			/*  */
+	changeInput() {
+    return (e) => {
+      /*  */
+      e.preventDefault();
+      this.watchedState.status = 'filling';
+      /*  */
+      const formData = new FormData(this.elements.$form);
+      /*  */
       const error = this.validate(formData);
-			/*  */
-			this.fieldsKey.map((key) => {
-				const field = this.elements.fields[key];
-				field.valid = true;
-				field.error = [];
-				
-			});
-			/*  */
-			/*  */
-			if (error) {
-				error.forEach(({path, message}) => {
-					this.watchedState.form[path].valid = false;
-					this.watchedState.form[path].error.push(message);
-				});
-				this.watchedState.error = true;
-				this.watchedState.status = 'renderErrorValidation';
-				return;
+      /*  */
+      this.fieldsKey.map((key) => {
+        const field = this.elements.fields[key];
+        field.valid = true;
+        field.error = [];
+        return null;
+      });
+      /*  */
+      /*  */
+      if (error) {
+        error.forEach(({ path, message }) => {
+          this.watchedState.form[path].valid = false;
+          this.watchedState.form[path].error.push(message);
+          return null;
+        });
+        this.watchedState.error = true;
+        this.watchedState.status = 'renderErrorValidation';
+        return null;
       }
-			this.watchedState.error = false;
-			this.watchedState.status = 'renderSuccessValidation';
-		};
-	}
-	submitForm(state){
-		return (e) => {
-			/*  */
+      this.watchedState.error = false;
+      this.watchedState.status = 'renderSuccessValidation';
+      return null;
+    };
+  }
+
+  submitForm() {
+    return async (e) => {
+      /*  */
       e.preventDefault();
       this.changeInput()(e);
-      
+
       /*  */
       if (this.watchedState.error === false) {
         try {
           this.watchedState.status = 'loading';
-    			const formData = new FormData(this.elements.$form);
+          const formData = new FormData(this.elements.$form);
+          formData.append('action', 'app');
 
-          // const todo = await sendTodo(formData);
-          // this.watchedState.todos.push(todo);
-          setTimeout(() => {
+          /* eslint-disable-next-line */
+          const { error, code_error } = await sendForm(formData);
+
+          if (error === 0) {
             this.watchedState.status = 'successSand';
-
-
-          }, 3000);
+            return true;
+          }
+          /* eslint-disable-next-line */
+          this.watchedState.serverError = code_error;
+          this.watchedState.status = 'failed';
         } catch (err) {
-          // this.watchedState.form.status = 'failed';
-          // this.watchedState.error = err.message;
+          this.watchedState.error = err.message;
+          this.watchedState.serverError = 'front_error';
+          this.watchedState.status = 'failed';
         }
-        // console.log('error', error, error.path);
-        
       }
-		};
-	}
+      return null;
+    };
+  }
 
-	listers(){
-		/*  */
-		this.elements.$form.addEventListener('submit', this.submitForm(this.watchedState));
-		/*  */
-		this.fieldsKey.map((key) => {
-			const input = this.elements.fields[key].inputWrapper.input;
-			input.addEventListener('input', this.changeInput(this.watchedState));
-		});
-	}
+  listers() {
+    this.elements.$form.addEventListener('submit', this.submitForm(this.watchedState));
+    this.fieldsKey.map((key) => {
+      const { input } = this.elements.fields[key].inputWrapper;
+      input.addEventListener('input', this.changeInput(this.watchedState));
+      return null;
+    });
+  }
 
-	init(){
-		this.listers();
-	}
+  init() {
+    this.listers();
+  }
 }
 
-// const regularTel3 = new RegExp(/\(?([0-9]{3})\)?(?:[ .-])([0-9]{2}[ .-]?)([0-9]{2}[ .-]?)([0-9]{3})/);
-// const regularTel4 = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
-// const regularTel = /^\(?([0-9]{3})\)?[ .-]?([0-9]{2}[ .-]?)([0-9]{2}[ .-]?)([0-9]{3})$/
-const $form = document.querySelector('[data-home-contact]');
 
-const formHome = new FormMonster({
-	elements: {
-		$form,
-		$btnSubmit: $form.querySelector('[data-btn-submit]'),
-		fields: {
-			name: {
-				inputWrapper: new sexyInput({ $field: $form.querySelector('[data-field-name]') }),
-				rule: yup.string().required(i18next.t('required')).trim(),
-				defaultMessage: i18next.t('name'),
-				valid: false,
-				error: [],
-			},
+const forms = [
+  '[data-home-contact-page]',
+  '[data-home-contact]',
+  '[data-mobile-home-contact-page]',
+];
 
-			phone: {
-				inputWrapper: new sexyInput({ $field: $form.querySelector('[data-field-phone]') }),
-				rule: yup
-							.string()
-							.matches(/(^[0-9]+$)/, i18next.t('only_number'))
-							.required(i18next.t('required'))
-							.min(6, i18next.t('field_too_short', {cnt: 6}))
-							.max(15, i18next.t('field_too_long', {cnt: 15})),
-							
-				defaultMessage: i18next.t('phone'),
-				valid: false,
-				error: [],
-			},
-		}
+forms.forEach((form) => {
+  const $form = document.querySelector(form);
 
-	}
+  if ($form) {
+    new FormMonster({
+      elements: {
+        $form: $form,
+        $btnSubmit: $form.querySelector('[data-btn-submit]'),
+        fields: {
+          name: {
+            inputWrapper: new sexyInput({ $field: $form.querySelector('[data-field-name]') }),
+            rule: yup.string().required(i18next.t('required')).trim(),
+            defaultMessage: i18next.t('name'),
+            valid: false,
+            error: [],
+          },
+    
+          phone: {
+            inputWrapper: new sexyInput({ $field: $form.querySelector('[data-field-phone]') }),
+            rule: yup
+                  .string()
+                  .matches(/(^[0-9]+$)/, i18next.t('only_number'))
+                  .required(i18next.t('required'))
+                  .min(6, i18next.t('field_too_short', {cnt: 6}))
+                  .max(15, i18next.t('field_too_long', {cnt: 15})),
+                  
+            defaultMessage: i18next.t('phone'),
+            valid: false,
+            error: [],
+          },
+        }
+    
+      }
+    });
+  }
 });
 
-
-const $form2 = document.querySelector('[data-home-contact-page]');
-
-const formHome2 = new FormMonster({
-	elements: {
-		$form: $form2,
-		$btnSubmit: $form2.querySelector('[data-btn-submit]'),
-		fields: {
-			name: {
-				inputWrapper: new sexyInput({ $field: $form2.querySelector('[data-field-name]') }),
-				rule: yup.string().required(i18next.t('required')).trim(),
-				defaultMessage: i18next.t('name'),
-				valid: false,
-				error: [],
-			},
-
-			phone: {
-				inputWrapper: new sexyInput({ $field: $form2.querySelector('[data-field-phone]') }),
-				rule: yup
-							.string()
-							.matches(/(^[0-9]+$)/, i18next.t('only_number'))
-							.required(i18next.t('required'))
-							.min(6, i18next.t('field_too_short', {cnt: 6}))
-							.max(15, i18next.t('field_too_long', {cnt: 15})),
-							
-				defaultMessage: i18next.t('phone'),
-				valid: false,
-				error: [],
-			},
-		}
-
-	}
-});
 
 
 

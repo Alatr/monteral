@@ -6,7 +6,9 @@ import { inContentContact, hideContentContact } from './contact-transition.js'
 
 global.gsap = gsap;
 gsap.registerPlugin(CSSRulePlugin, EaselPlugin);
-
+gsap.config({
+	force3D: true
+});
 
 
 
@@ -69,21 +71,14 @@ export const showCntContent = (inx = 0) => {
     /*  */
 
 export const addActiveClassContent = (inx) => {
-        [..._ELEMENTS.contentBlock].forEach((el) => el.classList.remove('home-content--active'));
-        _ELEMENTS.contentBlock[inx].classList.add('home-content--active');
-    }
-    /*
-     * in start
-     */
-
-// createAnimationTool(inContentContact)
+    [..._ELEMENTS.contentBlock].forEach((el) => el.classList.remove('home-content--active'));
+    _ELEMENTS.contentBlock[inx].classList.add('home-content--active');
+}
 
 
 /*  */
 export const inContent = (inx) => {
     addActiveClassContent(inx);
-
-    // if (inx === _STATE.slider.data.total) return gsap.timeline();
 
     const titleCnt = [...$(title)][inx];
     const textCnt = [...$(text)][inx];
@@ -140,8 +135,6 @@ export const counterIn = () => {
     return tl;
 
 }
-
-
 export const outContent = (inx) => {
     const titleCnt = [...$(title)][inx];
     const textCnt = [...$(text)][inx];
@@ -182,7 +175,6 @@ export const mainTransition = (sliderData) => {
 
     function update() {
         const progress = Math.round((video.currentTime / video.duration) * 100)
-        console.log(progress);
         if (progress > 10 && isResume) {
             isResume = false;
             tl.resume();
@@ -201,9 +193,6 @@ export const mainTransition = (sliderData) => {
     /*  */
     const tl = gsap.timeline(settings);
     tl.call(() => { video.play() });
-    // tl.add(() => tl.pause(), '<');
-
-    console.log(_ELEMENTS.videoBlockWrapper);
     tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.2, { '--w': 50, '--h': 100 }, {
         '--w': 110,
         '--h': 110,
@@ -310,13 +299,6 @@ export const transitionHidePartPageWithoutVideo = (sliderData) => {
 
     return tl;
 };
-/*  */
-/*  */
-/*  */
-
-
-
-
 
 export const initMainTransition = (state, elements) => {
     _STATE = state

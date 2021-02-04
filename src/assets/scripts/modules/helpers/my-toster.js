@@ -1,3 +1,4 @@
+import BezierEasing from 'bezier-easing';
 
 
 export default class MyToster {

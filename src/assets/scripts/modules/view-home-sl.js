@@ -5,7 +5,7 @@ import { EaselPlugin } from "gsap/EaselPlugin";
 
 import {hideElements, animPreloadFirstVideoIn,   hideGreatingBlock, animGreatingVideo} from './animation/greating'
 import {transitionHidePartPageWithoutVideo, mainTransition, transitionPartPageWithoutVideo,  hideMainContent, showCntContent} from './animation/main-transition'
-import {setNewPathAttr, setNewPathAttrFromDataAttr, _PATHS} from './helpers/helpers'
+import {_PATHS} from './helpers/helpers'
 import { transitionshowPartPageContact, transitionHidePartPageContact } from './animation/contact-transition.js'
 
 gsap.registerPlugin(CSSRulePlugin, EaselPlugin);
@@ -61,8 +61,7 @@ function renderLoadingScreen(state, elements){
 			break;
 			/*  */
 		case 'showPartPageWithoutVideo':
-			transitionPartPageWithoutVideo(state.slider.data).play();
-      
+      transitionPartPageWithoutVideo(state.slider.data).play();
 			break;
 			/*  */
     case 'showPartPageContact':
@@ -71,7 +70,9 @@ function renderLoadingScreen(state, elements){
 			break;
 			/*  */
     case 'hidePartPageContact':
+      
       transitionHidePartPageContact(state.slider.data).play();
+			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(state.slider.data.next)})`;
 			break;
 			/*  */
     case 'hidePartPageWithoutVideo':
@@ -155,7 +156,6 @@ const initView = (state, elements) => {
   const mapping = {
 		'page.status': () => renderLoadingScreen(state, elements),
 		'video.status': () => renderVideoElements(state, elements),
-		// 'page.video': () => renderLoadingScreen(state.page.status, elements),
   };
 
   const watchedState = onChange(state, (path, value, previousValue) => {

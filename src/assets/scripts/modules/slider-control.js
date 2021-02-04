@@ -1,7 +1,6 @@
 let _STATE = null;
-import {isVideoLoaded, loadVideo, getForwardVideo, getReverseVideo} from './video-control';
+import {getForwardVideo, getReverseVideo} from './video-control';
 import {setLocationName} from './routing';
-// import {attach} from './helpers/helpers';
 
 
 export const initSlider = (state) => {
@@ -37,16 +36,7 @@ export const next = async () => {
 		}
 	/*  */
 	setLocationName(_STATE.slider.data.current);
-	
-	// console.log('next', _STATE.slider.data);
-	// is load
-	// out
-	// in
 
-	// is load
-	// load
-	// out
-	// in
 }
 
 

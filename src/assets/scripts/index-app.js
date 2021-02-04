@@ -4,10 +4,9 @@ import {initAnimation} from './modules/animation/greating'
 import {initMainTransition} from './modules/animation/main-transition'
 import {initContactTransition} from './modules/animation/contact-transition'
 import {initSlider, getDirection, next, prev, isBlockedScroll} from './modules/slider-control'
-import {isLoad, initVideoControll} from './modules/video-control'
-import {getInxLocation, isRedirect, setLocationName} from './modules/routing'
+import {initVideoControll} from './modules/video-control'
+import {getInxLocation, isRedirect} from './modules/routing'
 import {setIndexToCnt} from './modules/slider-control'
-import {convertURL2Obj, convertObj2URL} from './modules/helpers/helpers'
 
 
 
@@ -17,42 +16,14 @@ function app() {
 	const state = {
 
 		video: {
-			/* 
-				* videoPause
-				* videoPlayning
-				* videoStartPlayning
-				* videoEndPlayning
-				* videoStartDownload
-				* videoEndDownload
-				*/
-				/* 
-					* startLoadingVideo
-					* videoReady
-				 */
 			tempBlobURL: null,
 			isLoaded: false,
 			status: 'videoStartDownload'
 		},
 		animation: {
-			/* 
-				* animationStop
-				* anomationStart
-				* anomationInContentStart
-				* anomationInContentEnd
-				* anomationOutContentStart
-				* anomationOutContentEnd
-			 */
 			status: 'animationStop'
 		},
 		page: {
-			/* 
-				* contentStartLoad
-				* contentPreparingGreating
-				* contentPreparingFirstScreen
-				* contentStartAnimationGreating
-				* contentStartAnimationFirstScreen
-		
-			 */
 			status: 'contentStartLoad',
 			video: {
 				videoLoaded: false,
@@ -74,7 +45,6 @@ function app() {
 	}
 	/*  */
 	const elements = {
-		// video: document.querySelector('#home-video'),
 		source: document.querySelector('#source'),
 		body: document.querySelector('body'),
 		preLoader: document.querySelector('[data-preloader]'),
@@ -159,43 +129,10 @@ function app() {
   });
 }
 
-app()
+if (document.querySelector('body').classList.contains('home-page-desctop')) {
+  app();
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.addEventListener("DOMContentLoaded", function(event) {
+  document.querySelector('[data-preloader]').classList.add('loader-video--hidden');
+});
