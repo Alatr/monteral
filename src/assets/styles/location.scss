@@ -50,11 +50,13 @@
             margin-left: 0;
             margin-right: 0;
         }
-        .block-with-decor2:nth-child(even) {
-            margin-left: auto;
-        }
-        .block-with-decor2:nth-child(odd) {
+        .block-with-decor2 {
+            margin-left: 0;
             margin-right: auto;
+        }
+        .block-with-decor2~.block-with-decor2 {
+            margin-left: auto;
+            margin-right: 0;
         }
     }
     @include to(575px) {
@@ -479,4 +481,8 @@
             top: 45px;
         }
     }
+}
+
+.page__content>#c {
+    display: none;
 }

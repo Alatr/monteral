@@ -143,6 +143,11 @@
         --margin-el: 10px;
         --side-padding: 14px;
         // --header-height: 70px;
+        &.not-on-top,
+        &.headroom--not-top {
+            background-color: rgba(0, 97, 100, 0.9);
+            --header-height: 70px !important;
+        }
         height: calc(var(--header-height));
         &__logo {
             svg {

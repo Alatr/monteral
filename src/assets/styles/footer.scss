@@ -65,8 +65,8 @@
         background-size: 200vw, 100vw auto;
     }
     @include to(575px) {
-        background: linear-gradient( 180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-        background-size: 200vw, auto 50vh;
+        // background: linear-gradient( 180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        // background-size: 200vw, auto 50vh;
         padding-left: 14px;
         padding-right: 14px;
         padding-top: 40px;

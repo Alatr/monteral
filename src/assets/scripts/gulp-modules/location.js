@@ -7,6 +7,9 @@
  * @link http://chikuyonok.ru
  */
 (function() {
+
+
+    if (document.documentElement.clientWidth < 576) return;
     var canvas = document.getElementById('c'),
         /** @type {CanvasRenderingContext2D} */
         ctx = canvas.getContext('2d'),
