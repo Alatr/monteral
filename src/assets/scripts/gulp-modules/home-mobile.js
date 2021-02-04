@@ -18,9 +18,9 @@ const mainSubtitle = '[data-gsap-mob-main-subtitle]';
 
 const slidesTitles = slides.map(el => el.dataset.title);
 
-$(window).resize(() => {
+window.onresize = () => {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
-})
+};
 document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
 
 

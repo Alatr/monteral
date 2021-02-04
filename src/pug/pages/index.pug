@@ -55,26 +55,20 @@ block meta
 block head
     link(rel='stylesheet', href="./assets/styles/main.min.css")
 block scripts
-  script(defer src='./assets/scripts/index.js')
-  script(defer src='./assets/scripts/index-mobile.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/index.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/home-mobile.js')
 block content
     
-    
-  //- .screen-wrap
-  //-   .main-title-wrap
-  //-     .home-title-item
-  //-       .home-title-item__title(data-mobile-slide-main-title) Montreal House —
-  //-       .home-title-item__subtitle(data-mobile-slide-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
   .mobile-slider-wrap
     .mobile-slider-main-title
       .mobile-slider-main-title__title(data-mobile-slide-main-title) Montreal House —
       .mobile-slider-main-title__subtitle(data-mobile-slide-main-subtitle) Житловий комплекс бізнес класу по вул. Антоновича 83
     button(type="button" data-mobile-slider-btn--prev).btn--res.mobile-slider-btn.mobile-slider-btn--prev
       +svg('prev')
-      span архітектура
+      span
     button(type="button" data-mobile-slider-btn--next).btn--res.mobile-slider-btn.mobile-slider-btn--next
       +svg('next')
       span архітектура
@@ -86,6 +80,9 @@ block content
     .mobile-slider.swiper-container(data-mobile-slider )
       .swiper-wrapper
         each val, i in content
+          // ------------------
+          // ------------------
+          // ------------------
           .swiper-slide.mobile-slider-item(data-swiper-slide data-title= val.title style=" background: url(./assets/images/home/mob/"+i+".jpg) center no-repeat; background-size: cover;")
             .bg-overlay
             .mobile-slider-item-content
@@ -96,6 +93,9 @@ block content
                 span.link-ico.link-ico--margin
                   span.link-ico__stic.bgc--mc
                   +svg('arrow').link__ico.fill--mc
+          // ------------------
+          // ------------------
+          // ------------------
   .mobile-home-content-contact(data-content-home)
     .contact__l(data-gsap-contact-l)
         .contact-l--after

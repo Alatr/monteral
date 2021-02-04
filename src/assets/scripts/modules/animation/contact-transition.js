@@ -102,16 +102,10 @@ export const transitionshowPartPageContact = (sliderData) => {
     gsap.set(_ELEMENTS.contactBlocks, {autoAlpha: 1});
     gsap.set(_ELEMENTS.scrollIcon, {autoAlpha: 0});
 
-  }, null, '<')
-  // tl.call(()=> { 
-  //   counterOut().play();
-  // }, null, '<0.2')
+  }, null, '<');
 	tl.fromTo(_ELEMENTS.overlayDeveloper, 1,  {scaleX: 0}, {scaleX: 1,transformOrigin: 'left', immediateRender: false, ease: eases.ex});
 	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1,  {'--w': 50, '--h': 100,}, {'--w': 0, '--h': 100});
-	tl.call(()=> { inContentContact().play(); }, null, '-=1.3')
-  // tl.call(()=> { 
-  //   counterIn().play();
-  // }, null, '<0.15')
+	tl.call(()=> { inContentContact().play(); }, null, '-=1.3');
 	return tl;
 };
 /*  */
@@ -129,7 +123,6 @@ export const transitionHidePartPageContact = (sliderData) => {
   tl.call(()=> { 
     counterOut().play();
   }, null, '<0.2')
-	// tl.call(()=> { gsap.set(_ELEMENTS.videoBlockWrapper, {autoAlpha: 1}); }, null, '+=0')
   tl.fromTo(_ELEMENTS.overlayDeveloper, 1,  {scaleX: 1}, {scaleX: 0,transformOrigin: 'left', immediateRender: false, ease: eases.ex});
 	tl.fromTo(_ELEMENTS.videoBlockWrapper, 0.5,  {'--w': 0, '--h': 100,}, {'--w': 50, '--h': 100});
   tl.call(()=> { inContent(sliderData.current).play(); }, null, '-=1')

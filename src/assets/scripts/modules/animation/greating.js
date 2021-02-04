@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { EaselPlugin } from "gsap/EaselPlugin";
 import { eases } from '../helpers/helpers.js'
-import { outContent, inContent, addActiveClassContent, counterOut, counterIn } from '../animation/main-transition.js'
+import { inContent} from '../animation/main-transition.js'
 
 
 gsap.registerPlugin(CSSRulePlugin, EaselPlugin);
@@ -10,10 +10,6 @@ gsap.registerPlugin(CSSRulePlugin, EaselPlugin);
 
 
 import {getForwardVideo} from '../video-control';
-// force all gsap animation
-// gsap.config({
-// 	force3D: true
-// });
 
 	let _STATE = null;
 	let _ELEMENTS= null;
@@ -26,7 +22,6 @@ const logo = '.welcome-screen__logo';
 const title = '.welcome-screen__title';
 const subtitle = '.welcome-screen__subtitle';
 const decor = '.welcome-screen__decor';
-const video = document.querySelector('#home-video');
 const videoWrapperBlock = '[data-video-block-wrapper]';
 /*  */
 function hideElements() {
@@ -101,20 +96,9 @@ const animGreatingVideo = (sliderData) => {
 	const tl = gsap.timeline(settings);
 	tl.call(() => {video.play()});
   tl.add(() => tl.pause(), '<');
-  // console.log(_ELEMENTS.videoBlockWrapper);
-	// tl.fromTo(_ELEMENTS.videoBlockWrapper, 1.5, {'--w': 50, '--h': 100}, {'--w': 110, '--h': 110, x: 0, ease: eases.ex});
-	// tl.call(()=> { 
-  //   outContent(cnxOut).play();
-  // }, null, '<')
-	// tl.call(()=> { 
-  //   counterOut().play();
-  // }, null, '<0.2')
+
 	tl.fromTo(_ELEMENTS.videoBlockWrapper, 1, {'--w': 110, '--h': 110,}, {'--w': 50, '--h': 100, x: -30, immediateRender: false, ease: eases.ex});
 	tl.fromTo('[data-gsap-greating]', 1, {autoAlpha: 0}, {autoAlpha: 1}, '<');
-	// tl.call(()=> { 
-  //   counterIn().play();
-  // }, null, '<0.15')
-  console.log(inContent);
 	tl.call(()=> { inContent(sliderData.current).play(); }, null, '-=0.3')
 
 
