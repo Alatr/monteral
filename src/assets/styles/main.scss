@@ -554,4 +554,6 @@ a.border-btn {
 .subtitle-with-decor--left-line::after {
     left: 0;
     transform: translateY(100%) translateX(0);
+    width: 40px;
+    height: 1px;
 }
