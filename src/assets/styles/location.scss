@@ -1,13 +1,18 @@
 #location {
     .page-part {
-        @include shift-padding(1);
+        @include shift-padding(0.5);
         padding-top: 160px;
         padding-bottom: 160px;
         justify-content: space-between;
     }
     .block-with-decor2 {
         @include size(5);
-        @include shift(0.5);
+        margin-right: auto;
+        margin-left: 0;
+    }
+    .block-with-decor2~.block-with-decor2 {
+        margin-right: 0;
+        margin-left: auto;
     }
     .block-with-logo-decor {
         // @include shift(0.5);
@@ -16,6 +21,14 @@
         margin-bottom: 100px;
         padding-right: 30%;
         @include shift(0.5);
+    }
+    @include from(951px) {
+        .footer-wrap {
+            @include shift-padding(1);
+        }
+        .page-part.page-part.double-green {
+            @include shift-padding(1);
+        }
     }
     @include from(1680px) {
         .page-block-title {

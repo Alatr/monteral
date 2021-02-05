@@ -78,6 +78,25 @@ section {
     }
 }
 
+.up-arrow {
+    position: fixed;
+    right: var(--self-side-padding);
+    bottom: var(--self-side-padding);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5em;
+    /* identical to box height, or 150% */
+    text-align: right;
+    /* Text gold */
+    color: $color-text-gold;
+    .text {
+        margin-bottom: 0;
+    }
+    @include to(950px) {
+        display: none;
+    }
+}
+
 .breadcrumbs {
     font-weight: 500;
     font-size: 10px;

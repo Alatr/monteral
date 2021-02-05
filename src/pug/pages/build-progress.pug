@@ -167,6 +167,7 @@ block content
                     span.button-second__logo
                         +svg('logo-m')
         .progress-galleries
+            -var monthes = ['','Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Литсопад','Грудень',]
             - var n = 1;
                 while n < 12
                     .progress-gallery-link(data-progress-gallery data-month=n  data-build-popup=n data-year="2020"  data-images="https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/10_lesnaya-skazka2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/3_klubniy2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/12_lesnaya-skazka1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/13_britanika_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/14_irpenskie-lipki_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/15_parkoviy_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/1_Riverside_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/5_naykraschiy1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/6_proreznaya-2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/7_proreznaya-1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/8_Royal-Park_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/naykraschiy2.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/Poltavskaya64.jpg")
@@ -176,9 +177,8 @@ block content
                             .plus-element +
                         .progress-gallery-link__right 
                             div 2020
-                            .subtitle-with-decor.subtitle-with-decor--white Вересень #{n}
+                            .subtitle-with-decor.subtitle-with-decor--white #{monthes[n]} 2020
                             .uppercased Дивитися 14 фото
-                            
                     .progress-gallery-link(data-progress-gallery data-month=n  data-build-popup=n data-year="2021"  data-images="https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/10_lesnaya-skazka2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/3_klubniy2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/12_lesnaya-skazka1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/13_britanika_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/14_irpenskie-lipki_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/15_parkoviy_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/1_Riverside_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/5_naykraschiy1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/6_proreznaya-2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/7_proreznaya-1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/8_Royal-Park_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/naykraschiy2.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/Poltavskaya64.jpg")
                         .progress-gallery-link__left 
                             .progress-gallery-link__left-img
@@ -186,7 +186,7 @@ block content
                             .plus-element +
                         .progress-gallery-link__right 
                             div 2021
-                            .subtitle-with-decor.subtitle-with-decor--white Вересень #{n}
+                            .subtitle-with-decor.subtitle-with-decor--white #{monthes[n]} 2021
                             .uppercased Дивитися 14 фото
                     -n++
 

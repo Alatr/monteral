@@ -9,12 +9,15 @@ var buildProgressConfig = {
 };
 /*  */
 const galleries = document.querySelectorAll('[data-progress-gallery]');
-galleries.forEach(el => el.validCount = 0);
+galleries.forEach((el, index) => {
+    el.validCount = 0;
+    el.setAttribute('id', 'bild' + index);
+});
 const popupSliderConfig = {
     navImages: dqs('[data-swiper-slider]'),
     bigImage: dqs('[data-swiper-big-image]'),
     title: dqs('[data-popup-title]'),
-    subtitle: ('[data-popup-subtitle]'),
+    subtitle: dqs('[data-popup-subtitle]'),
     swiper: undefined,
     currentPopup: undefined,
     filteredPopups: Array.from(galleries),
@@ -33,9 +36,7 @@ function handleCustomSelect(selector) {
             if (selector.currentValue !== select.dataset.value) {
                 selector.currentValue = select.dataset.value;
                 selector.style.pointerEvents = 'none';
-                setTimeout(() => {
-                    selector.style.pointerEvents = 'all';
-                }, 1000);
+                setTimeout(() => selector.style.pointerEvents = 'all', 1000);
                 selector.dispatchEvent(event1);
             }
         })
@@ -57,35 +58,45 @@ function handleCustomSelect(selector) {
 
 
 document.querySelectorAll('[data-build-filter-name]').forEach(el => {
+    /**Первичная фильттрация */
+    filterBuildGalleries(buildProgressConfig, el, galleries);
     el.addEventListener('change', () => {
-        buildProgressConfig[el.dataset.buildFilterName] = el.currentValue;
-        /**Проверка совпадения по полям */
-        Object.keys(buildProgressConfig).forEach(filterValue => {
-                galleries.forEach(sngGal => {
-                    if (buildProgressConfig[filterValue] == 'null' ||
-                        sngGal.dataset[filterValue] == buildProgressConfig[filterValue]
-                    ) {
-                        sngGal.validCount += 1;
-                    }
-                })
-            })
-            /**Отрисовка после оопределения параметров */
-        galleries.forEach(el => {
-            if (el.validCount === Object.keys(buildProgressConfig).length) {
-                el.style.display = 'flex';
-                gsap.to(el, { autoAlpha: 1, x: 0 });
-            } else {
-                gsap.to(el, { autoAlpha: 0, x: 50 });
-                setTimeout(() => {
-                    el.style.display = 'none';
-                }, 1000);
-            }
-            el.validCount = 0;
-        })
-        popupSliderConfig.filteredPopups = [];
-        popupSliderConfig.filteredPopups = Array.from(dqsA('[data-progress-gallery][style*="flex"'));
+        filterBuildGalleries(buildProgressConfig, el, galleries);
+        popupSliderConfig.filteredPopups = dqsA('[data-is-viewed*="true"]')
+
     })
 })
+
+
+function filterBuildGalleries(objectWithValidFields, filterSelector, galleriesToFilter) {
+    objectWithValidFields[filterSelector.dataset.buildFilterName] = filterSelector.currentValue;
+    /**Проверка совпадения по полям */
+    Object.keys(objectWithValidFields).forEach(filterValue => {
+            galleries.forEach(sngGal => {
+                if (objectWithValidFields[filterValue] == 'null' ||
+                    sngGal.dataset[filterValue] == objectWithValidFields[filterValue]
+                ) {
+                    sngGal.validCount += 1;
+                }
+            })
+        })
+        /**Отрисовка после оопределения параметров */
+    galleriesToFilter.forEach(gallery => {
+        if (gallery.validCount === Object.keys(objectWithValidFields).length) {
+            gallery.style.display = 'flex';
+            gallery.dataset.isViewed = 'true';
+            gsap.to(gallery, { autoAlpha: 1, x: 0 });
+        } else {
+            gallery.dataset.isViewed = 'false';
+            gsap.to(gallery, { autoAlpha: 0, x: 50 });
+            setTimeout(() => {
+                gallery.style.display = 'none';
+            }, 1000);
+        }
+        gallery.validCount = 0;
+    })
+}
+
 
 initPopupSlider(galleries[0]);
 
@@ -101,7 +112,8 @@ galleries.forEach((galleryWithData, index) => {
         onOpenCompleteCallback: function() {
             initPopupSlider(galleryWithData);
             changeTextOnPopup(galleryWithData);
-            popupSliderConfig.currentPopup = galleries[index];
+            // popupSliderConfig.currentPopup = galleries[index];
+            popupSliderConfig.currentPopup = galleryWithData;
             document.querySelector('[data-build-gallery-popup] [data-build-popup-close]').setAttribute('data-build-popup', galleryWithData.dataset.buildPopup);
         },
     });
@@ -110,6 +122,12 @@ galleries.forEach((galleryWithData, index) => {
 
 dqs('[data-popup-prev-gallery]').addEventListener('click', function() {
     let prevGallery = popupSliderConfig.currentPopup.previousElementSibling;
+    popupSliderConfig.filteredPopups.forEach((el, index) => {
+        if (el.getAttribute('id') === popupSliderConfig.currentPopup.getAttribute('id')) {
+            prevGallery = popupSliderConfig.filteredPopups[index - 1];
+        }
+    });
+
     if (prevGallery === null || prevGallery === undefined) return;
     initPopupSlider(prevGallery);
     changeTextOnPopup(prevGallery);
@@ -118,6 +136,11 @@ dqs('[data-popup-prev-gallery]').addEventListener('click', function() {
 });
 dqs('[data-popup-next-gallery]').addEventListener('click', function() {
     let prevGallery = popupSliderConfig.currentPopup.nextElementSibling;
+    popupSliderConfig.filteredPopups.forEach((el, index) => {
+        if (el.getAttribute('id') === popupSliderConfig.currentPopup.getAttribute('id')) {
+            prevGallery = popupSliderConfig.filteredPopups[index + 1];
+        }
+    });
     if (prevGallery === null) return;
     initPopupSlider(prevGallery);
     changeTextOnPopup(prevGallery);

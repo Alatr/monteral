@@ -2,7 +2,9 @@
     .page-part {
         padding-top: 160px;
         padding-bottom: 160px;
-        @include shift-padding(1.5);
+        padding-left: calc(var(--self-side-padding) + 8% + 10px);
+        padding-right: calc(var(--self-side-padding) + 8% + 10px);
+        @include shift-padding(1);
         align-items: flex-start;
         .build-progress-filter-wrap {
             width: calc(100% / 8 * 3 - 35px);

@@ -14,10 +14,10 @@
     padding-top: 160px;
     padding-bottom: 320px;
     position: relative;
+    @include shift-padding(1);
     &.lighter {
         background: linear-gradient(180deg, var(--gradient-color) 34.65%, rgba(0, 114, 117, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
     }
-    @include shift-padding(1);
     .footer-logo-large {
         position: absolute;
         bottom: 0;
