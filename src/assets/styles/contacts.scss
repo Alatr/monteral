@@ -7,8 +7,12 @@
     @include from(576px) {
         &>* {
             width: 50%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
+    @include from(1680px) {}
     @include to(575px) {
         justify-content: center;
         padding-top: 40px;
@@ -56,6 +60,7 @@
     .contact-items-wrap>*:nth-child(n+1) {
         margin-bottom: 50px;
     }
+    @include from(1680px) {}
     @include to(768px) {
         .decor-type-vertical {
             --line-color: #{$color-bg-geen-black};

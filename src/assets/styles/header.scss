@@ -194,3 +194,7 @@
 .burg__2 {
     pointer-events: none;
 }
+
+.modal-active .header {
+    background-color: transparent !important;
+}

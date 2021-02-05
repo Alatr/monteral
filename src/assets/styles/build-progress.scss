@@ -63,6 +63,13 @@
             padding-right: calc(4.155% + 10px);
         }
     }
+    @include from(1680px) {
+        .page-part {
+            max-width: 1360px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
     @include to(1024px) {
         .page-part {
             @include shift-padding(1);
