@@ -37,7 +37,7 @@
         padding-left: calc((var(--delimiter-width) * 2) + var(--block-start-left-padding));
     }
     @include from(1680px) {
-        @include shift-padding(2);
+        @include shift-padding(1);
     }
     @include to(1400px) {
         // background: linear-gradient(180deg, #007275 50%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
@@ -70,8 +70,12 @@
         padding-left: 14px;
         padding-right: 14px;
         padding-top: 40px;
-        background: linear-gradient( 180deg, var(--gradient-color) 85.65%, rgba(0, 97, 100, 0) 96%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-        background-size: 200vw, auto 50vh;
+        background: linear-gradient( 180deg, #007275 35.65%, rgba(0, 97, 100, 0) 96%) bottom no-repeat, url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        // background: url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        &.lighter {
+            background: linear-gradient( 180deg, #007275 35.65%, rgba(0, 97, 100, 0) 96%) bottom no-repeat, url(../images/footer/bg-complex.jpg) bottom no-repeat;
+            background-size: 100vw 350px, auto 50vh;
+        }
         .footer-copyright {
             flex-wrap: wrap;
             text-align: left;
@@ -199,6 +203,11 @@
         max-width: 25ch;
         margin-bottom: 20px;
         line-height: 1.4em;
+    }
+    @include from(1680px) {
+        .blank-link {
+            max-width: 40ch !important;
+        }
     }
     @include to(950px) {
         flex-wrap: wrap;

@@ -392,6 +392,8 @@
     color: $color-text-gold;
     text-align: center;
     min-height: 250px;
+    max-height: 300px;
+    overflow: hidden;
     cursor: pointer;
     &>* {
         padding-top: var(--self-padding-top);
@@ -412,6 +414,7 @@
     }
     &__left-img {
         overflow: hidden;
+        height: 100%;
     }
     &__left img {
         transition: .2s ease-out;

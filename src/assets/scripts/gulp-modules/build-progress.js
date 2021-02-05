@@ -81,18 +81,30 @@ function filterBuildGalleries(objectWithValidFields, filterSelector, galleriesTo
             })
         })
         /**Отрисовка после оопределения параметров */
-    galleriesToFilter.forEach(gallery => {
+    galleriesToFilter.forEach((gallery, index) => {
         if (gallery.validCount === Object.keys(objectWithValidFields).length) {
             gallery.style.display = 'flex';
-            gallery.dataset.isViewed = 'true';
-            gsap.to(gallery, { autoAlpha: 1, x: 0 });
-        } else {
-            gallery.dataset.isViewed = 'false';
-            gsap.to(gallery, { autoAlpha: 0, x: 50 });
 
-            setTimeout(() => {
-                gallery.style.display = 'none';
-            }, 1000);
+            if (gallery.dataset.isViewed === 'false') {
+                const entranceSpeed = 50 * (1 + (index * 0.5))
+                const heightWithMargin = (gallery.getBoundingClientRect().height + parseInt(getComputedStyle(gallery).marginBottom));
+                let tl = gsap.timeline({ timeScale: 10 });
+                tl.set(gallery, { autoAlpha: 0, x: entranceSpeed })
+                tl.fromTo(gallery, { autoAlpha: 0, x: entranceSpeed }, { autoAlpha: 1, x: 0, ease: Expo.easeOut });
+                // tl.to(gallery, { marginTop: 0, ease: Expo.easeOut });
+            }
+            gallery.dataset.isViewed = 'true';
+
+        } else {
+            const heightWithMargin = (gallery.getBoundingClientRect().height + parseInt(getComputedStyle(gallery).marginBottom));
+            let tl = gsap.timeline({ timeScale: 10 });
+            tl.to(gallery, { autoAlpha: 0, x: 50, ease: Expo.easeOut });
+            tl.to(gallery, { marginTop: heightWithMargin * -1, ease: Expo.easeOut })
+            tl.set(gallery, { display: 'none', }, '+=0.1');
+            tl.set(gallery, { marginTop: 0 });
+
+            gallery.dataset.isViewed = 'false';
+
         }
         gallery.validCount = 0;
     })
@@ -142,7 +154,7 @@ dqs('[data-popup-next-gallery]').addEventListener('click', function() {
             prevGallery = popupSliderConfig.filteredPopups[index + 1];
         }
     });
-    if (prevGallery === null) return;
+    if (prevGallery === null || prevGallery === undefined) return;
     initPopupSlider(prevGallery);
     changeTextOnPopup(prevGallery);
     popupSliderConfig.currentPopup = prevGallery;
@@ -154,7 +166,7 @@ dqs('[data-popup-next-gallery]').addEventListener('click', function() {
 
 
 function changeTextOnPopup(data) {
-    popupSliderConfig.title.textContent = data.dataset.month;
+    popupSliderConfig.title.textContent = popupSliderConfig.title.innerHTML;
     popupSliderConfig.subtitle.textContent = data.dataset.year;
 
 }
@@ -314,12 +326,8 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
     });
 
     let navigate = {
-        'leftSide': () => {
-            document.querySelector('.build-gallery-popup__wrap-nav .arrow-prev').dispatchEvent(new Event('click'));
-        },
-        'rightSide': () => {
-            document.querySelector('.build-gallery-popup__wrap-nav .arrow-next').dispatchEvent(new Event('click'));
-        },
+        'leftSide': () => document.querySelector('.build-gallery-popup__wrap-nav .arrow-prev').dispatchEvent(new Event('click')),
+        'rightSide': () => document.querySelector('.build-gallery-popup__wrap-nav .arrow-next').dispatchEvent(new Event('click')),
     };
 
     function switchGallerySlide(side) {
