@@ -247,6 +247,7 @@ const forms = [
   '[data-home-contact-page]',
   '[data-home-contact]',
   '[data-mobile-home-contact-page]',
+  '[data-contact-page-form]',
 ];
 
 forms.forEach((form) => {

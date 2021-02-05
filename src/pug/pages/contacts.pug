@@ -1,4 +1,19 @@
 extends ../layout/main
+block variable
+    -
+        var pageNameFromMenuLat =  headMenu[4].item[1]
+        var pageNameFromMenuLatNoHtml = pageNameFromMenuLat.replace(/.html/,'')
+        var pageNameFromMenuCyr =  headMenu[4].item[0]
+        var title_page = headMenu[4].item[0]
+        var id_page = pageNameFromMenuLatNoHtml
+        var class_page = pageNameFromMenuLatNoHtml
+        var breadcrumbsSubitem = [
+            {
+                label: headMenu[0].item[0],
+                link: headMenu[0].item[1]
+            },
+
+        ]
 block footer
   include ../includes/footer-inner-pages.pug
 block meta
@@ -10,7 +25,70 @@ block scripts
   script(defer src='./assets/scripts/index.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
 block content
-    h1 1
+    canvas#c
+    section.page-first-block
+        picture.page-first-block__bg
+            source(srcset="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")
+            img(src="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")
+        include ../includes/breadcrumbs.pug
+        .page-first-block__text-wrap 
+            <svg class="page-logo" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path data-path-draw-effect d="M0 37H37V0H0V37ZM33.8975 33.8878H3.10248V3.22742H33.8975V33.8878Z" />
+            <path data-path-draw-effect d="M20.294 7.40039V27.9308H16.7573V7.40039H7.39844V31.0804H10.3367V10.5499H13.819V31.0804H23.1778V10.5499H26.7146V31.0804H29.5984V7.40039H20.294Z" />
+            </svg>
+            h1.page-title(data-gsap-anim-enter) #{pageNameFromMenuCyr}
+        <svg class="mouse screen screen-icon-scroll" data-icon-scroll xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 76 130" preserveAspectRatio="xMidYMid meet">
+            <g fill="none" fill-rule="evenodd">
+                <rect width="70" height="118" x="1.5" y="1.5" stroke="#CFBE97" stroke-width="5" rx="36"/>
+                <circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#CFBE97"/>
+            </g>
+            </svg>
+        ul.lang.screen__lang
+            li(data-animate-links).lang__item.lang__item--active
+                a(href="#") uk
+            li(data-animate-links).lang__item
+                a(href="#") ru
+            li(data-animate-links).lang__item
+                a(href="#") en
+        .decor-social(data-animate-links)
+        ul.social.screen__social
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") facebook
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") instagram
+            li(data-animate-links).social__item
+                a(href="#" rel="nofollow" target="_blank") telegram
+    .contact-block
+      .contact__l(data-gsap-contact-l)
+        .contact-items-wrap
+          .contact-item(data-gsap-contact-item)
+            h6.contact-item__title.subtitle-with-decor.subtitle-with-decor--white Відділ продажів:
+            p.contact-item__adress.text.text--gold м. Київ, вул. Антоновича, 81(на першому поверсі)
+            ul.contact-item__time
+              li.text--gold пн-пт: 09:00-19:00
+              li.text--gold сб-нд: 10:00-17:00
+            a(href="#").contact-item__link.button-second.button-second--color-white
+              .button-second__icon
+                +svg('map-path').button-second--map-size
+              span.button-second__text
+                span показати 
+                b на мапі
+              span.button-second__logo
+                +svg('logo-m')
+          .contact-item(data-gsap-contact-item)
+            h6.contact-item__title.subtitle-with-decor.subtitle-with-decor--white Адреса комплексу:
+            p.contact-item__adress.text.text--gold вул. Велика Васильківська, 102 (літера «У») / вул. Антоновича, 83 у Голосіївському районі м. Києва
+            a(href="#").contact-item__link.button-second.button-second--color-white
+              .button-second__icon
+                +svg('eye')
+              span.button-second__text
+                span записатися 
+                b на перегляд
+              span.button-second__logo
+                +svg('logo-m')
+      .contact__l
+      // - data-contact-page-form

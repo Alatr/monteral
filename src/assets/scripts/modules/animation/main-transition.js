@@ -156,7 +156,6 @@ export const outContent = (inx) => {
  */
 
 
-
 /*  */
 export const mainTransition = (sliderData) => {
 
