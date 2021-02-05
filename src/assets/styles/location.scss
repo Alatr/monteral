@@ -20,7 +20,7 @@
     .page-block-title {
         margin-bottom: 100px;
         padding-right: 30%;
-        @include shift(0.5);
+        // @include shift(0.5);
     }
     @include from(951px) {
         .footer-wrap {
