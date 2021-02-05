@@ -6,6 +6,10 @@
     @include to(950px) {
         --self-side-padding: 22px;
     }
+    @include to(768px) {
+        max-width: 100vw;
+        overflow: hidden auto;
+    }
     @include to(575px) {
         --self-side-padding: 14px;
     }

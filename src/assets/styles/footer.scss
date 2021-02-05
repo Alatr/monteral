@@ -61,8 +61,14 @@
         }
     }
     @include to(768px) {
-        background: linear-gradient(180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-        background-size: 200vw, 100vw auto;
+        padding-left: 22px;
+        padding-right: 22px;
+        background: linear-gradient( 180deg, #007275 35.65%, rgba(0, 97, 100, 0) 96%) bottom no-repeat, url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background-size: 100vw 350px, 100vw 350px;
+        &.lighter {
+            background: linear-gradient( 180deg, #007275 35.65%, rgba(0, 97, 100, 0) 96%) bottom no-repeat, url(../images/footer/bg-complex.jpg) bottom no-repeat;
+            background-size: 100vw 350px, 100vw 350px;
+        }
     }
     @include to(575px) {
         // background: linear-gradient( 180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;

@@ -399,7 +399,6 @@
     color: $color-text-gold;
     text-align: center;
     min-height: 250px;
-    max-height: 300px;
     overflow: hidden;
     cursor: pointer;
     &>* {
@@ -539,6 +538,7 @@
         --self-padding-top: 20px;
     }
     @include from(769px) {
+        max-height: 300px;
         &:hover img {
             transform: scale(1.1);
         }
