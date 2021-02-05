@@ -2,18 +2,18 @@
     .page-part {
         padding-top: 160px;
         padding-bottom: 160px;
-        padding-left: calc(var(--self-side-padding) + 8% + 10px);
-        padding-right: calc(var(--self-side-padding) + 8% + 10px);
+        // padding-left: calc(var(--self-side-padding) + 8% + 10px);
+        // padding-right: calc(var(--self-side-padding) + 8% + 10px);
         @include shift-padding(1);
         align-items: flex-start;
         .build-progress-filter-wrap {
             width: calc(100% / 8 * 3 - 35px);
-            margin: 0 auto;
+            margin: 0 auto 0 0;
             width: min(calc(100% / 8 * 3 - 35px), 320px);
         }
         .progress-galleries {
             width: calc(100% / 8 * 5 - 35px);
-            margin: 0 auto;
+            margin: 0 0 0 auto;
         }
         .button-second {
             max-width: 250px;
@@ -56,6 +56,12 @@
     }
     .progress-galleries>*:nth-last-child(n+2) {
         margin-bottom: 40px;
+    }
+    @include from(769px) {
+        .page-part {
+            padding-left: calc(4.155% + 10px);
+            padding-right: calc(4.155% + 10px);
+        }
     }
     @include to(1024px) {
         .page-part {

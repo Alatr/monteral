@@ -7,8 +7,9 @@
         align-items: center;
     }
     .page-part>* {
-        @include size(10);
-        @include shift(1);
+        // @include size(10);
+        // @include shift(1);
+        width: 100%;
         text-align: center;
     }
     .web-camera-block {
@@ -17,6 +18,17 @@
     .button-second {
         max-width: 320px;
         margin-top: 50px;
+    }
+    @include from(951px) {
+        .footer-wrap {
+            @include shift-padding(1);
+        }
+        .page-part:not(.double-green) {
+            @include shift-padding(0.5);
+        }
+        .page-part.double-green {
+            @include shift-padding(1);
+        }
     }
     @include to(1024px) {
         .page-part {

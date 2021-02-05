@@ -89,6 +89,7 @@ function filterBuildGalleries(objectWithValidFields, filterSelector, galleriesTo
         } else {
             gallery.dataset.isViewed = 'false';
             gsap.to(gallery, { autoAlpha: 0, x: 50 });
+
             setTimeout(() => {
                 gallery.style.display = 'none';
             }, 1000);
