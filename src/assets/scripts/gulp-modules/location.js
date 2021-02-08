@@ -1,21 +1,21 @@
 /* beautify preserve:start */
+/*eslint-disable */
 @@include('../../../../node_modules/bezier-easing/dist/bezier-easing.min.js')
-/* beautify preserve:end */
-
+/* beautify preserve:end */;;;;;
+/*eslint-enable */
 /**
  * Water ripple effect.
  * Original code (Java) by Neil Wallis 
- * @link http://www.neilwallis.com/java/water.html
+ * link http://www.neilwallis.com/java/water.html
  * 
- * @author Sergey Chikuyonok (serge.che@gmail.com)
- * @link http://chikuyonok.ru
+ * author Sergey Chikuyonok (serge.che@gmail.com)
+ * link http://chikuyonok.ru
  */
 (function() {
 
 
     if (document.documentElement.clientWidth < 576) return;
     var canvas = document.getElementById('c'),
-        /** @type {CanvasRenderingContext2D} */
         ctx = canvas.getContext('2d'),
         width = document.documentElement.clientWidth,
         height = document.documentElement.clientHeight,
@@ -202,17 +202,7 @@
         clearInterval(some);
         evt.target.remove();
     });
-    // document.body.onclick = () => {
-    //     let randomize = rnd();
-    //     let randomizeH = rnd();
-    //     console.log(randomize);
-    //     // let randDx = randomize * width;
-    //     let randDx = 300;
-    //     let randDy = randomizeH * height;
-    //     for (var e = randDx; e < randDx + 100; e += 5) {
-    //         disturb(e * (3 * Math.cos(e)), e);
-    //     }
-    // }
+
 
 })();
 const intersectionOptions = {
@@ -241,7 +231,10 @@ var niceEntryBig = function(entries, observer) {
     entries.forEach(entry => {
         console.log(entry.intersectionRect);
         if (entry.isIntersecting) {
-            gsap.to(entry.target, { scale: 1, duration: 4 })
+            let text = entry.target.querySelector('.block-with-logo-decor__content');
+            let gradient = entry.target.querySelector('.gradient-bg');
+            gsap.fromTo(text, { x: -100, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 2, ease: niceBezier, })
+            gsap.fromTo(gradient, { autoAlpha: 0 }, { autoAlpha: 1, duration: 2 })
         }
     });
 };
@@ -253,5 +246,15 @@ niceImages.forEach(el => {
     gsap.set(el.querySelector('img'), { autoAlpha: 0 });
     gsap.set(el.closest('.block-with-decor2').querySelector('.block-with-decor2__count'), { autoAlpha: 0 });
     gsap.set(el.closest('.block-with-decor2').querySelector('.block-with-decor2__text'), { autoAlpha: 0 });
+    el.observer.observe(el)
+})
+niceBigImages.forEach(el => {
+    el.observer = new IntersectionObserver(niceEntryBig, intersectionOptions);
+    let text = entry.target.querySelector('.block-with-logo-decor__content');
+    let gradient = entry.target.querySelector('.gradient-bg');
+    gsap.set(el.querySelector('img'), { autoAlpha: 0 });
+    gsap.set(text, { autoAlpha: 0 });
+    gsap.set(gradient, { autoAlpha: 0 });
+    // gsap.set(el.closest('.block-with-decor2').querySelector('.block-with-decor2__text'), { autoAlpha: 0 });
     el.observer.observe(el)
 })

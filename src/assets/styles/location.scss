@@ -233,6 +233,9 @@
             border-right: none;
             padding-bottom: var(--self-padding-top);
         }
+        &__img-wrap {
+            overflow: hidden;
+        }
     }
     @include to(950px) {
         &__text {
