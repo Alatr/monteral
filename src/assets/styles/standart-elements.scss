@@ -241,6 +241,7 @@ section {
     }
     @include from(1680px) {
         &__text-wrap {}
+        --self-padding-top: 50px;
     }
     @include to(950px) {
         &__text-wrap {

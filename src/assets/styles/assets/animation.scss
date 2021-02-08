@@ -1,66 +1,93 @@
 @import "vars";
-
 .mfp-3d-unfold {
-	.mfp-content {
-		perspective: 2000px;
-	}
-
-	.mfp-with-anim {
-		opacity: 0;
-		transition: all 0.3s ease-in-out;
-		transform-style: preserve-3d;
-		transform: rotateY(-60deg);
-	}
-
-	.mfp-bg {
-		opacity: 0;
-		transition: all 0.5s;
-	}
+    .mfp-content {
+        perspective: 2000px;
+    }
+    .mfp-with-anim {
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        transform-style: preserve-3d;
+        transform: rotateY(-60deg);
+    }
+    .mfp-bg {
+        opacity: 0;
+        transition: all 0.5s;
+    }
 }
 
 .mfp-ready {
-	.mfp-with-anim {
-		opacity: 1;
-		transform: rotateY(0deg);
-	}
-
-	.mfp-bg {
-		opacity: 0.8;
-	}
+    .mfp-with-anim {
+        opacity: 1;
+        transform: rotateY(0deg);
+    }
+    .mfp-bg {
+        opacity: 0.8;
+    }
 }
 
 .mfp-removing {
-	.mfp-with-anim {
-		transform: rotateY(60deg);
-		opacity: 0;
-	}
-
-	.mfp-bg {
-		opacity: 0;
-	}
+    .mfp-with-anim {
+        transform: rotateY(60deg);
+        opacity: 0;
+    }
+    .mfp-bg {
+        opacity: 0;
+    }
 }
 
-
 @keyframes scroll {
-
-	0%,
-	20% {
-		transform: translateY(0) scaleY(1);
-	}
-
-	100% {
-		transform: translateY(36px) scaleY(2);
-		opacity: 0;
-	}
-
+    0%,
+    20% {
+        transform: translateY(0) scaleY(1);
+    }
+    100% {
+        transform: translateY(36px) scaleY(2);
+        opacity: 0;
+    }
 }
 
 .scroll {
-	animation-name: scroll;
-	animation-duration: 1.5s;
-	animation-timing-function: cubic-bezier(0.650, -0.550, 0.250, 1.500);
-	animation-iteration-count: infinite;
-	transform-origin: 50% 20.5px;
-	will-change: transform, opacity;
-	opacity: 1;
+    animation-name: scroll;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(0.650, -0.550, 0.250, 1.500);
+    animation-iteration-count: infinite;
+    transform-origin: 50% 20.5px;
+    will-change: transform, opacity;
+    opacity: 1;
+}
+
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

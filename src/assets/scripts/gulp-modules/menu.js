@@ -25,11 +25,13 @@ function switchMenuImage(evt) {
 
     if ($menuImage.dataset.image === linkWithImage.dataset.image) return;
 
+    gsap.set($menuImage, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, })
     let tl = gsap.timeline();
     tl.to($menuImage, {
         clipPath: `polygon(0 0, 0% 0, 0% 100%, 0 100%)`,
+        scale: 1.1,
         ease: Power4.easeIn,
-        duration: 1,
+        duration: 1.5,
     })
     tl.add(() => {
         $menuImage.dataset.image = linkWithImage.dataset.image;
@@ -38,7 +40,8 @@ function switchMenuImage(evt) {
     tl.to($menuImage, {
         clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`,
         ease: Power4.easeOut,
-        duration: 1,
+        scale: 1,
+        duration: 1.5,
     })
 
 }

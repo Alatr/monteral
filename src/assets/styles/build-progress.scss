@@ -10,6 +10,8 @@
             width: calc(100% / 8 * 3 - 35px);
             margin: 0 auto 0 0;
             width: min(calc(100% / 8 * 3 - 35px), 320px);
+            position: sticky;
+            top: var(--header-height);
         }
         .progress-galleries {
             width: calc(100% / 8 * 5 - 35px);
@@ -58,6 +60,10 @@
         margin-bottom: 40px;
     }
     @include from(769px) {
+        .build-progress-filter-wrap {
+            position: sticky;
+            top: var(--header-height);
+        }
         .page-part {
             padding-left: calc(4.155% + 10px);
             padding-right: calc(4.155% + 10px);
@@ -492,6 +498,7 @@
         transform: translate(-50%, -50%);
         cursor: pointer;
         transition: background-color .3s ease-out;
+        font-size: 18px;
     }
     @include to(950px) {
         flex-wrap: wrap;
