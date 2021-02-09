@@ -82,20 +82,23 @@ let headroom = new Headroom(document.querySelector('header'), {
     },
 }).init();
 /**Скрытие Хедера при скролле вниз */
-const upArrow = document.querySelector('[data-up-arrow]')
-let upArrowHandler = new Headroom(upArrow, {
-    offset: 100,
-    onPin: function(e) {
-        console.log(headroom);
-        // document.body.classList.add(headroom.classes.pinned);
-        // document.body.classList.remove(headroom.classes.unpinned);
-    },
-    // callback when unpinned, `this` is headroom object
-    onUnpin: function(e) {
-        console.log(headroom);
-        // document.body.classList.add(headroom.classes.unpinned);
-        // document.body.classList.remove(headroom.classes.pinned);
-    },
-}).init();
+const upArrows = document.querySelectorAll('[data-up-arrow]');
 
-upArrow.addEventListener('click', (evt) => document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" }));
+upArrows.forEach(arrow => {
+
+    let upArrowHandler = new Headroom(arrow, {
+        offset: 100,
+        onPin: function(e) {
+            console.log(headroom);
+            // document.body.classList.add(headroom.classes.pinned);
+            // document.body.classList.remove(headroom.classes.unpinned);
+        },
+        // callback when unpinned, `this` is headroom object
+        onUnpin: function(e) {
+            console.log(headroom);
+            // document.body.classList.add(headroom.classes.unpinned);
+            // document.body.classList.remove(headroom.classes.pinned);
+        },
+    }).init();
+    arrow.addEventListener('click', (evt) => document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" }));
+})

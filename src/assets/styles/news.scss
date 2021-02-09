@@ -151,12 +151,15 @@
         left: calc( var(--image-padding) * 2);
         bottom: calc( var(--image-padding) * 2);
     }
+    &__img {
+        overflow: hidden;
+    }
     @include from-to(576px, 950px) {
         min-height: 33vh;
     }
     @include from(769px) {
-        &:hover &__img {
-            transform: scale(0.95);
+        &:hover &__img img {
+            transform: scale(1.2);
         }
         &__text {
             max-width: 75%;
@@ -259,6 +262,9 @@
         content: '';
         opacity: 0;
         transition: opacity .3s ease-out;
+    }
+    &__item.active {
+        color: $color-gold;
     }
     .icon--pagination-double-arrow {
         width: 25px;

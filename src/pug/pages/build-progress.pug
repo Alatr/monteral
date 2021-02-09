@@ -23,7 +23,6 @@ block scripts
   script(defer src='./assets/scripts/index.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
-  script(defer src='./assets/scripts/news.js')
   script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
@@ -60,6 +59,11 @@ block content
                 a(href="#") ru
             li(data-animate-links).lang__item
                 a(href="#") en
+        .up-arrow(data-up-arrow)
+            <svg width="36" height="70" viewBox="0 0 36 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 42L18 2M18 2L24 8M18 2L12 8" stroke="#CFBE97" stroke-width="2"/>
+                </svg>
+            .text Вгору
         .decor-social(data-animate-links)
         ul.social.screen__social
             li(data-animate-links).social__item

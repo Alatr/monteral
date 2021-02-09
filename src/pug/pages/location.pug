@@ -24,6 +24,7 @@ block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
   script(defer src='./assets/scripts/news.js')
+  script(defer src='./assets/scripts/smooth_scroll.js')
   script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
@@ -69,7 +70,7 @@ block content
             .text Вгору
 
     section.page-part
-        .double-part-block
+        .double-part-block(data-double-part-block)
             .double-part-block__img
                 img(src="./assets/images/location/block-1-bg.jpg").double-part-block__img-decor-bg
                 img(src="./assets/images/location/block-1.jpg").double-part-block__img-main

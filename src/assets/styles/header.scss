@@ -16,7 +16,7 @@
     display: flex;
     width: 100%;
     height: var(--header-height);
-    transition: background-color .3s ease-out, height .3s ease-out;
+    transition: background-color .3s ease-out, height .3s ease-out, transform .3s ease-out;
     @include from(1921px) {
         --side-padding: 90px;
     }
@@ -176,11 +176,11 @@
                 height: 40px;
             }
         }
-        &__menu {
-            // .header-menu__text {
-            //     width: 40px;
-            // }
-        }
+        // &__menu {
+        // .header-menu__text {
+        //     width: 40px;
+        // }
+        // }
     }
     @include to(360px) {
         --margin-el: 7.5px;

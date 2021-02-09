@@ -22,12 +22,13 @@ block scripts
   script(defer src='./assets/scripts/index.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/smooth_scroll.js')
   script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
 block content
-    canvas#c
     section.page-first-block
+        canvas#c
         picture.page-first-block__bg
             source(srcset="./assets/images/web-camera/bg.jpg")
             img(src="./assets/images/web-camera/bg.jpg")
@@ -60,6 +61,11 @@ block content
                 a(href="#" rel="nofollow" target="_blank") instagram
             li(data-animate-links).social__item
                 a(href="#" rel="nofollow" target="_blank") telegram
+        .up-arrow(data-up-arrow)
+            <svg width="36" height="70" viewBox="0 0 36 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 42L18 2M18 2L24 8M18 2L12 8" stroke="#CFBE97" stroke-width="2"/>
+                </svg>
+            .text Вгору
     section.page-part
         .web-camera-block
             .web-camera-block__text-wrap 

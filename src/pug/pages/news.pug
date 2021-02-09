@@ -67,7 +67,8 @@ block content
                 .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
             .news-link__delimiter
             .news-link__right
-                img(src="./assets/images/news/test.jpg").news-link__img
+                .news-link__img
+                    img(src="./assets/images/news/test.jpg")
                 .news-link__arrow
                     +svg('news-link-arrow')
         a(href="news-single.html").news-link.reverse
@@ -76,14 +77,15 @@ block content
                 .news-link__text Оцініть переваги купівлі в розстрочку у ЖК Montreal House
             .news-link__delimiter
             .news-link__right
-                img(src="./assets/images/news/test.jpg").news-link__img
+                .news-link__img
+                    img(src="./assets/images/news/test.jpg")
                 .news-link__arrow
                     +svg('news-link-arrow')
         .news-pagination
             +svg('pagination-double-arrow').news-pagination__to-start(data-repaint-on-hover)
             +svg('pagination-arrow').news-pagination__back(data-repaint-on-hover)
             .news-pagination__item 1
-            .news-pagination__item 2
+            .news-pagination__item.active 2
             .news-pagination__item 3
             .news-pagination__item 4
             +svg('pagination-arrow').news-pagination__forward(data-repaint-on-hover)
