@@ -23,11 +23,12 @@ block scripts
   script(defer src='./assets/scripts/index.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
-  script(defer src='./assets/scripts/news.js')
+  script(defer src='./assets/scripts/smooth_scroll.js')
 block header
 
 block content
     section.page-first-block
+        canvas#c
         picture.page-first-block__bg
             source(srcset="./assets/images/buy-conditions/first-bg.jpg")
             img(src="./assets/images/buy-conditions/first-bg.jpg")
@@ -60,8 +61,13 @@ block content
                 a(href="#" rel="nofollow" target="_blank") instagram
             li(data-animate-links).social__item
                 a(href="#" rel="nofollow" target="_blank") telegram
+        .up-arrow(data-up-arrow)
+            <svg width="36" height="70" viewBox="0 0 36 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 42L18 2M18 2L24 8M18 2L12 8" stroke="#CFBE97" stroke-width="2"/>
+                </svg>
+            .text Вгору
     section.page-part
-        .double-part-block
+        .double-part-block(data-double-part-block)
             .double-part-block__img
                 img(src="./assets/images/buy-conditions/block1-bg.jpg").double-part-block__img-decor-bg
                 img(src="./assets/images/buy-conditions/block1.jpg").double-part-block__img-main
@@ -71,7 +77,7 @@ block content
                 p ЖК Montreal House – <b>зразковий стандарт сучасного житла</b> в діловому та культурному центрі Києва. <b>Преміальне житло бізнес-класу,</b> унікальна локація.
                 p <b> Авторські планування,</b> тераси на верхніх рівнях, підземний паркінг, дитячі ігрові зони, особливе оточення відкривають нові важливості життя <b>у серці столиці.</b>
     section.double-green.page-part
-        .double-part-block.reverse
+        .double-part-block.reverse(data-double-part-block)
             .double-part-block__img
                 img(src="./assets/images/buy-conditions/block1-bg.jpg").double-part-block__img-decor-bg
                 img(src="./assets/images/buy-conditions/block1.jpg").double-part-block__img-main

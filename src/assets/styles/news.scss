@@ -113,7 +113,7 @@
         border-right: var(--decor-border-width) solid $color-gold;
         img {
             // transition: transform .45s ease-out;
-            transition: transform .75s cubic-bezier(0, 0.76, 0.12, 0.99);
+            transition: transform 3s cubic-bezier(0, 0.76, 0.12, 0.99);
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -159,7 +159,7 @@
     }
     @include from(769px) {
         &:hover &__img img {
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
         &__text {
             max-width: 75%;

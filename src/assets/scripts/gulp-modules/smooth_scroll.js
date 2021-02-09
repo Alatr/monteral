@@ -25,7 +25,7 @@
         half_width = width >> 1,
         half_height = height >> 1,
         size = width * (height + 2) * 2,
-        delay = 1,
+        delay = 25,
         oldind = width,
         newind = width * (height + 3),
         riprad = 3,
@@ -34,6 +34,7 @@
         ripple,
         texture,
         line_width = 20,
+        activeDisturbes = [],
         step = line_width * 2,
         count = height / line_width;
 
@@ -76,6 +77,8 @@
      * Disturb water at specified point
      */
     function disturb(dx, dy, wide = 256) {
+        if (activeDisturbes.length >= 15) return;
+
         dx <<= 0;
         dy <<= 0;
         for (var j = dy - riprad; j < dy + riprad; j++) {
@@ -84,6 +87,7 @@
 
             }
         }
+        activeDisturbes.push(dx);
     }
 
     /**
@@ -155,7 +159,8 @@
     }
 
 
-    setInterval(run, delay);
+    window.canvasFrame = setInterval(run, delay);
+    window.canvasThrottle = setInterval(() => { activeDisturbes.splice(0, 5) }, 1000);
 
     // generate random ripples
     var rnd = Math.random;
@@ -210,8 +215,11 @@
     document.querySelector('[data-effect-stop]').addEventListener('click', () => window.removeFirstPageEffect());
     window.removeFirstPageEffect = function() {
         clearInterval(window.canvasEffectInterval);
+        clearInterval(window.canvasFrame);
+        clearInterval(window.canvasThrottle);
         document.querySelector('[data-effect-stop]').remove();
         window.removeFirstPageEffect = () => {};
+
     }
 })();
 
@@ -281,15 +289,17 @@ const locoScroll = new LocomotiveScroll({
     el: document.querySelector('.page__inner'),
     smooth: true,
     smoothMobile: false,
-    inertia: 1.1,
+    inertia: 1,
     getDirection: true,
     resetNativeScroll: false,
     onUpdate: function(some) {}
 });
-document.body.append(document.querySelector('.up-arrow'))
-document.querySelector('.up-arrow').addEventListener('click', function(evt) {
-    locoScroll.scrollTo('top')
-});
+document.querySelectorAll('.up-arrow').forEach(arrow => {
+    document.body.append(arrow)
+    arrow.addEventListener('click', function(evt) {
+        locoScroll.scrollTo('top')
+    });
+})
 
 function handleVisibilityOnScroll(elems = [], direction = 'up') {
     elems.forEach(elem => {
@@ -350,10 +360,12 @@ niceBigImages.forEach((big) => {
     });
 
 });
+const amplitude = 120;
 doublePartImages.forEach(paralaxImg => {
     let imgToAnimate = paralaxImg.querySelector('.double-part-block__img-main') || paralaxImg;
     let imgBgToAnimate = paralaxImg.querySelector('.double-part-block__img-decor-bg') || paralaxImg;
     let textToAnimate = paralaxImg.querySelectorAll('.double-part-block__text>*') || paralaxImg;
+
     gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, });
     gsap.set(textToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, });
     ScrollTrigger.create({
@@ -364,7 +376,7 @@ doublePartImages.forEach(paralaxImg => {
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
-                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 2 });
+                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 0.5 });
                 imgToAnimate.cliPathed = true;
             }
             if (!textToAnimate.isClipPathed) {
@@ -374,8 +386,9 @@ doublePartImages.forEach(paralaxImg => {
             }
         },
         onUpdate: self => {
-            gsap.to(imgToAnimate, { y: self.progress * 50 });
-            gsap.to(imgBgToAnimate, { y: 50 + self.progress * -50 })
+            gsap.to(textToAnimate, { autoAlpha: Math.abs(self.progress - 0.5 * -1) });
+            gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude });
+            gsap.to(imgBgToAnimate, { y: amplitude / -2 + self.progress * amplitude })
         },
 
     });
@@ -383,7 +396,7 @@ doublePartImages.forEach(paralaxImg => {
 niceImages.forEach(paralaxImg => {
     let imgToAnimate = paralaxImg.querySelector('img') || paralaxImg;
     let height = imgToAnimate.getBoundingClientRect().height;
-    let scaleCoef = (height + 100) / height;
+    let scaleCoef = (height + (amplitude)) / height;
     gsap.set(imgToAnimate, { scale: scaleCoef })
     gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, easing: niceBezier, duration: 1 });
     ScrollTrigger.create({
@@ -392,11 +405,11 @@ niceImages.forEach(paralaxImg => {
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
-                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 1 });
+                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 0.5 });
                 imgToAnimate.cliPathed = true;
             }
         },
-        onUpdate: self => gsap.to(imgToAnimate, { y: self.progress * -50 }),
+        onUpdate: self => gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude }),
     });
 })
 
