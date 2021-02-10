@@ -289,10 +289,12 @@ const locoScroll = new LocomotiveScroll({
     el: document.querySelector('.page__inner'),
     smooth: true,
     smoothMobile: false,
-    inertia: 1,
+    inertia: 1.1,
     getDirection: true,
     resetNativeScroll: false,
-    onUpdate: function(some) {}
+    onUpdate: function(some) {
+        
+    }
 });
 document.querySelectorAll('.up-arrow').forEach(arrow => {
     document.body.append(arrow)
@@ -324,7 +326,7 @@ locoScroll.on("scroll", (position, limit, speed, direction) => {
             [document.querySelector('.up-arrow'), 'headroom--not-top'],
         ]);
 });
-locoScroll.on('update', (some) => {})
+locoScroll.on('update', (some) => {console.log(some);})
 ScrollTrigger.scrollerProxy(document.body, {
     scrollTop(value) {
         return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
@@ -345,22 +347,22 @@ gsap.registerPlugin(ScrollTrigger);
 const niceImages = document.querySelectorAll('[data-nice-entry]');
 const doublePartImages = document.querySelectorAll('[data-double-part-block]');
 const niceBigImages = document.querySelectorAll('[data-nice-entry-big]');
-
+const amplitude = document.documentElement.clientWidth<576 ? 60 : 120;
 niceBigImages.forEach((big) => {
     ScrollTrigger.create({
         trigger: big,
         // start: "top",
         // endTrigger: ".main-screen-slider",
-        markers: true,
+       /*markers: true, */
         end: "bottom",
         onUpdate: self => {
-            gsap.to(big.querySelector('.block-with-logo-decor__content'), { y: self.progress * 50 });
+            gsap.to(big.closest('.block-with-logo-decor'), {  y: amplitude / -2 + self.progress * amplitude });
         },
 
     });
 
 });
-const amplitude = 120;
+
 doublePartImages.forEach(paralaxImg => {
     let imgToAnimate = paralaxImg.querySelector('.double-part-block__img-main') || paralaxImg;
     let imgBgToAnimate = paralaxImg.querySelector('.double-part-block__img-decor-bg') || paralaxImg;
@@ -372,7 +374,7 @@ doublePartImages.forEach(paralaxImg => {
         trigger: paralaxImg,
         // start: "top",
         // endTrigger: ".main-screen-slider",
-        markers: true,
+       /*markers: true, */
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
@@ -398,21 +400,53 @@ niceImages.forEach(paralaxImg => {
     let height = imgToAnimate.getBoundingClientRect().height;
     let scaleCoef = (height + (amplitude)) / height;
     gsap.set(imgToAnimate, { scale: scaleCoef })
+    gsap.set(paralaxImg.closest('.block-with-decor2'), { y:amplitude })
     gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, easing: niceBezier, duration: 1 });
     ScrollTrigger.create({
         trigger: paralaxImg,
-        markers: true,
+       /*markers: true, */
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
                 gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 0.5 });
                 imgToAnimate.cliPathed = true;
             }
+            gsap.to(paralaxImg.closest('.block-with-decor2'),{y:0, duration:2})
+        },
+        onLeave:self=>{
+            gsap.to(paralaxImg.closest('.block-with-decor2'),{y:amplitude,easing: niceBezier,})
+        },
+        onLeaveBack:self=>{
+            gsap.to(paralaxImg.closest('.block-with-decor2'),{y:amplitude,easing: niceBezier,})
+        },
+        onEnterBack:self=>{
+            gsap.to(paralaxImg.closest('.block-with-decor2'),{y:0,easing: niceBezier,})
         },
         onUpdate: self => gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude }),
     });
 })
 
+ScrollTrigger.create({
+    trigger: document.querySelector('.page-first-block'),
+   /*markers: true, */
+    end: "+=1210",
+    // start:'top top',
+    onEnter: self => {
+        // if (!imgToAnimate.cliPathed) {
+        //     gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 0.5 });
+        //     imgToAnimate.cliPathed = true;
+        // }s
+    },
+    onUpdate: self =>{
+        // gsap.to(document.querySelector('.page-first-block [style*=background]'),{y:(document.documentElement.clientHeight*self.progress)+80,easing: niceBezier,})
+    },
+    onLeave:self=>{
+        gsap.to(document.querySelector('.page-first-block'),{y:-1*amplitude,easing: niceBezier,duration:2.5})
+    },
+    onEnterBack:self=>{
+        gsap.to(document.querySelector('.page-first-block'),{y:0,easing: niceBezier,})
+    }
+});
 // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
 ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.

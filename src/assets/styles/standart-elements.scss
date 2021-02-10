@@ -256,6 +256,9 @@ section {
     @include to(575px) {
         --self-padding-top: 0px;
         // min-height: calc(100vh - 140px);
+        min-height: auto;
+        height: calc(100vh - 140px);
+        flex-wrap: nowrap;
         .breadcrumbs {
             margin-top: 20px;
             margin-bottom: 20px;

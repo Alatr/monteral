@@ -264,14 +264,25 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
 
     container.addEventListener('touchstart', function(evt) {
         popupSliderConfig.x = evt.changedTouches[0].clientX
+        popupSliderConfig.y = evt.changedTouches[0].clientY
     });
 
     container.addEventListener('touchend', function(evt) {
-
+        
         if (evt.changedTouches[0].clientX < popupSliderConfig.x) {
             document.querySelector('.build-gallery-popup__wrap-nav .arrow-next').dispatchEvent(new Event('click'));
+            
         } else if ((evt.changedTouches[0].clientX > popupSliderConfig.x)) {
             document.querySelector('.build-gallery-popup__wrap-nav .arrow-prev').dispatchEvent(new Event('click'));
+            
+        }
+        if(evt.changedTouches[0].clientY > popupSliderConfig.y
+            &&(Math.abs(evt.changedTouches[0].clientX - popupSliderConfig.x))<(document.documentElement.clientWidth*0.25)
+            &&(Math.abs(evt.changedTouches[0].clientY - popupSliderConfig.y))>(document.documentElement.clientHeight*0.25)
+            ){
+                gsap.to(container,{y:100})
+                document.querySelector('[data-build-popup-close]').click();
+                
         }
     });
 

@@ -74,8 +74,9 @@
             padding-left: 20px;
             padding-right: 20px;
             width: calc(100% + (var(--self-side-padding) * 2));
-            margin-left: calc((var(--self-side-padding) * -1));
-            margin-right: calc((var(--self-side-padding) * -1));
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 15px;
         }
         .page-part .developer-value {
             margin-top: -1px;
@@ -109,7 +110,7 @@
         height: 200%;
         object-fit: cover;
         opacity: 0;
-        transition: 0.3s ease-out;
+        transition: 0.3s cubic-bezier(0, 0.9, 1, 1.01);
         z-index: -1;
         transform: translateY(20%) translateX(20%);
         pointer-events: none;
@@ -125,7 +126,11 @@
         &__img {
             height: 100%;
             opacity: 1;
+            transform: none;
         }
+    }
+    @include to(575px) {
+
     }
 }
 
