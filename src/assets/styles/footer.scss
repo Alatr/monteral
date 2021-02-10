@@ -14,10 +14,10 @@
     padding-top: 160px;
     padding-bottom: 320px;
     position: relative;
+    @include shift-padding(1);
     &.lighter {
         background: linear-gradient(180deg, var(--gradient-color) 34.65%, rgba(0, 114, 117, 0) 75%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
     }
-    @include shift-padding(1);
     .footer-logo-large {
         position: absolute;
         bottom: 0;
@@ -37,7 +37,7 @@
         padding-left: calc((var(--delimiter-width) * 2) + var(--block-start-left-padding));
     }
     @include from(1680px) {
-        @include shift-padding(2);
+        @include shift-padding(1);
     }
     @include to(1400px) {
         // background: linear-gradient(180deg, #007275 50%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, #007174 100%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
@@ -61,17 +61,27 @@
         }
     }
     @include to(768px) {
-        background: linear-gradient(180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-        background-size: 200vw, 100vw auto;
+        padding-left: 22px;
+        padding-right: 22px;
+        background: linear-gradient( 180deg, #007275 35.65%, rgba(0, 97, 100, 0) 96%) bottom no-repeat, url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        background-size: 100vw 350px, 100vw 350px;
+        &.lighter {
+            background: linear-gradient( 180deg, #007275 35.65%, rgba(0, 97, 100, 0) 96%) bottom no-repeat, url(../images/footer/bg-complex.jpg) bottom no-repeat;
+            background-size: 100vw 350px, 100vw 350px;
+        }
     }
     @include to(575px) {
-        background: linear-gradient( 180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-        background-size: 200vw, auto 50vh;
+        // background: linear-gradient( 180deg, var(--gradient-color) 71.65%, rgba(0, 97, 100, 0) 90%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        // background-size: 200vw, auto 50vh;
         padding-left: 14px;
         padding-right: 14px;
         padding-top: 40px;
-        background: linear-gradient( 180deg, var(--gradient-color) 85.65%, rgba(0, 97, 100, 0) 96%), url(../images/footer/bg-complex.jpg) bottom no-repeat;
-        background-size: 200vw, auto 50vh;
+        background: linear-gradient( 180deg, #007275 35.65%, rgba(0, 97, 100, 0) 96%) bottom no-repeat, url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        // background: url(../images/footer/bg-complex.jpg) bottom no-repeat;
+        &.lighter {
+            background: linear-gradient( 180deg, #007275 35.65%, rgba(0, 97, 100, 0) 96%) bottom no-repeat, url(../images/footer/bg-complex.jpg) bottom no-repeat;
+            background-size: 100vw 350px, auto 50vh;
+        }
         .footer-copyright {
             flex-wrap: wrap;
             text-align: left;
@@ -94,10 +104,20 @@
     font-size: 10px;
     line-height: 1em;
     color: $color-text-gold;
-    a {
+    .link-with-icon {
         text-decoration: none;
-        display: inline-block;
+    }
+    a:not(.link-with-icon),
+    a:not(.blank-link) {
+        text-decoration: none;
+        // display: inline-block;
+        display: inline-flex;
         transition: color .3s ease-out;
+        color: inherit;
+    }
+    .blank-link {
+        width: 100%;
+        max-width: 30ch !important;
     }
     &>* {
         padding-top: var(--self-padding-top);
@@ -189,6 +209,11 @@
         max-width: 25ch;
         margin-bottom: 20px;
         line-height: 1.4em;
+    }
+    @include from(1680px) {
+        .blank-link {
+            max-width: 40ch !important;
+        }
     }
     @include to(950px) {
         flex-wrap: wrap;

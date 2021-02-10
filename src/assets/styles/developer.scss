@@ -52,6 +52,10 @@
         }
     }
     @include to(575px) {
+        .page__content {
+            max-width: 100vw;
+            overflow: hidden auto;
+        }
         .page-part {
             padding-left: 0;
             padding-right: 0;

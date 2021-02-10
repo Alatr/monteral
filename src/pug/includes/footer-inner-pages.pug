@@ -21,16 +21,16 @@
         .footer-inner-pages__right
             .footer-info-block
                 .footer-head-title.gold Відділ продажів
-                a(href=salesTel[0] target='_blank').footer-title-l.footer-info-block-part #{salesTel[1]}
-                .footer-info-block-part #{salesAdress}
+                a(href=salesTel[0]).footer-title-l.footer-info-block-part #{salesTel[1]}
+                a(href="https://maps.google.com/?q="+salesAdress target='_blank').blank-link.footer-info-block-part #{salesAdress}
                 .footer-info-block-part #{salesScheldule}
                 .link-with-icon(data-parrent-node-popup)
                     .link-with-icon__text Зворотній зв'язок
                     +svg('footer-arrow').link-with-icon__icon
             .footer-info-block
                 .footer-head-title.gold Адреса комлексу
-                .footer-info-block-part #{complexAdress}
-                .link-with-icon 
+                a(href="https://maps.google.com/?q="+complexAdress target='_blank').blank-link.footer-info-block-part #{complexAdress}
+                a(href="3d.html").link-with-icon 
                     .link-with-icon__text Обрати квартиру
                     +svg('footer-arrow').link-with-icon__icon
     .footer-copyright

@@ -1,0 +1,84 @@
+.contact-block {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 160px;
+    padding-bottom: 160px;
+    @include shift-padding(0.5);
+    @include from(576px) {
+        &>* {
+            width: 50%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    @include from(1680px) {}
+    @include to(575px) {
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+#contacts .page__content {
+    .decor-type-vertical {
+        --line-color: #{$color-bg-geen-black};
+        &__top {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+        &__bottom {
+            padding-left: 20%;
+            padding-right: 20%;
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+    }
+    .sublegend {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+        /* or 150% */
+        text-align: center;
+        /* Text gold */
+        color: $color-text-gold;
+    }
+    .input-message {
+        background-color: #007275;
+    }
+    textarea {
+        background-color: #007275;
+    }
+    .contact-items-wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-items-wrap>*:nth-child(n+1) {
+        margin-bottom: 50px;
+    }
+    @include from(1680px) {}
+    @include to(768px) {
+        .decor-type-vertical {
+            --line-color: #{$color-bg-geen-black};
+            &__top {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+            &__bottom {
+                padding-left: 10%;
+                padding-right: 10%;
+                padding-top: 35px;
+                padding-bottom: 35px;
+            }
+        }
+        .contact-items-wrap {
+            align-items: flex-start;
+        }
+    }
+}

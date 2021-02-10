@@ -38,11 +38,11 @@ class showModal {
         }
         /*  */
     enableButton(btn) {
-        console.log(btn);
+        // console.log(btn);
         btn.disabled = false;
     }
     disableButton(btn) {
-            console.log(btn);
+            // console.log(btn);
             btn.disabled = true;
         }
         /*  */

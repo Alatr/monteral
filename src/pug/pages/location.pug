@@ -28,8 +28,8 @@ block scripts
 block header
 
 block content
-    canvas#c
     section.page-first-block
+        canvas#c
         picture.page-first-block__bg
             source(srcset="./assets/images/developer/bg.jpg")
             img(src="./assets/images/developer/bg.jpg")
@@ -62,6 +62,12 @@ block content
                 a(href="#" rel="nofollow" target="_blank") instagram
             li(data-animate-links).social__item
                 a(href="#" rel="nofollow" target="_blank") telegram
+        .up-arrow(data-up-arrow)
+            <svg width="36" height="70" viewBox="0 0 36 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 42L18 2M18 2L24 8M18 2L12 8" stroke="#CFBE97" stroke-width="2"/>
+                </svg>
+            .text Вгору
+
     section.page-part
         .double-part-block
             .double-part-block__img
@@ -78,18 +84,18 @@ block content
             .block-with-decor2__top 
                 .block-with-decor2__count 01
                 .block-with-decor2__text  історичні та культурні пам'ятки 
-            .block-with-decor2__bottom
+            .block-with-decor2__bottom(data-nice-entry)
                 img(src="./assets/images/location/cathedral.jpg")
         .block-with-decor2
             .block-with-decor2__top 
                 .block-with-decor2__count 02
                 .block-with-decor2__text престижні навчальні заклади
-            .block-with-decor2__bottom
+            .block-with-decor2__bottom(data-nice-entry)
                 img(src="./assets/images/location/kids.jpg")
     section.page-part
         .block-with-logo-decor 
             .block-with-logo-decor__text-wrap
-                img(src="./assets/images/location/manekens.jpg")
+                img(src="./assets/images/location/manekens.jpg" data-nice-entry-big)
                 .gradient-bg 
                 .block-with-logo-decor__content 
                     .block-with-logo-decor__count  03
@@ -100,18 +106,18 @@ block content
             .block-with-decor2__top 
                 .block-with-decor2__count 04
                 .block-with-decor2__text топові бізнес-центри та креативні простори
-            .block-with-decor2__bottom
+            .block-with-decor2__bottom(data-nice-entry)
                 img(src="./assets/images/location/stairs.jpg")
         .block-with-decor2
             .block-with-decor2__top 
                 .block-with-decor2__count 05
                 .block-with-decor2__text сучасні торговельно-розважальні комплекси
-            .block-with-decor2__bottom
+            .block-with-decor2__bottom(data-nice-entry)
                 img(src="./assets/images/location/ocean-plaza.jpg")
     section.page-part
         .block-with-logo-decor.reverse
             .block-with-logo-decor__text-wrap
-                img(src="./assets/images/location/bar.jpg")
+                img(src="./assets/images/location/bar.jpg" data-nice-entry-big)
                 .gradient-bg 
                 .block-with-logo-decor__content 
                     .block-with-logo-decor__count  06
@@ -122,11 +128,11 @@ block content
             .block-with-decor2__top 
                 .block-with-decor2__count 07
                 .block-with-decor2__text галереї, театри, концерт-холи
-            .block-with-decor2__bottom
+            .block-with-decor2__bottom(data-nice-entry)
                 img(src="./assets/images/location/palace-ukraine.jpg")
         .block-with-decor2
             .block-with-decor2__top 
                 .block-with-decor2__count 08
                 .block-with-decor2__text найбільші спортивні та концертні майданчики
-            .block-with-decor2__bottom
+            .block-with-decor2__bottom(data-nice-entry)
                 img(src="./assets/images/location/olinpiyskiy.jpg")

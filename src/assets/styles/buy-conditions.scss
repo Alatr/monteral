@@ -1,9 +1,21 @@
 #buy-conditions {
     .double-part-block {
-        @include size(10);
-        @include shift(1);
+        // @include size(10);
+        // @include shift(1);
+        width: 100%;
         // margin-top: 150px;
         // margin-bottom: 150px;
+    }
+    .page-part {
+        @include shift-padding(1);
+    }
+    @include from(951px) {
+        .footer-wrap {
+            @include shift-padding(1);
+        }
+        .page-part.page-part.double-green {
+            @include shift-padding(1);
+        }
     }
     @include to(1024px) {
         .double-part-block {

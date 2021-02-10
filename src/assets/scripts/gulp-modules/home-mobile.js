@@ -19,45 +19,45 @@ const mainSubtitle = '[data-gsap-mob-main-subtitle]';
 const slidesTitles = slides.map(el => el.dataset.title);
 
 window.onresize = () => {
-  document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
 };
 document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
 
 
 const swiperHome = new Swiper(sliderContainer, {
-  pagination: '.swiper-pagination',
-  direction: 'horizontal',
-  slidesPerView: 1,
-  spaceBetween: 0,
-  allowTouchMove: false,
-  speed: 600,
-  navigation: {
-    prevEl: swiperHomePrevBtn,
-    nextEl: swiperHomeNextBtn,
-  },
-  on: {
-    transitionStart(swiper, progress) {
-      const cnt = swiper.activeIndex;
-      const prev = cnt - 1;
-      const next = cnt + 1;
-      const total = slides.length - 1;
-      gsap.set([swiperHomePrevBtn, swiperHomeNextBtn], {autoAlpha: 1})
-      
-      gsap.fromTo([swiperHomePrevBtnText, swiperHomeNextBtnText, cntSlCounter], 1, {autoAlpha: 1}, {autoAlpha: 0});
-      swiperHomePrevBtnText.innerHTML = slidesTitles[prev];
-      swiperHomeNextBtnText.innerHTML = slidesTitles[next];
-      cntSlCounter.innerHTML = `0${cnt+1}`;
-      gsap.fromTo([swiperHomePrevBtnText, swiperHomeNextBtnText, cntSlCounter], 1, {autoAlpha: 0}, {autoAlpha: 1});
-      
-      if (cnt === 0) gsap.set(swiperHomePrevBtn, {autoAlpha: 0});
-      if (cnt === total) gsap.set(swiperHomeNextBtn,  {autoAlpha: 0});
+    pagination: '.swiper-pagination',
+    direction: 'horizontal',
+    slidesPerView: 1,
+    spaceBetween: 0,
+    allowTouchMove: false,
+    speed: 600,
+    navigation: {
+        prevEl: swiperHomePrevBtn,
+        nextEl: swiperHomeNextBtn,
     },
-    init(swiper, progress) {
-      gsap.fromTo(swiperHomePrevBtn, 1, {autoAlpha: 1}, {autoAlpha: 0});
+    on: {
+        transitionStart(swiper, progress) {
+            const cnt = swiper.activeIndex;
+            const prev = cnt - 1;
+            const next = cnt + 1;
+            const total = slides.length - 1;
+            gsap.set([swiperHomePrevBtn, swiperHomeNextBtn], { autoAlpha: 1 })
 
-    },
+            gsap.fromTo([swiperHomePrevBtnText, swiperHomeNextBtnText, cntSlCounter], 1, { autoAlpha: 1 }, { autoAlpha: 0 });
+            swiperHomePrevBtnText.innerHTML = slidesTitles[prev];
+            swiperHomeNextBtnText.innerHTML = slidesTitles[next];
+            cntSlCounter.innerHTML = `0${cnt+1}`;
+            gsap.fromTo([swiperHomePrevBtnText, swiperHomeNextBtnText, cntSlCounter], 1, { autoAlpha: 0 }, { autoAlpha: 1 });
 
-  }
+            if (cnt === 0) gsap.set(swiperHomePrevBtn, { autoAlpha: 0 });
+            if (cnt === total) gsap.set(swiperHomeNextBtn, { autoAlpha: 0 });
+        },
+        init(swiper, progress) {
+            gsap.fromTo(swiperHomePrevBtn, 1, { autoAlpha: 1 }, { autoAlpha: 0 });
+
+        },
+
+    }
 });
 
 
@@ -75,8 +75,8 @@ const swiperHome = new Swiper(sliderContainer, {
 const sliderScaleTransform = () => {
     const obj = { paused: true }
     const tl = gsap.timeline(obj);
-    tl.fromTo('.swiper-slide', 0.2, { scale: 1 }, { scale: 0.9})
-    tl.fromTo('.swiper-slide', 0.4, { scale: 0.9 }, { scale: 1})
+    tl.fromTo('.swiper-slide', 0.2, { scale: 1 }, { scale: 0.9 })
+    tl.fromTo('.swiper-slide', 0.4, { scale: 0.9 }, { scale: 1 })
     return tl;
 };
 const sliderTransitionTransformContentIn = (inx) => {
@@ -99,13 +99,13 @@ const sliderTransitionTransformContentIn = (inx) => {
 
 
 ['click'].forEach(event => {
-  swiperHomePrevBtn.addEventListener(event, ()=> {
-    sliderScaleTransform().play();
-  });
+    swiperHomePrevBtn.addEventListener(event, () => {
+        sliderScaleTransform().play();
+    });
 });
 
 ['click'].forEach(event => {
-  swiperHomeNextBtn.addEventListener(event, ()=> {
-    sliderScaleTransform().play();
-  });
+    swiperHomeNextBtn.addEventListener(event, () => {
+        sliderScaleTransform().play();
+    });
 });

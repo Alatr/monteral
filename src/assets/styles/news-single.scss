@@ -177,6 +177,11 @@
         padding-left: calc((100% / 8));
         padding-right: calc((100% / 8));
     }
+    @include from(1680px) {
+        @include size(5);
+        padding-left: 100px;
+        padding-right: 100px;
+    }
     @include to(1024px) {
         padding-left: 60px;
         padding-right: 60px;
@@ -225,7 +230,7 @@
 }
 
 .last-news-section {
-    @include shift-padding(2);
+    @include shift-padding(1);
     margin-left: calc(var(--self-side-padding) * -1);
     margin-right: calc(var(--self-side-padding) * -1);
     padding-top: 160px;
@@ -242,6 +247,9 @@
     }
     &>*:not(:last-child) {
         margin-bottom: 60px;
+    }
+    @include to(1240px) {
+        @include shift-padding(0.5);
     }
     @include to(950px) {
         padding: 100px calc(100% / 12 - var(--self-side-padding));
