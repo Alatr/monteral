@@ -245,6 +245,8 @@ const niceDuration = 3;
  * LOCOMOTIVE SCROLL start
  */
 /**block2 people transform length */
+
+document.querySelectorAll('.page-part,.page-first-block,.page__footer-wrapper').forEach(el => el.setAttribute('data-scroll-section', ''))
 const header = document.querySelector('.header');
 const locoScroll = new LocomotiveScroll({
     el: document.querySelector('.page__inner'),
@@ -314,13 +316,13 @@ const amplitude = document.documentElement.clientWidth < 576 ? 40 : 80;
 firstBlock.forEach((big) => {
     ScrollTrigger.create({
         trigger: big,
-        start: "0.25",
+        start: "0.75",
         // endTrigger: ".main-screen-slider",
         markers: true,
         end: "bottom",
         onUpdate: self => {
-            gsap.to(big, { y: self.progress * (amplitude * 2), duration: 0.5 });
-            gsap.to('canvas', { scale: 1 + (self.progress / 10 / 2 / 2), duration: 0.5 });
+            gsap.to('canvas, .page-first-block__bg', { y: self.progress * (amplitude * 2), duration: 0.5 });
+            gsap.to('canvas, .page-first-block__bg', { scale: 1 + (self.progress / 10 / 2 / 2), duration: 0.5 });
         },
 
     });
@@ -361,12 +363,12 @@ doublePartImages.forEach(paralaxImg => {
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
-                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 0.5 });
+                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, ease: niceBezier, duration: 0.5 });
                 imgToAnimate.cliPathed = true;
             }
             if (!textToAnimate.isClipPathed) {
 
-                gsap.to(textToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, stagger: 0.2, easing: niceBezier, duration: 0.25 });
+                gsap.to(textToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, stagger: 0.2, ease: niceBezier, duration: 0.25 });
                 textToAnimate.isClipPathed = true;
             }
         },
@@ -386,14 +388,14 @@ niceImages.forEach(paralaxImg => {
     let scaleCoef = (height + (amplitude)) / height;
     gsap.set(imgToAnimate, { scale: scaleCoef })
         // gsap.set(paralaxImg.closest('.block-with-decor2'), { y: amplitude })
-    gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, easing: niceBezier, duration: 1 });
+    gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, ease: niceBezier, duration: 1 });
     ScrollTrigger.create({
         trigger: paralaxImg,
         /*markers: true, */
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
-                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 1 });
+                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, ease: niceBezier, duration: 1 });
                 imgToAnimate.cliPathed = true;
             }
             // gsap.to(paralaxImg.closest('.block-with-decor2'), { y: 0, duration: 2 })
