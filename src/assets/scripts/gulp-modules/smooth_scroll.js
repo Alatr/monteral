@@ -268,8 +268,8 @@ function handleVisibilityOnScroll(elems = [], direction = 'up') {
 locoScroll.on("scroll", (position, limit, speed, direction) => {
     ScrollTrigger.update;
     if (position.scroll.y > document.documentElement.clientWidth) {
-        clearInterval(window.canvasEffectInterval);
-        window.removeFirstPageEffect();
+        window.canvasEffectInterval && clearInterval(window.canvasEffectInterval);
+        window.removeFirstPageEffect && window.removeFirstPageEffect();
     }
     position.scroll.y > 150 ?
         handleVisibilityOnScroll([
