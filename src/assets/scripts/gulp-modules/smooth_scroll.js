@@ -14,7 +14,9 @@
  * author Sergey Chikuyonok (serge.che@gmail.com)
  * link http://chikuyonok.ru
  */
-(function() {
+
+const firstBlockEffectImage = document.querySelector('.page-first-block__bg img');
+firstBlockEffectImage.addEventListener('load', function(evt) {
 
 
     if (document.documentElement.clientWidth < 576) return;
@@ -48,11 +50,11 @@
      */
     with(ctx) {
 
-        let image = new Image();
-        image.src = document.querySelector('.page-first-block__bg img').getAttribute('src');
+        // let image = new Image();
+        // image.src = document.querySelector('.page-first-block__bg img').getAttribute('src');
+        console.log(this);
 
-        drawImage(image, 0, 0, width, height);
-        console.log(ctx);
+        drawImage(evt.target, 0, 0, width, height);
         save();
         // rotate(-0.785);
         restore();
@@ -221,7 +223,7 @@
         window.removeFirstPageEffect = () => {};
 
     }
-})();
+});
 
 
 
@@ -231,53 +233,6 @@ const intersectionOptions = {
 }
 const niceBezier = BezierEasing(0, 1, .12, .91);
 const niceDuration = 3;
-var niceEntry = function(entries, observer) {
-    /* Content excerpted, show below */
-    // entries[0].target.style.overflow = 'hidden';
-    // entries.forEach(entry => {
-    //     console.log(entry.intersectionRect);
-    //     if (entry.isIntersecting) {
-    //         let img = entry.target.querySelector('img');
-    //         // gsap.set(img, { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)' }, )
-    //         let tl = gsap.timeline();
-    //         tl.fromTo(
-    //             img, { autoAlpha: 0, scale: 1.2, clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, }, { autoAlpha: 1, duration: niceDuration, scale: 1, ease: niceBezier, clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, }, '<')
-    //         tl.fromTo(img.closest('.block-with-decor2').querySelector('.block-with-decor2__count'), { y: -50, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, '<')
-    //         tl.fromTo(img.closest('.block-with-decor2').querySelector('.block-with-decor2__text'), { y: -50, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, '<')
-    //         entry.target.observer.unobserve(entry.target);
-    //     }
-    // });
-};
-var niceEntryBig = function(entries, observer) {
-    // entries.forEach(entry => {
-    //     console.log(entry.intersectionRect);
-    //     if (entry.isIntersecting) {
-    //         let text = entry.target.querySelector('.block-with-logo-decor__content');
-    //         let gradient = entry.target.querySelector('.gradient-bg');
-    //         gsap.fromTo(text, { x: -100, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 2, ease: niceBezier, })
-    //         gsap.fromTo(gradient, { autoAlpha: 0 }, { autoAlpha: 1, duration: 2 })
-    //     }
-    // });
-};
-
-
-
-// niceImages.forEach(el => {
-//     el.observer = new IntersectionObserver(niceEntry, intersectionOptions);
-//     gsap.set(el.querySelector('img'), { autoAlpha: 0 });
-//     gsap.set(el.closest('.block-with-decor2').querySelector('.block-with-decor2__count'), { autoAlpha: 0 });
-//     gsap.set(el.closest('.block-with-decor2').querySelector('.block-with-decor2__text'), { autoAlpha: 0 });
-//     el.observer.observe(el)
-// })
-// niceBigImages.forEach(el => {
-// el.observer = new IntersectionObserver(niceEntryBig, intersectionOptions);
-// let text = el.target.querySelector('.block-with-logo-decor__content');
-// let gradient = el.target.querySelector('.gradient-bg');
-// gsap.set(el.querySelector('img'), { autoAlpha: 0 });
-// gsap.set(text, { autoAlpha: 0 });
-// gsap.set(gradient, { autoAlpha: 0 });
-// el.observer.observe(el)
-// })
 
 /**********************************/
 /*
@@ -293,7 +248,7 @@ const locoScroll = new LocomotiveScroll({
     getDirection: true,
     resetNativeScroll: false,
     onUpdate: function(some) {
-        
+
     }
 });
 document.querySelectorAll('.up-arrow').forEach(arrow => {
@@ -326,7 +281,7 @@ locoScroll.on("scroll", (position, limit, speed, direction) => {
             [document.querySelector('.up-arrow'), 'headroom--not-top'],
         ]);
 });
-locoScroll.on('update', (some) => {console.log(some);})
+// locoScroll.on('update', (some) => { console.log(some); })
 ScrollTrigger.scrollerProxy(document.body, {
     scrollTop(value) {
         return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
@@ -347,16 +302,16 @@ gsap.registerPlugin(ScrollTrigger);
 const niceImages = document.querySelectorAll('[data-nice-entry]');
 const doublePartImages = document.querySelectorAll('[data-double-part-block]');
 const niceBigImages = document.querySelectorAll('[data-nice-entry-big]');
-const amplitude = document.documentElement.clientWidth<576 ? 60 : 120;
+const amplitude = document.documentElement.clientWidth < 576 ? 60 : 120;
 niceBigImages.forEach((big) => {
     ScrollTrigger.create({
         trigger: big,
         // start: "top",
         // endTrigger: ".main-screen-slider",
-       /*markers: true, */
+        /*markers: true, */
         end: "bottom",
         onUpdate: self => {
-            gsap.to(big.closest('.block-with-logo-decor'), {  y: amplitude / -2 + self.progress * amplitude });
+            gsap.to(big.closest('.block-with-logo-decor'), { y: amplitude / -2 + self.progress * amplitude });
         },
 
     });
@@ -374,7 +329,7 @@ doublePartImages.forEach(paralaxImg => {
         trigger: paralaxImg,
         // start: "top",
         // endTrigger: ".main-screen-slider",
-       /*markers: true, */
+        /*markers: true, */
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
@@ -400,27 +355,27 @@ niceImages.forEach(paralaxImg => {
     let height = imgToAnimate.getBoundingClientRect().height;
     let scaleCoef = (height + (amplitude)) / height;
     gsap.set(imgToAnimate, { scale: scaleCoef })
-    gsap.set(paralaxImg.closest('.block-with-decor2'), { y:amplitude })
+    gsap.set(paralaxImg.closest('.block-with-decor2'), { y: amplitude })
     gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, easing: niceBezier, duration: 1 });
     ScrollTrigger.create({
         trigger: paralaxImg,
-       /*markers: true, */
+        /*markers: true, */
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
                 gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 0.5 });
                 imgToAnimate.cliPathed = true;
             }
-            gsap.to(paralaxImg.closest('.block-with-decor2'),{y:0, duration:2})
+            gsap.to(paralaxImg.closest('.block-with-decor2'), { y: 0, duration: 2 })
         },
-        onLeave:self=>{
-            gsap.to(paralaxImg.closest('.block-with-decor2'),{y:amplitude,easing: niceBezier,})
+        onLeave: self => {
+            gsap.to(paralaxImg.closest('.block-with-decor2'), { y: amplitude, easing: niceBezier, })
         },
-        onLeaveBack:self=>{
-            gsap.to(paralaxImg.closest('.block-with-decor2'),{y:amplitude,easing: niceBezier,})
+        onLeaveBack: self => {
+            gsap.to(paralaxImg.closest('.block-with-decor2'), { y: amplitude, easing: niceBezier, })
         },
-        onEnterBack:self=>{
-            gsap.to(paralaxImg.closest('.block-with-decor2'),{y:0,easing: niceBezier,})
+        onEnterBack: self => {
+            gsap.to(paralaxImg.closest('.block-with-decor2'), { y: 0, easing: niceBezier, })
         },
         onUpdate: self => gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude }),
     });
@@ -428,7 +383,7 @@ niceImages.forEach(paralaxImg => {
 
 ScrollTrigger.create({
     trigger: document.querySelector('.page-first-block'),
-   /*markers: true, */
+    /*markers: true, */
     end: "+=1210",
     // start:'top top',
     onEnter: self => {
@@ -437,14 +392,14 @@ ScrollTrigger.create({
         //     imgToAnimate.cliPathed = true;
         // }s
     },
-    onUpdate: self =>{
+    onUpdate: self => {
         // gsap.to(document.querySelector('.page-first-block [style*=background]'),{y:(document.documentElement.clientHeight*self.progress)+80,easing: niceBezier,})
     },
-    onLeave:self=>{
-        gsap.to(document.querySelector('.page-first-block'),{y:-1*amplitude,easing: niceBezier,duration:2.5})
+    onLeave: self => {
+        // gsap.to(document.querySelector('.page-first-block'),{y:-1*amplitude,easing: niceBezier,duration:2.5})
     },
-    onEnterBack:self=>{
-        gsap.to(document.querySelector('.page-first-block'),{y:0,easing: niceBezier,})
+    onEnterBack: self => {
+        // gsap.to(document.querySelector('.page-first-block'),{y:0,easing: niceBezier,})
     }
 });
 // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 

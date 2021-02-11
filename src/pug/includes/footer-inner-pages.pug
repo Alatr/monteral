@@ -29,7 +29,7 @@
                     +svg('footer-arrow').link-with-icon__icon
             .footer-info-block
                 .footer-head-title.gold Адреса комлексу
-                a(href="https://maps.google.com/?q="+complexAdress target='_blank').blank-link.footer-info-block-part #{complexAdress}
+                a(href="https://maps.google.com/?q="+encodeURIComponent(complexAdress.split('/')[1]) target='_blank').blank-link.footer-info-block-part #{complexAdress}
                 a(href="3d.html").link-with-icon 
                     .link-with-icon__text Обрати квартиру
                     +svg('footer-arrow').link-with-icon__icon
