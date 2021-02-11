@@ -72,8 +72,10 @@ block content
     section.page-part
         .double-part-block(data-double-part-block)
             .double-part-block__img
-                img(src="./assets/images/location/block-1-bg.jpg").double-part-block__img-decor-bg
-                img(src="./assets/images/location/block-1.jpg").double-part-block__img-main
+                .double-part-block__img-decor-bg
+                    img(src="./assets/images/location/block-1-bg.jpg")
+                .double-part-block__img-main
+                    img(src="./assets/images/location/block-1.jpg")
                 .double-part-block__img-decor-square
             .double-part-block__text
                 .double-part-block__title У самому центрі
@@ -98,8 +100,9 @@ block content
     section.page-part
         .block-with-logo-decor(data-nice-entry-big)
             .block-with-logo-decor__text-wrap
-                img(src="./assets/images/location/manekens.jpg" )
-                .gradient-bg 
+                .block-with-logo-decor__bg-wrap
+                    img(src="./assets/images/location/manekens.jpg" )
+                    .gradient-bg 
                 .block-with-logo-decor__content 
                     .block-with-logo-decor__count  03
                     div ексклюзивні бутики та фірмові магазини
@@ -122,8 +125,9 @@ block content
     section.page-part
         .block-with-logo-decor.reverse(data-nice-entry-big)
             .block-with-logo-decor__text-wrap
-                img(src="./assets/images/location/bar.jpg" data-nice-entry-big)
-                .gradient-bg 
+                .block-with-logo-decor__bg-wrap
+                    img(src="./assets/images/location/bar.jpg" data-nice-entry-big)
+                    .gradient-bg 
                 .block-with-logo-decor__content 
                     .block-with-logo-decor__count  06
                     div кращі гастрономічні заклади

@@ -78,8 +78,8 @@ firstBlockEffectImage.addEventListener('load', function(evt) {
     /**
      * Disturb water at specified point
      */
-    function disturb(dx, dy, wide = 256) {
-        if (activeDisturbes.length >= 15) return;
+    function disturb(dx, dy, wide = 256, isMouse = false) {
+        if (activeDisturbes.length >= 15 && !isMouse) return;
 
         dx <<= 0;
         dy <<= 0;
@@ -205,6 +205,7 @@ firstBlockEffectImage.addEventListener('load', function(evt) {
             position: absolute;
             top: calc(var(--header-height) * -1);
             left: calc(var(--self-side-padding) * -1);
+            pointer-events:none;
             width: calc(100% + (var(--self-side-padding) * 2));
             height: calc(100% + var(--header-height));
             background: linear-gradient(
@@ -213,6 +214,11 @@ firstBlockEffectImage.addEventListener('load', function(evt) {
     `);
     /**Остановка ефекта */
 
+    var dedouncedDisturb = _.throttle(disturb, 1000 / 25);
+    canvas.onmousemove = function( /* Event */ evt) {
+        // disturb(evt.offsetX || evt.layerX, evt.offsetY || evt.layerY, undefined, true);
+        dedouncedDisturb(evt.offsetX || evt.layerX, evt.offsetY || evt.layerY, undefined, true);
+    };
 
     document.querySelector('[data-effect-stop]').addEventListener('click', () => window.removeFirstPageEffect());
     window.removeFirstPageEffect = function() {
@@ -299,10 +305,27 @@ ScrollTrigger.scrollerProxy(document.body, {
 });
 gsap.registerPlugin(ScrollTrigger);
 
+const firstBlock = document.querySelectorAll('.page-first-block');
 const niceImages = document.querySelectorAll('[data-nice-entry]');
 const doublePartImages = document.querySelectorAll('[data-double-part-block]');
 const niceBigImages = document.querySelectorAll('[data-nice-entry-big]');
-const amplitude = document.documentElement.clientWidth < 576 ? 60 : 120;
+const amplitude = document.documentElement.clientWidth < 576 ? 40 : 80;
+
+firstBlock.forEach((big) => {
+    ScrollTrigger.create({
+        trigger: big,
+        start: "0.25",
+        // endTrigger: ".main-screen-slider",
+        markers: true,
+        end: "bottom",
+        onUpdate: self => {
+            gsap.to(big, { y: self.progress * (amplitude * 2), duration: 0.5 });
+            gsap.to('canvas', { scale: 1 + (self.progress / 10 / 2 / 2), duration: 0.5 });
+        },
+
+    });
+
+});
 niceBigImages.forEach((big) => {
     ScrollTrigger.create({
         trigger: big,
@@ -311,7 +334,8 @@ niceBigImages.forEach((big) => {
         /*markers: true, */
         end: "bottom",
         onUpdate: self => {
-            gsap.to(big.closest('.block-with-logo-decor'), { y: amplitude / -2 + self.progress * amplitude });
+            gsap.to(big.querySelector('.block-with-logo-decor img'), { y: amplitude / -2 + self.progress * amplitude });
+            gsap.to(big.querySelector('.block-with-logo-decor .gradient-bg'), { y: amplitude / -2 + self.progress * amplitude });
         },
 
     });
@@ -319,10 +343,14 @@ niceBigImages.forEach((big) => {
 });
 
 doublePartImages.forEach(paralaxImg => {
-    let imgToAnimate = paralaxImg.querySelector('.double-part-block__img-main') || paralaxImg;
-    let imgBgToAnimate = paralaxImg.querySelector('.double-part-block__img-decor-bg') || paralaxImg;
+    let imgToAnimate = paralaxImg.querySelector('.double-part-block__img-main img') || paralaxImg;
+    let imgBgToAnimate = paralaxImg.querySelector('.double-part-block__img-decor-bg img') || paralaxImg;
     let textToAnimate = paralaxImg.querySelectorAll('.double-part-block__text>*') || paralaxImg;
-
+    let height = imgToAnimate.getBoundingClientRect().height;
+    let scaleCoef = (height + (amplitude)) / height;
+    // gsap.set(imgToAnimate, { scale: scaleCoef })
+    gsap.set(imgToAnimate, { scale: scaleCoef })
+    gsap.set(imgBgToAnimate, { scale: scaleCoef })
     gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, });
     gsap.set(textToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, });
     ScrollTrigger.create({
@@ -343,9 +371,11 @@ doublePartImages.forEach(paralaxImg => {
             }
         },
         onUpdate: self => {
-            gsap.to(textToAnimate, { autoAlpha: Math.abs(self.progress - 0.5 * -1) });
-            gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude });
-            gsap.to(imgBgToAnimate, { y: amplitude / -2 + self.progress * amplitude })
+            gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude, duration: 0.25 });
+            gsap.to(imgBgToAnimate, { y: (amplitude / -2 + self.progress * amplitude) / -1, duration: 0.25 });
+            // gsap.to(textToAnimate, { autoAlpha: Math.abs(self.progress - 0.5 * -1) });
+            // gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude });
+            // gsap.to(imgBgToAnimate, { y: amplitude / -2 + self.progress * amplitude })
         },
 
     });
@@ -355,7 +385,7 @@ niceImages.forEach(paralaxImg => {
     let height = imgToAnimate.getBoundingClientRect().height;
     let scaleCoef = (height + (amplitude)) / height;
     gsap.set(imgToAnimate, { scale: scaleCoef })
-    gsap.set(paralaxImg.closest('.block-with-decor2'), { y: amplitude })
+        // gsap.set(paralaxImg.closest('.block-with-decor2'), { y: amplitude })
     gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, easing: niceBezier, duration: 1 });
     ScrollTrigger.create({
         trigger: paralaxImg,
@@ -363,19 +393,19 @@ niceImages.forEach(paralaxImg => {
         end: "bottom",
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
-                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 0.5 });
+                gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 1 });
                 imgToAnimate.cliPathed = true;
             }
-            gsap.to(paralaxImg.closest('.block-with-decor2'), { y: 0, duration: 2 })
+            // gsap.to(paralaxImg.closest('.block-with-decor2'), { y: 0, duration: 2 })
         },
         onLeave: self => {
-            gsap.to(paralaxImg.closest('.block-with-decor2'), { y: amplitude, easing: niceBezier, })
+            // gsap.to(paralaxImg.closest('.block-with-decor2'), { y: amplitude, easing: niceBezier, })
         },
         onLeaveBack: self => {
-            gsap.to(paralaxImg.closest('.block-with-decor2'), { y: amplitude, easing: niceBezier, })
+            // gsap.to(paralaxImg.closest('.block-with-decor2'), { y: amplitude, easing: niceBezier, })
         },
         onEnterBack: self => {
-            gsap.to(paralaxImg.closest('.block-with-decor2'), { y: 0, easing: niceBezier, })
+            // gsap.to(paralaxImg.closest('.block-with-decor2'), { y: 0, easing: niceBezier, })
         },
         onUpdate: self => gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude }),
     });

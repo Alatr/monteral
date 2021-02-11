@@ -28,11 +28,32 @@
 
 section {
     &.page-part {
+        position: relative;
         min-height: 100vh;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
         justify-content: center;
+        background: #007275;
+        z-index: 5;
+    }
+    &.page-part:not(.double-green):after {
+        content: '';
+        position: absolute;
+        right: calc(var(--self-side-padding) * -1);
+        top: 0;
+        width: var(--self-side-padding);
+        height: 100%;
+        background: #007275;
+    }
+    &.page-part:not(.double-green):before {
+        content: '';
+        position: absolute;
+        left: calc(var(--self-side-padding) * -1);
+        top: 0;
+        width: var(--self-side-padding);
+        height: 100%;
+        background: #007275;
     }
     &.double-green {
         position: relative;
@@ -166,7 +187,7 @@ section {
 .page-first-block {
     position: relative;
     min-height: calc(100vh - var(--header-height));
-    --self-padding-top: 100px;
+    --self-padding-top: 40px;
     padding-top: var(--self-padding-top);
     padding-bottom: calc(var(--self-padding-top) / 2);
     display: flex;
@@ -231,7 +252,8 @@ section {
         }
     }
     .screen-icon-scroll {
-        bottom: calc(var(--self-padding-top) / 2);
+        // bottom: calc(var(--self-padding-top) / 2);
+        bottom: calc(var(--self-padding-top));
     }
     .screen__social,
     .decor-social {
@@ -397,6 +419,7 @@ section {
         height: 100%;
         z-index: 0;
         object-fit: cover;
+        overflow: hidden;
     }
     &.reverse &__img-decor-bg {
         width: 55%;
@@ -429,6 +452,7 @@ section {
         height: 100%;
         z-index: 2;
         object-fit: cover;
+        overflow: hidden;
     }
     &__img {
         display: flex;
@@ -624,4 +648,27 @@ section {
     @include to(575px) {
         font-size: 18px;
     }
+}
+
+body>.screen__lang,
+body>.decor-social,
+body>.screen__social {
+    left: 50px;
+    // bottom: 10px;
+}
+
+body>.screen__social {
+    bottom: 50px;
+}
+
+body>.decor-social {
+    left: 0;
+    bottom: 50px;
+    @include to(575px) {
+        display: none;
+    }
+}
+
+.c-scrollbar {
+    z-index: 10000;
 }

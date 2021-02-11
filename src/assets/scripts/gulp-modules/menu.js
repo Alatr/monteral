@@ -102,3 +102,12 @@ upArrows.forEach(arrow => {
     }).init();
     arrow.addEventListener('click', (evt) => document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" }));
 })
+
+
+
+/**Changing position of some elements, which should be  fixed on smooth_scroll */
+
+document.body.append(document.querySelector('.screen__lang'))
+document.body.append(document.querySelector('.screen__social'))
+document.body.append(document.querySelector('.decor-social'))
+    /**Changing position of some elements, which should be  fixed on smooth_scroll END*/
