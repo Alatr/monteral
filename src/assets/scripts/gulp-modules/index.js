@@ -237,7 +237,7 @@ function animationMenuIn(settings) {
     tl.fromTo(this.$popup.querySelector('.menu__text-wrap'), { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, }, '<')
     tl.fromTo(this.$popup.querySelector('.menu__img-wrap'), { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
     tl.fromTo('.menu__img-wrap-for-animation', { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
-    tl.fromTo(this.$popup.querySelector('.js-menu-img'), { scale: 1.2 }, { scale: 1 }, '<')
+
     tl.fromTo(rule, {
         cssRule: {
             opacity: 0,
@@ -247,6 +247,7 @@ function animationMenuIn(settings) {
             opacity: 1,
         }
     }, '<+0.2')
+    tl.fromTo(document.querySelectorAll('.menu__outer-links>li'), { autoAlpha: 0 }, { autoAlpha: 1, stagger: 0.1 }, '<')
 
     tl.to([line0, line1, line2], 0.5, { autoAlpha: 1, x: 30, stagger: 0.1, ease: ease_menuBtnHover1 }, '<')
         //     /*  */
