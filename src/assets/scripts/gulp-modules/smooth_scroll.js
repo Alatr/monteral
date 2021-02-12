@@ -262,9 +262,6 @@ const locoScroll = new LocomotiveScroll({
 });
 stopScrollAndDetectIt(locoScroll);
 window.addEventListener('wheel', firstScrollAnimAndEnableSmooth, { passive: false });
-setInterval(() => {
-    console.log(locoScroll.isStopped);
-}, 100);
 window.addEventListener('load', function(evt) {
     let tl = new gsap.timeline();
     tl.fromTo('.page-first-block__text-wrap>*', { y: 100, autoAlpha: 0 }, { y: 0, autoAlpha: 1, stagger: 0.1 })
@@ -414,13 +411,13 @@ doublePartImages.forEach(paralaxImg => {
 
     });
 })
-niceImages.forEach(paralaxImg => {
+niceImages.forEach((paralaxImg, index) => {
     let imgToAnimate = paralaxImg.querySelector('img') || paralaxImg;
     let height = imgToAnimate.getBoundingClientRect().height;
     let scaleCoef = (height + (amplitude)) / height;
     gsap.set(imgToAnimate, { scale: scaleCoef })
         // gsap.set(imgToAnimate, { clipPath: `polygon(0px 0px, 100% 0px, 100% 0%, 0px 0%)`, ease: niceBezier, duration: 1 });
-    gsap.set(imgToAnimate, { transformOrigin: `top right`, x: 50 });
+    gsap.set(imgToAnimate, { x: 50 });
     ScrollTrigger.create({
         trigger: imgToAnimate,
         /*markers: true, */
@@ -428,11 +425,11 @@ niceImages.forEach(paralaxImg => {
         onEnter: self => {
             if (!imgToAnimate.cliPathed) {
                 // gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, ease: niceBezier, duration: 1 });
-                gsap.to(imgToAnimate, { rotate: 0, ease: niceBezier, duration: 2 });
+                gsap.to(imgToAnimate, { x: 0, ease: niceBezier, duration: 2 });
                 imgToAnimate.cliPathed = true;
             }
         },
-        onUpdate: self => gsap.to(imgToAnimate, { y: amplitude / -2 + self.progress * amplitude }),
+        onUpdate: self => gsap.to(imgToAnimate, { y: (amplitude / -2 + self.progress * amplitude) / ((index % 2 === 0) ? -1 : 1) }),
     });
 })
 
@@ -479,7 +476,7 @@ function firstSecondTransferAnimation(callback = () => {}) {
     tl.to(document.querySelectorAll('.page-first-block__text-wrap>*'), { y: -150, autoAlpha: 0, stagger: 0.1, ease: Power3.easeIn, duration: 0.75 })
     tl.to('canvas, .page-first-block__bg', { scale: 1.08, ease: scrollEasing, duration: 2.3 }, '<0.5');
     // tl.to('', { y: -150, autoAlpha: 0, stagger: 0.1, ease: Power3.easeIn, duration: 0.75 },'<')
-    tl.add(() => { locoScroll.scrollTo(document.documentElement.clientHeight) }, '<');
+    tl.add(() => { locoScroll.scrollTo(document.documentElement.clientHeight) }, '<-0.3');
     tl.fromTo(document.querySelector('.page-part:nth-child(2)>*'), { autoAlpha: 0, y: -100 }, { autoAlpha: 1, y: 0, stagger: 0.35, duration: 1.5, ease: Power4.easeOut }, '<');
     tl.set(document.querySelectorAll('.page-first-block__text-wrap>*'), { y: 0, autoAlpha: 1, });
     tl.add(callback);

@@ -120,8 +120,14 @@ const callPopap = new showModal({
     $closeBtn: popupBlockBtnClose,
     animationIn: animationPopapIn,
     animationOut: animationPopapOut,
-    attrParrentNode: '[data-parrent-node-popup]'
+    attrParrentNode: '[data-parrent-node-popup]',
+    onOpenCompleteCallback: () => {
+        console.log('efefef');
+    }
 });
+
+
+
 
 
 /*
@@ -219,17 +225,34 @@ const menu = new showModal({
 /*
  *  start in
  */
+gsap.registerPlugin(CSSRulePlugin);
+
 function animationMenuIn(settings) {
     // gsap.set([], {autoAlpha:0});
     const obj = {...settings, paused: true };
     const tl = gsap.timeline(obj);
-    tl.fromTo(this.$popup, 1, { autoAlpha: 0 }, { autoAlpha: 1, immediateRender: false })
+    tl.timeScale(0.75);
+    var rule = CSSRulePlugin.getRule(".menu__text-wrap:after");
+    tl.fromTo(this.$popup, 0.5, { autoAlpha: 0, }, { autoAlpha: 1, immediateRender: true }, )
+    tl.fromTo(this.$popup.querySelector('.menu__text-wrap'), { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, }, '<')
+    tl.fromTo(this.$popup.querySelector('.menu__img-wrap'), { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
+    tl.fromTo('.menu__img-wrap-for-animation', { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
+    tl.fromTo(this.$popup.querySelector('.js-menu-img'), { scale: 1.2 }, { scale: 1 }, '<')
+    tl.fromTo(rule, {
+        cssRule: {
+            opacity: 0,
+        }
+    }, {
+        cssRule: {
+            opacity: 1,
+        }
+    }, '<+0.2')
 
     tl.to([line0, line1, line2], 0.5, { autoAlpha: 1, x: 30, stagger: 0.1, ease: ease_menuBtnHover1 }, '<')
-        /*  */
+        //     /*  */
     tl.to(menuTextOpen, 0.3, { autoAlpha: 0, x: 20, ease: ease_menuBtnText }, '<')
     tl.to(menuTextClose, 0.3, { autoAlpha: 1, x: 0, ease: ease_menuBtnText }, '<')
-        /*  */
+        //     /*  */
     tl.fromTo([cross1, cross2], 0.6, { autoAlpha: 0, scale: 0 }, { autoAlpha: 1, stagger: 0.1, scale: 1, ease: ease_menuBtnCross }, '<')
 
 
@@ -245,7 +268,26 @@ function animationMenuOut(settings) {
     // gsap.set([], {autoAlpha:0});
     const obj = {...settings, paused: true, };
     const tl = gsap.timeline(obj);
-    tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, clearProps: "all", immediateRender: false })
+    tl.timeScale(0.75);
+    var rule = CSSRulePlugin.getRule(".menu__text-wrap:after");
+    console.log(settings);
+
+    tl.fromTo('.menu__img-wrap-for-animation', { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: 200, }, '<')
+    tl.fromTo(this.$popup.querySelector('.menu__img-wrap'), { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: 200, }, '<')
+    tl.fromTo(this.$popup.querySelector('.menu__text-wrap'), { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: -200, }, '<')
+    tl.fromTo(this.$popup.querySelector('.js-menu-img'), { scale: 1 }, { scale: 1.2 }, '<')
+    tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, immediateRender: true }, '<+0.2')
+
+    tl.fromTo(rule, {
+        cssRule: {
+            opacity: 1,
+        }
+    }, {
+        cssRule: {
+            opacity: 0,
+        }
+    }, '<')
+    tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, }, '<')
         /*  */
     tl.to(menuTextClose, 0.3, { autoAlpha: 0, x: -20, ease: ease_menuBtnText }, '<')
     tl.to(menuTextOpen, 0.3, { autoAlpha: 1, x: 0, ease: ease_menuBtnText }, '<')
