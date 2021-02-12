@@ -49,11 +49,9 @@ firstBlockEffectImage.addEventListener('load', function(evt) {
      * But I need to draw simple artwork to bypass 1k limitation
      */
     with(ctx) {
-
         // let image = new Image();
         // image.src = document.querySelector('.page-first-block__bg img').getAttribute('src');
-        console.log(this);
-
+        // console.log(this);
         drawImage(evt.target, 0, 0, width, height);
         save();
         // rotate(-0.785);
@@ -272,7 +270,6 @@ function firstScrollAnimAndEnableSmooth(evt) {
     window.removeEventListener('wheel', firstScrollAnimAndEnableSmooth);
     stopScrollAndDetectIt(locoScroll)
     if (locoScroll.isStopped) {
-        console.log('fff');
         firstSecondTransferAnimation(() => {
             startScrollAndDetectIt(locoScroll);
             document.querySelector('.page-first-block').setAttribute('data-scroll-section', '');

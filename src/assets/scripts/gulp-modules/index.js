@@ -86,7 +86,6 @@ class showModal {
             if (evt.target.closest(self.attrParrentNode) != null && !self.$openBtn.disabled) {
                 evt.stopImmediatePropagation();
                 self.toggle();
-                console.log(this);
             }
         });
     }
@@ -269,17 +268,20 @@ function animationMenuOut(settings) {
     // gsap.set([], {autoAlpha:0});
     const obj = {...settings, paused: true, };
     const tl = gsap.timeline(obj);
+    const textWrap = this.$popup.querySelector('.menu__text-wrap');
+    const imgWrap = this.$popup.querySelector('.menu__img-wrap');
+    const img = this.$popup.querySelector('.js-menu-img');
+    const animationImgWrap = document.querySelector('.menu__img-wrap-for-animation');
+    const shift = 200;
     tl.timeScale(0.75);
-    var rule = CSSRulePlugin.getRule(".menu__text-wrap:after");
-    console.log(settings);
-
-    tl.fromTo('.menu__img-wrap-for-animation', { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: 200, }, '<')
-    tl.fromTo(this.$popup.querySelector('.menu__img-wrap'), { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: 200, }, '<')
-    tl.fromTo(this.$popup.querySelector('.menu__text-wrap'), { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: -200, }, '<')
-    tl.fromTo(this.$popup.querySelector('.js-menu-img'), { scale: 1 }, { scale: 1.2 }, '<')
+    var textWrapDecor = CSSRulePlugin.getRule(".menu__text-wrap:after");
+    tl.fromTo(animationImgWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: shift, }, '<')
+    tl.fromTo(imgWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: shift, }, '<')
+    tl.fromTo(textWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: -shift, }, '<')
+    tl.fromTo(img, { scale: 1 }, { scale: 1.2 }, '<')
     tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, immediateRender: true }, '<+0.2')
 
-    tl.fromTo(rule, {
+    tl.fromTo(textWrapDecor, {
         cssRule: {
             opacity: 1,
         }

@@ -70,13 +70,13 @@ window.addEventListener('load', function(evt) {
 let headroom = new Headroom(document.querySelector('header'), {
     offset: 100,
     onPin: function(e) {
-        console.log(headroom);
+        // console.log(headroom);
         document.body.classList.add(headroom.classes.pinned);
         document.body.classList.remove(headroom.classes.unpinned);
     },
     // callback when unpinned, `this` is headroom object
     onUnpin: function(e) {
-        console.log(headroom);
+        // console.log(headroom);
         document.body.classList.add(headroom.classes.unpinned);
         document.body.classList.remove(headroom.classes.pinned);
     },
@@ -89,13 +89,13 @@ upArrows.forEach(arrow => {
     let upArrowHandler = new Headroom(arrow, {
         offset: 100,
         onPin: function(e) {
-            console.log(headroom);
+            // console.log(headroom);
             // document.body.classList.add(headroom.classes.pinned);
             // document.body.classList.remove(headroom.classes.unpinned);
         },
         // callback when unpinned, `this` is headroom object
         onUnpin: function(e) {
-            console.log(headroom);
+            // console.log(headroom);
             // document.body.classList.add(headroom.classes.unpinned);
             // document.body.classList.remove(headroom.classes.pinned);
         },
