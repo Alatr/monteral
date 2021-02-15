@@ -230,12 +230,20 @@ function animationMenuIn(settings) {
     // gsap.set([], {autoAlpha:0});
     const obj = {...settings, paused: true };
     const tl = gsap.timeline(obj);
+    const rule = CSSRulePlugin.getRule(".menu__text-wrap:after");
+    const imgWrap = this.$popup.querySelector('.menu__img-wrap');
+    const textWrap = this.$popup.querySelector('.menu__text-wrap');
+    const imgForAnim = document.querySelector('.menu__img-wrap-for-animation');
+    const menuBackgrounds = document.querySelectorAll('[class*=menu__decor]');
+    const menuLinks = document.querySelectorAll('.menu__outer-links>li>a');
+    const menuInnerLinks = document.querySelectorAll('.menu__inner-links>li>a');
     tl.timeScale(0.75);
-    var rule = CSSRulePlugin.getRule(".menu__text-wrap:after");
     tl.fromTo(this.$popup, 0.5, { autoAlpha: 0, }, { autoAlpha: 1, immediateRender: true }, )
-    tl.fromTo(this.$popup.querySelector('.menu__text-wrap'), { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, }, '<')
-    tl.fromTo(this.$popup.querySelector('.menu__img-wrap'), { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
-    tl.fromTo('.menu__img-wrap-for-animation', { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
+        // tl.fromTo(menuBackgrounds, { x: 150, y: -20, scale: 1.02, autoAlpha: 0 }, { x: 0, y: 0, autoAlpha: 1, scale: 1, stagger: 0.05, duration: 0.3 }, '<')
+    tl.fromTo(menuBackgrounds, { clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)', }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)', stagger: 0.05, clearProps: 'all', duration: 0.3 }, '<')
+    tl.fromTo(textWrap, { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, }, )
+    tl.fromTo(imgWrap, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
+    tl.fromTo(imgForAnim, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
 
     tl.fromTo(rule, {
         cssRule: {
@@ -245,8 +253,9 @@ function animationMenuIn(settings) {
         cssRule: {
             opacity: 1,
         }
-    }, '<+0.2')
-    tl.fromTo(document.querySelectorAll('.menu__outer-links>li'), { autoAlpha: 0 }, { autoAlpha: 1, stagger: 0.1 }, '<')
+    }, '<')
+    tl.fromTo(menuLinks, { autoAlpha: 0, x: -30 }, { autoAlpha: 1, stagger: 0.1, x: 0 }, '<')
+    tl.fromTo(menuInnerLinks, { autoAlpha: 0, x: -30, y: 10 }, { autoAlpha: 1, stagger: 0.075, x: 0, y: 0 }, '<')
 
     tl.to([line0, line1, line2], 0.5, { autoAlpha: 1, x: 30, stagger: 0.1, ease: ease_menuBtnHover1 }, '<')
         //     /*  */
@@ -278,8 +287,10 @@ function animationMenuOut(settings) {
     tl.fromTo(animationImgWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: shift, }, '<')
     tl.fromTo(imgWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: shift, }, '<')
     tl.fromTo(textWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: -shift, }, '<')
+
     tl.fromTo(img, { scale: 1 }, { scale: 1.2 }, '<')
-    tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, immediateRender: true }, '<+0.2')
+    tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, immediateRender: true }, )
+    tl.fromTo(document.querySelectorAll('[class*=menu__decor]'), { x: '0', autoAlpha: 1 }, { x: 100, autoAlpha: 0, stagger: 0.05, clearProps: 'all', duration: 1 }, '<')
 
     tl.fromTo(textWrapDecor, {
         cssRule: {

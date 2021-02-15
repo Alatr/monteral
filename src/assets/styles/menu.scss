@@ -275,3 +275,47 @@
         transform: scale(1);
     }
 }
+
+
+/**********************************/
+
+
+/*
+* menu decor start
+*/
+
+.menu {
+    background: none;
+}
+
+.menu__decor0,
+.menu__decor1,
+.menu__decor2,
+.menu__decor3,
+.menu__decor4,
+.menu__decor5,
+.menu__decor6 {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(100% / 7);
+    background: url(../images/menu/menu-bg.jpg) center no-repeat;
+    background-size: 800% 100vh;
+    z-index: -1;
+}
+
+@for $i from 0 through 6 {
+    $width: percentage($i/7);
+    .menu__decor#{$i} {
+        left: $width;
+        background-position: percentage($i/7) 0;
+    }
+}
+
+
+/*
+* menu decor end
+*/
+
+
+/**********************************/
