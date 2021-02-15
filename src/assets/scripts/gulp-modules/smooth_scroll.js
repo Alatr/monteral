@@ -367,7 +367,9 @@ niceBigImages.forEach((big) => {
         trigger: big,
         end: "bottom",
         onUpdate: self => {
-            gsap.to(big.querySelector('.block-with-logo-decor img'), { y: amplitude / -2 + self.progress * amplitude });
+            // gsap.to(big.querySelector('.block-with-logo-decor img'), { y: amplitude / -2 + self.progress * amplitude });
+
+            if (self.progress < 0.5) gsap.to(big.querySelector('.block-with-logo-decor img'), { scale: 1 + (self.progress * 0.25) });
             // gsap.to(big.querySelector('.block-with-logo-decor .gradient-bg'), { y: amplitude / -2 + self.progress * amplitude });
         },
     });
@@ -480,3 +482,18 @@ function firstSecondTransferAnimation(callback = () => {}) {
     tl = '';
 
 }
+
+
+
+
+
+
+// (function() {
+
+//     const TITLE = document.querySelector('.page-title');
+//     //     var textWrapper = document.querySelector('.ml13');
+//     TITLE.innerHTML = TITLE.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+//     gsap.set('.letter', { display: 'inline-block' })
+//     gsap.fromTo('.letter', { y: 50, autoAlpha: 0, }, { y: 0, autoAlpha: 1, stagger: 0.05 })
+
+// })()
