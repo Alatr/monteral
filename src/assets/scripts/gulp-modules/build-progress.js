@@ -2,18 +2,19 @@
 
 /**Кастомные селекты */
 const selectors = document.querySelectorAll('.custom-select');
-let event1 = new Event('change');
-var buildProgressConfig = {
+const event1 = new Event('change');
+const buildProgressConfig = {
     year: document.querySelector('[data-build-filter-name="year"] .custom-select__item-current').dataset.value,
     month: 'null'
 };
-/*  */
+/*Галереи с фотографиями строительства  */
 const galleries = document.querySelectorAll('[data-progress-gallery]');
 galleries.forEach((el, index) => {
     el.validCount = 0;
     el.setAttribute('id', 'bild' + index);
 });
-const popupSliderConfig = {
+/*Обект с параметрами слайдера в попапе и самого поп-апа  */
+const POPUP_CONFIG = {
     navImages: dqs('[data-swiper-slider]'),
     bigImage: dqs('[data-swiper-big-image]'),
     title: dqs('[data-popup-title]'),
@@ -58,11 +59,11 @@ function handleCustomSelect(selector) {
 
 
 document.querySelectorAll('[data-build-filter-name]').forEach(el => {
-    /**Первичная фильттрация */
+    /**Первичная фильттрация(добавление первой галереи в попап)*/
     filterBuildGalleries(buildProgressConfig, el, galleries);
     el.addEventListener('change', () => {
         filterBuildGalleries(buildProgressConfig, el, galleries);
-        popupSliderConfig.filteredPopups = dqsA('[data-is-viewed*="true"]')
+        POPUP_CONFIG.filteredPopups = dqsA('[data-is-viewed*="true"]')
 
     })
 })
@@ -125,39 +126,39 @@ galleries.forEach((galleryWithData, index) => {
         onOpenCompleteCallback: function() {
             initPopupSlider(galleryWithData);
             changeTextOnPopup(galleryWithData);
-            // popupSliderConfig.currentPopup = galleries[index];
-            popupSliderConfig.currentPopup = galleryWithData;
+            POPUP_CONFIG.currentPopup = galleryWithData;
             document.querySelector('[data-build-gallery-popup] [data-build-popup-close]').setAttribute('data-build-popup', galleryWithData.dataset.buildPopup);
         },
     });
 })
 
-
+/**Предыдущий отчет */
 dqs('[data-popup-prev-gallery]').addEventListener('click', function() {
-    let prevGallery = popupSliderConfig.currentPopup.previousElementSibling;
-    popupSliderConfig.filteredPopups.forEach((el, index) => {
-        if (el.getAttribute('id') === popupSliderConfig.currentPopup.getAttribute('id')) {
-            prevGallery = popupSliderConfig.filteredPopups[index - 1];
+    let prevGallery = POPUP_CONFIG.currentPopup.previousElementSibling;
+    POPUP_CONFIG.filteredPopups.forEach((el, index) => {
+        if (el.getAttribute('id') === POPUP_CONFIG.currentPopup.getAttribute('id')) {
+            prevGallery = POPUP_CONFIG.filteredPopups[index - 1];
         }
     });
 
     if (prevGallery === null || prevGallery === undefined) return;
     initPopupSlider(prevGallery);
     changeTextOnPopup(prevGallery);
-    popupSliderConfig.currentPopup = prevGallery;
+    POPUP_CONFIG.currentPopup = prevGallery;
     document.querySelector('[data-build-gallery-popup] [data-build-popup-close]').setAttribute('data-build-popup', prevGallery.dataset.buildPopup);
 });
+/**Следующий отчет */
 dqs('[data-popup-next-gallery]').addEventListener('click', function() {
-    let prevGallery = popupSliderConfig.currentPopup.nextElementSibling;
-    popupSliderConfig.filteredPopups.forEach((el, index) => {
-        if (el.getAttribute('id') === popupSliderConfig.currentPopup.getAttribute('id')) {
-            prevGallery = popupSliderConfig.filteredPopups[index + 1];
+    let prevGallery = POPUP_CONFIG.currentPopup.nextElementSibling;
+    POPUP_CONFIG.filteredPopups.forEach((el, index) => {
+        if (el.getAttribute('id') === POPUP_CONFIG.currentPopup.getAttribute('id')) {
+            prevGallery = POPUP_CONFIG.filteredPopups[index + 1];
         }
     });
     if (prevGallery === null || prevGallery === undefined) return;
     initPopupSlider(prevGallery);
     changeTextOnPopup(prevGallery);
-    popupSliderConfig.currentPopup = prevGallery;
+    POPUP_CONFIG.currentPopup = prevGallery;
     document.querySelector('[data-build-gallery-popup] [data-build-popup-close]').setAttribute('data-build-popup', prevGallery.dataset.buildPopup);
 });
 
@@ -166,22 +167,22 @@ dqs('[data-popup-next-gallery]').addEventListener('click', function() {
 
 
 function changeTextOnPopup(data) {
-    popupSliderConfig.title.textContent = popupSliderConfig.title.innerHTML;
-    popupSliderConfig.subtitle.textContent = data.dataset.year;
+    POPUP_CONFIG.title.textContent = POPUP_CONFIG.title.innerHTML;
+    POPUP_CONFIG.subtitle.textContent = data.dataset.year;
 
 }
 
 function initPopupSlider(param) {
 
-    if (popupSliderConfig.swiper !== undefined) {
-        popupSliderConfig.swiper.destroy(false, true);
-        clearAndAddImagesForRefreshSlider(param.dataset.images, popupSliderConfig.navImages.children[0]);
-        popupSliderConfig.swiper = undefined;
+    if (POPUP_CONFIG.swiper !== undefined) {
+        POPUP_CONFIG.swiper.destroy(false, true);
+        clearAndAddImagesForRefreshSlider(param.dataset.images, POPUP_CONFIG.navImages.children[0]);
+        POPUP_CONFIG.swiper = undefined;
     }
 
 
 
-    popupSliderConfig.swiper = new Swiper(popupSliderConfig.navImages, {
+    POPUP_CONFIG.swiper = new Swiper(POPUP_CONFIG.navImages, {
         slidesPerView: 'auto',
         freeMode: true,
         spaceBetween: 30,
@@ -199,8 +200,8 @@ function initPopupSlider(param) {
             },
         }
     });
-    popupSliderConfig.swiper.on('init', () => {})
-    popupSliderConfig.swiper.on('slideChange', (evt) => {
+    POPUP_CONFIG.swiper.on('init', () => {})
+    POPUP_CONFIG.swiper.on('slideChange', (evt) => {
         let direction = (evt.prevIndex < evt.activeIndex) ? 1 : -1;
         changeImgSrc(evt.bigView, evt.slides[evt.activeIndex].getAttribute('src'), direction);
         evt.prevIndex = evt.activeIndex;
@@ -263,26 +264,26 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
 
 
     container.addEventListener('touchstart', function(evt) {
-        popupSliderConfig.x = evt.changedTouches[0].clientX
-        popupSliderConfig.y = evt.changedTouches[0].clientY
+        POPUP_CONFIG.x = evt.changedTouches[0].clientX
+        POPUP_CONFIG.y = evt.changedTouches[0].clientY
     });
 
     container.addEventListener('touchend', function(evt) {
-        
-        if (evt.changedTouches[0].clientX < popupSliderConfig.x) {
+
+        if (evt.changedTouches[0].clientX < POPUP_CONFIG.x) {
             document.querySelector('.build-gallery-popup__wrap-nav .arrow-next').dispatchEvent(new Event('click'));
-            
-        } else if ((evt.changedTouches[0].clientX > popupSliderConfig.x)) {
+
+        } else if ((evt.changedTouches[0].clientX > POPUP_CONFIG.x)) {
             document.querySelector('.build-gallery-popup__wrap-nav .arrow-prev').dispatchEvent(new Event('click'));
-            
+
         }
-        if(evt.changedTouches[0].clientY > popupSliderConfig.y
-            &&(Math.abs(evt.changedTouches[0].clientX - popupSliderConfig.x))<(document.documentElement.clientWidth*0.25)
-            &&(Math.abs(evt.changedTouches[0].clientY - popupSliderConfig.y))>(document.documentElement.clientHeight*0.25)
-            ){
-                gsap.to(container,{y:100})
-                document.querySelector('[data-build-popup-close]').click();
-                
+        if (evt.changedTouches[0].clientY > POPUP_CONFIG.y &&
+            (Math.abs(evt.changedTouches[0].clientX - POPUP_CONFIG.x)) < (document.documentElement.clientWidth * 0.25) &&
+            (Math.abs(evt.changedTouches[0].clientY - POPUP_CONFIG.y)) > (document.documentElement.clientHeight * 0.25)
+        ) {
+            gsap.to(container, { y: 100 })
+            document.querySelector('[data-build-popup-close]').click();
+
         }
     });
 
@@ -347,7 +348,7 @@ function sideSwitchArrow(jQuerySlider, arrow, container) {
 
 }
 sideSwitchArrow(
-        popupSliderConfig.swiper,
+        POPUP_CONFIG.swiper,
         dqs('[data-moving-mouse]'),
         dqs('[data-build-gallery-popup]'))
     /**СТрелка переключатель в зависимости от положения на єкране END */

@@ -241,7 +241,7 @@ function animationMenuIn(settings) {
     tl.fromTo(this.$popup, 0.5, { autoAlpha: 0, }, { autoAlpha: 1, immediateRender: true }, )
         // tl.fromTo(menuBackgrounds, { x: 150, y: -20, scale: 1.02, autoAlpha: 0 }, { x: 0, y: 0, autoAlpha: 1, scale: 1, stagger: 0.05, duration: 0.3 }, '<')
     tl.fromTo(menuBackgrounds, { clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)', }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)', stagger: 0.05, clearProps: 'all', duration: 0.3 }, '<')
-    tl.fromTo(textWrap, { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, }, )
+    tl.fromTo(textWrap, { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, }, '<+0.5')
     tl.fromTo(imgWrap, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
     tl.fromTo(imgForAnim, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
 
@@ -281,6 +281,7 @@ function animationMenuOut(settings) {
     const imgWrap = this.$popup.querySelector('.menu__img-wrap');
     const img = this.$popup.querySelector('.js-menu-img');
     const animationImgWrap = document.querySelector('.menu__img-wrap-for-animation');
+    const menuBackgrounds = document.querySelectorAll('[class*=menu__decor]');
     const shift = 200;
     tl.timeScale(0.75);
     var textWrapDecor = CSSRulePlugin.getRule(".menu__text-wrap:after");
@@ -290,7 +291,7 @@ function animationMenuOut(settings) {
 
     tl.fromTo(img, { scale: 1 }, { scale: 1.2 }, '<')
     tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, immediateRender: true }, )
-    tl.fromTo(document.querySelectorAll('[class*=menu__decor]'), { x: '0', autoAlpha: 1 }, { x: 100, autoAlpha: 0, stagger: 0.05, clearProps: 'all', duration: 1 }, '<')
+    tl.fromTo(menuBackgrounds, { x: '0', autoAlpha: 1 }, { x: 100, autoAlpha: 0, stagger: 0.05, clearProps: 'all', duration: 1 }, '<')
 
     tl.fromTo(textWrapDecor, {
         cssRule: {
