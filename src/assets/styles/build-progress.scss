@@ -549,8 +549,10 @@
     @include to(575px) {
         --self-padding-top: 20px;
     }
-    @include from(769px) {
+    @include from(951px) {
         max-height: 300px;
+    }
+    @include from(769px) {
         &:hover img {
             transform: scale(1.1);
         }

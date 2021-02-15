@@ -352,3 +352,34 @@ sideSwitchArrow(
         dqs('[data-moving-mouse]'),
         dqs('[data-build-gallery-popup]'))
     /**СТрелка переключатель в зависимости от положения на єкране END */
+
+
+const $firstPageNumbers = document.querySelectorAll('.build-status-item__value');
+// $firstPageNumbers.forEach(number => animateNumbers(+number.innerHTML, number, 1000))
+$firstPageNumbers.forEach(number => {
+    const speed = 2;
+    var Cont = { val: 0 },
+        NewVal = +number.innerHTML;
+
+    TweenLite.to(Cont, speed, {
+        val: NewVal,
+        roundProps: "val",
+        onUpdate: function() {
+            number.innerHTML = Cont.val
+        }
+    });
+})
+
+function animateNumbers(to, elem, timeOfAnimation = 1000) {
+    if (elem.destNumber === undefined) {
+        elem.destNumber = to;
+        to = 0;
+    }
+    elem.innerHTML = to;
+    to++;
+    console.log(elem.destNumber);
+    if (elem.destNumber >= to) setTimeout(() => {
+        requestAnimationFrame(() => animateNumbers(to, elem, timeOfAnimation));
+
+    }, timeOfAnimation / elem.destNumber);
+}
