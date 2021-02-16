@@ -211,9 +211,9 @@ function initPopupSlider(param) {
 
 function changeImgSrc(image, src, direction = 1) {
     let tl = gsap.timeline();
-    tl.fromTo(image, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: 50 * direction, duration: 0.25 });
+    tl.fromTo(image, { autoAlpha: 1, x: 0 }, { autoAlpha: 0.3, x: 50 * direction, duration: 0.25, ease: Power3.easeIn });
     tl.add(() => { image.src = src });
-    tl.fromTo(image, { autoAlpha: 0, x: -50 * direction, duration: 0.5 }, { autoAlpha: 1, x: 0 });
+    tl.fromTo(image, { autoAlpha: 0.3, x: -50 * direction, duration: 0.5 }, { autoAlpha: 1, x: 0, ease: Power3.easeOut }, '<');
 
 }
 

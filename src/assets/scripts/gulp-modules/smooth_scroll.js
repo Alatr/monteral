@@ -363,13 +363,14 @@ pageBlockTitles.forEach((big, index) => {
     });
 });
 niceBigImages.forEach((big) => {
+    gsap.set(big.querySelector('.block-with-logo-decor img'), { scale: 1.25 })
     ScrollTrigger.create({
         trigger: big,
         end: "bottom",
         onUpdate: self => {
             // gsap.to(big.querySelector('.block-with-logo-decor img'), { y: amplitude / -2 + self.progress * amplitude });
 
-            if (self.progress < 0.5) gsap.to(big.querySelector('.block-with-logo-decor img'), { scale: 1 + (self.progress * 0.25) });
+            if (self.progress < 0.5) gsap.to(big.querySelector('.block-with-logo-decor img'), { scale: 1.25 + ((self.progress * 0.25) * -1) });
             // gsap.to(big.querySelector('.block-with-logo-decor .gradient-bg'), { y: amplitude / -2 + self.progress * amplitude });
         },
     });
@@ -432,27 +433,6 @@ niceImages.forEach((paralaxImg, index) => {
     });
 })
 
-ScrollTrigger.create({
-    trigger: document.querySelector('.page-first-block'),
-    /*markers: true, */
-    end: "+=1210",
-    // start:'top top',
-    onEnter: self => {
-        // if (!imgToAnimate.cliPathed) {
-        //     gsap.to(imgToAnimate, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, easing: niceBezier, duration: 0.5 });
-        //     imgToAnimate.cliPathed = true;
-        // }s
-    },
-    onUpdate: self => {
-        // gsap.to(document.querySelector('.page-first-block [style*=background]'),{y:(document.documentElement.clientHeight*self.progress)+80,easing: niceBezier,})
-    },
-    onLeave: self => {
-        // gsap.to(document.querySelector('.page-first-block'),{y:-1*amplitude,easing: niceBezier,duration:2.5})
-    },
-    onEnterBack: self => {
-        // gsap.to(document.querySelector('.page-first-block'),{y:0,easing: niceBezier,})
-    }
-});
 // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
 ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
@@ -491,8 +471,8 @@ function firstSecondTransferAnimation(callback = () => {}) {
 // (function() {
 
 //     const TITLE = document.querySelector('.page-title');
-//     //     var textWrapper = document.querySelector('.ml13');
-//     TITLE.innerHTML = TITLE.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+//     var textWrapper = document.querySelector('.ml13');
+//     TITLE.innerHTML = TITLE.textContent.replace(/(\S)/g, "<span class='letter'>$&</span>");
 //     gsap.set('.letter', { display: 'inline-block' })
 //     gsap.fromTo('.letter', { y: 50, autoAlpha: 0, }, { y: 0, autoAlpha: 1, stagger: 0.05 })
 
