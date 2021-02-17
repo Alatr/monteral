@@ -296,6 +296,9 @@
         &__left>li:not(:first-child) {
             margin-top: 40px;
         }
+        .footer-head-title:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 

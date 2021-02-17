@@ -193,6 +193,15 @@
     @include to(575px) {
         bottom: 15px;
         width: 100%;
+        &>* {
+            width: calc(50% - (25px));
+        }
+        &>*:nth-child(even) {
+            margin-left: 10px;
+        }
+        &>*:nth-child(odd) {
+            margin-right: 10px;
+        }
     }
 }
 
