@@ -30,7 +30,7 @@ block content
     section.page-first-block
         picture.page-first-block__bg
             source(srcset="./assets/images/news/bg.jpg")
-            img(src="./assets/images/news/bg.jpg")
+            img(alt="#" src="./assets/images/news/bg.jpg")
         include ../includes/breadcrumbs.pug
         .page-first-block__text-wrap 
             <svg class="page-logo" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +68,7 @@ block content
             .news-link__delimiter
             .news-link__right
                 .news-link__img
-                    img(src="./assets/images/news/test.jpg")
+                    img(alt="#" src="./assets/images/news/test.jpg")
                 .news-link__arrow
                     +svg('news-link-arrow')
         a(href="news-single.html").news-link.reverse
@@ -78,7 +78,7 @@ block content
             .news-link__delimiter
             .news-link__right
                 .news-link__img
-                    img(src="./assets/images/news/test.jpg")
+                    img(alt="#" src="./assets/images/news/test.jpg")
                 .news-link__arrow
                     +svg('news-link-arrow')
         .news-pagination

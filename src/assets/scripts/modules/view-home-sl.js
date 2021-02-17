@@ -20,7 +20,7 @@ function renderLoadingScreen(state, elements){
 		case 'contentPreparingGreating':
 			hideElements();
 			hideMainContent();
-	    gsap.set(elements.videoBlockWrapper, {'--w': 102, '--h': 107, x: 0, yPercent: -50});
+	    gsap.set(elements.videoBlockWrapper, {'--w': 110, '--h': 110, x: 0, yPercent: -50});
 	    gsap.set( '[data-gsap-greating]', {autoAlpha: 0});
 			elements.videoBlockWrapper.style.backgroundImage = `url(${_PATHS.getPosterURL(cnt)})`;
 			elements.preLoader.classList.add('loader--hidden');

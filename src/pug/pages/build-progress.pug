@@ -30,7 +30,7 @@ block content
     section.page-first-block
         picture.page-first-block__bg
             source(srcset="./assets/images/build-progress/bg.jpg")
-            img(src="./assets/images/build-progress/bg.jpg")
+            img(alt="#" src="./assets/images/build-progress/bg.jpg")
         include ../includes/breadcrumbs.pug
         .page-first-block__text-wrap 
             <svg class="page-logo" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,7 +106,7 @@ block content
                 .build-gallery-popup__text(data-popup-subtitle) 2020
             .build-gallery-popup__img-view(data-swiper-big-image)
                 .loader
-                img(src="./assets/images/build-progress/test/test1.jpg" data-swiper-current-img-view)
+                img(alt="#" src="./assets/images/build-progress/test/test1.jpg" data-swiper-current-img-view)
             .prev-gallery(data-popup-prev-gallery)
                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 9L2 9M2 9L9.66667 17M2 9L9.66667 1" stroke="white" stroke-width="2"/>
@@ -125,7 +125,7 @@ block content
                     .swiper-wrapper
                         - var imgs = ['Rectangle 3340.jpg','Rectangle 3341.jpg','Rectangle 3342.jpg','Rectangle 3343.jpg','Rectangle 3344.jpg','Rectangle 3345.jpg','Rectangle 3346.jpg','Rectangle 3347.jpg',]
                             each img in imgs 
-                                img(src='./assets/images/build-progress/test/'+img).swiper-slide
+                                img(alt="#" src='./assets/images/build-progress/test/'+img).swiper-slide
                 <svg class="arrow-next" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.99382e-07 9.00195L18 9.00195M18 9.00195L10.3333 17.002M18 9.00195L10.3333 1.00195" stroke="#CFBE97"/>
                     </svg>
@@ -177,7 +177,7 @@ block content
                     .progress-gallery-link(data-progress-gallery data-month=n  data-build-popup=n data-year="2020"  data-images="https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/10_lesnaya-skazka2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/3_klubniy2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/12_lesnaya-skazka1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/13_britanika_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/14_irpenskie-lipki_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/15_parkoviy_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/1_Riverside_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/5_naykraschiy1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/6_proreznaya-2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/7_proreznaya-1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/8_Royal-Park_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/naykraschiy2.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/Poltavskaya64.jpg")
                         .progress-gallery-link__left 
                             .progress-gallery-link__left-img
-                                img(src="./assets/images/build-progress/test.jpg")
+                                img(alt="#" src="./assets/images/build-progress/test.jpg")
                             .plus-element +
                         .progress-gallery-link__right 
                             div 2020
@@ -186,7 +186,7 @@ block content
                     .progress-gallery-link(data-progress-gallery data-month=n  data-build-popup=n data-year="2021"  data-images="https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/10_lesnaya-skazka2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/3_klubniy2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/12_lesnaya-skazka1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/13_britanika_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/14_irpenskie-lipki_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/15_parkoviy_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/1_Riverside_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/5_naykraschiy1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/6_proreznaya-2_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/7_proreznaya-1_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/8_Royal-Park_1600h1200px.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/naykraschiy2.jpg~https://idealist-wp.smarto.agency/wp-content/uploads/2020/12/Poltavskaya64.jpg")
                         .progress-gallery-link__left 
                             .progress-gallery-link__left-img
-                                img(src="./assets/images/build-progress/test.jpg")
+                                img(alt="#" src="./assets/images/build-progress/test.jpg")
                             .plus-element +
                         .progress-gallery-link__right 
                             div 2021

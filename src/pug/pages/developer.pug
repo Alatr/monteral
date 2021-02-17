@@ -32,7 +32,7 @@ block content
         canvas#c
         picture.page-first-block__bg
             source(srcset="./assets/images/developer/bg.jpg")
-            img(src="./assets/images/developer/bg.jpg")
+            img(alt="#" src="./assets/images/developer/bg.jpg")
         include ../includes/breadcrumbs.pug
         .page-first-block__text-wrap 
             <svg class="page-logo" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,11 +71,11 @@ block content
         .double-part-block.reverse.double-part-block__img-decor-square_bottom(data-double-part-block)
             .double-part-block__img
                 .double-part-block__img-decor-bg
-                    img(src="./assets/images/developer/block1-bg.jpg").double-part-block__img-decor-bg
+                    img(alt="#" src="./assets/images/developer/block1-bg.jpg").double-part-block__img-decor-bg
                 .double-part-block__img-main
-                    img(src="./assets/images/developer/block1.jpg").double-part-block__img-main
+                    img(alt="#" src="./assets/images/developer/block1.jpg").double-part-block__img-main
                 a(href="https://cityconsult.com.ua/" target='_blank').double-part-block__img-title 
-                    img(src='./assets/images/developer/developer.png')
+                    img(alt="#" src='./assets/images/developer/developer.png')
                     <button class="home-content__link link" type="submit" data-btn-submit="">
                         <span class="link__text usn" data-btn-submit-text="">Сайт девелопера</span>
                         <span class="link-ico link-ico--margin"><span class="link-ico__stic bgc--wc"></span>
@@ -91,9 +91,9 @@ block content
         .double-part-block.double-part-block__img-decor-square_bottom(data-double-part-block)
             .double-part-block__img
                 .double-part-block__img-decor-bg
-                    img(src="./assets/images/developer/block2-bg.jpg").double-part-block__img-decor-bg
+                    img(alt="#" src="./assets/images/developer/block2-bg.jpg").double-part-block__img-decor-bg
                 .double-part-block__img-main
-                    img(src="./assets/images/developer/block2.jpg").double-part-block__img-main
+                    img(alt="#" src="./assets/images/developer/block2.jpg").double-part-block__img-main
                 .double-part-block__img-decor-square
             .double-part-block__text
                 .double-part-block__title Короткий заголовок на декілька рядків
@@ -103,7 +103,7 @@ block content
         -var developerValues = [['Досвід','<b>Багаторічний досвід</b> у сфері нерухомості',],['Проекти','<b>Великий вибір</b> якісної та перевіреної нерухомості',],['Команда','<b>Понад 50 професійних</b> співробітників у штаті',],['Умови купівлі','<b>Вигідні умови</b> купівлі',],['Сервіс','<b>Індивідуальний підбір</b> нерухомості для кожного',],['Надійність','<b>Повний пакет</b> дозвільних документів і висока якість будівництва',],]
         each el in developerValues
             .developer-value
-                img(src="./assets/images/developer/dev-value1.jpg").developer-value__img
+                img(alt="#" src="./assets/images/developer/dev-value1.jpg").developer-value__img
                 .subtitle-with-decor.subtitle-with-decor--l.subtitle-with-decor--white.subtitle-with-decor--left-line #{el[0]}
                 .text !{el[1]}
         div.running-text.top-padding Нові важливості / <span class="golden-run">Нові важливості / </span>Нові важливості / Нові важливості / Нові важливості / Нові важливості / Нові важливості /
@@ -120,7 +120,7 @@ block content
             .swiper-wrapper
                 -var proj = ['./assets/images/developer/projects/forest-quartal.png','./assets/images/developer/projects/forest-quartal.png','./assets/images/developer/projects/illinsky-house.png','./assets/images/developer/projects/krona-park.png','./assets/images/developer/projects/lavandoviy.png',]
                 each el in proj
-                    img(src=el).swiper-slide
+                    img(alt="#" src=el).swiper-slide
         a(href="#").contact-item__link.button-second.button-second--color-white
             .button-second__icon
                 +svg('chair').button-second--map-size

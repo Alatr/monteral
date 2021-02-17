@@ -6,14 +6,14 @@ mixin testCard(link, src, title, descr)
 
 mixin icon(icon, condition)
 	if(condition)
-		svg(class= icon  role="presentation")&attributes(attributes)
+		svg(class= icon)&attributes(attributes)
 			use(xlink:href="#"+ icon + "")
 	else
 		span(class='svg-wrap')&attributes(attributes)
-			svg(class="svg-icon icon--"+ icon + ""  role="presentation")
+			svg(class="svg-icon icon--"+ icon + ""  )
 				use(xlink:href="#"+ icon + "")
 mixin svg(icon)
-		svg(class="icon--"+ icon + ""  role="presentation")&attributes(attributes)
+		svg(class="icon--"+ icon + "" )&attributes(attributes)
 			use(xlink:href="#icon-"+ icon + "")
 
 mixin link-blank(href)
