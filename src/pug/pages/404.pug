@@ -1,30 +1,47 @@
 extends ../layout/main
-	
+block variable
+    -
+        var title_page = headMenu[1].childs[6][0]
+        var id_page = 'location'
+        var class_page = 'location'
+        var breadcrumbsSubitem = [
+            {
+                label: headMenu[0].item[0],
+                link: headMenu[0].item[1]
+            },
+
+        ]
+    
+block footer
+    include ../includes/footer-inner-pages.pug
 block meta
-	title= '404'
-	meta(name='description', content='')
+    title= title_page
+    meta(name='description', content='')
 block head
-		link(rel='stylesheet', href="./assets/styles/main.min.css")
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
 block scripts
-	script(src='./assets/scripts/index.js')
+    script(defer src='./assets/scripts/index.js')
+    script(defer src='./assets/scripts/vendors.bundle.js')
+    script(defer src='./assets/scripts/form.bundle.js')
+block header
 
 block content
-	section(class="page404-wrap")
-		div(class="page404")
-			h1(class="page404__title") 404
-				span(class="page404__title-small") упс...
-			p(class="page404__subtitle") Что-то пошло не так, страница не найдена
-			div(class="link-wrap")
-				a(class="button-fill" onclick="window.history.go(-1);")
-					span.button-fill__text Назад
-				a(class="button-fill" href="/")
-					span.button-fill__text На главную
-
-block footer
-	footer.footer
-		include ../includes/footer.pug
-
-block header
-	header.header
-		include ../includes/header.pug
+    section(class="page404-wrap page404" style="    min-height: calc(100vh - var(--header-height)); display: flex; justify-content: center; align-items: center; text-align: center;")
+        div(class="page404")
+            h1(class="page404__title" style="margin-bottom:1.5em").page-title 404
+            p(class="page404__subtitle").double-part-block__title Что-то пошло не так, страница не найдена
+            div(class="link-wrap")
+                a( onclick="window.history.go(-1);").contact-item__link.button-second.button-second--color-white
+                    .button-second__icon
+                        +svg('footer-arrow')(style="transform:rotate(0.5turn)")
+                    span.button-second__text
+                        span 
+                            b Назад
+                a(href="/" data-parrent-node-popup).contact-item__link.button-second.button-second--color-white
+                    .button-second__icon
+                        +svg('logo')
+                    span.button-second__text
+                        span 
+                            b На головну
+    <style>.page__content {    background: url(assets/images/menu/menu-bg.jpg) center no-repeat;}.page404__subtitle:after,.page404__title-small:after{display:none}.link-wrap{display:flex;justify-content:space-between;align-items:center}.link-wrap>*{width:45%;}@media screen and (max-width:575px){.page404{    width: 100%;}.link-wrap{flex-wrap:wrap}.link-wrap>* {width: 100%;margin-bottom:15px;}}</style>
 
