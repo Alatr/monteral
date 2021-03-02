@@ -1104,7 +1104,7 @@
 
 .home-contact-form__text:not(#h){
   max-width: 268px;
-  display: flex;
+  display: block;
   text-align: center;
   margin: 0 auto 48px;
   @include from(1921px){

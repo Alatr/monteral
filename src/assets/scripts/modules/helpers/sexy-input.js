@@ -4,7 +4,8 @@ export default class sexyInput {
 		this.selected = false;
 		this.$field = setting.$field;
 		this.$input = setting.$input || setting.$field.querySelector('input');
-		this.$message = setting.$message || setting.$field.querySelector('[data-input-message]');
+    this.$message = setting.$message || setting.$field.querySelector('[data-input-message]');
+    this.typeInput = setting.typeInput || 'text';
 		
 		this.$body = document.querySelector('body');
 
@@ -98,9 +99,18 @@ export default class sexyInput {
 
 	
 	listeners(input) {
-		const self = this;
+    const self = this;
+    if(this.typeInput === 'phone'){
+      new Cleave(input, {
+        numericOnly: true,
+        prefix: '+38',
+        blocks: [3, 3, 3, 2, 2],
+        delimiters: [" (", ") ", "-", "-"],
+        noImmediatePrefix: true,
+      });
+    }
 		input.addEventListener('focus', self.selectIn(self));
-		input.addEventListener('blur', self.selectOut(self));
+    input.addEventListener('blur', self.selectOut(self));
 	}
 
 

@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 import axios from 'axios';
 import i18next from 'i18next';
+import Cleave from 'cleave.js';
 import initView from './form-view/view.js';
 import {langDetect} from './modules/helpers/helpers.js';
 import sexyInput from './modules/helpers/sexy-input';
@@ -21,8 +22,8 @@ const runApp = (async () => {
           phone: 'Телефон:*',
           send: 'Отправить',
           sending: 'Отправка',
-          field_too_short: 'телефон должен содержать не менее {{cnt}} символов',
-          field_too_long: 'телефон должен содержать не более {{cnt}} символов',
+          field_too_short: 'телефон должен содержать {{cnt}} символов',
+          field_too_long: 'телефон должен содержать {{cnt}} символов',
           only_number: 'здесь только цифры',
           required: 'это поле обязательне',
           sendingSuccessTitle: 'Cообщение отправлено',
@@ -46,7 +47,7 @@ const runApp = (async () => {
           phone: 'Телефон:*',
           send: 'Надіслати',
           sending: 'Відправлення',
-          field_too_short: 'телефон має містити принаймні {{cnt}} символів',
+          field_too_short: 'телефон має містити {{cnt}} символів',
           field_too_long: 'телефон має містити не більше {{cnt}} символів',
           only_number: 'тут лише цифри',
           required: 'Це поле є обов`язковим',
@@ -73,7 +74,7 @@ const runApp = (async () => {
           phone: 'Phone:*',
           send: 'Sand',
           sending: 'Sanding',
-          field_too_short: 'phone must be at least {{cnt}} characters',
+          field_too_short: 'phone must be at {{cnt}} characters',
           field_too_long: 'phone must be at most {{cnt}} characters',
           only_number: 'only digits here',
           required: 'this field is required',
@@ -207,7 +208,6 @@ window.FormMonster = class FormMonster {
           this.watchedState.status = 'loading';
           const formData = new FormData(this.elements.$form);
           formData.append('action', 'app');
-
           /* eslint-disable-next-line */
           const { error, code_error } = await sendForm(formData);
 
@@ -250,6 +250,8 @@ const forms = [
   '[data-contact-page-form]',
 ];
 
+
+
 forms.forEach((form) => {
   const $form = document.querySelector(form);
 
@@ -268,13 +270,11 @@ forms.forEach((form) => {
           },
     
           phone: {
-            inputWrapper: new sexyInput({ $field: $form.querySelector('[data-field-phone]') }),
+            inputWrapper: new sexyInput({ $field: $form.querySelector('[data-field-phone]'), typeInput: 'phone' }),
             rule: yup
                   .string()
-                  .matches(/(^[0-9]+$)/, i18next.t('only_number'))
                   .required(i18next.t('required'))
-                  .min(6, i18next.t('field_too_short', {cnt: 6}))
-                  .max(15, i18next.t('field_too_long', {cnt: 15})),
+                  .min(19, i18next.t('field_too_short', {cnt: 19-7})),
                   
             defaultMessage: i18next.t('phone'),
             valid: false,

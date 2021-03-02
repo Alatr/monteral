@@ -25,6 +25,7 @@
         "bezier-easing": "^2.1.0",
         "browser-sync": "^2.24.4",
         "browserify": "^16.5.2",
+        "cleave.js": "^1.6.0",
         "cssnano": "^3.10.0",
         "del": "^3.0.0",
         "eslint": "^7.6.0",
