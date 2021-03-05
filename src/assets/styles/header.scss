@@ -77,7 +77,7 @@
     @include from(769px) {
         &__call:hover {
             color: #ffffff;
-            border-color: #ffffff;
+            border-color: transparent;
         }
     }
     @include from(1680px) {

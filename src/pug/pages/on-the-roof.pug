@@ -26,11 +26,12 @@ block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
   script(defer src='./assets/scripts/smooth_scroll.js')
+  script(defer src='./assets/scripts/wather-three.js')
   script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
 block content
-    section.page-first-block
+    section(data-canvas-wrap data-canvas-img="/assets/images/three/image-111.jpg").page-first-block
         canvas#c
         picture.page-first-block__bg
             source(srcset="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")

@@ -18,12 +18,16 @@ a(href=headMenu[0].item[1]).header__logo
     <path d="M0 37.3116H37.2463V0.28833H0V37.3116ZM34.1231 34.1975H3.12314V3.51778H34.1231V34.1975Z" fill="white"/>
     <path d="M20.5313 7.15094V27.4503H16.772V7.15094H6.82422V30.5644H9.94735V10.265H13.6488V30.5644H23.5966V10.265H27.3559V30.5644H30.4212V7.15094H20.5313Z" fill="white"/>
   </svg>
-button(type="button" data-parrent-node-popup).border-btn.header__call.header-nav-text.header__call_hidden-mobile
-  span замовити дзвінок
+//- button(type="button" data-parrent-node-popup).border-btn.header__call.header-nav-text.header__call_hidden-mobile
+//-   span замовити дзвінок
+<button type="button" data-parrent-node-popup class="border-btn button button--aylen button--inverted  border-btn header__call header-nav-text header__call_hidden-mobile">замовити дзвінок</button>
 
 
-a(href="tel:+1234567890").header__tel.header-nav-text.header__call_icon-on-mobile.icon-tel 123 456 78 90
-a(href="#").border-btn.header__call.header-nav-text.header__call_hidden-tablet обрати квартиру
+a(href="tel:+1234567890").header__tel.header-nav-text.header__call_icon-on-mobile.icon-tel.link--elara
+  span 123 456 78 90
+//- a(href="#").border-btn.header__call.header-nav-text.header__call_hidden-tablet обрати квартиру
+<a href="#" class="border-btn button button--aylen button--inverted  header__call header-nav-text header__call_hidden-tablet">обрати квартиру</a>
+
 button(type="button" data-parrent-node-menu data-menu-btn).header__menu.header-menu
   span.header-menu__text
     span(data-text-open).text__open.header-nav-text меню
