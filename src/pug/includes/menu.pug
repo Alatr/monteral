@@ -8,10 +8,12 @@
 							each smallPoint,index in bigPoint.childs
 								if smallPoint[2]
 									li 
-										a.menu__inner-link(href=smallPoint[1] data-blur=index data-image=smallPoint[2]) #{smallPoint[0]}
+										a.menu__inner-link.link--elara(href=smallPoint[1] data-blur=index data-image=smallPoint[2])
+											span #{smallPoint[0]}
 								else 
 									li 
-										a.menu__inner-link(href=smallPoint[1] data-blur=index data-image="./assets/images/menu/points/default.jpg") #{smallPoint[0]}
+										a.menu__inner-link.link--elara(href=smallPoint[1] data-blur=index data-image="./assets/images/menu/points/default.jpg")
+											span #{smallPoint[0]}
 	.menu__img-wrap
 		.menu__img-wrap-for-animation
 			+img('menu/points/default.jpg').js-menu-img

@@ -23,7 +23,7 @@
 
 
 /* Aylen */
-.button.button--aylen {
+.button.button--aylen, .button--aylen {
 	position: relative;
 	background: #fff;
 	color: #37474f;
@@ -34,6 +34,10 @@
 .button--aylen.button--inverted {
 	background: none;
 	color: #fff;
+}
+.button--aylen.button--inverted span{
+	display: flex;
+  z-index: 5;
 }
 .button--aylen::before,
 .button--aylen::after {
@@ -95,20 +99,40 @@ body{
 		transform: translate3d(0, 2px, 0) scale3d(1.08, 2, 1);
 		clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0, 50% 0, 50% 100%, 50% 100%, 0 100%, 100% 100%, 100% 0%);
 	}
+	.footer-wrap .link--elara:hover::before {
+		transform: translate3d(0, 2px, 0) scale3d(1.08, 1, 1);
+	}
 
 	.button--aylen::before {
+    z-index: 1;
 		background: #e8dbbd;
 	}
 	.button--aylen::after {
+    z-index: 2;
 		background: #CFBE97;
 	}
-	.button--aylen:hover::before,
-	.button--aylen:hover::after {
+	.button-second .button--aylen::before {
+    z-index: 1;
+		background: #167f83;
+	}
+	.button-second .button--aylen::after {
+    z-index: 2;
+		background: #008588;
+	}
+	.button-second:hover .button--aylen::before,	.button-second:hover .button--aylen::after ,
+	.button--aylen:hover::before,	.button--aylen:hover::after {
 		-webkit-transform: translate3d(0, 100%, 0);
 		transform: translate3d(0, 100%, 0);
 	}
+	.button-second:hover .button--aylen::after,
 	.button--aylen:hover::after {
 		-webkit-transition-delay: 0.175s;
 		transition-delay: 0.175s;
 	}
+}
+
+.btn--res{
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }

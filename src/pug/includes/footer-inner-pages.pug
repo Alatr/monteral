@@ -2,37 +2,56 @@
     .footer-inner-pages
         ul.footer-inner-pages__left
             li
-                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[0].item[0]} 
-                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[3].item[0]} 
-                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[4].item[0]} 
-                a.footer-head-title.footer-page-link(href=headMenu[0].item[1]) #{headMenu[5].item[0]} 
+                a.footer-head-title.footer-page-link.link--elara(href=headMenu[0].item[1])
+                  span #{headMenu[0].item[0]} 
+                a.footer-head-title.footer-page-link.link--elara(href=headMenu[0].item[1])
+                  span #{headMenu[3].item[0]} 
+                a.footer-head-title.footer-page-link.link--elara(href=headMenu[0].item[1])
+                  span #{headMenu[4].item[0]} 
+                a.footer-head-title.footer-page-link.link--elara(href=headMenu[0].item[1])
+                  span #{headMenu[5].item[0]} 
             li
                 .footer-head-title.gold.footer-sublinks-title #{headMenu[1].item[0]} 
                 ul
                     each link in headMenu[1].childs
                         li
-                            a.footer-link-s.footer-page-sublink(href=link[1]) #{link[0]}
+                            a.footer-link-s.footer-page-sublink.link--elara(href=link[1])
+                              span #{link[0]}
             li
                 .footer-head-title.gold.footer-sublinks-title #{headMenu[2].item[0]} 
                 ul
                     each link in headMenu[2].childs
                         li
-                            a.footer-link-s.footer-page-sublink(href=link[1]) #{link[0]}
+                            a.footer-link-s.footer-page-sublink.link--elara(href=link[1])
+                              span #{link[0]}
         .footer-inner-pages__right
             .footer-info-block
                 .footer-head-title.gold Відділ продажів
-                a(href=salesTel[0]).footer-title-l.footer-info-block-part #{salesTel[1]}
-                a(href="https://maps.google.com/?q="+encodeURIComponent(salesAdress) target='_blank').blank-link.footer-info-block-part #{salesAdress}
+                a(href=salesTel[0]).footer-title-l.footer-info-block-part.link--elara
+                  span #{salesTel[1]}
+                a(href="https://maps.google.com/?q="+encodeURIComponent(salesAdress) target='_blank').blank-link.footer-info-block-part.link--elara
+                  span #{salesAdress}
                 .footer-info-block-part #{salesScheldule}
-                .link-with-icon(data-parrent-node-popup)
-                    .link-with-icon__text Зворотній зв'язок
-                    +svg('footer-arrow').link-with-icon__icon
+                //- button.link-with-icon.btn--res.link--elara(data-parrent-node-popup type="button")
+                //-   .link-with-icon__text Зворотній зв'язок
+                //-   +svg('footer-arrow').link-with-icon__icon
+                //- button.link-with-icon.btn--res.link--elara(data-parrent-node-popup type="button")
+                button(type="button" data-parrent-node-popup).home-content__link.link.link-with-icon.btn--res
+                  span.link-with-icon__text.usn Зворотній зв'язок
+                  span.link-ico.link-ico--margin
+                    span.link-ico__stic.bgc--wc
+                    +svg('arrow').link__ico.fill--wc
             .footer-info-block
                 .footer-head-title.gold Адреса комлексу
-                a(href="https://maps.google.com/?q="+encodeURIComponent(complexAdress.split('/')[1]) target='_blank').blank-link.footer-info-block-part #{complexAdress}
-                a(href="3d.html").link-with-icon 
-                    .link-with-icon__text Обрати квартиру
-                    +svg('footer-arrow').link-with-icon__icon
+                a(href="https://maps.google.com/?q="+encodeURIComponent(complexAdress.split('/')[1]) target='_blank').blank-link.footer-info-block-part.link--elara #{complexAdress}
+                //- a(href="3d.html").link-with-icon 
+                //-     .link-with-icon__text Обрати квартиру
+                //-     +svg('footer-arrow').link-with-icon__icon
+                a(href="3d.html" data-parrent-node-popup).home-content__link.link.link-with-icon.btn--res
+                  span.link-with-icon__text.usn Обрати квартиру
+                  span.link-ico.link-ico--margin
+                    span.link-ico__stic.bgc--wc
+                    +svg('arrow').link__ico.fill--wc
     .footer-copyright
         .footer-copyright__left © Montreal house усі права захищено
         a(href="https://smarto.agency" target='_blank').footer-copyright__right develop by <u>smart orange</u>

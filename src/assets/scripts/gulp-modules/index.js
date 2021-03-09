@@ -502,8 +502,8 @@ class Demo4 {
       polygon.scaling = initialScale;
       paper.view.onFrame = event => {
         
-        const noiseScale = this.isStuck ? 70 : 60; // speed
-        const noiseRange = this.isStuck ? 2 : 0.65;
+        const noiseScale = this.isStuck ? 160 : 60; // speed
+        const noiseRange = this.isStuck ? 6 : 0.65;
 
 
 
