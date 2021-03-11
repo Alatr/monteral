@@ -26,14 +26,14 @@
 .button.button--aylen, .button--aylen {
 	position: relative;
 	background: #fff;
-	color: #37474f;
+	// color: #37474f;
 	overflow: hidden;
 	-webkit-transition: color 0.3s;
 	transition: color 0.3s;
 }
 .button--aylen.button--inverted {
 	background: none;
-	color: #fff;
+	// color: #fff;
 }
 .button--aylen.button--inverted span{
 	display: flex;

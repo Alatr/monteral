@@ -23,6 +23,11 @@
             @include shift(0);
         }
     }
+    @include to(768px){
+        .page-part {
+            @include shift-padding(0);
+        }
+    }
     @include to(575px) {
         .double-part-block {
             width: 100%;

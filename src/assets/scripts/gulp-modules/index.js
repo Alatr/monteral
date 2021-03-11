@@ -216,27 +216,16 @@ function animationMenuIn(settings) {
     const menuLinks = document.querySelectorAll('.menu__outer-links>li>a');
     const menuInnerLinks = document.querySelectorAll('.menu__inner-links>li>a');
     gsap.set(menuBackgrounds, {transformOrigin:'left'});
+
     tl.timeScale(0.75);
     tl.fromTo(this.$popup, 0.5, { autoAlpha: 0, }, { autoAlpha: 1, immediateRender: true }, )
-        // tl.fromTo(menuBackgrounds, { x: 150, y: -20, scale: 1.02, autoAlpha: 0 }, { x: 0, y: 0, autoAlpha: 1, scale: 1, stagger: 0.05, duration: 0.3 }, '<')
-    tl.fromTo(menuBackgrounds, { scaleX: 0 }, { scaleX: 1 , stagger: 0.05, clearProps: 'all', duration: 0.3 }, '<')
-    tl.fromTo(textWrap, { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, }, '<+0.5')
-    tl.fromTo(imgWrap, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
-    tl.fromTo(imgForAnim, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
+    tl.fromTo(this.$popup, {scale:1.2}, {scale:1}, '<');
+    tl.fromTo(imgForAnim, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<+0.1')
+    tl.fromTo([textWrap, imgWrap], {borderColor: 'transparent'}, {borderColor: '#cfbe97'},'<')
+    tl.fromTo(menuLinks, { autoAlpha: 0, x: 90 }, { autoAlpha: 1, stagger: 0.075, x: 0 }, '<-0.25')
+    tl.fromTo(menuInnerLinks, { autoAlpha: 0, x: 90,  }, { autoAlpha: 1, stagger: 0.075, x: 0 }, '<-0.25')
 
-    tl.fromTo(rule, {
-        cssRule: {
-            opacity: 0,
-        }
-    }, {
-        cssRule: {
-            opacity: 1,
-        }
-    }, '<')
-    tl.fromTo(menuLinks, { autoAlpha: 0, x: -30 }, { autoAlpha: 1, stagger: 0.1, x: 0 }, '<')
-    tl.fromTo(menuInnerLinks, { autoAlpha: 0, x: -30, y: 10 }, { autoAlpha: 1, stagger: 0.075, x: 0, y: 0 }, '<')
-
-    tl.to([line0, line1, line2], 0.5, { autoAlpha: 1, x: 30, stagger: 0.1, ease: ease_menuBtnHover1 }, '<')
+    tl.to([line0, line1, line2], 0.5, { autoAlpha: 0, x: 30, stagger: 0.1, ease: ease_menuBtnHover1 }, '<')
         //     /*  */
     tl.to(menuTextOpen, 0.3, { autoAlpha: 0, x: 20, ease: ease_menuBtnText }, '<')
     tl.to(menuTextClose, 0.3, { autoAlpha: 1, x: 0, ease: ease_menuBtnText }, '<')
@@ -263,24 +252,24 @@ function animationMenuOut(settings) {
     const menuBackgrounds = document.querySelectorAll('[class*=menu__decor]');
     const shift = 200;
     tl.timeScale(0.75);
-    var textWrapDecor = CSSRulePlugin.getRule(".menu__text-wrap:after");
-    tl.fromTo(animationImgWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: shift, }, '<')
-    tl.fromTo(imgWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: shift, }, '<')
-    tl.fromTo(textWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: -shift, }, '<')
+    // var textWrapDecor = CSSRulePlugin.getRule(".menu__text-wrap:after");
+    // tl.fromTo(animationImgWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: shift, }, '<')
+    // tl.fromTo(imgWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: shift, }, '<')
+    // tl.fromTo(textWrap, { autoAlpha: 1, x: 0 }, { autoAlpha: 0, x: -shift, }, '<')
 
-    tl.fromTo(img, { scale: 1 }, { scale: 1.2 }, '<')
-    tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, immediateRender: true }, )
-    tl.fromTo(menuBackgrounds, { x: '0', autoAlpha: 1 }, { x: 100, autoAlpha: 0, stagger: 0.05, clearProps: 'all', duration: 1 }, '<')
+    // tl.fromTo(img, { scale: 1 }, { scale: 1.2 }, '<')
+    // tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, immediateRender: true }, )
+    // tl.fromTo(menuBackgrounds, { x: '0', autoAlpha: 1 }, { x: 100, autoAlpha: 0, stagger: 0.05, clearProps: 'all', duration: 1, ease:Power4.easeInOut }, '<')
 
-    tl.fromTo(textWrapDecor, {
-        cssRule: {
-            opacity: 1,
-        }
-    }, {
-        cssRule: {
-            opacity: 0,
-        }
-    }, '<')
+    // tl.fromTo(textWrapDecor, {
+    //     cssRule: {
+    //         opacity: 1,
+    //     }
+    // }, {
+    //     cssRule: {
+    //         opacity: 0,
+    //     }
+    // }, '<')
     tl.fromTo(this.$popup, 1, { autoAlpha: 1 }, { autoAlpha: 0, }, '<')
         /*  */
     tl.to(menuTextClose, 0.3, { autoAlpha: 0, x: -20, ease: ease_menuBtnText }, '<')

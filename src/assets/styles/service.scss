@@ -7,7 +7,7 @@
             @include shift-padding(1);
         }
         .page-part:not(.double-green) {
-            @include shift-padding(0.5);
+            @include shift-padding(1);
         }
         .page-part.double-green {
             @include shift-padding(1);

@@ -186,6 +186,8 @@
         line-height: 1em;
         text-transform: uppercase;
         color: $color-text-gold;
+        color: #e1ddd2 !important;
+        font-weight: 700;
         font-weight: bold;
         &.gold {
             color: $color-gold;
@@ -197,6 +199,7 @@
         line-height: 1em;
         padding-right: 0;
         color: #84B2B4;
+        color: rgba(132, 178, 180, 1) !important;
     }
     .footer-page-link {
         margin-bottom: 20px;

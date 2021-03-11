@@ -624,7 +624,8 @@ section {
         }
         &__img {
             order: 2;
-            height: 50vh;
+            // height: 50vh;
+            height: auto;
         }
         &__text {
             width: 100%;
@@ -656,6 +657,11 @@ section {
         p {
             font-size: 10px;
             line-height: 1.4em;
+        }
+    }
+    @include from-to(576px, 768px) {
+        &__img-main {
+            padding-bottom: calc(100% / 552 * 347);
         }
     }
 }

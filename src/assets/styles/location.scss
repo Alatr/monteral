@@ -22,6 +22,9 @@
         padding-right: 30%;
         // @include shift(0.5);
     }
+    .double-part-block {
+        width: 100%;
+    }
     @include from(951px) {
         .footer-wrap {
             @include shift-padding(1);

@@ -109,6 +109,7 @@ function filterBuildGalleries(objectWithValidFields, filterSelector, galleriesTo
         }
         gallery.validCount = 0;
     })
+    document.querySelector('#build-progress .page__content .page-part').scrollIntoView({behavior:'smooth'})
 }
 
 
