@@ -41,22 +41,25 @@
 }
 .button--aylen::before,
 .button--aylen::after {
-	content: '';
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	bottom: 100%;
-	left: 0;
-	z-index: -1;
-	-webkit-transition: -webkit-transform 0.3s;
-	transition: transform 0.3s;
-	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
-	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 100%;
+  left: 0;
+    z-index: -1;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    
 }
 
+@include from(951px) {
 
-.link--elara::before,
-.link--elara::after {
+  .link--elara::before,
+  .link--elara::after {
     position: absolute;
     width: 100%;
     height: 1px;
@@ -64,6 +67,7 @@
     top: 100%;
     left: 0;
     pointer-events: none;
+  }
 }
 
 .link--elara::before {
@@ -118,6 +122,10 @@ body{
 	.button-second .button--aylen::after {
     z-index: 2;
 		background: #008588;
+	}
+	.button-second .button--aylen.darken::after {
+    z-index: 2;
+		background: #008488;
 	}
 	.button-second:hover .button--aylen::before,	.button-second:hover .button--aylen::after ,
 	.button--aylen:hover::before,	.button--aylen:hover::after {

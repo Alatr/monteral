@@ -143,6 +143,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    z-index: 10;
     &>* {
         width: calc(25% - (15px * 3));
         // @include size(3);
@@ -158,6 +159,7 @@
         margin-left: 40px;
     }
     @include to(950px) {
+      left: calc(50% + 60px);
         &>*:nth-child(2) {
             margin-right: 20px;
         }
@@ -194,6 +196,7 @@
     @include to(575px) {
         bottom: 15px;
         width: 100%;
+        left: calc(50% + 40px);
         &>* {
             width: calc(50% - (25px));
         }

@@ -26,12 +26,13 @@ block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
   script(defer src='./assets/scripts/smooth_scroll.js')
+  script(defer src='./assets/scripts/wather-three.js')
   script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
 block content
-    section.page-first-block
-        canvas#c
+    section.page-first-block(data-canvas-wrap data-canvas-img="/assets/images/three/general-places/1-ua.jpg")
+        //- canvas#c
         picture.page-first-block__bg
             source(srcset="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")
             img(alt="#" src="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")

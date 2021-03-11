@@ -26,12 +26,12 @@ block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
   script(defer src='./assets/scripts/smooth_scroll.js')
+  script(defer src='./assets/scripts/wather-three.js')
   script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
 block content
-    section.page-first-block
-        canvas#c
+    section(data-canvas-wrap data-canvas-img="/assets/images/three/architeture-and-characteristics/1-ua.jpg").page-first-block
         picture.page-first-block__bg
             source(srcset="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")
             img(alt="#" src="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")
@@ -108,8 +108,8 @@ block content
                 a(href='3d.html').contact-item__link.button-second.button-second--color-white
                     .button-second__icon
                         +svg('chair')
-                    
-                        span обрати 
-                        b квартиру
+                    span.button-second__text.button--aylen
+                      span обрати 
+                      b квартиру
                     span.button-second__logo
                         +svg('logo-m')

@@ -416,7 +416,7 @@ a.border-btn {
     @include from(1025px) {
         &:hover {
             .button-second__icon {
-                background-color: #006164;
+                background-color: #00585A;
                 transition: background-color 0.3s var(--in) , opacity 1.5s;
             }
             .button-second__text span {

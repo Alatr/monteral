@@ -22,6 +22,14 @@
         padding-right: initial;
     }
 }
+#news-single {
+    .page__content {
+        @include to(768px) {
+          max-width: none;
+          overflow: initial;
+        }
+    }
+}
 
 
 /*Окрашивание частей страницы в другой цвет*/
@@ -127,6 +135,7 @@ section {
     transition: .3s ease;
     svg {
         transition: .5s ease;
+        margin: 0 auto 10px auto;
     }
     &.headroom--not-top {
         opacity: 1;
@@ -500,6 +509,7 @@ section {
         max-width: 380px;
         flex-direction: column;
         color: $color-text-gold;
+        font-size: 12px;
     }
     &:not(.reverse) &__text {
         margin-right: auto;
@@ -515,6 +525,7 @@ section {
         position: relative;
         padding-bottom: 22px;
         margin-bottom: 2em;
+        margin-bottom: 53.5px;
     }
     &__title:after {
         content: '';
@@ -528,6 +539,7 @@ section {
     p {
         line-height: 1.67em;
     }
+    
     p:not(:last-of-type) {
         margin-bottom: 1.67em;
     }
@@ -541,6 +553,10 @@ section {
         &__text>*:not(.button-second):nth-last-child(-n+2) {
             width: 80%;
             margin-left: auto;
+        }
+        &__text>*:not(.button-second):first-of-type {
+          width: 80%;
+          margin-right: auto;
         }
     }
     @include from(1680px) {

@@ -584,4 +584,7 @@ class Demo4 {
     }
   }
 
-  const demo4 = new Demo4();
+  if(document.documentElement.clientWidth >= 1025){
+
+    const demo4 = new Demo4();
+  }

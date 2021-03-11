@@ -30,8 +30,8 @@ function switchMenuImage(evt) {
     tl.to($menuImage, {
         clipPath: `polygon(0 0, 0% 0, 0% 100%, 0 100%)`,
         scale: 1.1,
-        ease: Power4.easeIn,
-        duration: 1.5,
+        ease: Power4.easeInOut,
+        duration: 0.55,
     })
     tl.add(() => {
         $menuImage.dataset.image = linkWithImage.dataset.image;
@@ -41,8 +41,8 @@ function switchMenuImage(evt) {
         clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`,
         ease: Power4.easeOut,
         scale: 1,
-        duration: 1.5,
-    })
+        duration: 1,
+    }, '<')
 
 }
 

@@ -14,10 +14,11 @@
         margin-bottom: 160px;
         position: relative;
         .news-back-link {
-            position: absolute;
-            position: fixed;
-
-            top: calc(var(--header-height) + 140px);
+          position: -webkit-sticky;
+            position: sticky;
+            width: 100%;
+            justify-content: flex-start;
+            top: calc(var(--header-height) + 0px);
 
             left: 50px;
         }
@@ -40,8 +41,10 @@
     @include to(950px) {
         section:first-child {
             margin-bottom: 100px;
+            position: relative;
             .news-back-link {
-                position: fixed;
+                // position: -webkit-sticky;
+                // position: sticky;
                 top: calc(var(--header-height) + 130px);
                 left: 22px;
             }
@@ -52,11 +55,22 @@
             display: none;
         }
     }
+    @include from(951px) {
+      section:first-child {
+        .news-back-link {
+          position: -webkit-sticky;
+          position: sticky;
+        }
+      }
+    }
     @include to(575px) {
         section:first-child {
             margin-bottom: 40px;
             .news-back-link {
-                top: 50px;
+                
+                position: -webkit-sticky;
+                top: calc(var(--header-height) + 15px);
+                 height: 12px;
             }
         }
         .breadcrumbs {
@@ -255,10 +269,10 @@
         margin-bottom: 60px;
     }
     @include from(769px){
-        .news-link {
-            max-height: max(30vh,350px);
-            z-index: 0;
-        }
+        // .news-link {
+        //     max-height: max(30vh,350px);
+        //     z-index: 0;
+        // }
     }
     @include to(1240px) {
         @include shift-padding(0.5);
@@ -298,13 +312,14 @@ section.dark-green {
     align-items: center;
     justify-content: center;
     font-size: 12px;
+    margin-bottom: -20px;
     line-height: 1em;
     span {
         margin-left: 10px;
     }
     @include to(950px) {
         svg {
-            max-width: 20px;
+            max-width: 18px;
         }
         span {
             display: none;

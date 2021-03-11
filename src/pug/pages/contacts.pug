@@ -25,12 +25,13 @@ block scripts
   script(defer src='./assets/scripts/index.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
+  script(defer src='./assets/scripts/wather-three.js')
   script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
 block content
-    canvas#c
-    section.page-first-block
+    //- canvas#c
+    section.page-first-block(data-canvas-wrap data-canvas-img="/assets/images/three/contacts/1-ua.jpg")
         picture.page-first-block__bg
             source(srcset="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")
             img(alt="#" src="./assets/images/"+pageNameFromMenuLatNoHtml+"/bg.jpg")

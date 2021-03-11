@@ -164,6 +164,10 @@
         &__text {
             max-width: 75%;
         }
+        &:hover .news-link__arrow {
+          background-color: #cfbe97;
+          transition: all 0.3s;
+        }
     }
     @include from(1680px) {
         &__text {

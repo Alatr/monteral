@@ -1,3 +1,12 @@
+.circle-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+@include from(1025px){
+
+
 body{
     --color-text: #fff;
     --color-bg: #171717;
@@ -11,10 +20,6 @@ body{
     }
   
     .circle-cursor {
-      position: fixed;
-      left: 0;
-      top: 0;
-      pointer-events: none;
       &--outer {
         width: 100vw;
         height: 100vh;
@@ -35,4 +40,4 @@ body{
    
   
   }
-  
+}

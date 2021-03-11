@@ -23,11 +23,12 @@ block scripts
   script(defer src='./assets/scripts/index.js')
   script(defer src='./assets/scripts/vendors.bundle.js')
   script(defer src='./assets/scripts/form.bundle.js')
+  //- script(defer src='./assets/scripts/wather-three.js')
   script(defer src='./assets/scripts/'+id_page+'.js')
 block header
 
 block content
-    section.page-first-block
+    section.page-first-block(data-canvas-wrap data-canvas-img="/assets/images/three/build-progress/1-ua.jpg")
         picture.page-first-block__bg
             source(srcset="./assets/images/build-progress/bg.jpg")
             img(alt="#" src="./assets/images/build-progress/bg.jpg")
@@ -165,7 +166,7 @@ block content
                 a(href='web-camera.html').contact-item__link.button-second.button-second--color-white
                     .button-second__icon
                         +svg('web-camera')
-                    
+                    span.button-second__text.button--aylen
                         span веб 
                         b камера
                     span.button-second__logo
