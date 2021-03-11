@@ -6,29 +6,33 @@ let $menu = document.querySelector('.menu');
 let $menuImage = document.querySelector('.js-menu-img');
 let $menuTextBlock = document.querySelector('.menu__text-wrap');
 let $menuInnerLinks = document.querySelectorAll('.menu__inner-links');
+let debounced = _.debounce(switchMenuImage, 250);
 
 $menuInnerLinks.forEach(link => {
     link.querySelector('*') ? link.previousElementSibling.classList.add(link.dataset.hasChildClass) : null;
 })
 
 document.querySelectorAll('[data-image]').forEach(el => {
-    el.addEventListener('mouseenter', switchMenuImage);
+    el.addEventListener('mouseenter', debounced);
 });
 
 
 $menuTextBlock.addEventListener('mouseleave', function(evt) {
     // $menuImage.style.opacity = 0;
 });
-
 function switchMenuImage(evt) {
+    // if (document.querySelector('[data-menu-block]').isAnimating === true) return;
     let linkWithImage = evt.target;
 
     if ($menuImage.dataset.image === linkWithImage.dataset.image) return;
 
-    gsap.set($menuImage, { clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, })
+    gsap.set($menuImage, { webkitClipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`, })
     let tl = gsap.timeline();
+    tl.add(()=> {
+        document.querySelector('[data-menu-block]').isAnimating = true;
+    });
     tl.to($menuImage, {
-        clipPath: `polygon(0 0, 0% 0, 0% 100%, 0 100%)`,
+        webkitClipPath: `polygon(0 0, 0% 0, 0% 100%, 0 100%)`,
         scale: 1.1,
         ease: Power4.easeInOut,
         duration: 0.55,
@@ -38,11 +42,14 @@ function switchMenuImage(evt) {
         $menuImage.src = linkWithImage.dataset.image;
     })
     tl.to($menuImage, {
-        clipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`,
+        webkitClipPath: `polygon(0 0, 100% 0, 100% 100%, 0 100%)`,
         ease: Power4.easeOut,
         scale: 1,
         duration: 1,
-    }, '<')
+    }, '<');
+    tl.add(()=> {
+        document.querySelector('[data-menu-block]').isAnimating = false;
+    });
 
 }
 

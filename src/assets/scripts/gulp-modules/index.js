@@ -215,10 +215,11 @@ function animationMenuIn(settings) {
     const menuBackgrounds = document.querySelectorAll('[class*=menu__decor]');
     const menuLinks = document.querySelectorAll('.menu__outer-links>li>a');
     const menuInnerLinks = document.querySelectorAll('.menu__inner-links>li>a');
+    gsap.set(menuBackgrounds, {transformOrigin:'left'});
     tl.timeScale(0.75);
     tl.fromTo(this.$popup, 0.5, { autoAlpha: 0, }, { autoAlpha: 1, immediateRender: true }, )
         // tl.fromTo(menuBackgrounds, { x: 150, y: -20, scale: 1.02, autoAlpha: 0 }, { x: 0, y: 0, autoAlpha: 1, scale: 1, stagger: 0.05, duration: 0.3 }, '<')
-    tl.fromTo(menuBackgrounds, { clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)', }, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)', stagger: 0.05, clearProps: 'all', duration: 0.3 }, '<')
+    tl.fromTo(menuBackgrounds, { scaleX: 0 }, { scaleX: 1 , stagger: 0.05, clearProps: 'all', duration: 0.3 }, '<')
     tl.fromTo(textWrap, { autoAlpha: 0, x: -200 }, { autoAlpha: 1, x: 0, }, '<+0.5')
     tl.fromTo(imgWrap, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')
     tl.fromTo(imgForAnim, { autoAlpha: 0, x: 200 }, { autoAlpha: 1, x: 0, }, '<')

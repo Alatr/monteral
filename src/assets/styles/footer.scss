@@ -214,6 +214,13 @@
         }
         .link-with-icon {
             margin-top: 20px;
+            max-width: 200px;
+        }
+        .link-with-icon__text {
+            white-space: nowrap;
+        }
+        .link-ico {
+            margin-top: 0;
         }
     }
     .footer-info-block:last-child {
@@ -228,6 +235,11 @@
         .blank-link {
             max-width: 40ch !important;
         }
+        .footer-info-block {
+            display: flex;
+            flex-direction: column;
+        }
+        
     }
     @include to(950px) {
         flex-wrap: wrap;

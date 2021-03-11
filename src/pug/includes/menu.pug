@@ -3,7 +3,7 @@
 		ul.menu__outer-links
 				each bigPoint in headMenu
 					li
-						a.menu__outer-link(href=bigPoint.item[1]) #{bigPoint.item[0]}
+						a.menu__outer-link(href=bigPoint.item[1]) !{bigPoint.item[0]}
 						ul.menu__inner-links(data-has-child-class="has-child")
 							each smallPoint,index in bigPoint.childs
 								if smallPoint[2]

@@ -133,6 +133,9 @@
         line-height: 1.5em;
         letter-spacing: -0.05em;
         color: #FFFFFF;
+        text-decoration: underline;
+        text-decoration-color: rgba(0,0,0,0) ;
+        transition: .3s ease-in-out;
     }
     &__arrow {
         width: 50px;
@@ -160,6 +163,9 @@
     @include from(769px) {
         &:hover &__img img {
             transform: scale(1.1);
+        }
+        &:hover &__text {
+            text-decoration-color: rgba(255,255,255,1) ;
         }
         &__text {
             max-width: 75%;
